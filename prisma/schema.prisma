@@ -23,7 +23,7 @@ model Account {
   id_token           String?  @db.Text
   session_state      String?
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user               User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@index([userId])
@@ -34,6 +34,7 @@ model Session {
   sessionToken String   @unique
   userId       String
   expires      DateTime
+
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
@@ -44,10 +45,14 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime?
+  phone         String?
   image         String?
   role          String?
+  order         Order[]
   accounts      Account[]
   sessions      Session[]
+  adresse       Adresse?
+  message       Contact[]
 }
 
 model VerificationToken {
@@ -59,7 +64,7 @@ model VerificationToken {
 }
 
 model Billboard {
-  id          String @id @default(uuid())
+  id          String @unique @id @default(uuid())
   label       String
   description String
   imageUrl    String
@@ -70,7 +75,7 @@ model Billboard {
 }
 
 model Category {
-  id          String @id @default(uuid())
+  id          String @unique @id @default(uuid())
   billboardId String
   billboard   Billboard @relation(fields: [billboardId], references: [id])
   products    Product[] @relation("CategoryToProduct")
@@ -82,26 +87,28 @@ model Category {
 }
 
 model Product {
-  id           String @id @default(uuid())
+  id           String @unique @id @default(uuid())
   categoryId   String
   category     Category @relation("CategoryToProduct", fields: [categoryId], references: [id])
   name         String
   description  String @db.VarChar(1000)
   productSpecs String @db.VarChar(1000)
-  priceHT       Decimal    //
-  priceTTC      Decimal     //
+  priceHT      Decimal    
   isFeatured   Boolean @default(false)
   isArchived   Boolean @default(false)
   images       Image[]
-  // orderItems   OrderItem[]
+  options       String?    
+  orderItems   OrderItem[]
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+
 
   @@index([categoryId])
 }
 
+
 model Image {
-  id        String @id @default(uuid())
+  id        String  @unique @id @default(uuid())
   productId String
   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
   url       String
@@ -109,4 +116,69 @@ model Image {
   updatedAt DateTime @updatedAt
 
   @@index([productId])
+}
+
+model Order {
+  id         String @unique @id @default(uuid())
+  orderItems OrderItem[]
+  isPaid     Boolean @default(true)
+  totalPrice Decimal @default(1)
+  name       String @default("")
+  phone      String @default("")
+  address    String @default("")
+  pdfUrl     String @default("")
+  userId     String  
+  user       User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([userId])
+
+}
+
+model OrderItem {
+  id        String @unique @id @default(uuid())
+  quantity  Decimal @default(1)
+  date      DateTime?
+  orderId   String
+  order     Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+  @@index([productId])
+}
+
+model Contact {
+  id       String     @unique @id @default(uuid())
+  name     String
+  mail     String
+  phone    String? 
+  subject  String
+  message  String  @db.VarChar(1000) 
+  createdAt DateTime @default(now()) 
+  updatedAt DateTime @updatedAt 
+
+  userId      String? 
+  user         User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+
+  @@index([userId])
+
+}
+
+model Adresse {
+  id String @unique @id @default(uuid())
+  line1      String?
+  line2      String?
+  city       String?
+  state      String?
+  postalCode String?
+  country    String?
+  userId      String  @unique
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+
+  @@index([userId])
+
 }
