@@ -80,3 +80,25 @@ body,
     @apply bg-background text-foreground;
   }
 }
+
+/* Disable number input spin button */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Markdown Styles */
+
+.markdown {
+  @apply prose dark:prose-invert;
+}
+
+.markdown h6 {
+  @apply bg-sky-400 dark:bg-sky-600;
+}
+/* Calendar button */
+
+.rdp-vhidden {
+  @apply hidden;
+}
