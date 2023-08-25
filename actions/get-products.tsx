@@ -1,5 +1,5 @@
 import { API_URL } from "@/lib/utils";
-import { ProductWithCategoryAndImages } from "@/type";
+import { ProductWithCategoryAndImages } from "@/types";
 import axios from "axios";
 import qs from "query-string";
 

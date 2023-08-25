@@ -10,7 +10,7 @@ import usePreviewModal from "@/hooks/use-preview-modal";
 import useCart from "@/hooks/use-cart";
 import { VisibleElement } from "./animations/visible-element";
 import { motion } from "framer-motion";
-import { ProductWithCategoryAndImages } from "@/type";
+import { ProductWithCategoryAndImages } from "@/types";
 import axios from "axios";
 import GetUser from "@/actions/get-user";
 

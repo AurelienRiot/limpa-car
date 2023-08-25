@@ -1,4 +1,4 @@
-import { UserWithAddresseAndMessage } from "@/type";
+import { UserWithAddresseAndMessage } from "@/types";
 import axios from "axios";
 
 const GetUser = async (): Promise<UserWithAddresseAndMessage> => {
