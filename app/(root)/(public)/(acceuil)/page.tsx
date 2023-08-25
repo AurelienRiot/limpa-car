@@ -26,7 +26,7 @@ export default async function Home() {
     <>
       <ImagesAccueil name={session?.user?.name} imageUrl={imageUrl} />
       <Container>
-        <div className="relative pt-6 pb-10 space-y-10 h-[1000px] bg-primary-foreground bg-clip-padding ">
+        <div className="relative pt-6 pb-10 space-y-10 h-[2000px] bg-primary-foreground bg-clip-padding  ">
           <Suspense fallback={<Loading />}>
             <div className="flex flex-col px-4 mb-16 gap-y-8 sm:px-6 lg:px-8">
               <ProductList title="Produits mise en avant" items={products} />

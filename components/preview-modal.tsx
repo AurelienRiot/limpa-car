@@ -2,7 +2,7 @@
 
 import usePreviewModal from "@/hooks/use-preview-modal";
 import Modal from "@/components/ui/modal";
-import Gallery from "@/components/gallery";
+import Gallery from "@/components/gallery/gallery";
 import Info from "@/components/info";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
