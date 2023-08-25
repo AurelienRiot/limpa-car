@@ -93,7 +93,7 @@ model Product {
   name         String
   description  String @db.VarChar(1000)
   productSpecs String @db.VarChar(1000)
-  priceHT      Decimal    
+  priceHT      Float    
   isFeatured   Boolean @default(false)
   isArchived   Boolean @default(false)
   images       Image[]
@@ -122,7 +122,7 @@ model Order {
   id         String @unique @id @default(uuid())
   orderItems OrderItem[]
   isPaid     Boolean @default(true)
-  totalPrice Decimal @default(1)
+  totalPrice Float @default(1)
   name       String @default("")
   phone      String @default("")
   address    Address[]
@@ -138,8 +138,8 @@ model Order {
 
 model OrderItem {
   id        String @unique @id @default(uuid())
-  price     Decimal
-  quantity  Decimal @default(1)
+  price     Float
+  quantity  Float @default(1)
   date      DateTime?
   orderId   String
   order     Order @relation(fields: [orderId], references: [id], onDelete: Cascade)

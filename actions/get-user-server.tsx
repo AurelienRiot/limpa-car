@@ -1,9 +1,17 @@
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import prismadb from "@/lib/prismadb";
+import { getServerSession } from "next-auth";
 
-const GetUser = async (id: string) => {
+const GetUser = async () => {
+  const session = await getServerSession(authOptions);
+
+  if (!session || !session.user || !session.user.id) {
+    return null;
+  }
+
   const user = await prismadb.user.findUnique({
     where: {
-      id: id,
+      id: session.user.id,
     },
     include: {
       orders: {

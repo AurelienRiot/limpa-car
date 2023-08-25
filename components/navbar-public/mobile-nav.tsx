@@ -8,6 +8,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
+  Car,
   Check,
   ChevronDown,
   ChevronsUpDown,
@@ -53,11 +54,13 @@ export default function MobileNav({
   const [open, setOpen] = useState(false);
   const [openProduct, setOpenProduct] = useState(false);
 
-  const routes = data.map((route) => ({
-    href: `/category/${route.id}`,
-    label: route.name,
-    active: pathname === `/category/${route.id}`,
-  }));
+  const routesCategory = data
+    .filter((route) => route.name !== "Nettoyage")
+    .map((route) => ({
+      href: `/category/${route.id}`,
+      label: route.name,
+      active: pathname.startsWith(`/category/${route.id}`),
+    }));
 
   const setPopover = (state: boolean) => {
     if (state) {
@@ -95,26 +98,24 @@ export default function MobileNav({
                 setOpenProduct(false);
               }}
             >
-              <p className="pt-2 text-lg font-bold text-primary"> Riot Tech</p>
+              <p className="pt-2 text-lg font-bold text-primary">Limpa Car</p>
             </Link>
-            {/* <SearchNavMobile /> */}
-            {/* <CommandInput placeholder="recherche"/>
-                        <CommandEmpty> Aucun resultat</CommandEmpty> */}
+
             <CommandGroup>
               <CommandItem
                 onSelect={() => {
-                  router.push("/activation-sim");
+                  router.push("/nettoyage");
                   setOpen(false);
                   setOpenProduct(false);
                 }}
                 className="cursor-pointer test-sm "
               >
-                <BsSim className="w-4 h-4 mr-2" />
-                Activation Sim
+                <Car className="w-4 h-4 mr-2" />
+                Nettoyage
                 <Check
                   className={cn(
                     "ml-auto h-4 w-4",
-                    pathname === "/activation-sim" ? "opacity-100" : "opacity-0"
+                    pathname === "nettoyage" ? "opacity-100" : "opacity-0"
                   )}
                 />
               </CommandItem>
@@ -140,7 +141,7 @@ export default function MobileNav({
                         variant="bottom"
                         className="absolute z-40 grid w-auto gap-2 p-4 border-2 rounded-lg left-20 top-6 bg-popover border-border"
                       >
-                        {routes.map((route) => (
+                        {routesCategory.map((route) => (
                           <li key={route.href}>
                             <Link
                               href={route.href}
@@ -164,42 +165,6 @@ export default function MobileNav({
                   </AnimatePresence>
                 </Suspense>
               </CommandItem>
-              <CommandItem
-                onSelect={() => {
-                  router.push("/anomaly-detect");
-                  setOpen(false);
-                  setOpenProduct(false);
-                }}
-                className="cursor-pointer test-sm "
-              >
-                <RiAlarmWarningLine className="w-4 h-4 mr-2" />
-                {"Détection d'anomalies"}
-                <Check
-                  className={cn(
-                    "ml-auto h-4 w-4",
-                    pathname === "/anomaly-detect" ? "opacity-100" : "opacity-0"
-                  )}
-                />
-              </CommandItem>
-              <CommandItem
-                onSelect={() => {
-                  router.push("/surveillance-elevage");
-                  setOpen(false);
-                  setOpenProduct(false);
-                }}
-                className="cursor-pointer test-sm"
-              >
-                <BiCctv className="w-4 h-4 mr-2" />
-                {"Surveillance élevage"}
-                <Check
-                  className={cn(
-                    "ml-auto h-4 w-4",
-                    pathname === "/surveillance-elevage"
-                      ? "opacity-100"
-                      : "opacity-0"
-                  )}
-                />
-              </CommandItem>
 
               <CommandItem
                 onSelect={() => {
@@ -218,27 +183,6 @@ export default function MobileNav({
                   )}
                 />
               </CommandItem>
-              {isSession && (
-                <CommandItem
-                  onSelect={() => {
-                    router.push("/dashboard-user");
-                    setOpen(false);
-                    setOpenProduct(false);
-                  }}
-                  className="cursor-pointer test-sm"
-                >
-                  <User2 className="w-4 h-4 mr-2" />
-                  {"Profil"}
-                  <Check
-                    className={cn(
-                      "ml-auto h-4 w-4",
-                      pathname === "/dashboard-user"
-                        ? "opacity-100"
-                        : "opacity-0"
-                    )}
-                  />
-                </CommandItem>
-              )}
             </CommandGroup>
           </CommandList>
           <CommandSeparator />

@@ -3,7 +3,6 @@ import ProductCart from "./product-cart";
 import { Suspense } from "react";
 import Loading from "@/components/loading";
 import { VisibleElement } from "@/components/animations/visible-element";
-import { Image as ImageProps, Product } from "@prisma/client";
 import { ProductWithCategoryAndImages } from "@/types";
 
 interface ProductListProps {

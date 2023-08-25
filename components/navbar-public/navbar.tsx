@@ -70,7 +70,7 @@ const NavBar: React.FC<NavBarProps> = ({ session, categories }) => {
                   />
                 </div>
 
-                <NavbarAction isSession={isSession} />
+                <NavbarAction session={session} />
               </div>
             </Container>
           </motion.div>

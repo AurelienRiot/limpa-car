@@ -10,11 +10,9 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { BsSim } from "react-icons/bs";
-import { LucidePhoneCall, StoreIcon, User2 } from "lucide-react";
-import { BiCctv } from "react-icons/bi";
-import { RiAlarmWarningLine } from "react-icons/ri";
-import { Suspense, useEffect, useState } from "react";
+import { Car, LucidePhoneCall, StoreIcon, User2 } from "lucide-react";
+
+import { useEffect, useState } from "react";
 import { VisibleElement } from "@/components/animations/visible-element";
 import { ChevronDown } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
@@ -33,7 +31,7 @@ const MainNav: React.FC<MainNavProps> = ({ data, isSession }) => {
     setOpen(false);
   }, [pathname]);
 
-  const routes = data
+  const routesCategory = data
     .filter((route) => route.name !== "Nettoyage")
     .map((route) => ({
       href: `/category/${route.id}`,
@@ -48,7 +46,7 @@ const MainNav: React.FC<MainNavProps> = ({ data, isSession }) => {
           <NavigationMenuItem className="border-2 rounded-lg border-border">
             <Link href="/nettoyage" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                <LucidePhoneCall className="hidden w-4 h-4 mr-2 xl:flex" />
+                <Car className="hidden w-4 h-4 mr-2 xl:flex" />
                 Nettoyage
               </NavigationMenuLink>
             </Link>
@@ -77,7 +75,7 @@ const MainNav: React.FC<MainNavProps> = ({ data, isSession }) => {
                   variant="bottom"
                   className="absolute z-50 grid w-full gap-3 py-6 border-2 rounded-lg xl:px-2 top-12 bg-popover border-border"
                 >
-                  {routes.map((route) => (
+                  {routesCategory.map((route) => (
                     <li key={route.href}>
                       <Link
                         href={route.href}
@@ -105,16 +103,6 @@ const MainNav: React.FC<MainNavProps> = ({ data, isSession }) => {
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
-          {isSession && (
-            <NavigationMenuItem className="border-2 rounded-lg border-border">
-              <Link href="/dashboard-user" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  <User2 className="hidden w-4 h-4 mr-2 xl:flex" />
-                  Profil
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          )}
         </NavigationMenuList>
       </NavigationMenu>
     </nav>

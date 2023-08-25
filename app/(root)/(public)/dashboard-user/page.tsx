@@ -14,7 +14,7 @@ const UserDashboard = async () => {
     redirect(`/login?callbackUrl=${encodeURIComponent(callbackUrl)}`);
   }
 
-  const user = await GetUser(session.user.id);
+  const user = await GetUser();
 
   return (
     <div className="gap-4 mt-4 mb-4">

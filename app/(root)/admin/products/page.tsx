@@ -19,7 +19,7 @@ const ProductPage = async () => {
     options: item.options ? item.options : null,
     isFeatured: item.isFeatured ? "oui" : "non",
     isArchived: item.isArchived ? "oui" : "non",
-    priceHT: formatter.format(item.priceHT.toNumber()),
+    priceHT: formatter.format(item.priceHT),
     category: item.category.name,
     createdAt: item.createdAt,
   }));

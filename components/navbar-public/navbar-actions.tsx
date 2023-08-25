@@ -1,12 +1,11 @@
 "use client";
 
 import useCart from "@/hooks/use-cart";
-import { ShoppingBag } from "lucide-react";
+import { ShoppingBag, User2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { LoginButton, LogoutButton } from "../auth/auth";
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -18,8 +17,10 @@ import CartItem from "../cart/cart-item";
 import { AnimatePresence, motion } from "framer-motion";
 import { HiOutlineExternalLink } from "react-icons/hi";
 import { ThemeToggle } from "../navbar-admin/theme.toggle";
+import IconButton from "../ui/icon-button";
+import { Session } from "next-auth";
 
-const NavbarAction: React.FC<{ isSession: boolean }> = ({ isSession }) => {
+const NavbarAction: React.FC<{ session: Session | null }> = ({ session }) => {
   const [isMounted, setIsMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -37,10 +38,21 @@ const NavbarAction: React.FC<{ isSession: boolean }> = ({ isSession }) => {
     return null;
   }
 
+  const dashboard =
+    session?.user?.role === "admin" ? "/admin" : "/dashboard-user";
+
   return (
     <div className="flex items-center ml-4 gap-x-2 sm:gap-x-4 ">
-      {!isSession && <LoginButton />}
-      {isSession && <LogoutButton />}
+      {session && (
+        <Link
+          href={dashboard}
+          className="flex items-center justify-center p-2 transition border rounded-full shadow-md hover:scale-110 bg-primary text-primary-foreground hover:rounded-full hover:bg-accent hover:text-accent-foreground"
+        >
+          <User2 className="w-4 h-4 " />
+        </Link>
+      )}
+
+      {!session && <LoginButton />}
       <ThemeToggle />
 
       <Sheet onOpenChange={setIsOpen} open={isOpen}>

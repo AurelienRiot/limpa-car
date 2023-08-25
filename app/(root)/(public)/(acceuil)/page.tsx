@@ -6,12 +6,11 @@ import Loading from "@/components/loading";
 import ImagesAccueil from "./components/images-accueil";
 import prismadb from "@/lib/prismadb";
 import { VisibleElement } from "@/components/animations/visible-element";
-import getProducts from "@/actions/get-products";
+import getProducts from "@/actions/get-products-server";
 import ProductList from "@/components/products-list";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
-  console.log(session);
 
   const products = await getProducts({ isFeatured: true });
 
