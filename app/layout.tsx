@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import ToasterProvider from "@/providers/toast-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import ModalProvider from "@/providers/modal-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
         <body className={`${inter.className} debug-screens`}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {" "}
+            <ModalProvider />
             <ToasterProvider />
             <TooltipProvider>{children}</TooltipProvider>
           </ThemeProvider>
