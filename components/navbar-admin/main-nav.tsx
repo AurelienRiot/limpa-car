@@ -19,19 +19,17 @@ export function MainNav({ className }: React.HTMLAttributes<HTMLElement>) {
   const routes = routesNav(pathname);
 
   return (
-    <nav className={cn("flex items-center space-x-4 lg:space-x-6", className)}>
+    <nav className={cn("flex items-center space-x-4 xl:space-x-6", className)}>
       {routes.map((route) => (
         <Link
           key={route.href}
           href={route.href}
           className={cn(
-            "text-xs xl:text-sm font-medium transition-colors hover:text-primary",
-            route.active
-              ? "text-black dark:text-white"
-              : "text-muted-foreground"
+            "text-xs xl:text-base font-medium transition-colors hover:text-primary",
+            route.active ? "text-primary" : "text-muted-foreground"
           )}
         >
-          {<route.Icone className="hidden w-4 h-4 mr-2 xl:inline-block" />}
+          {<route.Icone className="hidden w-4 h-4 mr-2 lg:inline-block" />}
           {route.label}
         </Link>
       ))}
@@ -68,7 +66,7 @@ export const routesNav = (pathname: string) => {
     {
       href: `/admin/products`,
       label: "Produits",
-      active: pathname === `/admin/products`,
+      active: pathname.startsWith(`/admin/products`),
       Icone: PackageIcon,
     },
     {

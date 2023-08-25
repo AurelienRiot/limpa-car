@@ -20,6 +20,8 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         markdown:
           "font-normal bg-primary text-primary-foreground hover:bg-primary/90",
+        rounded:
+          "w-auto rounded-full bg-primary text-primary-foreground px-5 py-3 disabled:cursor-not-allowed disabled:opacity-50  font-semibold hover:opacity-75 transition ",
       },
       size: {
         default: "h-10 px-4 py-2",

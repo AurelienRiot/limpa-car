@@ -45,14 +45,14 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime?
-  phone         String?
+  phone         String? 
   image         String?
   role          String?
-  order         Order[]
+  orders        Order[]
   accounts      Account[]
   sessions      Session[]
-  adresse       Adresse?
-  message       Contact[]
+  address       Address[]
+  messages      Contact[]
 }
 
 model VerificationToken {
@@ -97,7 +97,7 @@ model Product {
   isFeatured   Boolean @default(false)
   isArchived   Boolean @default(false)
   images       Image[]
-  options       String?    
+  options      String?    
   orderItems   OrderItem[]
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
@@ -125,7 +125,7 @@ model Order {
   totalPrice Decimal @default(1)
   name       String @default("")
   phone      String @default("")
-  address    String @default("")
+  address    Address[]
   pdfUrl     String @default("")
   userId     String  
   user       User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -138,6 +138,7 @@ model Order {
 
 model OrderItem {
   id        String @unique @id @default(uuid())
+  price     Decimal
   quantity  Decimal @default(1)
   date      DateTime?
   orderId   String
@@ -150,35 +151,40 @@ model OrderItem {
 }
 
 model Contact {
-  id       String     @unique @id @default(uuid())
-  name     String
-  mail     String
-  phone    String? 
-  subject  String
-  message  String  @db.VarChar(1000) 
+  id        String     @unique @id @default(uuid())
+  name      String
+  mail      String
+  phone     String? 
+  subject   String
+  message   String  @db.VarChar(1000) 
   createdAt DateTime @default(now()) 
   updatedAt DateTime @updatedAt 
 
-  userId      String? 
-  user         User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String? 
+  user      User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
 
   @@index([userId])
 
 }
 
-model Adresse {
-  id String @unique @id @default(uuid())
+model Address {
+  id         String @unique @id @default(uuid())
   line1      String?
   line2      String?
   city       String?
   state      String?
   postalCode String?
   country    String?
-  userId      String  @unique
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String   
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orderId    String  
+  order      Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now()) 
+  updatedAt DateTime @updatedAt 
 
 
   @@index([userId])
+  @@index([orderId])
 
 }

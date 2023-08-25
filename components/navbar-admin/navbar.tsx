@@ -6,10 +6,10 @@ import { LogoutButton } from "../auth/auth";
 const Navbar = async () => {
   return (
     <div className="border-b ">
-      <div className="flex h-16 items-center px-4">
-        <MainNav className=" hidden lg:block pl-8" />
-        <MobileNav className="mx-6 lg:hidden" />
-        <div className="ml-auto flex items-center space-x-4">
+      <div className="flex items-center h-16 px-4">
+        <MainNav className="hidden pl-2 lg:pl-8 md:block" />
+        <MobileNav className="mx-6 md:hidden" />
+        <div className="flex items-center ml-auto space-x-4">
           <ThemeToggle />
           <LogoutButton />
         </div>
