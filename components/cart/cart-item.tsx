@@ -1,9 +1,9 @@
 "use client";
 
-import { ProductWithCategoryAndImages } from "@/actions/get-products";
 import Currency from "@/components/ui/currency";
 import IconButton from "@/components/ui/icon-button";
 import useCart from "@/hooks/use-cart";
+import { ProductWithCategoryAndImages } from "@/type";
 import { X, Minus, Plus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
