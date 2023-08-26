@@ -8,6 +8,7 @@ import prismadb from "@/lib/prismadb";
 import { VisibleElement } from "@/components/animations/visible-element";
 import getProducts from "@/actions/get-products-server";
 import ProductList from "@/components/products-list";
+import Client from "./components/client";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
@@ -36,6 +37,7 @@ export default async function Home() {
             variant="fade"
             className="w-auto overflow-auto break-after-column"
           >{`L'utilisateur est ${JSON.stringify(session)}`}</VisibleElement>
+          <Client />
         </div>
       </Container>
     </>

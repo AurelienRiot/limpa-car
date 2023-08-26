@@ -7,6 +7,7 @@ import { Markdown, cn } from "@/lib/utils";
 import { ProductWithCategoryAndImages } from "@/types";
 
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 interface NettoyageTileProps {
   sameProducts: ProductWithCategoryAndImages[];
@@ -34,6 +35,7 @@ const NettoyageTile: React.FC<NettoyageTileProps> = ({
     cart.addItem(selectedProduct, date);
     setLoading(false);
     setOpenCalendar(false);
+    toast.success("Produit ajouté au panier");
   };
 
   return (

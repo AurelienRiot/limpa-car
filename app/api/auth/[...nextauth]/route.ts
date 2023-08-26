@@ -2,6 +2,10 @@ import NextAuth, { type NextAuthOptions } from "next-auth";
 import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prismadb from "@/lib/prismadb";
+import EmailProvider from "next-auth/providers/email";
+import { render } from "@react-email/render";
+import WelcomeEmailProvider from "@/components/email/welcome-email-provider";
+import { transporter } from "@/lib/nodemailer";
 
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
@@ -14,6 +18,16 @@ export const authOptions: NextAuthOptions = {
     maxAge: 30 * 24 * 60 * 60,
   },
   providers: [
+    EmailProvider({
+      sendVerificationRequest: async ({ identifier: email, url }) => {
+        await transporter.sendMail({
+          from: "aurelien.r35@gmail.com",
+          to: email,
+          subject: "Création de votre compte Limpa Car",
+          html: render(WelcomeEmailProvider({ url })),
+        });
+      },
+    }),
     GoogleProvider({
       profile(profile: GoogleProfile) {
         return {

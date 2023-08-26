@@ -12,13 +12,13 @@ import {
 } from "@react-email/components";
 import * as React from "react";
 
-export interface WelcomeEmailProps {
-  name: string;
+export interface WelcomeEmailProviderProps {
+  url: string;
 }
 
 const baseUrl = "https://limpa-car.vercel.app";
 
-export const WelcomeEmail = ({ name }: WelcomeEmailProps) => (
+export const WelcomeEmailProvider = ({ url }: WelcomeEmailProviderProps) => (
   <Html>
     <Head />
     <Preview>Bienvenue sur Riot Tech</Preview>
@@ -33,17 +33,11 @@ export const WelcomeEmail = ({ name }: WelcomeEmailProps) => (
             style={logo}
           />
         </a>
-        <Text style={paragraph}>Bonjour {name},</Text>
+        <Text style={paragraph}>Bonjour,</Text>
         <Text style={paragraph}>Bienvenue sur Limpa Car</Text>
         <Section style={btnContainer}>
-          <Button
-            pX={12}
-            pY={12}
-            style={button}
-            href={`${baseUrl}/"login"`}
-            target="_blank"
-          >
-            Connectez-vous ici
+          <Button pX={12} pY={12} style={button} href={url} target="_blank">
+            Connectez-vous en cliquant ici
           </Button>
         </Section>
         <Text style={paragraph}>
@@ -58,7 +52,7 @@ export const WelcomeEmail = ({ name }: WelcomeEmailProps) => (
   </Html>
 );
 
-export default WelcomeEmail;
+export default WelcomeEmailProvider;
 
 const main = {
   backgroundColor: "#ffffff",
