@@ -42,7 +42,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
 
   return (
     <>
-      <div className="relative w-24 h-24 overflow-hidden bg-white rounded-md sm:h-48 sm:w-48">
+      <div className="relative w-24 h-24 bg-white rounded-md sm:h-40 sm:w-40">
         <Image
           fill
           src={data.images[0].url}
@@ -53,12 +53,12 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
       <div className="relative flex flex-col justify-between flex-1 ml-4 sm:ml-6">
         <div className="absolute top-0 right-0 z-10">
           <IconButton
-            className="bg-primary-foreground"
+            className="w-6 h-6 p-1 sm:p-2 sm:w-8 sm:h-8 bg-primary-foreground"
             onClick={onRemove}
             icon={<X size={15} className="text-primary" />}
           />
         </div>
-        <div className="relative content-center sm:gap-x-6">
+        <div className="relative flex flex-col text-left sm:gap-y-2 lg:gap-y-4">
           <div className="flex justify-between ">
             <Link
               href={`/product/${data.id}`}
@@ -67,9 +67,11 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
               {data.name}
             </Link>
           </div>
-          <Currency value={value} /> <br />
+          <p>
+            <Currency value={value} />
+          </p>
           {!dates || !dates.length ? (
-            <div className="flex gap-2 sm:flex-col items-left ">
+            <div className="flex flex-wrap gap-2 sm:flex-col items-left ">
               Quantité :
               <div className="flex items-center gap-2">
                 <IconButton

@@ -61,7 +61,7 @@ const NavbarAction: React.FC<{ session: Session | null }> = ({ session }) => {
           <span className="w-3 ml-1 text-sm font-medium ">{totalQuantity}</span>
         </SheetTrigger>
         <SheetContent className="overflow-y-auto">
-          <SheetHeader>
+          <SheetHeader className="pb-4">
             <SheetTitle>
               <Link
                 onClick={() => setIsOpen(false)}
@@ -72,35 +72,34 @@ const NavbarAction: React.FC<{ session: Session | null }> = ({ session }) => {
                 Passer commande <HiOutlineExternalLink />
               </Link>
             </SheetTitle>
-            <SheetDescription>
-              <div className="lg:col-span-7">
-                {cart.items.length === 0 && (
-                  <p className="text-secondary-foreground ">
-                    Aucun produit dans le panier
-                  </p>
-                )}
-                <ul>
-                  <AnimatePresence>
-                    {cart.items.map((item) => (
-                      <motion.li
-                        key={item.id}
-                        layout
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0, x: -100 }}
-                        transition={{
-                          layout: { type: "tween" },
-                          animate: { duration: 1 },
-                        }}
-                        className="flex p-1 mb-4 border rounded-lg sm:border-2 sm:p-2 bg-card border-border"
-                      >
-                        <CartItem data={item} />
-                      </motion.li>
-                    ))}
-                  </AnimatePresence>
-                </ul>
-              </div>
-            </SheetDescription>
+            <SheetDescription>Contenue de votre panier</SheetDescription>
           </SheetHeader>
+          <div className="lg:col-span-7">
+            {cart.items.length === 0 && (
+              <p className="text-secondary-foreground ">
+                Aucun produit dans le panier
+              </p>
+            )}
+            <ul>
+              <AnimatePresence>
+                {cart.items.map((item) => (
+                  <motion.li
+                    key={item.id}
+                    layout
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, x: -100 }}
+                    transition={{
+                      layout: { type: "tween" },
+                      animate: { duration: 1 },
+                    }}
+                    className="flex p-1 mb-4 border rounded-lg sm:border-2 sm:p-2 bg-card border-border"
+                  >
+                    <CartItem data={item} />
+                  </motion.li>
+                ))}
+              </AnimatePresence>
+            </ul>
+          </div>
         </SheetContent>
       </Sheet>
     </div>

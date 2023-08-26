@@ -6,7 +6,7 @@ import useCart from "@/hooks/use-cart";
 import { Markdown, cn } from "@/lib/utils";
 import { ProductWithCategoryAndImages } from "@/types";
 
-import { MouseEventHandler, useState } from "react";
+import { useState } from "react";
 
 interface NettoyageTileProps {
   sameProducts: ProductWithCategoryAndImages[];
@@ -46,51 +46,55 @@ const NettoyageTile: React.FC<NettoyageTileProps> = ({
         loading={loading}
         onConfirm={handleOnConfirm}
       />
-      <div className="w-auto p-6 border-2 bg-background group rounded-3xl border-primary">
-        <div className="flex flex-row items-center gap-5">
-          <div>{iconComponent}</div>
-          <span className="text-xl font-bold">{selectedProduct.name}</span>
-        </div>
-        <span className="flex mt-4 mb-4 text-lg">
-          {selectedProduct.description}
-        </span>
-        <div className="flex justify-between gap-2 mx-4">
-          {sameProducts.map((product) => {
-            return (
-              <Button
-                onClick={() => setSelectedProduct(product)}
-                key={product.id}
-                className={cn(
-                  "hover:bg-primary hover:text-primary-foreground",
-                  product === selectedProduct
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-secondary text-secondary-foreground"
-                )}
-              >
-                {product.options}
-              </Button>
-            );
-          })}
+      <div className="relative flex flex-col justify-between w-full p-6 border-2 lg:w-96 bg-card group rounded-3xl border-primary">
+        <div>
+          <div className="flex items-center gap-5">
+            {iconComponent}
+            <span className="text-xl font-bold">{selectedProduct.name}</span>
+          </div>
+          <span className="flex mt-4 mb-4 text-lg">
+            {selectedProduct.description}
+          </span>
+          <div className="flex justify-start gap-2 mx-4 lg:justify-between">
+            {sameProducts.map((product) => {
+              return (
+                <Button
+                  onClick={() => setSelectedProduct(product)}
+                  key={product.id}
+                  className={cn(
+                    "hover:bg-primary hover:text-primary-foreground",
+                    product === selectedProduct
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-secondary text-secondary-foreground"
+                  )}
+                >
+                  {product.options}
+                </Button>
+              );
+            })}
+          </div>
+
+          <Markdown className="mt-4 overflow-y-auto max-h-1/2">
+            {selectedProduct.productSpecs}
+          </Markdown>
+
+          <div className="my-4 border border-dashed border-border" />
         </div>
 
-        <Markdown className="mt-4 overflow-y-auto h-1/2 ">
-          {selectedProduct.productSpecs}
-        </Markdown>
-
-        <div className="my-4 tracking-widest border border-dashed border-border" />
-
-        <div className="flex items-baseline justify-start">
-          <Currency
-            className="text-2xl font-bold "
-            value={selectedProduct.priceHT}
-          />
+        <div>
+          <div className="flex items-baseline justify-start">
+            <Currency
+              className="text-2xl font-bold "
+              value={selectedProduct.priceHT}
+            />
+          </div>
+          <Button
+            onClick={(e) => setOpenCalendar(true)}
+            className="px-4 py-3 mt-6 text-lg font-semibold bg-emerald-100 text-emerald-800 group-hover:text-white group-hover:bg-emerald-800 rounded-xl"
+          >
+            Reserver une date
+          </Button>
         </div>
-        <Button
-          onClick={(e) => setOpenCalendar(true)}
-          className="px-4 py-3 mt-6 text-lg font-semibold bg-emerald-100 text-emerald-800 group-hover:text-white group-hover:bg-emerald-800 rounded-xl"
-        >
-          Reserver une date
-        </Button>
       </div>
     </>
   );

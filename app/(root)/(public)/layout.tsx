@@ -16,7 +16,7 @@ export default async function PublicLayout({
   return (
     <>
       <NavBar session={session} categories={categories} />
-      <div className="relative pt-16">{children}</div>
+      <div className="pt-16 ">{children}</div>
       <Footer />
     </>
   );

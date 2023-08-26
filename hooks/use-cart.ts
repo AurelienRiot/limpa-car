@@ -1,5 +1,4 @@
 import { ProductWithCategoryAndImages } from "@/types";
-import { toast } from "react-hot-toast";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
@@ -40,7 +39,6 @@ const useCart = create(
         }
 
         set({ quantities, dates });
-        toast.success("Produit ajouté au panier.");
       },
 
       removeOneItem: (id: string, date?: Date) => {

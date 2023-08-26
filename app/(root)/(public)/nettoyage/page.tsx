@@ -27,7 +27,7 @@ const Nettoyage = async () => {
         Formules ou sur Devis
       </h1>
 
-      <div className="flex gap-2 m-6 ">
+      <div className="flex flex-col items-center justify-between gap-2 m-6 lg:items-start lg:flex-row ">
         {groupedProducts.map((sameProduct) => (
           <NettoyageTile
             key={sameProduct[0].id}
