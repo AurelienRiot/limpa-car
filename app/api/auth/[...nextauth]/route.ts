@@ -6,6 +6,8 @@ import EmailProvider from "next-auth/providers/email";
 import { render } from "@react-email/render";
 import WelcomeEmailProvider from "@/components/email/welcome-email-provider";
 import { transporter } from "@/lib/nodemailer";
+import { User } from "@prisma/client";
+import { stripe } from "@/lib/strip";
 
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
@@ -35,7 +37,6 @@ export const authOptions: NextAuthOptions = {
           name: profile.name,
           email: profile.email,
           image: profile.picture,
-          role: "user",
         };
       },
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -43,14 +44,28 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    jwt: ({ token, user }) => {
+    jwt: async ({ token, user }) => {
       if (user) {
-        const u = user as unknown as any;
-        return {
-          ...token,
-          id: u.id,
-          role: u.role,
-        };
+        const u = user as User;
+
+        if (!u.stripeCustomerId) {
+          // Create a new customer in Stripe
+          const customer = await stripe.customers.create({
+            email: u.email as string,
+            name: u.name ? u.name : "",
+          });
+
+          const updatedUser = await prismadb.user.update({
+            where: { id: u.id },
+            data: { stripeCustomerId: customer.id },
+          });
+          return {
+            ...token,
+            id: u.id,
+            role: u.role,
+            stripeCustomerId: updatedUser.stripeCustomerId,
+          };
+        }
       }
       return token;
     },
@@ -61,6 +76,7 @@ export const authOptions: NextAuthOptions = {
           ...session.user,
           id: token.id,
           role: token.role,
+          stripeCustomerId: token.stripeCustomerId,
         },
       };
     },

@@ -3,7 +3,7 @@
 import useCart from "@/hooks/use-cart";
 import { ShoppingBag, User2 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { LoginButton, LogoutButton } from "../auth/auth";
+import { LoginButton } from "../auth/auth";
 import {
   Sheet,
   SheetContent,
@@ -17,7 +17,6 @@ import CartItem from "../cart/cart-item";
 import { AnimatePresence, motion } from "framer-motion";
 import { HiOutlineExternalLink } from "react-icons/hi";
 import { ThemeToggle } from "../navbar-admin/theme.toggle";
-import IconButton from "../ui/icon-button";
 import { Session } from "next-auth";
 
 const NavbarAction: React.FC<{ session: Session | null }> = ({ session }) => {
@@ -60,12 +59,12 @@ const NavbarAction: React.FC<{ session: Session | null }> = ({ session }) => {
           <ShoppingBag size={20} />
           <span className="w-3 ml-1 text-sm font-medium ">{totalQuantity}</span>
         </SheetTrigger>
-        <SheetContent className="overflow-y-auto">
-          <SheetHeader className="pb-4">
+        <SheetContent className="w-auto overflow-y-auto">
+          <SheetHeader className="pb-2 sm:pb-4">
             <SheetTitle>
               <Link
                 onClick={() => setIsOpen(false)}
-                href="/cart-page"
+                href="/cart-page#summary"
                 className="flex items-center gap-2 justify-left hover:underline"
               >
                 {" "}

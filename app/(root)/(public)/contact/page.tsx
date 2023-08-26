@@ -16,7 +16,7 @@ export type UserContact = {
 const ContactPage = async () => {
   const user = await GetUser();
 
-  const userContact = {
+  const userContact: UserContact = {
     name: user?.name ? user.name : "",
     mail: user?.email ? user.email : "",
     phone: user?.phone ? user.phone : "",

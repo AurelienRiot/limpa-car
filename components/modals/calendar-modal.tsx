@@ -42,17 +42,19 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
       isOpen={isOpen}
       onClose={onClose}
     >
-      <DatePicker
-        aria-disabled={loading}
-        date={date}
-        setDate={setDate}
-        fullDays={fullDays}
-        freeDays={freeDays}
-        partiallyFullDays={partiallyFullDays}
-      />
-      <Button disabled={loading} onClick={onConfirm} className="mt-4">
-        Ajouté au panier
-      </Button>
+      <div className="items-center gap-4 sm:flex">
+        <DatePicker
+          aria-disabled={loading}
+          date={date}
+          setDate={setDate}
+          fullDays={fullDays}
+          freeDays={freeDays}
+          partiallyFullDays={partiallyFullDays}
+        />
+        <Button disabled={loading} onClick={onConfirm} className="mt-4 sm:mt-0">
+          Ajouté au panier
+        </Button>
+      </div>
     </Modal>
   );
 };

@@ -1,20 +1,9 @@
-import Image from "next/image";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
 import Link from "next/link";
 import { BsGear } from "react-icons/bs";
 import GetUser from "@/actions/get-user-server";
 import { LogoutButton } from "@/components/auth/auth";
 
 const UserDashboard = async () => {
-  const session = await getServerSession(authOptions);
-  const callbackUrl = "/dashboard-user";
-
-  if (!session || !session.user) {
-    redirect(`/login?callbackUrl=${encodeURIComponent(callbackUrl)}`);
-  }
-
   const user = await GetUser();
 
   return (

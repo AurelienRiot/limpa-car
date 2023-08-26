@@ -62,7 +62,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
           <div className="flex justify-between ">
             <Link
               href={`/product/${data.id}`}
-              className="pr-10 text-lg font-semibold text-primary"
+              className="pr-10 text-base font-semibold sm:text-lg text-primary"
             >
               {data.name}
             </Link>
@@ -71,7 +71,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
             <Currency value={value} />
           </p>
           {!dates || !dates.length ? (
-            <div className="flex flex-wrap gap-2 sm:flex-col items-left ">
+            <div className="flex flex-wrap gap-2 text-sm sm:text-base sm:flex-col items-left ">
               Quantité :
               <div className="flex items-center gap-2">
                 <IconButton
@@ -92,11 +92,13 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
               {" "}
               {dates.map((date, index) => (
                 <div key={index} className="flex items-center">
-                  <IconButton
-                    className="w-5 h-5 p-0.5 bg-primary-foreground mr-2"
-                    onClick={() => handleRemoveDate(date)}
-                    icon={<X size={15} className="text-primary" />}
-                  />
+                  {quantity > 1 && (
+                    <IconButton
+                      className="w-5 h-5 p-0.5 bg-primary-foreground mr-2"
+                      onClick={() => handleRemoveDate(date)}
+                      icon={<X size={15} className="text-primary" />}
+                    />
+                  )}
                   {dateFormatter(new Date(date))}
                 </div>
               ))}

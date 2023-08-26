@@ -35,6 +35,16 @@ const Summary: React.FC<SummaryProps> = ({
 
   useEffect(() => {
     setIsMounted(true);
+    if (window.location.hash === "#summary") {
+      setTimeout(() => {
+        const element = document.getElementById("summary");
+        if (element) {
+          element.scrollIntoView({
+            behavior: "smooth",
+          });
+        }
+      }, 0);
+    }
   }, []);
 
   if (!isMounted) {
@@ -84,13 +94,19 @@ const Summary: React.FC<SummaryProps> = ({
   };
 
   return (
-    <div className="px-4 py-6 mt-16 bg-gray-100 border-2 rounded-lg dark:bg-black sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
+    <div
+      id="summary"
+      className="px-4 py-6 mt-16 bg-gray-100 border-2 rounded-lg dark:bg-black sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8"
+    >
       <h2 className="text-xl font-medium text-gray-500">Votre Commmande</h2>
       <ul className="pt-4">
         {items.map((item) => (
-          <li key={item.id}>
-            <strong>{item.name}</strong>{" "}
-            {quantities[item.id] > 1 && <span> x {quantities[item.id]}</span>}
+          <li key={item.id} className="flex justify-between">
+            <div>
+              {quantities[item.id] > 1 && <span> {quantities[item.id]}x </span>}
+              <strong>{item.name} </strong>{" "}
+            </div>
+            <Currency value={item.priceHT} className="justify-self-end" />
           </li>
         ))}
       </ul>

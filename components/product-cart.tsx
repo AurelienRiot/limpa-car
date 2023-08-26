@@ -11,6 +11,7 @@ import useCart from "@/hooks/use-cart";
 import { VisibleElement } from "./animations/visible-element";
 import { motion } from "framer-motion";
 import { ProductWithCategoryAndImages } from "@/types";
+import toast from "react-hot-toast";
 
 type ProductCartProps = {
   data: ProductWithCategoryAndImages;
@@ -36,6 +37,7 @@ const ProductCart: React.FC<ProductCartProps> = ({ data }) => {
     event.stopPropagation();
 
     cart.addItem(data);
+    toast.success("Produit ajouté au panier");
   };
 
   return (

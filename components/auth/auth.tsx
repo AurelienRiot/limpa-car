@@ -31,6 +31,7 @@ declare module "next-auth" {
     user?: {
       id: string;
       role?: string;
+      stripeCustomerId?: string;
     } & DefaultSession["user"];
   }
 }

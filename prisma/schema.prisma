@@ -41,18 +41,19 @@ model Session {
 }
 
 model User {
-  id            String    @unique @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  phone         String? 
-  image         String?
-  role          String @default("user")
-  orders        Order[]
-  accounts      Account[]
-  sessions      Session[]
-  address       Address[]
-  messages      Contact[]
+  id               String    @unique @id @default(cuid())
+  name             String?
+  email            String?   @unique
+  emailVerified    DateTime?
+  phone            String? 
+  image            String?
+  stripeCustomerId String?
+  role             String @default("user")
+  orders           Order[]
+  accounts         Account[]
+  sessions         Session[]
+  address          Address[]
+  messages         Contact[]
 }
 
 model VerificationToken {

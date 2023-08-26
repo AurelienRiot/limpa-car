@@ -3,11 +3,19 @@ import NettoyageTile from "./components/nettoyage-tile";
 import { MdOutlineLocalCarWash } from "react-icons/md";
 import { ProductWithCategoryAndImages } from "@/types";
 import Container from "@/components/ui/container";
+import Billboard from "@/components/billboard";
+import getCategory from "@/actions/get-category-server";
+
+export const metadata = {
+  title: "Limpa Car - Nettoyage",
+};
 
 const Nettoyage = async () => {
   const products = (await getProducts({ categoryName: "Nettoyage" })).sort(
     (a, b) => a.priceHT - b.priceHT
   );
+
+  const category = await getCategory(products[0].categoryId);
 
   const groupedProductsObj = products.reduce<
     Record<string, ProductWithCategoryAndImages[]>
@@ -23,6 +31,7 @@ const Nettoyage = async () => {
 
   return (
     <Container>
+      {category && <Billboard data={category.billboard} />}
       <h1 className="mt-12 text-5xl font-bold text-center">
         Formules ou sur Devis
       </h1>
