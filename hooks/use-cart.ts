@@ -6,10 +6,10 @@ import { persist, createJSONStorage } from "zustand/middleware";
 interface CartStore {
   items: ProductWithCategoryAndImages[];
   quantities: { [productId: string]: number };
-  addItem: (data: ProductWithCategoryAndImages) => void;
-  addOneItem: (id: string) => void;
-  removeOneItem: (id: string) => void;
-  removeItem: (id: string) => void;
+  dates: { [productId: string]: Date[] };
+  addItem: (data: ProductWithCategoryAndImages, date?: Date) => void;
+  removeOneItem: (id: string, date?: Date) => void;
+  removeItem: (id: string, date?: Date) => void;
   removeAll: () => void;
 }
 
@@ -18,30 +18,41 @@ const useCart = create(
     (set, get) => ({
       items: [],
       quantities: {},
+      dates: {},
 
-      addItem: (data: ProductWithCategoryAndImages) => {
+      addItem: (data: ProductWithCategoryAndImages, date?: Date) => {
         const quantities = get().quantities;
+        const dates = get().dates;
         const currentItems = get().items;
         const existingItem = currentItems.find((item) => item.id === data.id);
 
         if (existingItem) {
           quantities[data.id]++;
+          if (date) {
+            dates[data.id].push(date);
+          }
         } else {
           quantities[data.id] = 1;
           set({ items: [...get().items, data] });
+          if (date) {
+            dates[data.id] = [date];
+          }
         }
-        set({ quantities });
+
+        set({ quantities, dates });
         toast.success("Produit ajouté au panier.");
       },
 
-      addOneItem: (id: string) => {
+      removeOneItem: (id: string, date?: Date) => {
         const quantities = get().quantities;
-        quantities[id]++;
-        set({ quantities });
-      },
-
-      removeOneItem: (id: string) => {
-        const quantities = get().quantities;
+        const dates = get().dates;
+        if (date) {
+          const index = dates[id].indexOf(date);
+          if (index > -1) {
+            dates[id].splice(index, 1);
+          }
+          set({ dates });
+        }
         quantities[id]--;
         if (quantities[id] === 0) {
           set({ items: [...get().items.filter((item) => item.id !== id)] });
@@ -52,19 +63,18 @@ const useCart = create(
 
       removeItem: (id: string) => {
         const quantities = get().quantities;
+        const dates = get().dates;
         quantities[id] = 0;
+        dates[id] = [];
         set({
           items: [...get().items.filter((item) => item.id !== id)],
           quantities,
+          dates,
         });
       },
 
       removeAll: () => {
-        const quantities = get().quantities;
-        Object.keys(get().quantities).forEach((productId) => {
-          quantities[productId] = 0;
-        });
-        set({ items: [], quantities });
+        set({ items: [], quantities: {}, dates: {} });
       },
     }),
     {

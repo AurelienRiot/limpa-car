@@ -21,7 +21,7 @@ const Currency: React.FC<CurrencyProps> = ({ value, className }) => {
 
   return (
     <span className={cn(`font-semibold text-primary`, className)}>
-      {`${formatter.format(Number(value))}`}
+      {`${formatter.format(Number(value) * 1.2)}`}
     </span>
   );
 };

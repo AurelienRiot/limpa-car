@@ -139,35 +139,14 @@ const RenderMarkdown: React.FC<RenderMarkdownProps> = ({ form, loading }) => {
     ) {
       endLine++;
     }
-    let startWord = startPos + 1;
 
-    while (
-      textarea.value.charAt(startWord - 1) !== (" " || "\n") &&
-      startWord > 0
-    ) {
-      startWord--;
-    }
-    if (textarea.value.charAt(startWord) === "\n") {
-      startWord++;
-    }
-
-    let endWord = endPos - 1;
-    while (
-      endLine < textarea.value.length &&
-      textarea.value.charAt(endWord) !== (" " || "\n")
-    ) {
-      endWord++;
-    }
-    if (textarea.value.charAt(endWord) === "\n") {
-      endWord--;
-    }
     function addPrefixAndSuffixToString(prefix: string, suffix: string) {
       return (
-        productSpecswatch.substring(0, startWord) +
+        productSpecswatch.substring(0, startPos) +
         prefix +
-        productSpecswatch.substring(startWord, endWord) +
+        productSpecswatch.substring(startPos, endPos) +
         suffix +
-        productSpecswatch.substring(endWord)
+        productSpecswatch.substring(endPos)
       );
     }
 

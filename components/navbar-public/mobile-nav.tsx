@@ -43,11 +43,7 @@ interface MobileNavProps extends PopoverTriggerProps {
   isSession: boolean;
 }
 
-export default function MobileNav({
-  className,
-  data,
-  isSession,
-}: MobileNavProps) {
+export default function MobileNav({ className, data }: MobileNavProps) {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -87,9 +83,9 @@ export default function MobileNav({
           <ChevronsUpDown className="w-4 h-4 ml-auto opacity-50 shrink-0" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] h-auto p-0">
-        <Command>
-          <CommandList>
+      <PopoverContent className="w-[200px] h-auto p-0 ">
+        <Command className="overflow-visible">
+          <CommandList className="overflow-visible">
             <Link
               href="/"
               className="text-center sm:hidden"
@@ -101,7 +97,7 @@ export default function MobileNav({
               <p className="pt-2 text-lg font-bold text-primary">Limpa Car</p>
             </Link>
 
-            <CommandGroup>
+            <CommandGroup className="overflow-visible">
               <CommandItem
                 onSelect={() => {
                   router.push("/nettoyage");
