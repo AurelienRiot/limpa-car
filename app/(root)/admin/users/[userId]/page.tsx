@@ -55,7 +55,7 @@ const UserPage = async ({ params }: { params: { userId: string } }) => {
         return name;
       })
       .join(", "),
-    dates: order.orderItems.flatMap((item) => (item.date ? [item.date] : [])),
+    dates: order.orderItems.flatMap((item) => item.date.map((date) => date)),
     totalPrice: formatter.format(Number(order.totalPrice)),
     isPaid: order.isPaid ? "oui" : "non",
     createdAt: order.createdAt,
