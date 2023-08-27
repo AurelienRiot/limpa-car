@@ -1,10 +1,13 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import { useTheme } from "next-themes";
 import { GraphDataProps } from "@/actions/get-graph-revenue";
+import dynamic from "next/dynamic";
+const DynamicReactApexChart = dynamic(() => import("react-apexcharts"), {
+  ssr: false,
+});
 
 interface OverviewProps {
   data: GraphDataProps[];
@@ -13,8 +16,10 @@ interface OverviewProps {
 export const Overview: React.FC<OverviewProps> = ({ data }) => {
   const { theme, systemTheme } = useTheme();
   const [windowWidth, setWindowWidth] = useState(640);
-  const [fontSize, setFontSize] = useState("12px");
-  const [reverse, setReverse] = useState(false);
+  const [windowState, setWindowState] = useState({
+    fontSize: "12px",
+    reverse: false,
+  });
 
   const series = [
     {
@@ -36,14 +41,11 @@ export const Overview: React.FC<OverviewProps> = ({ data }) => {
 
   useEffect(() => {
     if (windowWidth < 640) {
-      setFontSize("10px");
-      setReverse(true);
+      setWindowState({ fontSize: "12px", reverse: true });
     } else if (windowWidth < 1024) {
-      setFontSize("14px");
-      setReverse(false);
+      setWindowState({ fontSize: "14px", reverse: false });
     } else {
-      setFontSize("16px");
-      setReverse(false);
+      setWindowState({ fontSize: "16px", reverse: false });
     }
   }, [windowWidth]);
 
@@ -57,13 +59,13 @@ export const Overview: React.FC<OverviewProps> = ({ data }) => {
     },
     plotOptions: {
       bar: {
-        borderRadius: reverse ? 2 : 4,
-        horizontal: reverse,
+        borderRadius: windowState.reverse ? 2 : 4,
+        horizontal: windowState.reverse,
         borderRadiusApplication: "end",
-        columnWidth: reverse ? "50%" : "90%",
+        columnWidth: windowState.reverse ? "50%" : "90%",
         dataLabels: {
-          position: reverse ? "top" : "center",
-          orientation: reverse ? "horizontal" : "vertical",
+          position: windowState.reverse ? "top" : "center",
+          orientation: windowState.reverse ? "horizontal" : "vertical",
         },
       },
     },
@@ -71,20 +73,20 @@ export const Overview: React.FC<OverviewProps> = ({ data }) => {
       categories: data.map((item) => item.month),
 
       labels: {
-        offsetY: reverse ? -10 : 0,
-        offsetX: reverse ? -5 : 0,
-        rotate: reverse ? -45 : 0,
-        rotateAlways: reverse,
-        formatter: reverse
+        offsetY: windowState.reverse ? -10 : 0,
+        offsetX: windowState.reverse ? -5 : 0,
+        rotate: windowState.reverse ? -45 : 0,
+        rotateAlways: windowState.reverse,
+        formatter: windowState.reverse
           ? (value: string) => `${value} €`
           : (value: string) => `${value}`,
         style: {
           colors: "#888888",
-          fontSize: fontSize,
+          fontSize: windowState.fontSize,
         },
       },
       axisBorder: {
-        offsetY: reverse ? 40 : 0,
+        offsetY: windowState.reverse ? 40 : 0,
         show: false,
       },
       axisTicks: {
@@ -93,12 +95,12 @@ export const Overview: React.FC<OverviewProps> = ({ data }) => {
     },
     yaxis: {
       labels: {
-        formatter: reverse
+        formatter: windowState.reverse
           ? (value: number) => `${value}`
           : (value: number) => `${value} €`,
         style: {
           colors: "#888888",
-          fontSize: fontSize,
+          fontSize: windowState.fontSize,
         },
       },
       axisBorder: {
@@ -136,8 +138,8 @@ export const Overview: React.FC<OverviewProps> = ({ data }) => {
     legend: {
       position: "top",
       horizontalAlign: "left",
-      fontSize: fontSize,
-      offsetX: reverse ? 0 : 40,
+      fontSize: windowState.fontSize,
+      offsetX: windowState.reverse ? 0 : 40,
       onItemClick: {
         toggleDataSeries: true,
       },
@@ -157,7 +159,7 @@ export const Overview: React.FC<OverviewProps> = ({ data }) => {
   return (
     <div>
       {" "}
-      <ReactApexChart
+      <DynamicReactApexChart
         options={options}
         series={series}
         type="bar"

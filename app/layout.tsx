@@ -27,7 +27,7 @@ export default function RootLayout({
             {" "}
             <ModalProvider />
             <ToasterProvider />
-            <TooltipProvider>{children}</TooltipProvider>
+            <TooltipProvider delayDuration={100}>{children}</TooltipProvider>
           </ThemeProvider>
         </body>
       </html>

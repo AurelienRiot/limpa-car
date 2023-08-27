@@ -76,16 +76,15 @@ const AdminDashboardPage = async () => {
         </Card> */}
         </div>
         <Card className="col-span-4 p-4">
-          <CardTitle>{"Vue d'ensemble"}</CardTitle>
+          <CardTitle>Calendrier</CardTitle>
           <CardContent className="p-0 sm:pl-2">
-            <Overview data={graphRevenue} />
+            <AdminCalendar />
           </CardContent>
         </Card>
         <Card className="col-span-4 p-4">
-          <CardTitle>Calendrier</CardTitle>
+          <CardTitle>{"Vue d'ensemble"}</CardTitle>
           <CardContent className="p-0 sm:pl-2">
-            <p className="sr-only">salut</p>
-            <AdminCalendar />
+            <Overview data={graphRevenue} />
           </CardContent>
         </Card>
       </div>

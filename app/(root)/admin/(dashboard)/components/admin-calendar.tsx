@@ -10,7 +10,6 @@ const AdminCalendar = () => {
   const [isDayAvailable, setIsDayAvailable] = useState<
     "full" | "partiallyFull" | "free" | "unavailable" | null
   >(null);
-
   const fullDays = [new Date(), addDays(new Date(), 2)];
   const partiallyFullDays = [
     addDays(new Date(), 4),
