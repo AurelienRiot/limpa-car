@@ -1,4 +1,4 @@
-import NextAuth, { type NextAuthOptions } from "next-auth";
+import NextAuth, { User, type NextAuthOptions } from "next-auth";
 import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prismadb from "@/lib/prismadb";
@@ -6,7 +6,6 @@ import EmailProvider from "next-auth/providers/email";
 import { render } from "@react-email/render";
 import WelcomeEmailProvider from "@/components/email/welcome-email-provider";
 import { transporter } from "@/lib/nodemailer";
-import { User } from "@prisma/client";
 import { stripe } from "@/lib/strip";
 
 export const authOptions: NextAuthOptions = {
@@ -47,38 +46,56 @@ export const authOptions: NextAuthOptions = {
     jwt: async ({ token, user }) => {
       if (user) {
         const u = user as User;
+        const dbUser = await prismadb.user.findUnique({
+          where: { email: u.email as string },
+        });
+        if (dbUser) {
+          if (!dbUser.stripeCustomerId) {
+            // Create a new customer in Stripe
+            const customer = await stripe.customers.create({
+              email: dbUser.email as string,
+              name: dbUser.name ? dbUser.name : "",
+            });
 
-        if (!u.stripeCustomerId) {
-          // Create a new customer in Stripe
-          const customer = await stripe.customers.create({
-            email: u.email as string,
-            name: u.name ? u.name : "",
-          });
-
-          const updatedUser = await prismadb.user.update({
-            where: { id: u.id },
-            data: { stripeCustomerId: customer.id },
-          });
-          return {
-            ...token,
-            id: u.id,
-            role: u.role,
-            stripeCustomerId: updatedUser.stripeCustomerId,
-          };
+            const updatedUser = await prismadb.user.update({
+              where: { id: u.id },
+              data: { stripeCustomerId: customer.id },
+            });
+            token.stripeCustomerId = updatedUser.stripeCustomerId;
+            token.id = updatedUser.id;
+            token.name = updatedUser.name;
+            token.role = updatedUser.role;
+          } else {
+            token.stripeCustomerId = dbUser.stripeCustomerId;
+            token.id = dbUser.id;
+            token.name = dbUser.name;
+            token.role = dbUser.role;
+          }
         }
       }
       return token;
     },
-    session: ({ session, token }) => {
-      return {
-        ...session,
-        user: {
-          ...session.user,
-          id: token.id,
-          role: token.role,
-          stripeCustomerId: token.stripeCustomerId,
-        },
-      };
+    session: async ({ session, token }) => {
+      console.log(token);
+      if (token) {
+        // const user = await prismadb.user.findUnique({
+        //   where: { email: token.email as string },
+        // });
+
+        // if (user) {
+        return {
+          ...session,
+          user: {
+            ...session.user,
+            name: token.name,
+            id: token.id,
+            role: token.role,
+            stripeCustomerId: token.stripeCustomerId,
+          },
+          // };
+        };
+      }
+      return session;
     },
   },
 };

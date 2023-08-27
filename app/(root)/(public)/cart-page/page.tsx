@@ -11,11 +11,6 @@ const CartPage = () => {
   const cart = useCart();
   const { data: session } = useSession();
 
-  const userId = session?.user?.id;
-  // const stripeCustomerId = session?.user?.stripeCustomerId
-  //   ? session.user.stripeCustomerId
-  //   : "";
-
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -58,11 +53,7 @@ const CartPage = () => {
                 </AnimatePresence>
               </ul>
             </div>
-            <Summary
-              userId={userId}
-
-              // stripeCustomerId={stripeCustomerId}
-            />
+            <Summary session={session} />
           </div>
         </div>
       </Container>

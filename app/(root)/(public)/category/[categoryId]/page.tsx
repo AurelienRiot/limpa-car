@@ -17,7 +17,7 @@ interface CategoryPageProps {
 const CategoryPage: React.FC<CategoryPageProps> = async ({ params }) => {
   const category = await getCategory(params.categoryId);
 
-  if (!category) {
+  if (!category || category.name === "Nettoyage") {
     return <NotFound />;
   }
 

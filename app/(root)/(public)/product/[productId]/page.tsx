@@ -15,7 +15,7 @@ interface ProductPageProps {
 const ProductPage: React.FC<ProductPageProps> = async ({ params }) => {
   const product = await getProduct(params.productId);
 
-  if (!product) {
+  if (!product || product.category.name === "Nettoyage") {
     return <NotFound />;
   }
 

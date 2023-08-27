@@ -7,21 +7,19 @@ import { Button } from "@/components/ui/button";
 import useCart from "@/hooks/use-cart";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-hot-toast";
+import { Session } from "next-auth";
 
 interface SummaryProps {
-  userId: string | undefined;
-  // stripeCustomerId: string;
+  session: Session | null;
 }
 
-const Summary: React.FC<SummaryProps> = ({
-  userId,
-  // stripeCustomerId
-}) => {
+const Summary: React.FC<SummaryProps> = ({ session }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
   const items = useCart((state) => state.items);
   const quantities = useCart((state) => state.quantities);
+  const dates = useCart((state) => state.dates);
   const removeAll = useCart((state) => state.removeAll);
 
   const [isMounted, setIsMounted] = useState(false);
@@ -35,16 +33,6 @@ const Summary: React.FC<SummaryProps> = ({
 
   useEffect(() => {
     setIsMounted(true);
-    if (window.location.hash === "#summary") {
-      setTimeout(() => {
-        const element = document.getElementById("summary");
-        if (element) {
-          element.scrollIntoView({
-            behavior: "smooth",
-          });
-        }
-      }, 0);
-    }
   }, []);
 
   if (!isMounted) {
@@ -57,34 +45,24 @@ const Summary: React.FC<SummaryProps> = ({
 
   const onCheckout = async () => {
     setLoading(true);
-    if (!userId) {
+    if (!session) {
       const callbackUrl = "/cart";
-      router.replace(
-        `/register?callbackUrl=${encodeURIComponent(callbackUrl)}`
-      );
+      router.replace(`/login?callbackUrl=${encodeURIComponent(callbackUrl)}`);
       return;
     }
-    const itemsWithQuantities = items.map((item) => {
+    const itemsWithQuantitiesAndDates = items.map((item) => {
       return {
         id: item.id,
         quantity: quantities[item.id],
+        dates: dates[item.id],
       };
     });
     try {
-      const info = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL_STORE}/auth`
-      );
-      const { encoded } = info.data;
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL_ADMIN}/checkout`,
-        {
-          itemsWithQuantities,
-          totalPrice: totalPrice.toFixed(2),
-          // stripeCustomerId,
-          encoded,
-        }
-      );
-      window.location = response.data.url;
+      const checkout = await axios.post(`/api/checkout`, {
+        itemsWithQuantitiesAndDates,
+        totalPrice: totalPrice.toFixed(2),
+      });
+      // window.location = checkout.data.url;
     } catch (error) {
       const axiosError = error as AxiosError;
       toast.error(axiosError?.response?.data as string, { duration: 8000 });

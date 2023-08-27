@@ -49,7 +49,7 @@ const ImagesAccueil = ({
       >
         <h1 className="text-5xl sm:text-7xl">Bienvenue </h1>
         <p className="text-3xl sm:text-5xl">sur Limpa Car</p>
-        <p className="text-3xl sm:text-5xl">{name}</p>
+        {/* <p className="text-3xl sm:text-5xl">{name}</p> */}
       </motion.div>
     </div>
   );

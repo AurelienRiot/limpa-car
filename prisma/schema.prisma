@@ -141,7 +141,7 @@ model OrderItem {
   id        String @unique @id @default(uuid())
   price     Float
   quantity  Float @default(1)
-  date      DateTime?
+  date      DateTime[]
   orderId   String
   order     Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
   productId String
