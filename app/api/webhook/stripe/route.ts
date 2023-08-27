@@ -28,6 +28,14 @@ export async function POST(req: Request) {
     const orderId = session?.metadata?.orderId || "";
     const address = session?.customer_details?.address;
 
+    const paymentIntent = await stripe.paymentIntents.retrieve(
+      session.payment_intent as string
+    );
+    const invoice = await stripe.invoices.retrieve(
+      paymentIntent.invoice as string
+    );
+    const invoicePdfUrl = invoice.invoice_pdf;
+
     const order = await prismadb.order.findUnique({
       where: {
         id: orderId,
@@ -43,6 +51,7 @@ export async function POST(req: Request) {
           isPaid: true,
           name,
           phone,
+          pdfUrl: invoicePdfUrl ?? "",
         },
       });
 
