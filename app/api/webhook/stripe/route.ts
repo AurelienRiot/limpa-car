@@ -28,14 +28,6 @@ export async function POST(req: Request) {
     const orderId = session?.metadata?.orderId || "";
     const address = session?.customer_details?.address;
 
-    const paymentIntent = await stripe.paymentIntents.retrieve(
-      session.payment_intent as string
-    );
-    const invoice = await stripe.invoices.retrieve(
-      paymentIntent.invoice as string
-    );
-    const invoicePdfUrl = invoice.invoice_pdf;
-
     const order = await prismadb.order.findUnique({
       where: {
         id: orderId,
@@ -51,7 +43,6 @@ export async function POST(req: Request) {
           isPaid: true,
           name,
           phone,
-          pdfUrl: invoicePdfUrl ?? "",
         },
       });
 
@@ -65,26 +56,28 @@ export async function POST(req: Request) {
         },
       });
 
-      await prismadb.address.create({
-        data: {
-          line1: address?.line1 || "",
-          line2: address?.line2 || "",
-          city: address?.city || "",
-          state: address?.state || "",
-          postalCode: address?.postal_code || "",
-          country: address?.country || "",
-          order: {
-            connect: {
-              id: orderId,
+      if (address?.line1) {
+        await prismadb.address.create({
+          data: {
+            line1: address?.line1 || "",
+            line2: address?.line2 || "",
+            city: address?.city || "",
+            state: address?.state || "",
+            postalCode: address?.postal_code || "",
+            country: address?.country || "",
+            order: {
+              connect: {
+                id: orderId,
+              },
+            },
+            user: {
+              connect: {
+                id: order.userId,
+              },
             },
           },
-          user: {
-            connect: {
-              id: order.userId,
-            },
-          },
-        },
-      });
+        });
+      }
 
       const orderItems = await prismadb.orderItem.findMany({
         where: {

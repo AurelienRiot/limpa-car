@@ -1,48 +1,32 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { CellAction } from "./cell-action";
+import { OrderCellAction } from "./order-cell-action";
 import { Button } from "@/components/ui/button";
 import { ArrowUpDown } from "lucide-react";
 import { fr } from "date-fns/locale";
 import { format } from "date-fns";
-import { Address } from "@prisma/client";
 
 export type OrderColumn = {
   id: string;
-  name: string;
-  phone: string;
   isPaid: string;
   totalPrice: string;
   products: string;
   dates: Date[];
   createdAt: Date;
 };
-
 export const columns: ColumnDef<OrderColumn>[] = [
   {
     accessorKey: "products",
     header: "Produits",
   },
   {
-    accessorKey: "name",
-    header: "Nom",
-  },
-  {
-    accessorKey: "phone",
-    header: "Téléphone",
-  },
-  {
-    accessorKey: "address",
-    header: "Adresse",
-  },
-  {
     accessorKey: "totalPrice",
-    header: "Prix Total",
+    header: "Prix total",
   },
   {
     accessorKey: "isPaid",
-    header: "Payé",
+    header: "Payé",
   },
   {
     accessorKey: "dates",
@@ -79,6 +63,6 @@ export const columns: ColumnDef<OrderColumn>[] = [
 
   {
     id: "actions",
-    cell: ({ row }) => <CellAction data={row.original} />,
+    cell: ({ row }) => <OrderCellAction data={row.original} />,
   },
 ];
