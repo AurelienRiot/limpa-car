@@ -2,6 +2,7 @@ import Link from "next/link";
 import { BsGear } from "react-icons/bs";
 import GetUser from "@/actions/get-user-server";
 import { LogoutButton } from "@/components/auth/auth";
+import ClientData from "./components/client-data";
 
 const UserDashboard = async () => {
   const user = await GetUser();
@@ -20,6 +21,7 @@ const UserDashboard = async () => {
         </Link>
       </div>
       <LogoutButton />
+      <ClientData />
     </div>
   );
 };

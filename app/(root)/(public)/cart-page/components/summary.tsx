@@ -27,7 +27,7 @@ const Summary: React.FC<SummaryProps> = ({ session }) => {
   useEffect(() => {
     if (searchParams.get("canceled")) {
       toast.error("Erreur de paiement.");
-      router.replace("/cart");
+      router.replace("/cart-page");
     }
   }, [removeAll, searchParams, router]);
 
@@ -62,7 +62,7 @@ const Summary: React.FC<SummaryProps> = ({ session }) => {
         itemsWithQuantitiesAndDates,
         totalPrice: totalPrice.toFixed(2),
       });
-      // window.location = checkout.data.url;
+      window.location = checkout.data.url;
     } catch (error) {
       const axiosError = error as AxiosError;
       toast.error(axiosError?.response?.data as string, { duration: 8000 });

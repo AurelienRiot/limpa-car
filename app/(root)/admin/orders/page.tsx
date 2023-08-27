@@ -26,7 +26,7 @@ const OrdersPage = async () => {
     id: order.id,
     name: order.name,
     phone: order.phone,
-    address: order.address[0],
+    address: Object.values(order.address[0]).join(", "),
     products: order.orderItems
       .map((item) => {
         let name = item.product.name;

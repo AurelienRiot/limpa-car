@@ -12,7 +12,7 @@ export type OrderColumn = {
   id: string;
   name: string;
   phone: string;
-  address: Address;
+  address: string;
   isPaid: string;
   totalPrice: string;
   products: string;

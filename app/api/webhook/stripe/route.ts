@@ -23,20 +23,10 @@ export async function POST(req: Request) {
 
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
-    const orderId = session?.metadata?.orderId;
+    const name = session?.customer_details?.name || "";
+    const phone = session?.customer_details?.phone || "";
+    const orderId = session?.metadata?.orderId || "";
     const address = session?.customer_details?.address;
-
-    const addressComponents = [
-      address?.line1,
-      address?.line2,
-      address?.city,
-      address?.state,
-      address?.postal_code,
-      address?.country,
-    ];
-    const addressString = addressComponents
-      .filter((c) => c !== null)
-      .join(", ");
 
     const order = await prismadb.order.findUnique({
       where: {
@@ -51,26 +41,40 @@ export async function POST(req: Request) {
         },
         data: {
           isPaid: true,
-          // address: addressString,
-          name: session?.customer_details?.name || "",
-          phone: session?.customer_details?.phone || "",
+          name,
+          phone,
         },
       });
-    } else {
-      const subscription = await stripe.subscriptions.retrieve(
-        session?.subscription as string
-      );
 
-      const lineItems = await stripe.checkout.sessions.listLineItems(
-        session.id,
-        {
-          limit: 5,
-        }
-      );
-      lineItems.data.forEach((item) => {
-        console.log(
-          `Item: ${item.description}, Price: ${item.price?.unit_amount}, Quantity: ${item.quantity}`
-        );
+      await prismadb.user.update({
+        where: {
+          id: order.userId,
+        },
+        data: {
+          name,
+          phone,
+        },
+      });
+
+      await prismadb.address.create({
+        data: {
+          line1: address?.line1 || "",
+          line2: address?.line2 || "",
+          city: address?.city || "",
+          state: address?.state || "",
+          postalCode: address?.postal_code || "",
+          country: address?.country || "",
+          order: {
+            connect: {
+              id: orderId,
+            },
+          },
+          user: {
+            connect: {
+              id: order.userId,
+            },
+          },
+        },
       });
     }
   }

@@ -51,7 +51,6 @@ export const authOptions: NextAuthOptions = {
         });
         if (dbUser) {
           if (!dbUser.stripeCustomerId) {
-            // Create a new customer in Stripe
             const customer = await stripe.customers.create({
               email: dbUser.email as string,
               name: dbUser.name ? dbUser.name : "",
@@ -76,13 +75,7 @@ export const authOptions: NextAuthOptions = {
       return token;
     },
     session: async ({ session, token }) => {
-      console.log(token);
       if (token) {
-        // const user = await prismadb.user.findUnique({
-        //   where: { email: token.email as string },
-        // });
-
-        // if (user) {
         return {
           ...session,
           user: {
@@ -92,7 +85,6 @@ export const authOptions: NextAuthOptions = {
             role: token.role,
             stripeCustomerId: token.stripeCustomerId,
           },
-          // };
         };
       }
       return session;

@@ -19,10 +19,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { itemsWithQuantitiesAndDates, totalPrice } = body as RequestBody;
 
-    console.log(itemsWithQuantitiesAndDates);
-    console.log(totalPrice);
     const session = await getServerSession(authOptions);
-    console.log(session);
     if (!session || !session.user || !session.user.id) {
       return new NextResponse("Erreur essayer de vous reconnecter", {
         status: 401,
@@ -63,85 +60,88 @@ export async function POST(req: NextRequest) {
         status: 400,
       });
     }
-    console.log(user);
 
-    // const productIds = itemsWithQuantitiesAndDates.map((item) => item.id);
-    // const products = await prismadb.product.findMany({
-    //   where: {
-    //     id: {
-    //       in: productIds,
-    //     },
-    //   },
-    // });
+    const productIds = itemsWithQuantitiesAndDates.map((item) => item.id);
+    const products = await prismadb.product.findMany({
+      where: {
+        id: {
+          in: productIds,
+        },
+      },
+    });
 
-    // const productsWithQuantity = products.map((product) => {
-    //   return {
-    //     item: product,
-    //     quantity: itemsWithQuantitiesAndDates.find((item) => item.id === product.id)
-    //       ?.quantity,
-    //   };
-    // });
+    const productsWithQuantityAndDates = products.map((product) => {
+      return {
+        item: product,
+        quantity: itemsWithQuantitiesAndDates.find(
+          (item) => item.id === product.id
+        )?.quantity,
+        dates: itemsWithQuantitiesAndDates.find(
+          (item) => item.id === product.id
+        )?.dates,
+      };
+    });
 
-    // const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
+    const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
 
-    // productsWithQuantity.forEach((product) => {
-    //   line_items.push({
-    //     quantity: product.quantity,
+    productsWithQuantityAndDates.forEach((product) => {
+      line_items.push({
+        quantity: product.quantity,
 
-    //     price_data: {
-    //       currency: "EUR",
+        price_data: {
+          currency: "EUR",
 
-    //       tax_behavior: "exclusive",
-    //       product_data: {
-    //         tax_code: "txcd_99999999",
-    //         name: product.item.name,
-    //       },
-    //       unit_amount: Math.floor(product.item.priceHT * 100),
-    //     },
-    //   });
-    // });
+          tax_behavior: "exclusive",
+          product_data: {
+            tax_code: "txcd_99999999",
+            name: product.item.name,
+          },
+          unit_amount: Math.floor(product.item.priceHT * 100),
+        },
+      });
+    });
 
-    // const order = await prismadb.order.create({
-    //   data: {
-    //     isPaid: false,
-    //     totalPrice: totalPrice,
-    //     orderItems: {
-    //       create: productsWithQuantity.map((item) => ({
-    //         product: {
-    //           connect: {
-    //             id: item.item.id,
-    //           },
-    //         },
-    //         price: item.item.priceHT,
-    //         quantity: item.quantity,
-    //       })),
-    //     },
-    //     userId: session.user.id,
-    //   },
-    // });
+    const order = await prismadb.order.create({
+      data: {
+        isPaid: false,
+        totalPrice: Number(totalPrice),
+        orderItems: {
+          create: productsWithQuantityAndDates.map((item) => ({
+            product: {
+              connect: {
+                id: item.item.id,
+              },
+            },
+            price: Number(item.item.priceHT),
+            quantity: Number(item.quantity),
+            date: item.dates,
+          })),
+        },
+        userId: session.user.id,
+      },
+    });
 
-    // const stripeSession = await stripe.checkout.sessions.create({
-    //   line_items,
-    //   mode: "payment",
-    //   automatic_tax: {
-    //     enabled: true,
-    //   },
-    //   customer: session.user.stripeCustomerId,
-    //   customer_update: { name: "never", address: "never" },
-    //   billing_address_collection: "auto",
-    //   payment_method_types: ["sepa_debit", "card"],
-    //   phone_number_collection: {
-    //     enabled: false,
-    //   },
-    //   success_url: `${process.env.NEXT_PUBLIC_URL}/dashboard-user?success-order=1`,
-    //   cancel_url: `${process.env.NEXT_PUBLIC_URL}/cart?canceled=1`,
-    //   metadata: {
-    //     orderId: order.id,
-    //   },
-    // });
+    const stripeSession = await stripe.checkout.sessions.create({
+      line_items,
+      mode: "payment",
+      automatic_tax: {
+        enabled: true,
+      },
+      customer: session.user.stripeCustomerId,
+      customer_update: { name: "auto", address: "auto" },
+      billing_address_collection: "required",
+      payment_method_types: ["sepa_debit", "card"],
+      phone_number_collection: {
+        enabled: true,
+      },
+      success_url: `${process.env.NEXT_PUBLIC_URL}/dashboard-user?success-order=1`,
+      cancel_url: `${process.env.NEXT_PUBLIC_URL}/cart-page?canceled=1`,
+      metadata: {
+        orderId: order.id,
+      },
+    });
 
-    // return NextResponse.json({ url: stripeSession.url });
-    return new NextResponse("OK", { status: 200 });
+    return NextResponse.json({ url: stripeSession.url });
   } catch (error) {
     console.log("[CHECKOUT_ERROR]", error);
     return new NextResponse("Internal error", { status: 500 });
