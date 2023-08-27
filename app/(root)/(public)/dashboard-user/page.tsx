@@ -8,7 +8,7 @@ const UserDashboard = async () => {
   const user = await GetUser();
 
   return (
-    <div className="gap-4 mt-4 mb-4">
+    <div className="container gap-4 mt-4 mb-4">
       <div className="flex flex-col items-center justify-center w-auto h-auto mb-4 text-gray-800 border-2 rounded-md shadow-xl dark:text-white">
         <h1 className="text-3xl font-bold text-center">
           {user?.name

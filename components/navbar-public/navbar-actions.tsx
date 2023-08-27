@@ -64,7 +64,7 @@ const NavbarAction: React.FC<{ session: Session | null }> = ({ session }) => {
             <SheetTitle>
               <Link
                 onClick={() => setIsOpen(false)}
-                href="/cart-page"
+                href="/cart-page#summary"
                 className="flex items-center gap-2 justify-left hover:underline"
               >
                 {" "}

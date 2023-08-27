@@ -6,6 +6,7 @@ import Summary from "./components/summary";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { AnimatePresence, motion } from "framer-motion";
+import { VisibleElement } from "@/components/animations/visible-element";
 
 const CartPage = () => {
   const cart = useCart();
@@ -24,18 +25,23 @@ const CartPage = () => {
   return (
     <div>
       <Container>
-        <div className="px-2 py-16 sm:px-6 lg:px-8">
+        <div className="px-2 py-16 sm:px-6 lg:px-8 ">
           <h1 className="text-3xl font-bold ">Pannier</h1>
           <div className="mt-12 lg:grid lg:grid-cols-12 lg:items-start gap-x-12">
             <div className="lg:col-span-7">
-              {cart.items.length === 0 && (
-                <p className="text-secondary-foreground ">
-                  Aucun produit dans le panier
-                </p>
-              )}
-              <ul>
-                <AnimatePresence>
-                  {cart.items.map((item) => (
+              <AnimatePresence>
+                {/* {cart.items.length === 0 ? (
+                  <p className="text-secondary-foreground ">
+                    Aucun produit dans le panier
+                  </p>
+                ) : (
+                  <ul> */}
+                {cart.items.length === 0 ? (
+                  <VisibleElement as="p" className="text-secondary-foreground ">
+                    Aucun produit dans le panier
+                  </VisibleElement>
+                ) : (
+                  cart.items.map((item) => (
                     <motion.li
                       key={item.id}
                       layout
@@ -49,9 +55,11 @@ const CartPage = () => {
                     >
                       <CartItem data={item} />
                     </motion.li>
-                  ))}
-                </AnimatePresence>
-              </ul>
+                  ))
+                )}
+                {/* </ul>
+                )} */}
+              </AnimatePresence>
             </div>
             <Summary session={session} />
           </div>

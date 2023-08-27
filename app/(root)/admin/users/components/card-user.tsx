@@ -60,7 +60,7 @@ const CardUser: React.FC<CardUserProps> = ({
 
       <Card>
         <CardHeader>
-          <CardTitle>{user.name}</CardTitle>
+          <CardTitle>{user.name ? user.name : "Aucun nom renseigné"}</CardTitle>
           <CardDescription>
             <Link href={`/admin/users/${user.id}`}>{user.email}</Link>
           </CardDescription>
