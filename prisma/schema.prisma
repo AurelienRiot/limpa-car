@@ -54,6 +54,7 @@ model User {
   sessions         Session[]
   address          Address[]
   messages         Contact[]
+  Events           Event[]
 }
 
 model VerificationToken {
@@ -141,7 +142,7 @@ model OrderItem {
   id        String @unique @id @default(uuid())
   price     Float
   quantity  Float @default(1)
-  date      DateTime[]
+  dates      DateTime[]
   orderId   String
   order     Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
   productId String
@@ -152,12 +153,12 @@ model OrderItem {
 }
 
 model Contact {
-  id        String     @unique @id @default(uuid())
+  id        String   @unique @id @default(uuid())
   name      String
   mail      String
   phone     String? 
   subject   String
-  message   String  @db.VarChar(1000) 
+  message   String   @db.VarChar(1000) 
   createdAt DateTime @default(now()) 
   updatedAt DateTime @updatedAt 
 
@@ -170,7 +171,7 @@ model Contact {
 }
 
 model Address {
-  id         String @unique @id @default(uuid())
+  id         String  @unique @id @default(uuid())
   line1      String?
   line2      String?
   city       String?
@@ -178,14 +179,28 @@ model Address {
   postalCode String?
   country    String?
   userId     String   
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user       User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   orderId    String  
-  order      Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  order      Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now()) 
   updatedAt DateTime @updatedAt 
 
 
   @@index([userId])
   @@index([orderId])
+
+}
+
+model Event {
+  id          String  @unique @id @default(uuid())
+  name        String
+  description String
+  dateOfEvent DateTime
+  userId      String?   
+  user        User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now()) 
+  updatedAt   DateTime @updatedAt 
+
+  @@index([userId])
 
 }

@@ -47,7 +47,7 @@ const OrdersPage = async () => {
       })
       .join(", "),
 
-    dates: order.orderItems.flatMap((item) => item.date.map((date) => date)),
+    dates: order.orderItems.flatMap((item) => item.dates.map((date) => date)),
 
     totalPrice: formatter.format(Number(order.totalPrice)),
     isPaid: order.isPaid ? "oui" : "non",

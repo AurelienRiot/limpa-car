@@ -35,7 +35,7 @@ export async function POST(req: Request) {
     });
 
     if (order) {
-      await prismadb.order.update({
+      const uptdateOrder = await prismadb.order.update({
         where: {
           id: orderId,
         },
@@ -75,6 +75,29 @@ export async function POST(req: Request) {
             },
           },
         },
+      });
+
+      const orderItems = await prismadb.orderItem.findMany({
+        where: {
+          orderId: order?.id,
+          dates: { isEmpty: false },
+        },
+        include: {
+          product: true,
+        },
+      });
+
+      const events = orderItems.flatMap((item) =>
+        item.dates.flatMap((date) => ({
+          dateOfEvent: date,
+          userId: uptdateOrder?.userId ?? "",
+          name: uptdateOrder?.name ?? "",
+          description: item.product.name + " " + item.product.options,
+        }))
+      );
+
+      await prismadb.event.createMany({
+        data: events,
       });
     }
   }

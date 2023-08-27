@@ -53,6 +53,9 @@ export async function POST(req: NextRequest) {
       where: {
         id: session.user.id,
       },
+      include: {
+        address: true,
+      },
     });
 
     if (!user) {
@@ -114,7 +117,7 @@ export async function POST(req: NextRequest) {
             },
             price: Number(item.item.priceHT),
             quantity: Number(item.quantity),
-            date: item.dates,
+            dates: item.dates,
           })),
         },
         userId: session.user.id,
@@ -129,7 +132,8 @@ export async function POST(req: NextRequest) {
       },
       customer: session.user.stripeCustomerId,
       customer_update: { name: "auto", address: "auto" },
-      billing_address_collection: "required",
+      billing_address_collection:
+        user.address && user.address.length > 0 ? "auto" : "required",
       payment_method_types: ["sepa_debit", "card"],
       phone_number_collection: {
         enabled: true,
