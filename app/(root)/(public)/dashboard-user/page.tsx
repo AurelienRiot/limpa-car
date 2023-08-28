@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { BsGear } from "react-icons/bs";
 import GetUser from "@/actions-server/get-user";
 import { LogoutButton } from "@/components/auth/auth";
 import ClientData from "./components/client-data";
@@ -7,6 +6,7 @@ import { redirect } from "next/navigation";
 import { OrderTable } from "./components/order-table";
 import { OrderColumn } from "./components/order-column";
 import { formatter } from "@/lib/utils";
+import { Settings } from "lucide-react";
 
 const UserDashboard = async () => {
   const user = await GetUser();
@@ -57,7 +57,7 @@ const UserDashboard = async () => {
           </div>
         </div>
         <Link href="/dashboard-user/settings" className="mt-2 ">
-          <BsGear size={20} className="cursor-pointer" />
+          <Settings className="w-8 h-8 cursor-pointer" />
         </Link>
       </div>
       <LogoutButton />

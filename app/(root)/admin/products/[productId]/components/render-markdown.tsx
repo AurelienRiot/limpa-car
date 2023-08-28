@@ -17,15 +17,14 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { BiImageAdd } from "react-icons/bi";
-import { FiExternalLink } from "react-icons/fi";
-import {
-  AiOutlineHighlight,
-  AiOutlineLine,
-  AiOutlineOrderedList,
-  AiOutlineUnorderedList,
-} from "react-icons/ai";
-import { GoQuote } from "react-icons/go";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import LaunchIcon from "@mui/icons-material/Launch";
+import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
+import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
+import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
+import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
+
+import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
 
@@ -315,7 +314,7 @@ const RenderMarkdown: React.FC<RenderMarkdownProps> = ({ form, loading }) => {
                           insertMarkdown(field, "highlight");
                         }}
                       >
-                        <AiOutlineHighlight />
+                        <DriveFileRenameOutlineIcon />
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
@@ -331,7 +330,7 @@ const RenderMarkdown: React.FC<RenderMarkdownProps> = ({ form, loading }) => {
                           insertMarkdown(field, "image");
                         }}
                       >
-                        <BiImageAdd />
+                        <AddPhotoAlternateIcon />
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
@@ -347,7 +346,7 @@ const RenderMarkdown: React.FC<RenderMarkdownProps> = ({ form, loading }) => {
                           insertMarkdown(field, "link");
                         }}
                       >
-                        <FiExternalLink />
+                        <LaunchIcon />
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
@@ -363,7 +362,7 @@ const RenderMarkdown: React.FC<RenderMarkdownProps> = ({ form, loading }) => {
                           insertMarkdown(field, "line");
                         }}
                       >
-                        <AiOutlineLine />
+                        <HorizontalRuleIcon />
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
@@ -379,7 +378,7 @@ const RenderMarkdown: React.FC<RenderMarkdownProps> = ({ form, loading }) => {
                           insertMarkdown(field, "quote");
                         }}
                       >
-                        <GoQuote />
+                        <FormatQuoteIcon />
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
@@ -395,7 +394,7 @@ const RenderMarkdown: React.FC<RenderMarkdownProps> = ({ form, loading }) => {
                           insertMarkdown(field, "unorderedList");
                         }}
                       >
-                        <AiOutlineUnorderedList />
+                        <FormatListBulletedIcon />
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
@@ -411,7 +410,7 @@ const RenderMarkdown: React.FC<RenderMarkdownProps> = ({ form, loading }) => {
                           insertMarkdown(field, "orderedList");
                         }}
                       >
-                        <AiOutlineOrderedList />
+                        <FormatListNumberedIcon />
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>

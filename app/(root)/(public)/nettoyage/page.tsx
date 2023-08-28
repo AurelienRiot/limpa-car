@@ -1,6 +1,6 @@
 import getProducts from "@/actions-server/get-products";
 import NettoyageTile from "./components/nettoyage-tile";
-import { MdOutlineLocalCarWash } from "react-icons/md";
+import LocalCarWashIcon from "@mui/icons-material/LocalCarWash";
 import { ProductWithCategoryAndImages } from "@/types";
 import Container from "@/components/ui/container";
 import Billboard from "@/components/billboard";
@@ -53,7 +53,7 @@ const Nettoyage = async () => {
           <NettoyageTile
             key={sameProduct[0].id}
             sameProducts={sameProduct}
-            iconComponent={<MdOutlineLocalCarWash size={20} />}
+            iconComponent={<LocalCarWashIcon className="w-8 h-8" />}
           />
         ))}
       </div>

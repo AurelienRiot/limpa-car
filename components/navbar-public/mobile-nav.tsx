@@ -5,7 +5,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { usePathname, useRouter } from "next/navigation";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Car,
@@ -15,21 +15,16 @@ import {
   LucidePhoneCall,
   Menu,
   StoreIcon,
-  User2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   Command,
-  CommandEmpty,
   CommandGroup,
-  CommandInput,
   CommandItem,
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
-import { RiAlarmWarningLine } from "react-icons/ri";
-import { BsSim } from "react-icons/bs";
-import { BiCctv } from "react-icons/bi";
+
 import Link from "next/link";
 import { AnimatePresence } from "framer-motion";
 import { Category } from "@prisma/client";

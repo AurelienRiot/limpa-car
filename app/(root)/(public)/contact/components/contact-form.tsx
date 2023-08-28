@@ -75,12 +75,11 @@ export const ContactForm = ({
   const onSubmit = async (data: ContactFormValues) => {
     try {
       setLoading(true);
-      await axios.post(`/api/contacts`, { ...data, userId });
-      router.refresh();
-      router.push(`/`);
+      // await axios.post(`/api/contacts`, { ...data, userId });
+      // router.refresh();
+      // router.push(`/`);
       await new Promise((resolve) => setTimeout(resolve, 5000));
       toast.success("Message envoyé");
-      form.reset();
     } catch (error) {
       toast.error("Erreur.");
     } finally {

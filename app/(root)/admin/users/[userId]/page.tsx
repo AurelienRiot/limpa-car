@@ -84,6 +84,7 @@ const UserPage = async ({ params }: { params: { userId: string } }) => {
         )}
       </div>
       <div>
+        <ButtonBackward />
         <OrderTable data={formattedOrders} />
       </div>
     </div>

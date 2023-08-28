@@ -3,13 +3,13 @@
 import { signIn, signOut } from "next-auth/react";
 import { Button } from "../ui/button";
 import { DefaultSession } from "next-auth";
-import { BiLogInCircle, BiLogOutCircle } from "react-icons/bi";
-
+import LogoutTwoToneIcon from "@mui/icons-material/LogoutTwoTone";
+import LoginTwoToneIcon from "@mui/icons-material/LoginTwoTone";
 export const LoginButton = () => {
   return (
     <Button title="Se connecter" onClick={() => signIn()}>
       {" "}
-      <BiLogInCircle size={20} />{" "}
+      <LoginTwoToneIcon className="w-6 h-6" />{" "}
     </Button>
   );
 };
@@ -20,7 +20,7 @@ export const LogoutButton = () => {
       title="Se deconnecter"
       onClick={() => signOut({ callbackUrl: "/" })}
     >
-      <BiLogOutCircle size={20} />
+      <LogoutTwoToneIcon className="w-6 h-6" />
     </Button>
   );
 };

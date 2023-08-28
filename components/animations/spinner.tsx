@@ -1,11 +1,11 @@
 import { cn } from "@/lib/utils";
-import { ImSpinner3 } from "react-icons/im";
+import { Loader } from "lucide-react";
 
-type SpinnerProps = React.ComponentProps<typeof ImSpinner3>;
+type SpinnerProps = React.ComponentProps<typeof Loader>;
 
 const Spinner = ({ className, size = 50, ...props }: SpinnerProps) => {
   return (
-    <ImSpinner3
+    <Loader
       className={cn("animate-spin text-sky-500 ", className)}
       size={size}
       {...props}

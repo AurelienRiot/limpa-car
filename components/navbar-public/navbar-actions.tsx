@@ -15,7 +15,8 @@ import {
 import Link from "next/link";
 import CartItem from "../cart/cart-item";
 import { AnimatePresence, motion } from "framer-motion";
-import { HiOutlineExternalLink } from "react-icons/hi";
+import LaunchIcon from "@mui/icons-material/Launch";
+
 import { ThemeToggle } from "../navbar-admin/theme.toggle";
 import { Session } from "next-auth";
 
@@ -68,7 +69,7 @@ const NavbarAction: React.FC<{ session: Session | null }> = ({ session }) => {
                 className="flex items-center gap-2 justify-left hover:underline"
               >
                 {" "}
-                Passer commande <HiOutlineExternalLink />
+                Passer commande <LaunchIcon className="w-5 h-5" />
               </Link>
             </SheetTitle>
             <SheetDescription>Contenue de votre panier</SheetDescription>
