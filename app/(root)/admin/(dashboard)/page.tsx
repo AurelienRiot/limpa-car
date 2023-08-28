@@ -13,13 +13,23 @@ import {
 } from "lucide-react";
 import { Overview } from "./components/overview";
 import AdminCalendar from "./components/admin-calendar";
+import prismadb from "@/lib/prismadb";
 
 const AdminDashboardPage = async () => {
   const totalRevenue = await getTotalRevenue();
   const SalesCount = await getSalesCount();
-  // const stockOrderCount = await getStockOrderCount();
-  // const stockSubscriptionCount = await getStockSubscriptionCount();
+
   const graphRevenue = await getGraphRevenue();
+
+  const currentDate = new Date();
+  const events = await prismadb.event.findMany({
+    where: {
+      dateOfEvent: {
+        gte: currentDate,
+      },
+    },
+  });
+  console.log(events);
 
   return (
     <div className="flex-col">

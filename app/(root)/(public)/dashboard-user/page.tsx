@@ -43,10 +43,14 @@ const UserDashboard = async () => {
             <p>{user.email}</p>
             <p className="font-bold">Adresse:</p>
 
-            <p>
-              {user.address[0].line1} {user.address[0].postalCode}{" "}
-              {user.address[0].city}{" "}
-            </p>
+            {user.address[0] ? (
+              <p>
+                {user.address[0].line1} {user.address[0].postalCode}{" "}
+                {user.address[0].city}{" "}
+              </p>
+            ) : (
+              <p>{"Pas d'adresse"}</p>
+            )}
 
             <p className="font-bold">Télephone:</p>
             <p>{user.phone}</p>
@@ -58,6 +62,7 @@ const UserDashboard = async () => {
       </div>
       <LogoutButton />
       <OrderTable data={formattedOrders} />
+      <ClientData />
     </div>
   );
 };
