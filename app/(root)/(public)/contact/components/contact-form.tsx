@@ -22,6 +22,7 @@ import { TextArea } from "@/components/ui/text-area";
 import { AlertModal } from "@/components/modals/alert-modal";
 import { Button } from "@/components/ui/button";
 import { UserContact } from "../page";
+import Spinner from "@/components/animations/spinner";
 
 const formSchema = z.object({
   name: z
@@ -73,17 +74,19 @@ export const ContactForm = ({
 
   const onSubmit = async (data: ContactFormValues) => {
     try {
+      setLoading(true);
       await axios.post(`/api/contacts`, { ...data, userId });
       router.refresh();
       router.push(`/`);
+      await new Promise((resolve) => setTimeout(resolve, 5000));
       toast.success("Message envoyé");
+      form.reset();
     } catch (error) {
       toast.error("Erreur.");
     } finally {
       setLoading(false);
     }
   };
-
   const handleModalConfirm = async () => {
     setOpen(false);
     await onSubmit(form.getValues());
@@ -200,7 +203,9 @@ export const ContactForm = ({
               )}
             />
           </div>
-          <Button disabled={loading}>{action}</Button>
+          <Button disabled={loading}>
+            {!loading ? action : <Spinner size={20} />}
+          </Button>
         </form>
       </Form>
     </>

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { ApexOptions } from "apexcharts";
 import { useTheme } from "next-themes";
-import { GraphDataProps } from "@/actions/get-graph-revenue";
+import { GraphDataProps } from "@/actions-server/get-graph-revenue";
 import dynamic from "next/dynamic";
 const DynamicReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,

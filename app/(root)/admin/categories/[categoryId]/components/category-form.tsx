@@ -1,5 +1,6 @@
 "use client";
 
+import Spinner from "@/components/animations/spinner";
 import { AlertModal } from "@/components/modals/alert-modal";
 import { Button } from "@/components/ui/button";
 import {
@@ -186,7 +187,7 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
             />
           </div>
           <Button disabled={loading} className="ml-auto" type="submit">
-            {action}
+            {!loading ? action : <Spinner size={20} />}
           </Button>
         </form>
       </Form>

@@ -1,4 +1,3 @@
-import { API_URL } from "@/lib/utils";
 import { ProductWithCategoryAndImages } from "@/types";
 import axios from "axios";
 import qs from "query-string";
@@ -12,7 +11,7 @@ const getProducts = async (
   query: Query
 ): Promise<ProductWithCategoryAndImages[]> => {
   const url = qs.stringifyUrl({
-    url: `${API_URL}/products`,
+    url: `/api/products`,
     query: {
       categoryId: query.categoryId,
       isFeatured: query.isFeatured,

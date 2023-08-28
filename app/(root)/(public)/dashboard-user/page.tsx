@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { BsGear } from "react-icons/bs";
-import GetUser from "@/actions/get-user-server";
+import GetUser from "@/actions-server/get-user";
 import { LogoutButton } from "@/components/auth/auth";
 import ClientData from "./components/client-data";
 import { redirect } from "next/navigation";

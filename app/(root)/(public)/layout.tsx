@@ -1,4 +1,4 @@
-import getCategories from "@/actions/get-categories-server";
+import getCategories from "@/actions-server/get-categories";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import Footer from "@/components/footer";
 import NavBar from "@/components/navbar-public/navbar";

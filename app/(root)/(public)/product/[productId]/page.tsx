@@ -1,5 +1,5 @@
-import getProduct from "@/actions/get-product-server";
-import getProducts from "@/actions/get-products-server";
+import getProduct from "@/actions-server/get-product";
+import getProducts from "@/actions-server/get-products";
 import NotFound from "@/app/not-found";
 import Gallery from "@/components/gallery/gallery";
 import Info from "@/components/info";

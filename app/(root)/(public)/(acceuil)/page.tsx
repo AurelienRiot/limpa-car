@@ -6,7 +6,7 @@ import Loading from "@/components/loading";
 import ImagesAccueil from "./components/images-accueil";
 import prismadb from "@/lib/prismadb";
 import { VisibleElement } from "@/components/animations/visible-element";
-import getProducts from "@/actions/get-products-server";
+import getProducts from "@/actions-server/get-products";
 import ProductList from "@/components/products-list";
 import Client from "./components/client";
 

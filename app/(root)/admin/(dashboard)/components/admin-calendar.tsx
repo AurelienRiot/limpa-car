@@ -6,7 +6,7 @@ import { addDays } from "date-fns";
 import { DayClickEventHandler } from "react-day-picker";
 
 const AdminCalendar = () => {
-  const [date, setDate] = useState<Date | undefined>();
+  const [date, setDate] = useState<Date | undefined>(new Date());
   const [isDayAvailable, setIsDayAvailable] = useState<
     "full" | "partiallyFull" | "free" | "unavailable" | null
   >(null);

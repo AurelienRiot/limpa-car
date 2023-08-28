@@ -1,5 +1,5 @@
-import getCategory from "@/actions/get-category-server";
-import getProducts from "@/actions/get-products-server";
+import getCategory from "@/actions-server/get-category";
+import getProducts from "@/actions-server/get-products";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import Billboard from "@/components/billboard";
 import Container from "@/components/ui/container";

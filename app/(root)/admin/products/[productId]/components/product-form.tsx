@@ -35,6 +35,7 @@ import { toast } from "react-hot-toast";
 import * as z from "zod";
 import { FormattedProduct } from "../page";
 import RenderMarkdown from "./render-markdown";
+import Spinner from "@/components/animations/spinner";
 
 interface ProductFormProps {
   initialData:
@@ -368,7 +369,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
           <RenderMarkdown loading={loading} form={form} />
 
           <Button disabled={loading} className="ml-auto" type="submit">
-            {action}
+            {!loading ? action : <Spinner size={20} />}
           </Button>
         </form>
       </Form>

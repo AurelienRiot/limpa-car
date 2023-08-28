@@ -1,5 +1,6 @@
 "use client";
 
+import Spinner from "@/components/animations/spinner";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -99,7 +100,7 @@ export default function LoginPage() {
               className="w-full"
               size="lg"
             >
-              {"Se connecter avec l'email"}
+              {!loading ? "Se connecter avec l'email" : <Spinner size={20} />}
             </Button>
           </form>
         </Form>
