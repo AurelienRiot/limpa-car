@@ -20,7 +20,6 @@ import {
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import LaunchIcon from "@mui/icons-material/Launch";
 import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
-import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
 
@@ -39,14 +38,57 @@ type RenderMarkdownProps = {
   form: UseFormReturn<ProductFormValues>;
   loading: boolean;
 };
+
 const RenderMarkdown: React.FC<RenderMarkdownProps> = ({ form, loading }) => {
   const productSpecswatch = form.watch("productSpecs");
   const [openTableau, setOpenTableau] = useState(false);
   const [openTitles, setOpenTitles] = useState(false);
+  const [openEmoji, setOpenEmoji] = useState(false);
   const [row, setRow] = useState<number | undefined>(3);
   const [column, setColumn] = useState<number | undefined>(3);
 
-  const titres = ["h1", "h2", "h3", "h4", "h5"] as const;
+  const titres = ["h1", "h2", "h3", "h4"] as const;
+  const emojiList: {
+    emoji: string;
+    label: string;
+  }[] = [
+    { emoji: "🔵", label: "cercle bleu" },
+    { emoji: "🔴", label: "cercle rouge" },
+    { emoji: "🟠", label: "cercle orange" },
+    { emoji: "🟡", label: "cercle jaune" },
+    { emoji: "🟢", label: "cercle vert" },
+    { emoji: "🟣", label: "cercle violet" },
+    { emoji: "⚫", label: "cercle noir" },
+    { emoji: "⚪", label: "cercle blanc" },
+    { emoji: "🟤", label: "cercle marron" },
+    { emoji: "🔻", label: "triangle rouge vers le bas" },
+    { emoji: "🔺", label: "triangle rouge vers le haut" },
+    { emoji: "💠", label: "losange avec un point à l'intérieur" },
+    { emoji: "🔷", label: "losange bleu grand" },
+    { emoji: "🔶", label: "losange orange grand" },
+    { emoji: "🔳", label: "carré blanc" },
+    { emoji: "🔲", label: "carré noir" },
+    { emoji: "🟥", label: "carré rouge" },
+    { emoji: "🟧", label: "carré orange" },
+    { emoji: "🟨", label: "carré jaune" },
+    { emoji: "🟩", label: "carré vert" },
+    { emoji: "🟦", label: "carré bleu" },
+    { emoji: "🟪", label: "carré violet" },
+    { emoji: "🟫", label: "carré marron" },
+    { emoji: "🔥", label: "feu" },
+    { emoji: "💧", label: "eau" },
+    { emoji: "🌪️", label: "tornade" },
+    { emoji: "🌈", label: "arc-en-ciel" },
+    { emoji: "🌊", label: "vague" },
+    { emoji: "🌞", label: "soleil" },
+    { emoji: "🌝", label: "lune" },
+    { emoji: "⭐", label: "étoile" },
+    { emoji: "🌍", label: "terre" },
+    { emoji: "🍁", label: "feuille d'érable" },
+    { emoji: "🍂", label: "feuille morte" },
+    { emoji: "🌿", label: "feuille verte" },
+    { emoji: "🍃", label: "feuille dans le vent" },
+  ];
 
   function createMarkdownTable(
     field: FieldValues,
@@ -80,7 +122,7 @@ const RenderMarkdown: React.FC<RenderMarkdownProps> = ({ form, loading }) => {
     // Create separator row
     table += "|";
     for (let i = 0; i < col; i++) {
-      table += " --- |";
+      table += " :---: |";
     }
     table += "\n";
 
@@ -88,7 +130,7 @@ const RenderMarkdown: React.FC<RenderMarkdownProps> = ({ form, loading }) => {
     for (let i = 0; i < row; i++) {
       table += "|";
       for (let j = 0; j < col; j++) {
-        table += " Cell " + (i + 1) + "-" + (j + 1) + " |";
+        table += " Cell" + (i + 1) + (j + 1) + " |";
       }
       table += "\n";
     }
@@ -101,6 +143,20 @@ const RenderMarkdown: React.FC<RenderMarkdownProps> = ({ form, loading }) => {
     field.onChange(newValue);
   }
 
+  const insertEmoji = (field: FieldValues, emoji: string) => {
+    const textarea = document.getElementById(
+      "productSpecsTextArea"
+    ) as HTMLTextAreaElement;
+
+    const startPos = textarea.selectionStart;
+
+    const newValue =
+      productSpecswatch.substring(0, startPos) +
+      emoji +
+      productSpecswatch.substring(startPos);
+    field.onChange(newValue);
+  };
+
   const insertMarkdown = (
     field: FieldValues,
     variant:
@@ -108,10 +164,8 @@ const RenderMarkdown: React.FC<RenderMarkdownProps> = ({ form, loading }) => {
       | "h2"
       | "h3"
       | "h4"
-      | "h5"
       | "bold"
       | "italic"
-      | "highlight"
       | "barré"
       | "image"
       | "link"
@@ -188,16 +242,7 @@ const RenderMarkdown: React.FC<RenderMarkdownProps> = ({ form, loading }) => {
         newValue = insertCharacterAtStartOfLine(prefix);
 
         break;
-      case "h5":
-        prefix = "##### ";
-        newValue = insertCharacterAtStartOfLine(prefix);
 
-        break;
-      case "highlight":
-        prefix = "###### ";
-        newValue = insertCharacterAtStartOfLine(prefix);
-
-        break;
       case "bold":
         prefix = "**";
         suffix = "**";
@@ -305,22 +350,37 @@ const RenderMarkdown: React.FC<RenderMarkdownProps> = ({ form, loading }) => {
                       <p>Barré</p>
                     </TooltipContent>
                   </Tooltip>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant={"markdown"}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          insertMarkdown(field, "highlight");
-                        }}
-                      >
-                        <DriveFileRenameOutlineIcon />
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Surligné</p>
-                    </TooltipContent>
-                  </Tooltip>
+
+                  <Popover onOpenChange={setOpenEmoji} open={openEmoji}>
+                    <PopoverTrigger asChild>
+                      <Button variant="markdown">😄</Button>
+                    </PopoverTrigger>
+                    <PopoverContent
+                      align="start"
+                      className="flex flex-row flex-wrap gap-2 w-44"
+                    >
+                      {emojiList.map((emoji) => (
+                        <Tooltip key={emoji.label}>
+                          <TooltipTrigger asChild>
+                            <button
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                insertEmoji(field, emoji.emoji);
+                                setOpenEmoji(false);
+                              }}
+                            >
+                              {emoji.emoji}
+                            </button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <span>{emoji.label}</span>
+                          </TooltipContent>
+                        </Tooltip>
+                      ))}
+                    </PopoverContent>
+                  </Popover>
+
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Button

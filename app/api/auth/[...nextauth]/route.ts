@@ -24,7 +24,7 @@ export const authOptions: NextAuthOptions = {
         await transporter.sendMail({
           from: "aurelien.r35@gmail.com",
           to: email,
-          subject: "Création de votre compte Limpa Car",
+          subject: "Connexion à votre compte Limpa Car",
           html: render(WelcomeEmailProvider({ url })),
         });
       },

@@ -54,7 +54,7 @@ export async function PATCH(
     }
 
     if (!billboardId) {
-      return new NextResponse("L'id de la categorie est nécessaire", {
+      return new NextResponse("L'id du poanneau d'affichage est nécessaire", {
         status: 400,
       });
     }

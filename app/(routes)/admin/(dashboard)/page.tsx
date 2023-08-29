@@ -29,7 +29,6 @@ const AdminDashboardPage = async () => {
       },
     },
   });
-  console.log(events);
 
   return (
     <div className="flex-col">
@@ -80,17 +79,7 @@ const AdminDashboardPage = async () => {
               <div className="text-2xl font-bold">+{SalesCount}</div>
             </CardContent>
           </Card>
-
-          <Card className="col-span-1 p-4 md:col-span-2 xl:col-span-1">
-            <CardTitle>Calendrier</CardTitle>
-            <CardContent className="p-0 sm:pl-2">
-              <AdminCalendar />
-            </CardContent>
-          </Card>
-          <Card className="col-span-1 p-4 md:col-span-2 xl:col-span-3">
-            <CardTitle>Rendez vous du jour</CardTitle>
-            <CardContent className="p-0 sm:pl-2">Rendez vous</CardContent>
-          </Card>
+          <AdminCalendar />
           <Card className="p-4 col:span-1 sm:col-span-2 md:col-span-4">
             <CardTitle>{"Vue d'ensemble"}</CardTitle>
             <CardContent className="p-0 sm:pl-2">

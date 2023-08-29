@@ -16,7 +16,7 @@ export type ProductWithCategoryAndImages = Product & {
 
 export type UserWithAddresseAndMessage = User & {
   messages: Contact[];
-  adress: Address[];
+  address: Address[];
   orders: OrderWithOrderItems[];
 };
 

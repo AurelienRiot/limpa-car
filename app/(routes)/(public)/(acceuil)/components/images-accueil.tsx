@@ -39,7 +39,7 @@ const ImagesAccueil = ({
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 1 }}
-        className="absolute top-0 left-0 w-full h-full bg-black opacity-30 "
+        className="absolute top-0 left-0 w-full h-full bg-black opacity-30 dark:opacity-60 "
       ></motion.div>
       <motion.div
         initial={{ scale: 0 }}

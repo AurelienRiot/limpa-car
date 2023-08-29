@@ -8,6 +8,7 @@ import useCart from "@/hooks/use-cart";
 import { Markdown } from "@/lib/utils";
 import Link from "next/link";
 import { ProductWithCategoryAndImages } from "@/types";
+import toast from "react-hot-toast";
 
 interface InfoProps {
   data: ProductWithCategoryAndImages;
@@ -21,6 +22,7 @@ const Info: React.FC<InfoProps> = ({ data }) => {
   const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
     cart.addItem(data);
+    toast.success("Produit ajouté au panier");
   };
 
   return (
