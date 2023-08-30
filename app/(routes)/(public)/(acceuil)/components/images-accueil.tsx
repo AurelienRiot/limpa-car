@@ -2,7 +2,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { Suspense } from "react";
-import Loading from "@/components/loading";
+import Loading from "@/app/(routes)/(public)/loading";
 
 const ImagesAccueil = ({
   name,

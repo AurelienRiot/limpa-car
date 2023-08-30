@@ -2,13 +2,12 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import Container from "@/components/ui/container";
 import { Suspense } from "react";
-import Loading from "@/components/loading";
+import Loading from "@/app/(routes)/(public)/loading";
 import ImagesAccueil from "./components/images-accueil";
 import prismadb from "@/lib/prismadb";
 import { VisibleElement } from "@/components/animations/visible-element";
 import getProducts from "@/actions-server/get-products";
 import ProductList from "@/components/products-list";
-import Client from "./components/client";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
@@ -37,7 +36,6 @@ export default async function Home() {
             variant="fade"
             className="w-auto overflow-auto break-after-column"
           >{`L'utilisateur est ${JSON.stringify(session)}`}</VisibleElement>
-          <Client />
         </div>
       </Container>
     </>

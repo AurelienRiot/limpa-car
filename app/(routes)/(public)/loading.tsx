@@ -1,6 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
-import Spinner from "./animations/spinner";
+import Spinner from "@/components/animations/spinner";
 import { cn } from "@/lib/utils";
 
 const Loading = ({ className }: { className?: string }) => {

@@ -78,6 +78,7 @@ const MainNav: React.FC<MainNavProps> = ({ data, isSession }) => {
                   {routesCategory.map((route) => (
                     <li key={route.href}>
                       <Link
+                        onClick={() => setOpen(false)}
                         href={route.href}
                         className={cn(
                           route.active

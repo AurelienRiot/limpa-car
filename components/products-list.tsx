@@ -1,7 +1,7 @@
 import NoResults from "./ui/no-results";
 import ProductCart from "./product-cart";
 import { Suspense } from "react";
-import Loading from "@/components/loading";
+import Loading from "@/app/(routes)/(public)/loading";
 import { VisibleElement } from "@/components/animations/visible-element";
 import { ProductWithCategoryAndImages } from "@/types";
 

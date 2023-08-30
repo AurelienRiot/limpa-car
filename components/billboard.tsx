@@ -1,4 +1,4 @@
-import Loading from "@/components/loading";
+import Loading from "@/app/(routes)/(public)/loading";
 import { Suspense } from "react";
 import { Billboard } from "@prisma/client";
 

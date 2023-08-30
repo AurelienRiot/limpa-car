@@ -4,7 +4,7 @@ import { Tab } from "@headlessui/react";
 import GalleryTab from "./gallery-tab";
 import Image from "next/image";
 import { Suspense } from "react";
-import Loading from "@/components/loading";
+import Loading from "@/app/(routes)/(public)/loading";
 import { Image as ImageType } from "@prisma/client";
 
 interface GalleryProps {

@@ -52,7 +52,7 @@ const ProductCart: React.FC<ProductCartProps> = ({ data }) => {
           fill
           sizes="80vw"
           alt="Image"
-          className="object-cover rounded-md aspect-square "
+          className="object-cover rounded-xl aspect-square "
         />
         <div className="absolute w-full px-6 sm:transition sm:opacity-0 sm:group-hover:opacity-100 bottom-5">
           <div className="flex justify-center gap-x-6">

@@ -1,4 +1,4 @@
-import Loading from "@/components/loading";
+import Loading from "@/app/(routes)/(public)/loading";
 import { cn } from "@/lib/utils";
 import { Image as ImageType } from "@prisma/client";
 import { Tab } from "@headlessui/react";
