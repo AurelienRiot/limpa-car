@@ -46,9 +46,9 @@ const NavbarAction: React.FC<{ session: Session | null }> = ({ session }) => {
       {session && (
         <Link
           href={dashboard}
-          className="flex items-center justify-center p-2 transition border rounded-full shadow-md hover:scale-110 bg-primary text-primary-foreground hover:rounded-full hover:bg-accent hover:text-accent-foreground"
+          className="flex items-center justify-center p-2 transition border rounded-full shadow-md bg-primary text-primary-foreground hover:rounded-full hover:bg-accent hover:text-accent-foreground group"
         >
-          <User2 className="w-4 h-4 " />
+          <User2 className="w-4 h-4 duration-300 ease-linear group-hover:scale-150 " />
         </Link>
       )}
 

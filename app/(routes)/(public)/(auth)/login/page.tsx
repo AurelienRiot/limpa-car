@@ -68,10 +68,10 @@ export default function LoginPage() {
               callbackUrl,
             });
           }}
-          className="bg-[#4285F4] rounded-sm  flex items-center justify-center gap-4  shadow-xl"
+          className="bg-[#4285F4] hover:bg-[#4285F4]/90 rounded-sm  flex items-center justify-center gap-4  shadow-xl hover:scale-95  duration-200 ease-linear"
         >
           <svg
-            className="w-12 h-12 p-2 bg-white rounded-sm border-2  border-[#4285F4]"
+            className="w-12 h-12 p-2 bg-white rounded-sm border-2  border-[#4285F4] hover:border-[#4285F4]/90"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 533.5 544.3"
           >
@@ -122,10 +122,17 @@ export default function LoginPage() {
                 )}
               />
             </div>
+            {/* <button
+              type="submit"
+              disabled={loading}
+              className="inline-flex items-center justify-center w-full px-8 mt-4 text-sm font-medium duration-200 ease-linear rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-95 h-11"
+            >
+              {!loading ? "Se connecter avec l'email" : <Spinner size={20} />}
+            </button> */}
             <Button
               type="submit"
               disabled={loading}
-              className="w-full mt-4"
+              className="w-full mt-4 transition-transform duration-200 ease-linear hover:scale-95"
               size="lg"
             >
               {!loading ? "Se connecter avec l'email" : <Spinner size={20} />}

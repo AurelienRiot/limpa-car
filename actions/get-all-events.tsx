@@ -21,6 +21,7 @@ const getAllEvents = async (
     } else {
       toast.error("Erreur");
     }
+    return [];
   }
 };
 

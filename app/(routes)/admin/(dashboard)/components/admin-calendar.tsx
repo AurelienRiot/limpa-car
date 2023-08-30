@@ -1,6 +1,6 @@
 "use client";
 import { Calendar } from "@/components/ui/calendar";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { fr } from "date-fns/locale";
 import {
   addDays,
@@ -22,6 +22,13 @@ import {
 } from "@/components/calendar/days-styles";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import DisplayEvents from "./display-events";
+import {
+  getEventCounts,
+  getFreeDays,
+  getFullDays,
+  getPartiallyFullDays,
+  getWeekendDays,
+} from "@/components/calendar/get-functions-calendar";
 
 const AdminCalendar = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -38,7 +45,7 @@ const AdminCalendar = () => {
   const handleDayClick: DayClickEventHandler = (day, modifiers) => {
     if (day) {
       if (modifiers.outside) {
-        setMonth(day);
+        handleMonthChange(day);
         setIsDayAvailable(null);
         return;
       }
@@ -67,77 +74,63 @@ const AdminCalendar = () => {
     }
   };
 
-  useEffect(() => {
-    handleMonthChange(month);
-  }, [month]);
-
-  const handleMonthChange = async (month: Date) => {
+  const handleMonthChange = useCallback(async (month: Date) => {
     const start = startOfMonth(month);
     const end = endOfMonth(month);
     setMonth(month);
 
     const daysInMonth = eachDayOfInterval({ start, end });
-    const saturdaysAndSundays = daysInMonth.filter((day) => {
-      const dayOfWeek = getDay(day);
-      return dayOfWeek === 6 || dayOfWeek === 0;
-    });
-    setDisabledDays((prev) => saturdaysAndSundays);
+    const saturdaysAndSundays = getWeekendDays(daysInMonth);
+    setDisabledDays(saturdaysAndSundays);
 
     const events = await getAllEvents(start, end);
     if (events) {
-      setEvents((prev) => events);
+      setEvents(events);
 
-      const eventCounts: { [date: string]: number } = {};
-      events.forEach((event) => {
-        const dateOfEvent = new Date(event.dateOfEvent);
-        dateOfEvent.setHours(dateOfEvent.getHours() + 2);
-        const dateStr = dateOfEvent.toISOString().split("T")[0];
-        if (!eventCounts[dateStr]) {
-          eventCounts[dateStr] = 0;
-        }
-        eventCounts[dateStr]++;
-      });
+      const eventCounts = getEventCounts(events);
 
-      const partiallyFullDays = Object.entries(eventCounts)
-        .filter(([date, count]) => count === 2 || count === 3 || count === 1)
-        .map(([date, count]) => new Date(date));
+      const partiallyFullDays = getPartiallyFullDays(eventCounts);
       setPartiallyFullDays(partiallyFullDays);
-      const fullDays = Object.entries(eventCounts)
-        .filter(([date, count]) => count === 4)
-        .map(([date, count]) => new Date(date));
+
+      const fullDays = getFullDays(eventCounts);
       setFullDays(fullDays);
 
-      setFreeDays((prev) =>
-        daysInMonth.filter(
-          (day) =>
-            !saturdaysAndSundays.some((disabledDay) =>
-              isSameDay(disabledDay, day)
-            ) &&
-            !fullDays.some((fullDay) => isSameDay(fullDay, day)) &&
-            !partiallyFullDays.some((partialDay) => isSameDay(partialDay, day))
+      setFreeDays(
+        getFreeDays(
+          daysInMonth,
+          saturdaysAndSundays,
+          fullDays,
+          partiallyFullDays
         )
       );
     } else {
-      setEvents([]);
-      setPartiallyFullDays([]);
-      setFullDays([]);
-      setFreeDays((prev) =>
-        daysInMonth.filter(
-          (day) =>
-            !saturdaysAndSundays.some((disabledDay) =>
-              isSameDay(disabledDay, day)
-            )
-        )
-      );
+      resetDays(daysInMonth, saturdaysAndSundays);
     }
-    console.log(events);
+  }, []);
+
+  const resetDays = (daysInMonth: Date[], saturdaysAndSundays: Date[]) => {
+    setEvents([]);
+    setPartiallyFullDays([]);
+    setFullDays([]);
+    setFreeDays(
+      daysInMonth.filter(
+        (day) =>
+          !saturdaysAndSundays.some((disabledDay) =>
+            isSameDay(disabledDay, day)
+          )
+      )
+    );
   };
+
+  useEffect(() => {
+    handleMonthChange(new Date());
+  }, [handleMonthChange]);
 
   return (
     <>
-      <Card className="col-span-1 p-4 md:col-span-2 xl:col-span-1">
-        <CardTitle>Calendrier</CardTitle>
-        <CardContent className="p-0 sm:pl-2">
+      <Card className="col-span-1 pt-4 sm:p-4 sm:col-span-2 xl:col-span-1">
+        <CardTitle className="pl-4 sm:pl-0">Calendrier</CardTitle>
+        <CardContent>
           <Calendar
             mode="single"
             captionLayout="buttons"
@@ -160,13 +153,13 @@ const AdminCalendar = () => {
             onDayClick={handleDayClick}
             footer={getFooterMessage(isDayAvailable)}
             onMonthChange={(month) => {
-              setMonth(month);
+              handleMonthChange(month);
             }}
             // defaultMonth={new Date(2023, 0)}
           />
         </CardContent>
       </Card>
-      <Card className="col-span-1 p-4 md:col-span-2 xl:col-span-3">
+      <Card className="col-span-1 p-4 sm:col-span-2 xl:col-span-3">
         <CardTitle>Rendez vous du jour</CardTitle>
         <CardContent className="p-0 sm:pl-2">
           <DisplayEvents

@@ -53,7 +53,7 @@ const NavBar: React.FC<NavBarProps> = ({ session, categories }) => {
                 <div className="flex ">
                   <Link
                     href="/"
-                    className="items-center hidden ml-4 sm:flex lg:ml-0 hover:scale-105"
+                    className="items-center hidden ml-4 duration-200 ease-in sm:flex lg:ml-0 hover:scale-105"
                   >
                     <p className="text-lg font-bold sm:text-xl text-primary">
                       {" "}

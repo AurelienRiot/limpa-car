@@ -32,7 +32,7 @@ const AdminDashboardPage = async () => {
 
   return (
     <div className="flex-col">
-      <div className="flex-1 p-8 pt-6 space-y-4">
+      <div className="flex-1 p-2 pt-6 space-y-4 sm:p-8">
         <Heading
           title="Dashboard"
           description="Présentation de votre magasin"
