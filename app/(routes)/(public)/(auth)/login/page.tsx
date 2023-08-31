@@ -18,6 +18,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import * as z from "zod";
+import { motion } from "framer-motion";
 
 const formSchema = z.object({
   email: z
@@ -32,6 +33,7 @@ type EmailFormValues = z.infer<typeof formSchema>;
 export default function LoginPage() {
   const callbackUrl = useSearchParams().get("callbackUrl") || "/dashboard-user";
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const form = useForm<EmailFormValues>({
     resolver: zodResolver(formSchema),
@@ -51,6 +53,7 @@ export default function LoginPage() {
       toast.error("Erreur veuillez réessayer");
     } else {
       toast.success("Vérifiez votre boite mail");
+      setSuccess(true);
     }
     setLoading(false);
   };
@@ -96,49 +99,57 @@ export default function LoginPage() {
             Se connecter avec Google
           </span>
         </button>
+        {success ? null : (
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(() => onSubmit(form.getValues()))}
+            >
+              <div className="grid w-full  items-center gap-1.5">
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <div className="flex items-start gap-x-4">
+                          <Input
+                            type="email"
+                            autoCapitalize="off"
+                            disabled={loading}
+                            placeholder="exemple@email.com"
+                            {...field}
+                          />
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
 
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(() => onSubmit(form.getValues()))}>
-            <div className="grid w-full  items-center gap-1.5">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <div className="flex items-start gap-x-4">
-                        <Input
-                          type="email"
-                          autoCapitalize="off"
-                          disabled={loading}
-                          placeholder="exemple@email.com"
-                          {...field}
-                        />
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            {/* <button
-              type="submit"
-              disabled={loading}
-              className="inline-flex items-center justify-center w-full px-8 mt-4 text-sm font-medium duration-200 ease-linear rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-95 h-11"
-            >
-              {!loading ? "Se connecter avec l'email" : <Spinner size={20} />}
-            </button> */}
-            <Button
-              type="submit"
-              disabled={loading}
-              className="w-full mt-4 transition-transform duration-200 ease-linear hover:scale-95"
-              size="lg"
-            >
-              {!loading ? "Se connecter avec l'email" : <Spinner size={20} />}
-            </Button>
-          </form>
-        </Form>
+              <Button
+                type="submit"
+                disabled={loading}
+                className="w-full mt-4 transition-transform duration-200 ease-linear hover:scale-95"
+                size="lg"
+              >
+                {!loading ? "Se connecter avec l'email" : <Spinner size={20} />}
+              </Button>
+            </form>
+          </Form>
+        )}
+
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={success ? { scale: 1 } : { scale: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <p className="text-xl text-center">E-mail envoyé ! </p>
+          <p className="text-xl text-center">
+            Veuillez vérifier votre boîte mail.
+          </p>
+        </motion.div>
       </div>
     </div>
   );

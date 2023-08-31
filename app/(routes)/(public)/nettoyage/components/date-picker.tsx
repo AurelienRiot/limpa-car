@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { DayClickEventHandler } from "react-day-picker";
@@ -14,73 +13,77 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import {
+  disabledStyle,
+  freeDaysStyle,
+  fullDaysStyle,
+  getFooterMessage,
+  partiallyFullDaysStyle,
+} from "@/components/calendar/days-styles";
+import { useEffect, useState } from "react";
+import getReservations from "@/actions/get-reservations";
 
 interface DatePickerProps extends React.HTMLAttributes<HTMLDivElement> {
   date: Date | undefined;
   setDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
-  fullDays: Date[];
-  partiallyFullDays: Date[];
-  freeDays: Date[];
 }
 
-const DatePicker = ({
-  className,
-  date,
-  setDate,
-  fullDays,
-  partiallyFullDays,
-  freeDays,
-}: DatePickerProps) => {
-  const [isDayAvailable, setIsDayAvailable] = React.useState<
+const DatePicker = ({ className, date, setDate }: DatePickerProps) => {
+  const [isDayAvailable, setIsDayAvailable] = useState<
     "full" | "partiallyFull" | "free" | "unavailable" | null
   >(null);
-
-  const fullDaysStyle = {
-    border: "2px solid white",
-    backgroundColor: "red",
-  };
-
-  const partiallyFullDaysStyle = {
-    border: "2px solid white",
-    backgroundColor: "orange",
-  };
-
-  const freeDaysStyle = {
-    border: "2px solid white",
-    backgroundColor: "green",
-  };
-  const footer =
-    isDayAvailable === "full"
-      ? "Ce jour est complet!"
-      : isDayAvailable === "partiallyFull"
-      ? "Ce jour est presque complet!"
-      : isDayAvailable === "free"
-      ? "Ce jour est libre"
-      : isDayAvailable === "unavailable"
-      ? "Choisisez un autre jour"
-      : null;
+  const [disabledDays, setDisabledDays] = useState<Date[]>([]);
+  const [freeDays, setFreeDays] = useState<Date[]>([]);
+  const [partiallyFullDays, setPartiallyFullDays] = useState<Date[]>([]);
+  const [fullDays, setFullDays] = useState<Date[]>([]);
+  const [month, setMonth] = useState<Date>(date ? date : new Date());
 
   const handleDayClick: DayClickEventHandler = (day, modifiers) => {
     if (day) {
+      if (modifiers.outside) {
+        setMonth(day);
+        setIsDayAvailable(null);
+        return;
+      }
       if (modifiers.partiallyFull) {
         setIsDayAvailable("partiallyFull");
+        return;
       }
       if (modifiers.full) {
         setIsDayAvailable("full");
+        return;
       }
       if (modifiers.free) {
         setIsDayAvailable("free");
+        return;
       }
       if (!modifiers.partiallyFull && !modifiers.full && !modifiers.free) {
         setIsDayAvailable("unavailable");
+        return;
       }
       if (modifiers.selected) {
         setIsDayAvailable(null);
+        return;
       }
     } else {
       setIsDayAvailable(null);
     }
   };
+
+  const handleMonthChange = async (month: Date) => {
+    const reservation = await getReservations(month);
+    if (!reservation) return;
+    const { fullDays, partiallyFullDays, freeDays, disabledDays } = reservation;
+
+    setFullDays(fullDays);
+    setPartiallyFullDays(partiallyFullDays);
+    setFreeDays(freeDays);
+    setDisabledDays(disabledDays);
+  };
+
+  useEffect(() => {
+    handleMonthChange(month);
+  }, [month]);
 
   return (
     <div className={cn("relative", className)}>
@@ -103,25 +106,28 @@ const DatePicker = ({
         </PopoverTrigger>
         <PopoverContent align="start" className="absolute w-auto p-0">
           <Calendar
+            key={month.getTime()}
             mode="single"
             captionLayout="buttons"
             selected={date}
+            month={month}
             locale={fr}
             onSelect={setDate}
-            fromYear={1930}
-            toYear={2030}
             modifiers={{
               full: fullDays,
               partiallyFull: partiallyFullDays,
               free: freeDays,
+              disabled: disabledDays,
             }}
             modifiersStyles={{
               full: fullDaysStyle,
               partiallyFull: partiallyFullDaysStyle,
               free: freeDaysStyle,
+              disabled: disabledStyle,
             }}
             onDayClick={handleDayClick}
-            footer={footer}
+            footer={getFooterMessage(isDayAvailable)}
+            onMonthChange={setMonth}
           />
         </PopoverContent>
       </Popover>

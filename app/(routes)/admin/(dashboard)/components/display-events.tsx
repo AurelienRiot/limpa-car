@@ -3,7 +3,7 @@ import { Event, User } from "@prisma/client";
 import Link from "next/link";
 
 type DisplayEventsProps = {
-  dailyEvents: (Event & { user: User })[];
+  dailyEvents: (Event & { user: User | null })[];
   date: Date | undefined;
 };
 
@@ -19,14 +19,19 @@ const DisplayEvents = ({ dailyEvents, date }: DisplayEventsProps) => {
             <>
               {dailyEvents.map((event) => (
                 <div key={event.id}>
-                  <Link
-                    href={`/admin/users/${event.user.id}`}
-                    target="_blank"
-                    className="hover:underline"
-                  >
-                    {" "}
-                    {event.name}
-                  </Link>
+                  {event.user ? (
+                    <Link
+                      href={`/admin/users/${event.user.id}`}
+                      target="_blank"
+                      className="hover:underline"
+                    >
+                      {" "}
+                      {event.name}
+                    </Link>
+                  ) : (
+                    <p>{event.name}</p>
+                  )}
+
                   <p>{event.description}</p>
                 </div>
               ))}

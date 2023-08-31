@@ -3,10 +3,8 @@ import { Calendar } from "@/components/ui/calendar";
 import { useCallback, useEffect, useState } from "react";
 import { fr } from "date-fns/locale";
 import {
-  addDays,
   eachDayOfInterval,
   endOfMonth,
-  getDay,
   isSameDay,
   startOfMonth,
 } from "date-fns";
@@ -14,7 +12,7 @@ import { DayClickEventHandler } from "react-day-picker";
 import getAllEvents from "@/actions/get-all-events";
 import { Event, User } from "@prisma/client";
 import {
-  disabled,
+  disabledStyle,
   freeDaysStyle,
   fullDaysStyle,
   getFooterMessage,
@@ -30,17 +28,37 @@ import {
   getWeekendDays,
 } from "@/components/calendar/get-functions-calendar";
 
-const AdminCalendar = () => {
-  const [date, setDate] = useState<Date | undefined>(new Date());
-  const [month, setMonth] = useState<Date>(new Date());
+type AdminCalendarProps = {
+  currentDate: Date;
+  initialEvents: (Event & { user: User | null })[];
+  saturdaysAndSundays: Date[];
+  initialFreeDays: Date[];
+  initialPartiallyFullDays: Date[];
+  initialFullDays: Date[];
+};
+
+const AdminCalendar = ({
+  currentDate,
+  initialEvents,
+  saturdaysAndSundays,
+  initialFreeDays,
+  initialPartiallyFullDays,
+  initialFullDays,
+}: AdminCalendarProps) => {
+  const [date, setDate] = useState<Date | undefined>(currentDate);
+  const [month, setMonth] = useState<Date>(currentDate);
   const [isDayAvailable, setIsDayAvailable] = useState<
     "full" | "partiallyFull" | "free" | "unavailable" | null
   >(null);
-  const [events, setEvents] = useState<(Event & { user: User })[]>([]);
-  const [disabledDays, setDisabledDays] = useState<Date[]>([]);
-  const [freeDays, setFreeDays] = useState<Date[]>([]);
-  const [partiallyFullDays, setPartiallyFullDays] = useState<Date[]>([]);
-  const [fullDays, setFullDays] = useState<Date[]>([]);
+
+  const [events, setEvents] =
+    useState<(Event & { user: User | null })[]>(initialEvents);
+  const [disabledDays, setDisabledDays] = useState<Date[]>(saturdaysAndSundays);
+  const [freeDays, setFreeDays] = useState<Date[]>(initialFreeDays);
+  const [partiallyFullDays, setPartiallyFullDays] = useState<Date[]>(
+    initialPartiallyFullDays
+  );
+  const [fullDays, setFullDays] = useState<Date[]>(initialFullDays);
 
   const handleDayClick: DayClickEventHandler = (day, modifiers) => {
     if (day) {
@@ -74,7 +92,7 @@ const AdminCalendar = () => {
     }
   };
 
-  const handleMonthChange = useCallback(async (month: Date) => {
+  const handleMonthChange = async (month: Date) => {
     const start = startOfMonth(month);
     const end = endOfMonth(month);
     setMonth(month);
@@ -106,7 +124,7 @@ const AdminCalendar = () => {
     } else {
       resetDays(daysInMonth, saturdaysAndSundays);
     }
-  }, []);
+  };
 
   const resetDays = (daysInMonth: Date[], saturdaysAndSundays: Date[]) => {
     setEvents([]);
@@ -121,10 +139,6 @@ const AdminCalendar = () => {
       )
     );
   };
-
-  useEffect(() => {
-    handleMonthChange(new Date());
-  }, [handleMonthChange]);
 
   return (
     <>
@@ -148,14 +162,11 @@ const AdminCalendar = () => {
               full: fullDaysStyle,
               partiallyFull: partiallyFullDaysStyle,
               free: freeDaysStyle,
-              disabled: disabled,
+              disabled: disabledStyle,
             }}
             onDayClick={handleDayClick}
             footer={getFooterMessage(isDayAvailable)}
-            onMonthChange={(month) => {
-              handleMonthChange(month);
-            }}
-            // defaultMonth={new Date(2023, 0)}
+            onMonthChange={handleMonthChange}
           />
         </CardContent>
       </Card>

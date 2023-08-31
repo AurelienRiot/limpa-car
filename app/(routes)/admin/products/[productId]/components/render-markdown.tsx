@@ -26,6 +26,7 @@ import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
 import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
+import EmojiPicker from "emoji-picker-react";
 
 import {
   Popover,
@@ -48,47 +49,6 @@ const RenderMarkdown: React.FC<RenderMarkdownProps> = ({ form, loading }) => {
   const [column, setColumn] = useState<number | undefined>(3);
 
   const titres = ["h1", "h2", "h3", "h4"] as const;
-  const emojiList: {
-    emoji: string;
-    label: string;
-  }[] = [
-    { emoji: "🔵", label: "cercle bleu" },
-    { emoji: "🔴", label: "cercle rouge" },
-    { emoji: "🟠", label: "cercle orange" },
-    { emoji: "🟡", label: "cercle jaune" },
-    { emoji: "🟢", label: "cercle vert" },
-    { emoji: "🟣", label: "cercle violet" },
-    { emoji: "⚫", label: "cercle noir" },
-    { emoji: "⚪", label: "cercle blanc" },
-    { emoji: "🟤", label: "cercle marron" },
-    { emoji: "🔻", label: "triangle rouge vers le bas" },
-    { emoji: "🔺", label: "triangle rouge vers le haut" },
-    { emoji: "💠", label: "losange avec un point à l'intérieur" },
-    { emoji: "🔷", label: "losange bleu grand" },
-    { emoji: "🔶", label: "losange orange grand" },
-    { emoji: "🔳", label: "carré blanc" },
-    { emoji: "🔲", label: "carré noir" },
-    { emoji: "🟥", label: "carré rouge" },
-    { emoji: "🟧", label: "carré orange" },
-    { emoji: "🟨", label: "carré jaune" },
-    { emoji: "🟩", label: "carré vert" },
-    { emoji: "🟦", label: "carré bleu" },
-    { emoji: "🟪", label: "carré violet" },
-    { emoji: "🟫", label: "carré marron" },
-    { emoji: "🔥", label: "feu" },
-    { emoji: "💧", label: "eau" },
-    { emoji: "🌪️", label: "tornade" },
-    { emoji: "🌈", label: "arc-en-ciel" },
-    { emoji: "🌊", label: "vague" },
-    { emoji: "🌞", label: "soleil" },
-    { emoji: "🌝", label: "lune" },
-    { emoji: "⭐", label: "étoile" },
-    { emoji: "🌍", label: "terre" },
-    { emoji: "🍁", label: "feuille d'érable" },
-    { emoji: "🍂", label: "feuille morte" },
-    { emoji: "🌿", label: "feuille verte" },
-    { emoji: "🍃", label: "feuille dans le vent" },
-  ];
 
   function createMarkdownTable(
     field: FieldValues,
@@ -355,29 +315,16 @@ const RenderMarkdown: React.FC<RenderMarkdownProps> = ({ form, loading }) => {
                     <PopoverTrigger asChild>
                       <Button variant="markdown">😄</Button>
                     </PopoverTrigger>
-                    <PopoverContent
-                      align="start"
-                      className="flex flex-row flex-wrap gap-2 w-44"
-                    >
-                      {emojiList.map((emoji) => (
-                        <Tooltip key={emoji.label}>
-                          <TooltipTrigger asChild>
-                            <button
-                              onClick={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                insertEmoji(field, emoji.emoji);
-                                setOpenEmoji(false);
-                              }}
-                            >
-                              {emoji.emoji}
-                            </button>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <span>{emoji.label}</span>
-                          </TooltipContent>
-                        </Tooltip>
-                      ))}
+                    <PopoverContent align="start" className="w-auto">
+                      <EmojiPicker
+                        previewConfig={{ showPreview: false }}
+                        searchPlaceholder="Rechercher"
+                        width="350px"
+                        onEmojiClick={(e) => {
+                          insertEmoji(field, e.emoji);
+                          setOpenEmoji(false);
+                        }}
+                      />
                     </PopoverContent>
                   </Popover>
 

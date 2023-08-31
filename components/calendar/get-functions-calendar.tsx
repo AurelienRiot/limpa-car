@@ -8,7 +8,7 @@ export const getWeekendDays = (daysInMonth: Date[]) => {
   });
 };
 
-export const getEventCounts = (events: (Event & { user: User })[]) => {
+export const getEventCounts = (events: (Event & { user: User | null })[]) => {
   const eventCounts: { [date: string]: number } = {};
   events.forEach((event) => {
     const dateOfEvent = new Date(event.dateOfEvent);

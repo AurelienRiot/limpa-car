@@ -3,7 +3,7 @@ import { ProductClient } from "./components/client";
 import { ProductColumn } from "./components/columns";
 import { formatter } from "@/lib/utils";
 
-const ProductPage = async () => {
+const ProductsPage = async () => {
   const products = await prismadb.product.findMany({
     include: {
       category: true,
@@ -33,4 +33,4 @@ const ProductPage = async () => {
   );
 };
 
-export default ProductPage;
+export default ProductsPage;

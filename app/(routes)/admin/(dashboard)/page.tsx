@@ -14,6 +14,14 @@ import {
 import { Overview } from "./components/overview";
 import AdminCalendar from "./components/admin-calendar";
 import prismadb from "@/lib/prismadb";
+import { eachDayOfInterval, endOfMonth, startOfMonth } from "date-fns";
+import {
+  getEventCounts,
+  getFreeDays,
+  getFullDays,
+  getPartiallyFullDays,
+  getWeekendDays,
+} from "@/components/calendar/get-functions-calendar";
 
 const AdminDashboardPage = async () => {
   const totalRevenue = await getTotalRevenue();
@@ -22,13 +30,34 @@ const AdminDashboardPage = async () => {
   const graphRevenue = await getGraphRevenue();
 
   const currentDate = new Date();
+  const start = startOfMonth(currentDate);
+  const end = endOfMonth(currentDate);
+
+  const daysInMonth = eachDayOfInterval({ start, end });
+  const saturdaysAndSundays = getWeekendDays(daysInMonth);
+
   const events = await prismadb.event.findMany({
     where: {
       dateOfEvent: {
-        gte: currentDate,
+        gte: start,
+        lte: end,
       },
     },
+    include: {
+      user: true,
+    },
   });
+
+  const eventCounts = getEventCounts(events);
+
+  const partiallyFullDays = getPartiallyFullDays(eventCounts);
+  const fullDays = getFullDays(eventCounts);
+  const freeDays = getFreeDays(
+    daysInMonth,
+    saturdaysAndSundays,
+    fullDays,
+    partiallyFullDays
+  );
 
   return (
     <div className="flex-col">
@@ -79,7 +108,14 @@ const AdminDashboardPage = async () => {
               <div className="text-2xl font-bold">+{SalesCount}</div>
             </CardContent>
           </Card>
-          <AdminCalendar />
+          <AdminCalendar
+            currentDate={currentDate}
+            initialEvents={events}
+            initialFreeDays={freeDays}
+            initialFullDays={fullDays}
+            initialPartiallyFullDays={partiallyFullDays}
+            saturdaysAndSundays={saturdaysAndSundays}
+          />
           <Card className="p-4 col:span-1 sm:col-span-2 md:col-span-4">
             <CardTitle>{"Vue d'ensemble"}</CardTitle>
             <CardContent className="p-0 sm:pl-2">

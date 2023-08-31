@@ -9,7 +9,6 @@ import { MouseEventHandler } from "react";
 import usePreviewModal from "@/hooks/use-preview-modal";
 import useCart from "@/hooks/use-cart";
 import { VisibleElement } from "./animations/visible-element";
-import { motion } from "framer-motion";
 import { ProductWithCategoryAndImages } from "@/types";
 import toast from "react-hot-toast";
 
@@ -41,10 +40,9 @@ const ProductCart: React.FC<ProductCartProps> = ({ data }) => {
   };
 
   return (
-    <motion.div
-      whileHover={{ scale: 1.05 }}
+    <div
       onClick={handleClick}
-      className="p-3 m-2 space-y-4 border cursor-pointer group rounded-xl bg-secondary "
+      className="p-3 m-2 space-y-4 transition-transform border cursor-pointer group rounded-xl bg-secondary hover:scale-105"
     >
       <VisibleElement className="relative bg-white aspect-square rounded-xl before:rounded-xl before:inset-0 before:absolute before:z-10 before:bg-black/20 before:opacity-0 before:animate-in before:duration-300 before:ease-linear group-hover:before:opacity-100 ">
         <Image
@@ -80,7 +78,7 @@ const ProductCart: React.FC<ProductCartProps> = ({ data }) => {
       <div className="flex items-center justify-between text-primary">
         <Currency value={value} />
       </div>
-    </motion.div>
+    </div>
   );
 };
 

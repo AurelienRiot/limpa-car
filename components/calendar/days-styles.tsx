@@ -13,7 +13,7 @@ export const freeDaysStyle = {
   backgroundColor: "green",
 };
 
-export const disabled = { color: "gray", backgroundColor: "lightgray" };
+export const disabledStyle = { color: "gray", backgroundColor: "lightgray" };
 
 export function getFooterMessage(isDayAvailable: string | null) {
   if (isDayAvailable === "full") {

@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Modal } from "@/components/ui/modal";
 import { Button } from "@/components/ui/button";
 import { addDays } from "date-fns";
-import DatePicker from "@/components/ui/date-picker";
+import DatePicker from "@/app/(routes)/(public)/nettoyage/components/date-picker";
 
 interface CalendarModalProps {
   isOpen: boolean;
@@ -23,18 +22,6 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
   date,
   setDate,
 }) => {
-  const fullDays = [new Date(), addDays(new Date(), 2)];
-  const partiallyFullDays = [
-    addDays(new Date(), 4),
-    addDays(new Date(), -2),
-    addDays(new Date(), 1),
-  ];
-  const freeDays = [
-    addDays(new Date(), 3),
-    addDays(new Date(), -1),
-    addDays(new Date(), 5),
-  ];
-
   return (
     <Modal
       title="Choissez une date"
@@ -43,14 +30,7 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
       onClose={onClose}
     >
       <div className="items-center gap-4 sm:flex">
-        <DatePicker
-          aria-disabled={loading}
-          date={date}
-          setDate={setDate}
-          fullDays={fullDays}
-          freeDays={freeDays}
-          partiallyFullDays={partiallyFullDays}
-        />
+        <DatePicker aria-disabled={loading} date={date} setDate={setDate} />
         <Button disabled={loading} onClick={onConfirm} className="mt-4 sm:mt-0">
           Ajouté au panier
         </Button>
