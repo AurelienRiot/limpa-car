@@ -28,7 +28,11 @@ export async function POST(req: Request) {
     const end = endOfMonth(new Date(month));
     const currentDay = new Date();
     const effectiveDate = addDays(currentDay, 3);
-    console.log(start, end, currentDay, effectiveDate);
+    console.log("date send:", month);
+    console.log("start: ", start);
+    console.log("end: ", start);
+    console.log("currentDay: ", start);
+    console.log("effectiveDay: ", start);
 
     if (
       (!isThisMonth(start) && isPast(start)) ||
