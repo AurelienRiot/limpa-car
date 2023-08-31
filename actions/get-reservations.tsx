@@ -1,5 +1,4 @@
 "use client";
-import { Event, User } from "@prisma/client";
 import axios, { AxiosError } from "axios";
 import toast from "react-hot-toast";
 
@@ -13,17 +12,24 @@ const getReservations = async (
   month: Date
 ): Promise<getReservationsOutput | undefined> => {
   try {
-    console.log("mois function: ", month);
     const reservations = await axios.post("/api/reservations", {
       month,
     });
 
-    const fullDays = reservations.data.fullDays.map((day: string) => new Date(day));
-  const partiallyFullDays = reservations.data.partiallyFullDays.map((day: string) => new Date(day));
-  const freeDays = reservations.data.freeDays.map((day: string) => new Date(day));
-  const disabledDays = reservations.data.disabledDays.map((day: string) => new Date(day));
-  
-    return {fullDays, partiallyFullDays, freeDays, disabledDays}
+    const fullDays = reservations.data.fullDays.map(
+      (day: string) => new Date(day)
+    );
+    const partiallyFullDays = reservations.data.partiallyFullDays.map(
+      (day: string) => new Date(day)
+    );
+    const freeDays = reservations.data.freeDays.map(
+      (day: string) => new Date(day)
+    );
+    const disabledDays = reservations.data.disabledDays.map(
+      (day: string) => new Date(day)
+    );
+
+    return { fullDays, partiallyFullDays, freeDays, disabledDays };
   } catch (error) {
     const axiosError = error as AxiosError;
     console.log(axiosError);
