@@ -71,7 +71,6 @@ const DatePicker = ({ className, date, setDate }: DatePickerProps) => {
   };
 
   const handleMonthChange = async (month: Date) => {
-    console.log(month);
     const reservation = await getReservations(month);
     if (!reservation) return;
     const { fullDays, partiallyFullDays, freeDays, disabledDays } = reservation;

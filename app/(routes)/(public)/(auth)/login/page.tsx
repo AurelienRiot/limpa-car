@@ -134,7 +134,7 @@ export default function LoginPage() {
                 className="w-full mt-4 transition-transform duration-200 ease-linear hover:scale-95"
                 size="lg"
               >
-                {!loading ? "Se connecter avec l'email" : <Spinner size={20} />}
+                {"Se connecter avec l'email"}
               </Button>
             </form>
           </Form>
