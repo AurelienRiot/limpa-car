@@ -2,7 +2,6 @@
 
 import { Modal } from "@/components/ui/modal";
 import { Button } from "@/components/ui/button";
-import { addDays } from "date-fns";
 import DatePicker from "@/app/(routes)/(public)/nettoyage/components/date-picker";
 
 interface CalendarModalProps {

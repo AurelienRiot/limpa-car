@@ -75,11 +75,6 @@ const DatePicker = ({ className, date, setDate }: DatePickerProps) => {
     if (!reservation) return;
     const { fullDays, partiallyFullDays, freeDays, disabledDays } = reservation;
 
-    console.log("fulldays: ", fullDays);
-    console.log("partiallyFullDays: ", partiallyFullDays);
-    console.log("freeDays: ", freeDays);
-    console.log("disabledDays: ", disabledDays);
-
     setFullDays(fullDays);
     setPartiallyFullDays(partiallyFullDays);
     setFreeDays(freeDays);

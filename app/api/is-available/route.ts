@@ -5,7 +5,6 @@ export async function POST(req: Request) {
   try {
     const { date } = await req.json();
 
-    console.log("mois API: ", date);
     if (!date) {
       return new NextResponse("Date incorrecte", {
         status: 400,
