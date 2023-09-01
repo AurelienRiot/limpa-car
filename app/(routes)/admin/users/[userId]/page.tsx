@@ -39,11 +39,6 @@ const UserPage = async ({ params }: { params: { userId: string } }) => {
     );
   }
 
-  const formatedUser = {
-    ...user,
-    orders: [],
-  };
-
   const formattedOrders: OrderColumn[] = user?.orders.map((order) => ({
     id: order.id,
     products: order.orderItems
@@ -56,7 +51,7 @@ const UserPage = async ({ params }: { params: { userId: string } }) => {
       })
       .join(", "),
     dates: order.orderItems.flatMap((item) => item.dates.map((date) => date)),
-    totalPrice: formatter.format(Number(order.totalPrice)),
+    totalPrice: formatter.format(Number(order.totalPrice) * 1.2),
     isPaid: order.isPaid ? "oui" : "non",
     createdAt: order.createdAt,
   }));
@@ -64,7 +59,6 @@ const UserPage = async ({ params }: { params: { userId: string } }) => {
   return (
     <div className="flex-col p-8 pt-6">
       <div className="flex-1 mb-8 space-y-4 ">
-        {/* <UserForm initialData={formatedUser} /> */}
         <p>Nom : {user.name}</p>
         <p>Email : {user.email}</p>
         <p>Téléphone : {user.phone ? user.phone : "Non renseigné"}</p>

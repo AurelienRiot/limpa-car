@@ -3,9 +3,9 @@ import prismadb from "@/lib/prismadb";
 
 export async function POST(req: Request) {
   try {
-    const { date } = await req.json();
+    const { dateOfEvent } = await req.json();
 
-    if (!date) {
+    if (!dateOfEvent) {
       return new NextResponse("Date incorrecte", {
         status: 400,
       });
@@ -13,7 +13,7 @@ export async function POST(req: Request) {
 
     const events = await prismadb.event.findMany({
       where: {
-        dateOfEvent: date,
+        dateOfEvent,
       },
       select: {
         dateOfEvent: true,

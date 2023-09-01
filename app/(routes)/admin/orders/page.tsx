@@ -38,7 +38,7 @@ const OrdersPage = async () => {
 
     dates: order.orderItems.flatMap((item) => item.dates.map((date) => date)),
 
-    totalPrice: formatter.format(Number(order.totalPrice)),
+    totalPrice: formatter.format(Number(order.totalPrice) * 1.2),
     isPaid: order.isPaid ? "oui" : "non",
     createdAt: order.createdAt,
   }));

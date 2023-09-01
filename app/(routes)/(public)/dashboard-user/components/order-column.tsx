@@ -1,7 +1,6 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { OrderCellAction } from "./order-cell-action";
 import { Button } from "@/components/ui/button";
 import { ArrowUpDown } from "lucide-react";
 import { fr } from "date-fns/locale";
@@ -59,10 +58,5 @@ export const columns: ColumnDef<OrderColumn>[] = [
         {format(row.getValue("createdAt"), "d MMMM yyyy", { locale: fr })}
       </div>
     ),
-  },
-
-  {
-    id: "actions",
-    cell: ({ row }) => <OrderCellAction data={row.original} />,
   },
 ];

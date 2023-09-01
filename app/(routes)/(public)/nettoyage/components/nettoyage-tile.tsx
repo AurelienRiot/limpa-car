@@ -1,6 +1,6 @@
 "use client";
 import getReservations from "@/actions/get-reservations";
-import isAvailable from "@/actions/isAvailable";
+import IsAvailable from "@/actions/isAvailable";
 import { CalendarModal } from "@/components/modals/calendar-modal";
 import { Button } from "@/components/ui/button";
 import Currency from "@/components/ui/currency";
@@ -33,10 +33,10 @@ const NettoyageTile: React.FC<NettoyageTileProps> = ({
   ) => {
     event.stopPropagation();
     setLoading(true);
-    const isDayAvailable = await isAvailable(date);
+    const isDayAvailable = await IsAvailable(date, cart.dates);
     if (!isDayAvailable) {
       toast.error(
-        "Ce jour n'est pas disponible, veullez choisir un autre jour"
+        "Ce jour n'est plus disponible, veuillez choisir un autre jour"
       );
       setLoading(false);
       return;

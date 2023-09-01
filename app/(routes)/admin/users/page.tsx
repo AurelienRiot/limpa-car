@@ -7,6 +7,9 @@ const UserPage = async () => {
       messages: true,
       orders: true,
     },
+    orderBy: {
+      updatedAt: "desc",
+    },
   });
 
   const orderLengths = users.map((user) => {

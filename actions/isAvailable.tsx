@@ -1,30 +1,47 @@
+import useCart from "@/hooks/use-cart";
 import axios, { AxiosError } from "axios";
 import { addDays } from "date-fns";
 import toast from "react-hot-toast";
 
-const isAvailable = async (date: Date | undefined) => {
+export const maxEventsPerDay = 4;
+
+const IsAvailable = async (
+  dateOfEvent: Date | undefined,
+  dates: { [productId: string]: Date[] }
+) => {
   try {
-    if (!date) {
+    if (!dateOfEvent) {
       return false;
     }
 
     const currentDay = new Date();
     const effectiveDate = addDays(currentDay, 3);
 
-    if (date < effectiveDate) {
+    if (dateOfEvent < effectiveDate) {
       return false;
     }
 
-    const dayOfWeek = date.getDay();
+    const dayOfWeek = dateOfEvent.getDay();
     if (dayOfWeek === 6 || dayOfWeek === 0) {
       return false;
     }
 
-    const responce = await axios.post("/api/is-available", { date });
+    const response = await axios.post("/api/is-available", { dateOfEvent });
 
-    const eventCount = responce.data.length;
+    const eventCountFromResponse = response.data.length;
+    console.log(eventCountFromResponse);
+    // Count events from the dates prop
+    const eventCountFromDates = Object.values(dates)
+      .flat()
+      .filter(
+        (date) =>
+          new Date(date).toISOString().split("T")[0] ===
+          dateOfEvent?.toISOString().split("T")[0]
+      ).length;
 
-    if (eventCount > 3) {
+    const eventCount = eventCountFromResponse + eventCountFromDates;
+
+    if (eventCount >= maxEventsPerDay) {
       return false;
     } else {
       return true;
@@ -40,4 +57,4 @@ const isAvailable = async (date: Date | undefined) => {
   }
 };
 
-export default isAvailable;
+export default IsAvailable;

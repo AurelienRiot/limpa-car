@@ -1,3 +1,4 @@
+import { maxEventsPerDay } from "@/actions/isAvailable";
 import { User, Event } from "@prisma/client";
 import { getDay, isSameDay } from "date-fns";
 
@@ -26,13 +27,13 @@ export const getPartiallyFullDays = (eventCounts: {
   [date: string]: number;
 }) => {
   return Object.entries(eventCounts)
-    .filter(([date, count]) => count === 2 || count === 3 || count === 1)
+    .filter(([date, count]) => count >= 1 && count < maxEventsPerDay)
     .map(([date, count]) => new Date(date));
 };
 
 export const getFullDays = (eventCounts: { [date: string]: number }) => {
   return Object.entries(eventCounts)
-    .filter(([date, count]) => count === 4)
+    .filter(([date, count]) => count >= maxEventsPerDay)
     .map(([date, count]) => new Date(date));
 };
 

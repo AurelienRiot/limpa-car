@@ -20,6 +20,10 @@ export type UserWithAddresseAndMessage = User & {
   orders: OrderWithOrderItems[];
 };
 
+export type UserWithAddresse = User & {
+  address: Address[];
+};
+
 export type OrderWithOrderItems = Order & {
   orderItems: OrderItemWithProduct[];
 };

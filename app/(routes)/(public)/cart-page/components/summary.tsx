@@ -54,7 +54,7 @@ const Summary: React.FC<SummaryProps> = ({ session }) => {
       return {
         id: item.id,
         quantity: quantities[item.id],
-        dates: dates[item.id],
+        dates: dates[item.id] && dates[item.id].length ? dates[item.id] : [],
       };
     });
     try {
