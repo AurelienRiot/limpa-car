@@ -15,7 +15,6 @@ type NavBarProps = {
 };
 
 const NavBar: React.FC<NavBarProps> = ({ session, categories }) => {
-  const isSession = session ? true : false;
   const [isNavbar, setIsNavbar] = useState(true);
 
   useEffect(() => {
@@ -61,13 +60,9 @@ const NavBar: React.FC<NavBarProps> = ({ session, categories }) => {
                     </p>
                   </Link>
                   <div className="hidden lg:flex lg:items-center">
-                    <MainNav data={categories} isSession={isSession} />
+                    <MainNav data={categories} />
                   </div>
-                  <MobileNav
-                    data={categories}
-                    isSession={isSession}
-                    className="ml-2 lg:hidden"
-                  />
+                  <MobileNav data={categories} className="ml-2 lg:hidden" />
                 </div>
 
                 <NavbarAction session={session} />

@@ -27,7 +27,10 @@ const LinksVisitors = forwardRef<HTMLElement, {}>((_, ref) => {
             <TableRow key={visitor.id}>
               <TableCell>{visitor.name}</TableCell>
               <TableCell>{visitor.totalDuration}</TableCell>
-              <TableCell>{visitor.completionRate}</TableCell>
+              <TableCell>
+                {visitor.completionRate}{" "}
+                <Gauge value={visitor.completionRate} showValue={true} />{" "}
+              </TableCell>
             </TableRow>
           ))}
         </>

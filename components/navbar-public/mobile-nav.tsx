@@ -35,7 +35,6 @@ type PopoverTriggerProps = React.ComponentPropsWithoutRef<
 >;
 interface MobileNavProps extends PopoverTriggerProps {
   data: Category[];
-  isSession: boolean;
 }
 
 export default function MobileNav({ className, data }: MobileNavProps) {

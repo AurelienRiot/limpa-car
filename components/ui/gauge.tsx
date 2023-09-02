@@ -1,7 +1,7 @@
 export const Gauge = ({
   value,
   size = "small",
-  showValue = true,
+  showValue = false,
 }: {
   value: number;
   size?: "small" | "medium" | "large";
@@ -43,7 +43,7 @@ export const Gauge = ({
         className="transform -rotate-90"
       >
         <circle
-          className="text-[#333]"
+          className="text-muted-foreground"
           strokeWidth="12"
           stroke="currentColor"
           fill="transparent"
@@ -53,7 +53,7 @@ export const Gauge = ({
           cy="60"
         />
         <circle
-          className="text-[hsla(131,41%,46%,1)] animate-gauge_fill"
+          className="text-green-600 animate-gauge_fill"
           strokeWidth="12"
           strokeDasharray={strokeDasharray}
           strokeDashoffset={initialOffset}
@@ -71,8 +71,8 @@ export const Gauge = ({
         />
       </svg>
       {showValue ? (
-        <div className="absolute flex opacity-0 animate-gauge_fadeIn">
-          <p className={`text-gray-100 ${sizes[size].textSize}`}>{value}</p>
+        <div className="absolute flex animate-gauge_fadeIn">
+          <p className={`text-primary ${sizes[size].textSize}`}>{value}</p>
         </div>
       ) : null}
     </div>

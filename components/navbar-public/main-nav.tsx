@@ -20,10 +20,9 @@ import { Category } from "@prisma/client";
 
 interface MainNavProps {
   data: Category[];
-  isSession?: boolean;
 }
 
-const MainNav: React.FC<MainNavProps> = ({ data, isSession }) => {
+const MainNav: React.FC<MainNavProps> = ({ data }) => {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
