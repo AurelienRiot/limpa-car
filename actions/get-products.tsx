@@ -7,7 +7,7 @@ interface Query {
   isFeatured?: boolean;
 }
 
-const getProducts = async (
+const GetProducts = async (
   query: Query
 ): Promise<ProductWithCategoryAndImages[]> => {
   const url = qs.stringifyUrl({
@@ -21,4 +21,4 @@ const getProducts = async (
   return res.data;
 };
 
-export default getProducts;
+export default GetProducts;

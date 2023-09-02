@@ -1,6 +1,6 @@
 import prismadb from "@/lib/prismadb";
 
-const getCategory = async (id: string) => {
+const GetCategory = async (id: string) => {
   const category = await prismadb.category.findUnique({
     where: {
       id,
@@ -13,4 +13,4 @@ const getCategory = async (id: string) => {
   return category;
 };
 
-export default getCategory;
+export default GetCategory;

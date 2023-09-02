@@ -12,7 +12,6 @@ import { Heading } from "@/components/ui/heading";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -23,6 +22,7 @@ import { AlertModal } from "@/components/modals/alert-modal";
 import { Button } from "@/components/ui/button";
 import { UserContact } from "../page";
 import Spinner from "@/components/animations/spinner";
+import axios from "axios";
 
 const formSchema = z.object({
   name: z
@@ -75,9 +75,9 @@ export const ContactForm = ({
   const onSubmit = async (data: ContactFormValues) => {
     try {
       setLoading(true);
-      // await axios.post(`/api/contacts`, { ...data, userId });
-      // router.refresh();
-      // router.push(`/`);
+      await axios.post(`/api/contacts`, { ...data, userId });
+      router.refresh();
+      router.push(`/`);
       await new Promise((resolve) => setTimeout(resolve, 5000));
       toast.success("Message envoyé");
     } catch (error) {

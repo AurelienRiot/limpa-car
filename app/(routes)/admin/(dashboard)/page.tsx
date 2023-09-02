@@ -1,6 +1,6 @@
-import { getGraphRevenue } from "@/actions-server/get-graph-revenue";
-import { getSalesCount } from "@/actions-server/get-sales-count";
-import { getTotalRevenue } from "@/actions-server/get-total-revenue";
+import { GetGraphRevenue } from "@/actions-server/get-graph-revenue";
+import { GetSalesCount } from "@/actions-server/get-sales-count";
+import { GetTotalRevenue } from "@/actions-server/get-total-revenue";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
@@ -16,25 +16,26 @@ import AdminCalendar from "./components/admin-calendar";
 import prismadb from "@/lib/prismadb";
 import { eachDayOfInterval, endOfMonth, startOfMonth } from "date-fns";
 import {
-  getEventCounts,
-  getFreeDays,
-  getFullDays,
-  getPartiallyFullDays,
-  getWeekendDays,
+  GetEventCounts,
+  GetFreeDays,
+  GetFullDays,
+  GetPartiallyFullDays,
+  GetWeekendDays,
 } from "@/components/calendar/get-functions-calendar";
+import TestTableau from "./components/test-tableau";
 
 const AdminDashboardPage = async () => {
-  const totalRevenue = await getTotalRevenue();
-  const SalesCount = await getSalesCount();
+  const totalRevenue = await GetTotalRevenue();
+  const SalesCount = await GetSalesCount();
 
-  const graphRevenue = await getGraphRevenue();
+  const graphRevenue = await GetGraphRevenue();
 
   const currentDate = new Date();
   const start = startOfMonth(currentDate);
   const end = endOfMonth(currentDate);
 
   const daysInMonth = eachDayOfInterval({ start, end });
-  const saturdaysAndSundays = getWeekendDays(daysInMonth);
+  const saturdaysAndSundays = GetWeekendDays(daysInMonth);
 
   const events = await prismadb.event.findMany({
     where: {
@@ -48,11 +49,11 @@ const AdminDashboardPage = async () => {
     },
   });
 
-  const eventCounts = getEventCounts(events);
+  const eventCounts = GetEventCounts(events);
 
-  const partiallyFullDays = getPartiallyFullDays(eventCounts);
-  const fullDays = getFullDays(eventCounts);
-  const freeDays = getFreeDays(
+  const partiallyFullDays = GetPartiallyFullDays(eventCounts);
+  const fullDays = GetFullDays(eventCounts);
+  const freeDays = GetFreeDays(
     daysInMonth,
     saturdaysAndSundays,
     fullDays,
@@ -120,6 +121,12 @@ const AdminDashboardPage = async () => {
             <CardTitle>{"Vue d'ensemble"}</CardTitle>
             <CardContent className="p-0 sm:pl-2">
               <Overview data={graphRevenue} />
+            </CardContent>
+          </Card>
+          <Card className="p-4 col:span-1 sm:col-span-2 md:col-span-4">
+            <CardTitle>{"Test Tableau"}</CardTitle>
+            <CardContent className="p-0 sm:pl-2">
+              <TestTableau />
             </CardContent>
           </Card>
         </div>

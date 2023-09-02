@@ -15,7 +15,7 @@ export const freeDaysStyle = {
 
 export const disabledStyle = { color: "gray", backgroundColor: "lightgray" };
 
-export function getFooterMessage(isDayAvailable: string | null) {
+export function GetFooterMessage(isDayAvailable: string | null) {
   if (isDayAvailable === "full") {
     return "Ce jour est complet!";
   } else if (isDayAvailable === "partiallyFull") {

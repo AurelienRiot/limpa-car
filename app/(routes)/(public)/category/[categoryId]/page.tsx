@@ -1,5 +1,5 @@
-import getCategory from "@/actions-server/get-category";
-import getProducts from "@/actions-server/get-products";
+import GetCategory from "@/actions-server/get-category";
+import GetProducts from "@/actions-server/get-products";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import Billboard from "@/components/billboard";
 import Container from "@/components/ui/container";
@@ -15,13 +15,13 @@ interface CategoryPageProps {
 }
 
 const CategoryPage: React.FC<CategoryPageProps> = async ({ params }) => {
-  const category = await getCategory(params.categoryId);
+  const category = await GetCategory(params.categoryId);
 
   if (!category || category.name === "Nettoyage") {
     return <NotFound />;
   }
 
-  const products = await getProducts({
+  const products = await GetProducts({
     categoryId: params.categoryId,
   });
 

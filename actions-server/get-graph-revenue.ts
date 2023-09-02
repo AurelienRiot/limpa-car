@@ -5,7 +5,7 @@ export type GraphDataProps = {
   totalOrder: number;
 };
 
-export const getGraphRevenue = async () => {
+export const GetGraphRevenue = async () => {
   const paidOrders = await prismadb.order.findMany({
     where: {
       isPaid: true,

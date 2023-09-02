@@ -1,5 +1,5 @@
 "use client";
-import getReservations from "@/actions/get-reservations";
+import GetReservations from "@/actions/get-reservations";
 import IsAvailable from "@/actions/isAvailable";
 import { CalendarModal } from "@/components/modals/calendar-modal";
 import { Button } from "@/components/ui/button";

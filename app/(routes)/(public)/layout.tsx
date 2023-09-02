@@ -1,4 +1,4 @@
-import getCategories from "@/actions-server/get-categories";
+import GetCategories from "@/actions-server/get-categories";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import Footer from "@/components/footer";
 import NavBar from "@/components/navbar-public/navbar";
@@ -12,7 +12,7 @@ export default async function PublicLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession(authOptions);
-  const categories = await getCategories();
+  const categories = await GetCategories();
 
   return (
     <>

@@ -1,22 +1,22 @@
-import getProducts from "@/actions-server/get-products";
+import GetProducts from "@/actions-server/get-products";
 import NettoyageTile from "./components/nettoyage-tile";
 import LocalCarWashIcon from "@mui/icons-material/LocalCarWash";
 import { ProductWithCategoryAndImages } from "@/types";
 import Container from "@/components/ui/container";
 import Billboard from "@/components/billboard";
-import getCategory from "@/actions-server/get-category";
+import GetCategory from "@/actions-server/get-category";
 import Link from "next/link";
 
 export const metadata = {
   title: "Limpa Car - Nettoyage",
 };
 
-const Nettoyage = async () => {
-  const products = (await getProducts({ categoryName: "Nettoyage" })).sort(
+const NettoyagePage = async () => {
+  const products = (await GetProducts({ categoryName: "Nettoyage" })).sort(
     (a, b) => a.priceHT - b.priceHT
   );
 
-  const category = await getCategory(products[0].categoryId);
+  const category = await GetCategory(products[0].categoryId);
 
   const groupedProductsObj = products.reduce<
     Record<string, ProductWithCategoryAndImages[]>
@@ -61,4 +61,4 @@ const Nettoyage = async () => {
   );
 };
 
-export default Nettoyage;
+export default NettoyagePage;

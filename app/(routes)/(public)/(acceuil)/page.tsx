@@ -6,13 +6,13 @@ import Loading from "@/app/(routes)/(public)/loading";
 import ImagesAccueil from "./components/images-accueil";
 import prismadb from "@/lib/prismadb";
 import { VisibleElement } from "@/components/animations/visible-element";
-import getProducts from "@/actions-server/get-products";
+import GetProducts from "@/actions-server/get-products";
 import ProductList from "@/components/products-list";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
 
-  const products = await getProducts({ isFeatured: true });
+  const products = await GetProducts({ isFeatured: true });
 
   const imagesAccueil = await prismadb.billboard.findFirst({
     where: {

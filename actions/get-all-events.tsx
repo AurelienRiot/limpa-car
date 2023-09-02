@@ -1,9 +1,8 @@
-"use client";
 import { Event, User } from "@prisma/client";
 import axios, { AxiosError } from "axios";
 import toast from "react-hot-toast";
 
-const getAllEvents = async (
+const GetAllEvents = async (
   start: Date,
   end: Date
 ): Promise<(Event & { user: User })[] | undefined> => {
@@ -25,4 +24,4 @@ const getAllEvents = async (
   }
 };
 
-export default getAllEvents;
+export default GetAllEvents;

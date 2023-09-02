@@ -17,11 +17,11 @@ import {
   disabledStyle,
   freeDaysStyle,
   fullDaysStyle,
-  getFooterMessage,
+  GetFooterMessage,
   partiallyFullDaysStyle,
 } from "@/components/calendar/days-styles";
 import { useEffect, useState } from "react";
-import getReservations from "@/actions/get-reservations";
+import GetReservations from "@/actions/get-reservations";
 
 interface DatePickerProps extends React.HTMLAttributes<HTMLDivElement> {
   date: Date | undefined;
@@ -71,7 +71,7 @@ const DatePicker = ({ className, date, setDate }: DatePickerProps) => {
   };
 
   const handleMonthChange = async (month: Date) => {
-    const reservation = await getReservations(month);
+    const reservation = await GetReservations(month);
     if (!reservation) return;
     const { fullDays, partiallyFullDays, freeDays, disabledDays } = reservation;
 
@@ -126,7 +126,7 @@ const DatePicker = ({ className, date, setDate }: DatePickerProps) => {
               disabled: disabledStyle,
             }}
             onDayClick={handleDayClick}
-            footer={getFooterMessage(isDayAvailable)}
+            footer={GetFooterMessage(isDayAvailable)}
             onMonthChange={setMonth}
           />
         </PopoverContent>

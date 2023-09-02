@@ -9,23 +9,23 @@ import {
   startOfMonth,
 } from "date-fns";
 import { DayClickEventHandler } from "react-day-picker";
-import getAllEvents from "@/actions/get-all-events";
+import GetAllEvents from "@/actions/get-all-events";
 import { Event, User } from "@prisma/client";
 import {
   disabledStyle,
   freeDaysStyle,
   fullDaysStyle,
-  getFooterMessage,
+  GetFooterMessage,
   partiallyFullDaysStyle,
 } from "@/components/calendar/days-styles";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import DisplayEvents from "./display-events";
 import {
-  getEventCounts,
-  getFreeDays,
-  getFullDays,
-  getPartiallyFullDays,
-  getWeekendDays,
+  GetEventCounts,
+  GetFreeDays,
+  GetFullDays,
+  GetPartiallyFullDays,
+  GetWeekendDays,
 } from "@/components/calendar/get-functions-calendar";
 
 type AdminCalendarProps = {
@@ -98,23 +98,23 @@ const AdminCalendar = ({
     setMonth(month);
 
     const daysInMonth = eachDayOfInterval({ start, end });
-    const saturdaysAndSundays = getWeekendDays(daysInMonth);
+    const saturdaysAndSundays = GetWeekendDays(daysInMonth);
     setDisabledDays(saturdaysAndSundays);
 
-    const events = await getAllEvents(start, end);
+    const events = await GetAllEvents(start, end);
     if (events) {
       setEvents(events);
 
-      const eventCounts = getEventCounts(events);
+      const eventCounts = GetEventCounts(events);
 
-      const partiallyFullDays = getPartiallyFullDays(eventCounts);
+      const partiallyFullDays = GetPartiallyFullDays(eventCounts);
       setPartiallyFullDays(partiallyFullDays);
 
-      const fullDays = getFullDays(eventCounts);
+      const fullDays = GetFullDays(eventCounts);
       setFullDays(fullDays);
 
       setFreeDays(
-        getFreeDays(
+        GetFreeDays(
           daysInMonth,
           saturdaysAndSundays,
           fullDays,
@@ -165,7 +165,7 @@ const AdminCalendar = ({
               disabled: disabledStyle,
             }}
             onDayClick={handleDayClick}
-            footer={getFooterMessage(isDayAvailable)}
+            footer={GetFooterMessage(isDayAvailable)}
             onMonthChange={handleMonthChange}
           />
         </CardContent>

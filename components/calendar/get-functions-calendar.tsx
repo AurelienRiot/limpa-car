@@ -2,14 +2,14 @@ import { maxEventsPerDay } from "@/actions/isAvailable";
 import { User, Event } from "@prisma/client";
 import { getDay, isSameDay } from "date-fns";
 
-export const getWeekendDays = (daysInMonth: Date[]) => {
+export const GetWeekendDays = (daysInMonth: Date[]) => {
   return daysInMonth.filter((day) => {
     const dayOfWeek = getDay(day);
     return dayOfWeek === 6 || dayOfWeek === 0;
   });
 };
 
-export const getEventCounts = (events: (Event & { user: User | null })[]) => {
+export const GetEventCounts = (events: (Event & { user: User | null })[]) => {
   const eventCounts: { [date: string]: number } = {};
   events.forEach((event) => {
     const dateOfEvent = new Date(event.dateOfEvent);
@@ -23,7 +23,7 @@ export const getEventCounts = (events: (Event & { user: User | null })[]) => {
   return eventCounts;
 };
 
-export const getPartiallyFullDays = (eventCounts: {
+export const GetPartiallyFullDays = (eventCounts: {
   [date: string]: number;
 }) => {
   return Object.entries(eventCounts)
@@ -31,13 +31,13 @@ export const getPartiallyFullDays = (eventCounts: {
     .map(([date, count]) => new Date(date));
 };
 
-export const getFullDays = (eventCounts: { [date: string]: number }) => {
+export const GetFullDays = (eventCounts: { [date: string]: number }) => {
   return Object.entries(eventCounts)
     .filter(([date, count]) => count >= maxEventsPerDay)
     .map(([date, count]) => new Date(date));
 };
 
-export const getFreeDays = (
+export const GetFreeDays = (
   daysInMonth: Date[],
   saturdaysAndSundays: Date[],
   fullDays: Date[],

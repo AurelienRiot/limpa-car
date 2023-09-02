@@ -1,5 +1,5 @@
-import getProduct from "@/actions-server/get-product";
-import getProducts from "@/actions-server/get-products";
+import GetProduct from "@/actions-server/get-product";
+import GetProducts from "@/actions-server/get-products";
 import NotFound from "@/app/not-found";
 import Gallery from "@/components/gallery/gallery";
 import Info from "@/components/info";
@@ -13,13 +13,13 @@ interface ProductPageProps {
 }
 
 const ProductPage: React.FC<ProductPageProps> = async ({ params }) => {
-  const product = await getProduct(params.productId);
+  const product = await GetProduct(params.productId);
 
   if (!product || product.category.name === "Nettoyage") {
     return <NotFound />;
   }
 
-  const suggestedProducts = await getProducts({
+  const suggestedProducts = await GetProducts({
     categoryId: product.categoryId,
   });
 

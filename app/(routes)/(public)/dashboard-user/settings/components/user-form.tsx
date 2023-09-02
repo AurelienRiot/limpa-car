@@ -89,8 +89,8 @@ export const UserForm: React.FC<UserFormProps> = ({ initialData }) => {
         postalCode: address.postalCode,
         state: address.state,
       });
-      // router.refresh();
-      // router.push(`/dashboard-user`);
+      router.refresh();
+      router.push(`/dashboard-user`);
       toast.success(toastMessage);
     } catch (error) {
       const axiosError = error as AxiosError;

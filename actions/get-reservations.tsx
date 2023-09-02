@@ -1,9 +1,8 @@
-"use client";
 import {
-  getFreeDays,
-  getFullDays,
-  getPartiallyFullDays,
-  getWeekendDays,
+  GetFreeDays,
+  GetFullDays,
+  GetPartiallyFullDays,
+  GetWeekendDays,
 } from "@/components/calendar/get-functions-calendar";
 import axios, { AxiosError } from "axios";
 import {
@@ -16,15 +15,15 @@ import {
 } from "date-fns";
 import toast from "react-hot-toast";
 
-type getReservationsOutput = {
+type GetReservationsOutput = {
   fullDays: Date[];
   partiallyFullDays: Date[];
   freeDays: Date[];
   disabledDays: Date[];
 };
-const getReservations = async (
+const GetReservations = async (
   month: Date
-): Promise<getReservationsOutput | undefined> => {
+): Promise<GetReservationsOutput | undefined> => {
   try {
     const start = startOfMonth(month);
     const end = endOfMonth(month);
@@ -54,7 +53,7 @@ const getReservations = async (
         end: addDays(effectiveDate, -1),
       });
       const daysInterval = eachDayOfInterval({ start: effectiveDate, end });
-      const weekendDays = getWeekendDays(daysInterval);
+      const weekendDays = GetWeekendDays(daysInterval);
       const disabledDays = [...weekendDays, ...previousDays];
 
       const eventCounts: { [date: string]: number } = {};
@@ -68,9 +67,9 @@ const getReservations = async (
         eventCounts[dateStr]++;
       });
 
-      const partiallyFullDays = getPartiallyFullDays(eventCounts);
-      const fullDays = getFullDays(eventCounts);
-      const freeDays = getFreeDays(
+      const partiallyFullDays = GetPartiallyFullDays(eventCounts);
+      const fullDays = GetFullDays(eventCounts);
+      const freeDays = GetFreeDays(
         daysInterval,
         weekendDays,
         fullDays,
@@ -100,7 +99,7 @@ const getReservations = async (
     const effectiveStart = effectiveDate > start ? effectiveDate : start;
     const daysInMonth = eachDayOfInterval({ start: effectiveStart, end });
 
-    let disabledDays = getWeekendDays(daysInMonth);
+    let disabledDays = GetWeekendDays(daysInMonth);
     if (effectiveDate > start) {
       const daysBetweenStartAndEffective = eachDayOfInterval({
         start,
@@ -108,9 +107,9 @@ const getReservations = async (
       });
       disabledDays = [...disabledDays, ...daysBetweenStartAndEffective];
     }
-    const partiallyFullDays = getPartiallyFullDays(eventCounts);
-    const fullDays = getFullDays(eventCounts);
-    const freeDays = getFreeDays(
+    const partiallyFullDays = GetPartiallyFullDays(eventCounts);
+    const fullDays = GetFullDays(eventCounts);
+    const freeDays = GetFreeDays(
       daysInMonth,
       disabledDays,
       fullDays,
@@ -129,4 +128,4 @@ const getReservations = async (
   }
 };
 
-export default getReservations;
+export default GetReservations;

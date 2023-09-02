@@ -7,7 +7,7 @@ interface Query {
   categoryName?: string;
 }
 
-const getProducts = async (
+const GetProducts = async (
   query: Query
 ): Promise<ProductWithCategoryAndImages[]> => {
   const categoryId = query.categoryId || undefined;
@@ -32,4 +32,4 @@ const getProducts = async (
   return products;
 };
 
-export default getProducts;
+export default GetProducts;
