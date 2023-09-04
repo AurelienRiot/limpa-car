@@ -15,7 +15,7 @@ const IsAvailable = async (
     }
 
     const currentDay = new Date();
-    const effectiveDate = addDays(currentDay, 3);
+    const effectiveDate = addDays(currentDay, 2);
 
     if (dateOfEvent < effectiveDate) {
       return false;

@@ -14,7 +14,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import {
-  disabledStyle,
   freeDaysStyle,
   fullDaysStyle,
   GetFooterMessage,
@@ -113,14 +112,13 @@ const DatePicker = ({ className, date, setDate }: DatePickerProps) => {
             month={month}
             locale={fr}
             onSelect={setDate}
+            disabled={disabledDays}
             modifiers={{
-              disabled: disabledDays,
               full: fullDays,
               partiallyFull: partiallyFullDays,
               free: freeDays,
             }}
             modifiersStyles={{
-              disabled: disabledStyle,
               full: fullDaysStyle,
               partiallyFull: partiallyFullDaysStyle,
               free: freeDaysStyle,
