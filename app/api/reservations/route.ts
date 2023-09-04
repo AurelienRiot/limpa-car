@@ -4,6 +4,7 @@ import prismadb from "@/lib/prismadb";
 export async function POST(req: Request) {
   try {
     const { start, end } = await req.json();
+    console.log(start, end);
 
     if (!start) {
       return new NextResponse("Le mois est nécessaires", {

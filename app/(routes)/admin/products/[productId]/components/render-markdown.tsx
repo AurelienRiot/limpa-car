@@ -9,7 +9,7 @@ import {
 import { FieldValues, UseFormReturn } from "react-hook-form";
 import { ProductFormValues } from "./product-form";
 import { TextArea } from "@/components/ui/text-area";
-import { Markdown } from "@/lib/utils";
+import { Markdown } from "@/lib/markdown";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import {

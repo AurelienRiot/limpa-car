@@ -40,10 +40,9 @@ const GetReservations = async (
       const disabledDays: Date[] = eachDayOfInterval({ start, end });
       return { fullDays, partiallyFullDays, freeDays, disabledDays };
     }
-
     if (isThisMonth(start)) {
       const reservations = await axios.post("/api/reservations", {
-        start,
+        start: addDays(effectiveDate, -1),
         end,
       });
       const events: { dateOfEvent: string }[] = reservations.data;

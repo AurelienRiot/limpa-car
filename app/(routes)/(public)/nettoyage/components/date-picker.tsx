@@ -114,16 +114,16 @@ const DatePicker = ({ className, date, setDate }: DatePickerProps) => {
             locale={fr}
             onSelect={setDate}
             modifiers={{
+              disabled: disabledDays,
               full: fullDays,
               partiallyFull: partiallyFullDays,
               free: freeDays,
-              disabled: disabledDays,
             }}
             modifiersStyles={{
+              disabled: disabledStyle,
               full: fullDaysStyle,
               partiallyFull: partiallyFullDaysStyle,
               free: freeDaysStyle,
-              disabled: disabledStyle,
             }}
             onDayClick={handleDayClick}
             footer={GetFooterMessage(isDayAvailable)}
