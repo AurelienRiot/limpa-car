@@ -22,7 +22,7 @@ import {
   GetPartiallyFullDays,
   GetWeekendDays,
 } from "@/components/calendar/get-functions-calendar";
-import TestTableau from "./components/test-tableau";
+import TestTableau from "./components/test-tableau/test-tableau";
 
 const AdminDashboardPage = async () => {
   const totalRevenue = await GetTotalRevenue();
@@ -59,6 +59,14 @@ const AdminDashboardPage = async () => {
     fullDays,
     partiallyFullDays
   );
+
+  const users = await prismadb.user.findMany({
+    select: {
+      id: true,
+      name: true,
+      email: true,
+    },
+  });
 
   return (
     <div className="flex-col">
@@ -116,6 +124,7 @@ const AdminDashboardPage = async () => {
             initialFullDays={fullDays}
             initialPartiallyFullDays={partiallyFullDays}
             saturdaysAndSundays={saturdaysAndSundays}
+            users={users}
           />
           <Card className="p-4 col:span-1 sm:col-span-2 md:col-span-4">
             <CardTitle>{"Vue d'ensemble"}</CardTitle>

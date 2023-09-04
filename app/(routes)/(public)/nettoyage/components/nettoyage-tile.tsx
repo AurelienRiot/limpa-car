@@ -1,11 +1,11 @@
 "use client";
-import GetReservations from "@/actions/get-reservations";
 import IsAvailable from "@/actions/isAvailable";
 import { CalendarModal } from "@/components/modals/calendar-modal";
 import { Button } from "@/components/ui/button";
 import Currency from "@/components/ui/currency";
 import useCart from "@/hooks/use-cart";
-import { Markdown, cn } from "@/lib/utils";
+import { Markdown } from "@/lib/markdown";
+import { cn } from "@/lib/utils";
 import { ProductWithCategoryAndImages } from "@/types";
 
 import { useState } from "react";

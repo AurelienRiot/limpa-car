@@ -32,6 +32,7 @@ export const AlertModal: React.FC<AlertModalProps> = ({
       description="Cette action ne peut pas être annulée."
       isOpen={isOpen}
       onClose={onClose}
+      className="left-[50%] top-[30%]"
     >
       <div className="flex items-center justify-end w-full pt-6 space-x-2">
         <Button disabled={loading} variant="outline" onClick={onClose}>

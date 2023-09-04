@@ -27,6 +27,7 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
       description="Prenez un jour libre"
       isOpen={isOpen}
       onClose={onClose}
+      className="left-[50%] top-[30%]"
     >
       <div className="items-center gap-4 sm:flex">
         <DatePicker aria-disabled={loading} date={date} setDate={setDate} />

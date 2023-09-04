@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
 import { MouseEventHandler } from "react";
 import useCart from "@/hooks/use-cart";
-import { Markdown } from "@/lib/utils";
+import { Markdown } from "@/lib/markdown";
 import Link from "next/link";
 import { ProductWithCategoryAndImages } from "@/types";
 import toast from "react-hot-toast";

@@ -1,6 +1,6 @@
 "use client";
 import { Calendar } from "@/components/ui/calendar";
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import { fr } from "date-fns/locale";
 import {
   eachDayOfInterval,
@@ -27,6 +27,9 @@ import {
   GetPartiallyFullDays,
   GetWeekendDays,
 } from "@/components/calendar/get-functions-calendar";
+import { Button } from "@/components/ui/button";
+import { EventModal } from "@/components/modals/event-modal";
+import { Plus } from "lucide-react";
 
 type AdminCalendarProps = {
   currentDate: Date;
@@ -35,6 +38,7 @@ type AdminCalendarProps = {
   initialFreeDays: Date[];
   initialPartiallyFullDays: Date[];
   initialFullDays: Date[];
+  users: { id: string; name: string | null; email: string | null }[];
 };
 
 const AdminCalendar = ({
@@ -44,7 +48,9 @@ const AdminCalendar = ({
   initialFreeDays,
   initialPartiallyFullDays,
   initialFullDays,
+  users,
 }: AdminCalendarProps) => {
+  const [isEventModalOpen, setIsEventModalOpen] = useState(false);
   const [date, setDate] = useState<Date | undefined>(currentDate);
   const [month, setMonth] = useState<Date>(currentDate);
   const [isDayAvailable, setIsDayAvailable] = useState<
@@ -142,6 +148,11 @@ const AdminCalendar = ({
 
   return (
     <>
+      <EventModal
+        isOpen={isEventModalOpen}
+        onClose={() => setIsEventModalOpen(false)}
+        users={users}
+      />
       <Card className="col-span-1 pt-4 sm:p-4 sm:col-span-2 xl:col-span-1">
         <CardTitle className="pl-4 sm:pl-0">Calendrier</CardTitle>
         <CardContent>
@@ -170,16 +181,25 @@ const AdminCalendar = ({
           />
         </CardContent>
       </Card>
-      <Card className="col-span-1 p-4 sm:col-span-2 xl:col-span-3">
-        <CardTitle>Rendez vous du jour</CardTitle>
-        <CardContent className="p-0 sm:pl-2">
-          <DisplayEvents
-            date={date}
-            dailyEvents={events.filter(
-              (event) => date && isSameDay(new Date(event.dateOfEvent), date)
-            )}
-          />
-        </CardContent>
+      <Card className="flex justify-between col-span-1 p-4 sm:col-span-2 xl:col-span-3">
+        <div>
+          <CardTitle>Rendez vous du jour</CardTitle>
+          <CardContent className="p-0 sm:pl-2">
+            <DisplayEvents
+              date={date}
+              dailyEvents={events.filter(
+                (event) => date && isSameDay(new Date(event.dateOfEvent), date)
+              )}
+            />
+          </CardContent>
+        </div>
+        <Button
+          onClick={() => setIsEventModalOpen(true)}
+          className="self-start"
+        >
+          <Plus className="w-8 h-8 mr-2 sm:h-4 sm:w-4" />
+          Creer un rendez vous
+        </Button>
       </Card>
     </>
   );

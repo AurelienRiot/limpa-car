@@ -3,7 +3,6 @@
 import usePreviewModal from "@/hooks/use-preview-modal";
 import Gallery from "@/components/gallery/gallery";
 import Info from "@/components/info";
-import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { Fragment, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
@@ -13,7 +12,6 @@ import { X } from "lucide-react";
 const PreviewModal = () => {
   const previewModal = usePreviewModal();
   const product = usePreviewModal((state) => state.data);
-  const { data: session } = useSession();
 
   const pathname = usePathname();
   const { onClose } = previewModal;

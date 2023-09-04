@@ -12,10 +12,9 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import LinksVisitors from "./link-tableau";
-import { ChevronsUpDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { Fragment, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Gauge } from "@/components/ui/gauge";
 
 const TestTableau = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,6 +36,21 @@ const TestTableau = () => {
     },
   ];
 
+  const visitors = [
+    {
+      id: "1",
+      name: "John Doe",
+      totalDuration: 10,
+      completionRate: 20,
+    },
+    {
+      id: "2",
+      name: "Jane Doe",
+      totalDuration: 20,
+      completionRate: 40,
+    },
+  ];
+
   return (
     <div className="w-full sm:p-4">
       <h2 className="p-4">All links</h2>
@@ -51,7 +65,7 @@ const TestTableau = () => {
           </TableHeader>
           <TableBody>
             {links.map((link) => (
-              <Collapsible key={link.id} asChild>
+              <Collapsible asChild key={link.id}>
                 <>
                   <TableRow>
                     <TableCell>{link.name} </TableCell>
@@ -60,8 +74,24 @@ const TestTableau = () => {
                       <TableCell>{link.viewCount} </TableCell>
                     </CollapsibleTrigger>
                   </TableRow>
-                  <CollapsibleContent asChild>
-                    <LinksVisitors />
+                  <CollapsibleContent
+                    asChild
+                    className={`overflow-hidden transition-all duration-300 ease-out data-[state=open]:text-5xl`}
+                  >
+                    <>
+                      {visitors.map((visitor) => (
+                        <TableRow key={visitor.id}>
+                          <TableCell>{visitor.name}</TableCell>
+                          <TableCell>{visitor.totalDuration}</TableCell>
+                          <TableCell className="flex justify-start gap-2">
+                            <Gauge
+                              value={visitor.completionRate}
+                              showValue={true}
+                            />{" "}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </>
                   </CollapsibleContent>
                 </>
               </Collapsible>
@@ -69,6 +99,8 @@ const TestTableau = () => {
           </TableBody>
         </Table>
       </div>
+
+      <Collapsible></Collapsible>
     </div>
   );
 };
