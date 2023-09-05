@@ -84,7 +84,10 @@ const Summary: React.FC<SummaryProps> = ({ session }) => {
               {quantities[item.id] > 1 && <span> {quantities[item.id]}x </span>}
               <strong>{item.name} </strong>{" "}
             </div>
-            <Currency value={item.priceHT} className="justify-self-end" />
+            <Currency
+              value={item.priceHT * quantities[item.id]}
+              className="justify-self-end"
+            />
           </li>
         ))}
       </ul>

@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import prismadb from "@/lib/prismadb";
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
     if (!session || !session.user || session.user.role !== "admin") {
@@ -42,7 +42,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json(null, { status: 200 });
   } catch (error) {
-    console.log("[EVENTS_POST]", error);
+    console.log("[EVENT_POST]", error);
     return new NextResponse("Internal error", { status: 500 });
   }
 }

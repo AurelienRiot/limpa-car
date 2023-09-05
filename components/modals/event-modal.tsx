@@ -28,10 +28,13 @@ import {
   CommandItem,
 } from "../ui/command";
 import axios from "axios";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 interface EventModalProps {
   isOpen: boolean;
   onClose: () => void;
+  refetchData: (month: Date) => void;
   users: { id: string; name: string | null; email: string | null }[];
 }
 
@@ -47,10 +50,12 @@ export const EventModal: React.FC<EventModalProps> = ({
   isOpen,
   onClose,
   users,
+  refetchData,
 }) => {
   const [isMounted, setIsMounted] = useState(false);
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const form = useForm<EventFormValues>({
     resolver: zodResolver(formSchema),
@@ -69,13 +74,21 @@ export const EventModal: React.FC<EventModalProps> = ({
   }
 
   const onConfirm = async (data: z.infer<typeof formSchema>) => {
-    setLoading(true);
-    await axios.post("/api/event", {
-      ...data,
-      date,
-    });
-    onClose();
-    setLoading(false);
+    try {
+      setLoading(true);
+      await axios.post("/api/event", {
+        ...data,
+        date,
+      });
+      if (date) refetchData(date);
+      router.refresh();
+      toast.success("Evenement crée");
+      onClose();
+    } catch (error) {
+      toast.error("Erreur");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

@@ -12,7 +12,6 @@ import { DayClickEventHandler } from "react-day-picker";
 import GetAllEvents from "@/actions/get-all-events";
 import { Event, User } from "@prisma/client";
 import {
-  disabledStyle,
   freeDaysStyle,
   fullDaysStyle,
   GetFooterMessage,
@@ -152,10 +151,11 @@ const AdminCalendar = ({
         isOpen={isEventModalOpen}
         onClose={() => setIsEventModalOpen(false)}
         users={users}
+        refetchData={handleMonthChange}
       />
-      <Card className="col-span-1 pt-4 sm:p-4 sm:col-span-2 xl:col-span-1">
+      <Card className="col-span-1 pt-4 sm:p-4 sm:col-span-2 xl:col-span-3 ">
         <CardTitle className="pl-4 sm:pl-0">Calendrier</CardTitle>
-        <CardContent>
+        <CardContent className="flex items-center justify-center">
           <Calendar
             mode="single"
             captionLayout="buttons"
@@ -163,17 +163,16 @@ const AdminCalendar = ({
             month={month}
             locale={fr}
             onSelect={setDate}
+            disabled={disabledDays}
             modifiers={{
               full: fullDays,
               partiallyFull: partiallyFullDays,
               free: freeDays,
-              disabled: disabledDays,
             }}
             modifiersStyles={{
               full: fullDaysStyle,
               partiallyFull: partiallyFullDaysStyle,
               free: freeDaysStyle,
-              disabled: disabledStyle,
             }}
             onDayClick={handleDayClick}
             footer={GetFooterMessage(isDayAvailable)}
@@ -181,12 +180,13 @@ const AdminCalendar = ({
           />
         </CardContent>
       </Card>
-      <Card className="flex justify-between col-span-1 p-4 sm:col-span-2 xl:col-span-3">
+      <Card className="flex flex-col justify-between col-span-1 p-4 xl:flex-row sm:col-span-2 xl:col-span-5">
         <div>
-          <CardTitle>Rendez vous du jour</CardTitle>
-          <CardContent className="p-0 sm:pl-2">
+          <CardTitle className="mb-4 xl:mb-12 ">Rendez vous du jour</CardTitle>
+          <CardContent className="p-0 sm:pl-2 xl:ml-6">
             <DisplayEvents
               date={date}
+              refetchData={handleMonthChange}
               dailyEvents={events.filter(
                 (event) => date && isSameDay(new Date(event.dateOfEvent), date)
               )}
@@ -194,10 +194,10 @@ const AdminCalendar = ({
           </CardContent>
         </div>
         <Button
+          className="mt-4 max-w-max md:mt-0"
           onClick={() => setIsEventModalOpen(true)}
-          className="self-start"
         >
-          <Plus className="w-8 h-8 mr-2 sm:h-4 sm:w-4" />
+          <Plus className="w-8 h-8 mr-2 sm:h-4 sm:w-4 shrink-0" />
           Creer un rendez vous
         </Button>
       </Card>
