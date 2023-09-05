@@ -5,13 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import { formatter } from "@/lib/utils";
-import {
-  Calendar,
-  CalendarSearch,
-  CreditCardIcon,
-  EuroIcon,
-  Package,
-} from "lucide-react";
+import { CreditCardIcon, EuroIcon } from "lucide-react";
 import { Overview } from "./components/overview";
 import AdminCalendar from "./components/admin-calendar";
 import prismadb from "@/lib/prismadb";
@@ -24,7 +18,6 @@ import {
   GetWeekendDays,
 } from "@/components/calendar/get-functions-calendar";
 import TestTableau from "./components/test-tableau/test-tableau";
-import { EventClient } from "./components/event-client";
 
 const AdminDashboardPage = async () => {
   const totalRevenue = await GetTotalRevenue();
@@ -95,7 +88,7 @@ const AdminDashboardPage = async () => {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-8 ">
           <Card className="xl:col-span-2">
             <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-              <CardTitle className="text-sm font-medium">
+              <CardTitle className="pl-4 text-base sm:pl-0">
                 Revenue Totaux
               </CardTitle>
               <EuroIcon className="w-4 h-4 text-muted-foreground" />
@@ -108,7 +101,7 @@ const AdminDashboardPage = async () => {
           </Card>
           <Card className="xl:col-span-2">
             <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-              <CardTitle className="text-sm font-medium">Ventes</CardTitle>
+              <CardTitle className="pl-4 text-base sm:pl-0 ">Ventes</CardTitle>
               <CreditCardIcon className="w-4 h-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -117,7 +110,7 @@ const AdminDashboardPage = async () => {
           </Card>
           <Card className="xl:col-span-2">
             <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-              <CardTitle className="text-sm font-medium">Autres</CardTitle>
+              <CardTitle className="pl-4 text-base sm:pl-0 ">Autres</CardTitle>
               <CreditCardIcon className="w-4 h-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -126,20 +119,14 @@ const AdminDashboardPage = async () => {
           </Card>
           <Card className="xl:col-span-2">
             <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-              <CardTitle className="text-sm font-medium">Autres</CardTitle>
+              <CardTitle className="pl-4 text-base sm:pl-0 ">Autres</CardTitle>
               <CreditCardIcon className="w-4 h-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">+{SalesCount}</div>
             </CardContent>
           </Card>
-          <Card className="p-4 col:span-1 sm:col-span-2 md:col-span-4 xl:col-span-8">
-            <CardTitle>{"Rendez-vous"}</CardTitle>
 
-            <CardContent className="p-0 sm:pl-2">
-              <EventClient data={todayEvents} />
-            </CardContent>
-          </Card>
           <AdminCalendar
             currentDate={currentDate}
             initialEvents={events}

@@ -8,6 +8,7 @@ import useCart from "@/hooks/use-cart";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { Session } from "next-auth";
+import IsAvailables from "@/actions/isAvailables";
 
 interface SummaryProps {
   session: Session | null;
@@ -50,6 +51,7 @@ const Summary: React.FC<SummaryProps> = ({ session }) => {
       router.replace(`/login?callbackUrl=${encodeURIComponent(callbackUrl)}`);
       return;
     }
+
     const itemsWithQuantitiesAndDates = items.map((item) => {
       return {
         id: item.id,
@@ -58,6 +60,10 @@ const Summary: React.FC<SummaryProps> = ({ session }) => {
       };
     });
     try {
+      const datesAvailable = await IsAvailables(itemsWithQuantitiesAndDates);
+      if (!datesAvailable) {
+        return;
+      }
       const checkout = await axios.post(`/api/checkout`, {
         itemsWithQuantitiesAndDates,
         totalPrice: totalPrice.toFixed(2),

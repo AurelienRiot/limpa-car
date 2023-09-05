@@ -176,7 +176,7 @@ export function DataTable<TData, TValue>({
         </div>
       </div>
 
-      <div className="border rounded-md">
+      <div className="overflow-hidden border rounded-md">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -185,7 +185,7 @@ export function DataTable<TData, TValue>({
                   return (
                     <TableHead
                       key={header.id}
-                      className="bg-primary text-primary-foreground"
+                      className=" bg-primary text-primary-foreground"
                     >
                       {header.isPlaceholder
                         ? null
@@ -205,7 +205,7 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  className={"odd:bg-secondary even:bg-primary/50"}
+                  className={"odd:bg-secondary even:bg-primary/50 "}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
@@ -221,7 +221,7 @@ export function DataTable<TData, TValue>({
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className="h-24 text-center"
+                  className="h-24 text-center "
                 >
                   Pas de résultats
                 </TableCell>

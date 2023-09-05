@@ -60,8 +60,8 @@ const DisplayEvents = ({
       {date ? (
         <div>
           <p className="mb-2 font-bold">{dateFormatter(new Date(date))}</p>
-          <div className="border rounded-md">
-            <Table className="w-full">
+          <div className="overflow-hidden border rounded-md">
+            <Table>
               <TableHeader>
                 <TableRow>
                   <TableHead className="bg-primary text-primary-foreground">

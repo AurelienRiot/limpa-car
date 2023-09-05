@@ -17,7 +17,7 @@ import {
   GetFooterMessage,
   partiallyFullDaysStyle,
 } from "@/components/calendar/days-styles";
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import DisplayEvents from "./display-events";
 import {
   GetEventCounts,
@@ -28,7 +28,7 @@ import {
 } from "@/components/calendar/get-functions-calendar";
 import { Button } from "@/components/ui/button";
 import { EventModal } from "@/components/modals/event-modal";
-import { Plus } from "lucide-react";
+import { CalendarCheck, Plus } from "lucide-react";
 
 type AdminCalendarProps = {
   currentDate: Date;
@@ -153,8 +153,11 @@ const AdminCalendar = ({
         users={users}
         refetchData={handleMonthChange}
       />
-      <Card className="col-span-1 pt-4 sm:p-4 sm:col-span-2 xl:col-span-3 ">
-        <CardTitle className="pl-4 sm:pl-0">Calendrier</CardTitle>
+      <Card className="col-span-1 pt-4 sm:p-4 sm:pt-2 sm:col-span-2 xl:col-span-3 ">
+        <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+          <CardTitle className="pl-4 sm:pl-0">Calendrier</CardTitle>
+          <CalendarCheck className="w-4 h-4 text-muted-foreground" />
+        </CardHeader>
         <CardContent className="flex items-center justify-center">
           <Calendar
             mode="single"
@@ -180,9 +183,11 @@ const AdminCalendar = ({
           />
         </CardContent>
       </Card>
-      <Card className="flex flex-col justify-between col-span-1 p-4 xl:flex-row sm:col-span-2 xl:col-span-5">
+      <Card className="flex flex-col justify-between col-span-1 pt-4 sm:p-4 xl:flex-row sm:col-span-2 xl:col-span-5">
         <div>
-          <CardTitle className="mb-4 xl:mb-12 ">Rendez vous du jour</CardTitle>
+          <CardTitle className="m-2 mb-4 xl:mb-12">
+            Rendez vous du jour
+          </CardTitle>
           <CardContent className="p-0 sm:pl-2 xl:ml-6">
             <DisplayEvents
               date={date}
@@ -194,7 +199,7 @@ const AdminCalendar = ({
           </CardContent>
         </div>
         <Button
-          className="mt-4 max-w-max md:mt-0"
+          className="mt-4 max-w-max md:m-2"
           onClick={() => setIsEventModalOpen(true)}
         >
           <Plus className="w-8 h-8 mr-2 sm:h-4 sm:w-4 shrink-0" />

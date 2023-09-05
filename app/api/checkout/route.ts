@@ -21,7 +21,6 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { itemsWithQuantitiesAndDates, totalPrice } = body as RequestBody;
 
-    console.log(itemsWithQuantitiesAndDates);
     const session = await getServerSession(authOptions);
     if (!session || !session.user || !session.user.id) {
       return new NextResponse("Erreur essayer de vous reconnecter", {
@@ -50,49 +49,6 @@ export async function POST(req: NextRequest) {
           status: 400,
         }
       );
-    }
-
-    const allDates = itemsWithQuantitiesAndDates.flatMap((item) => item.dates);
-    if (allDates.length > 0) {
-      const existingEvents = await prismadb.event.findMany({
-        where: {
-          dateOfEvent: {
-            in: allDates,
-          },
-        },
-      });
-      const existingEventsByDate = existingEvents.reduce(
-        (acc: Record<string, number>, event) => {
-          const eventDate = event.dateOfEvent.toISOString();
-          acc[eventDate] = (acc[eventDate] || 0) + 1;
-          return acc;
-        },
-        {}
-      );
-
-      const newEventsByDate = itemsWithQuantitiesAndDates.reduce(
-        (acc: Record<string, number>, item) => {
-          item.dates.forEach((date) => {
-            const dateStr = new Date(date).toISOString();
-            acc[dateStr] = (acc[dateStr] || 0) + item.quantity;
-          });
-          return acc;
-        },
-        {}
-      );
-
-      for (const dateStr in newEventsByDate) {
-        const existingEventsOnDate = existingEventsByDate[dateStr] || 0;
-        const newEventsOnDate = newEventsByDate[dateStr];
-        if (existingEventsOnDate + newEventsOnDate > maxEventsPerDay) {
-          return new NextResponse(
-            `Le ${dateFormatter(new Date(dateStr))} n'est plus disponible`,
-            {
-              status: 400,
-            }
-          );
-        }
-      }
     }
 
     const user = await prismadb.user.findUnique({
