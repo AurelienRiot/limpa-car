@@ -74,7 +74,7 @@ const CardUser: React.FC<CardUserProps> = ({
             Supprimer
           </Button>
           <Button>
-            <Link href={`/admin/users/${user.id}`}>Modifier</Link>
+            <Link href={`/admin/users/${user.id}`}>Consulter</Link>
           </Button>
         </CardFooter>
       </Card>

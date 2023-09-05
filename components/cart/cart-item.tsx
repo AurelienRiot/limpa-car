@@ -63,7 +63,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
               href={`/product/${data.id}`}
               className="pr-10 text-base font-semibold sm:text-lg text-primary"
             >
-              {data.name}
+              {data.name} {data.options}
             </Link>
           </div>
           <p>
