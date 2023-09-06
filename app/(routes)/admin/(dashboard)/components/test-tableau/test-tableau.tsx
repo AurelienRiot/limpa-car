@@ -13,10 +13,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { Fragment, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { Gauge } from "@/components/ui/gauge";
-import "./styles.css";
-import * as Collapsibleb from "@radix-ui/react-collapsible";
 import { Slot } from "@radix-ui/react-slot";
 import { ChevronDown } from "lucide-react";
 
@@ -110,7 +107,10 @@ const TestTableau = () => {
       </div>
       <Collapsible>
         <CollapsibleTrigger>Ouvrir le menu</CollapsibleTrigger>
-        <CollapsibleContent className="CollapsibleContent">
+        <CollapsibleContent
+          className="overflow-hidden data-[state=open]:animate-collapsible-down
+          data-[state=closed]:animate-collapsible-up"
+        >
           <p>text 1</p>
           <p>text 1</p>
           <p>text 1</p>
@@ -138,7 +138,7 @@ const TestTableau = () => {
                           <TableCell>{link.id}</TableCell>
                           <TableCell>
                             <CollapsibleTrigger asChild>
-                              <div className="flex justify-end px-2 space-x-1 [&[data-state=open]>svg.chevron]:rotate-180">
+                              <div className="flex justify-end px-2 space-x-1 [&[data-state=open]>svg.chevron]:rotate-180 data-[state=open]:bg-gray-300 transition-colors duration-1000">
                                 <ChevronDown className="w-4 h-4 transition-transform duration-500 shrink-0 chevron" />
                               </div>
                             </CollapsibleTrigger>

@@ -61,7 +61,6 @@ export const ContactForm = ({
   userId: string | undefined;
 }) => {
   const router = useRouter();
-  const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const action = "Envoyer";
@@ -77,16 +76,13 @@ export const ContactForm = ({
       await axios.post(`/api/contacts`, { ...data, userId });
       router.refresh();
       router.push(`/`);
+      // await new Promise((r) => setTimeout(r, 5000));
       toast.success("Message envoyé");
     } catch (error) {
       toast.error("Erreur.");
     } finally {
       setLoading(false);
     }
-  };
-  const handleModalConfirm = async () => {
-    setOpen(false);
-    await onSubmit(form.getValues());
   };
 
   return (
@@ -100,7 +96,7 @@ export const ContactForm = ({
       <Separator />
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(handleModalConfirm)}
+          onSubmit={form.handleSubmit(onSubmit)}
           className="w-full space-y-8"
         >
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">

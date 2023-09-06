@@ -9,7 +9,6 @@ export const motionVariant = {
       animate: { opacity: 1 },
       exit: { opacity: 0 },
     },
-    transition: { duration: 0.4 },
   },
   right: {
     variations: {
@@ -17,7 +16,6 @@ export const motionVariant = {
       animate: { opacity: 1, x: 0 },
       exit: { opacity: 0, x: 100 },
     },
-    transition: { duration: 0.4 },
   },
   left: {
     variations: {
@@ -25,7 +23,6 @@ export const motionVariant = {
       animate: { opacity: 1, x: 0 },
       exit: { opacity: 0, x: -100 },
     },
-    transition: { duration: 0.4 },
   },
   top: {
     variations: {
@@ -33,7 +30,6 @@ export const motionVariant = {
       animate: { opacity: 1, y: 0 },
       exit: { opacity: 0, y: -100 },
     },
-    transition: { duration: 0.4 },
   },
   bottom: {
     variations: {
@@ -41,7 +37,6 @@ export const motionVariant = {
       animate: { opacity: 1, y: 0 },
       exit: { opacity: 0, y: 100 },
     },
-    transition: { duration: 0.4 },
   },
   scaleY: {
     variations: {
@@ -49,7 +44,6 @@ export const motionVariant = {
       animate: { scaleY: 1 },
       exit: { scaleY: 0 },
     },
-    transition: { duration: 0.4 },
   },
   scaleX: {
     variations: {
@@ -57,7 +51,6 @@ export const motionVariant = {
       animate: { scaleX: 1 },
       exit: { scaleX: 0 },
     },
-    transition: { duration: 0.4 },
   },
 };
 
@@ -95,6 +88,7 @@ type VisibleElementProps = {
     | "iframe"
     | "svg";
   amount?: number;
+  duration?: number;
 };
 export const VisibleElement: React.FC<VisibleElementProps> = ({
   children,
@@ -103,6 +97,7 @@ export const VisibleElement: React.FC<VisibleElementProps> = ({
   variant = "fade",
   as = "div",
   amount = 0.1,
+  duration = 0.4,
 }) => {
   const elementRef = useRef(null);
   const isInView = useInView(elementRef, { amount });
@@ -116,7 +111,7 @@ export const VisibleElement: React.FC<VisibleElementProps> = ({
       initial="initial"
       animate={isInView ? "animate" : "initial"}
       exit="exit"
-      transition={motionVariant[variant].transition}
+      transition={{ duration: duration }}
       className={className}
       id={id}
     >
