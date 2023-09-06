@@ -18,7 +18,6 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import * as z from "zod";
 import { TextArea } from "@/components/ui/text-area";
-import { AlertModal } from "@/components/modals/alert-modal";
 import { Button } from "@/components/ui/button";
 import { UserContact } from "../page";
 import Spinner from "@/components/animations/spinner";
@@ -78,7 +77,6 @@ export const ContactForm = ({
       await axios.post(`/api/contacts`, { ...data, userId });
       router.refresh();
       router.push(`/`);
-      await new Promise((resolve) => setTimeout(resolve, 5000));
       toast.success("Message envoyé");
     } catch (error) {
       toast.error("Erreur.");
@@ -93,12 +91,6 @@ export const ContactForm = ({
 
   return (
     <>
-      <AlertModal
-        isOpen={open}
-        onClose={() => setOpen(false)}
-        onConfirm={handleModalConfirm}
-        loading={loading}
-      />
       <div className="flex items-center justify-between">
         <Heading
           title="Formulaire de Contact"
@@ -108,7 +100,7 @@ export const ContactForm = ({
       <Separator />
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(() => setOpen(true))}
+          onSubmit={form.handleSubmit(handleModalConfirm)}
           className="w-full space-y-8"
         >
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
