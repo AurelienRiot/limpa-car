@@ -63,7 +63,7 @@ const Temoignage = () => {
           Laissez votre avis !
         </p>
       </div>
-      <div className="relative w-full min-h-[500px]">
+      <div className="relative w-full min-h-[600px]">
         <div className="absolute top-0 left-0 w-full h-full">
           <Image
             priority
@@ -75,8 +75,10 @@ const Temoignage = () => {
           />
         </div>
         <div className="absolute top-0 left-0 flex flex-col items-center w-full h-full bg-black opacity-60 "></div>
+        {/* <div className="absolute top-0 w-10 h-10 -translate-x-1/2 bg-white left-1/2 "></div> */}
+        <div className="absolute top-0 w-0 h-0 -translate-x-1/2 border-l-[30px] border-r-[30px] border-t-[30px] border-b-0 border-transparent border-t-primary-foreground left-1/2"></div>
         <div
-          className={`absolute top-0 flex flex-col items-center w-full h-full  text-white ${raleway.className}`}
+          className={`absolute top-10 flex flex-col items-center w-full h-full  text-white ${raleway.className}`}
         >
           <Quote className="mt-10" size={40} />
           <VisibleElement
@@ -95,7 +97,7 @@ const Temoignage = () => {
           >
             {currentTemoignage.name}
           </VisibleElement>
-          <div className="absolute bottom-0 z-10 flex gap-2 mb-6 text-white opacity-60">
+          <div className="absolute z-10 flex gap-2 mb-6 text-white bottom-10 opacity-60">
             <button
               onClick={prevTemoignage}
               className="flex items-center justify-center p-1 bg-gray-900 rounded-full hover:bg-gray-600 "

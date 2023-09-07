@@ -21,11 +21,11 @@ const ContactAcceuil = () => {
       >
         <SolutionPro />
         <div
-          className={`flex flex-col items-center   text-white ${oswald.className}`}
+          className={`flex flex-col items-center   text-white ${oswald.className} `}
         >
           <h1 className="mb-6 text-5xl mt-14 sm:text-7xl">LIMPA CAR </h1>
           <Separator className="w-24" />
-          <div className="flex flex-col items-center justify-center gap-4 py-10 mt-8 text-3xl rounded-sm px-14 bg-black/10 ">
+          <div className="flex flex-col items-center justify-center gap-4 py-10 mt-8 text-3xl rounded-sm shadow-2xl px-14 bg-black/20 ">
             <Link
               href="tel:0000000000"
               className="flex items-center justify-center w-20 h-20 p-2 transition-colors duration-500 rounded-full bg-black/20 hover:bg-primary-foreground hover:text-primary "

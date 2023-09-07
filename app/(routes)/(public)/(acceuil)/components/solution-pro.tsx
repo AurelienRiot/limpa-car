@@ -11,7 +11,7 @@ const oswald = Oswald({ subsets: ["latin"] });
 
 const SolutionPro = () => {
   return (
-    <div className="py-20 bg-white bg-opacity-90">
+    <div className="py-20 bg-white bg-opacity-80">
       <div
         className={`flex flex-col items-center justify-center ${oswald.className}`}
       >
