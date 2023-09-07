@@ -28,7 +28,7 @@ const AccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        "flex flex-1 items-center justify-left py-4 font-medium transition-all hover:underline [&[data-state=open]>svg.plus]:hidden [&[data-state=closed]>svg.minus]:hidden [&[data-state=closed]]:bg-primary [&[data-state=closed]]:text-primary-foreground duration-500",
+        "flex flex-1 items-center justify-left py-4 font-medium transition-all hover:underline [&[data-state=open]>svg.plus]:hidden [&[data-state=closed]>svg.minus]:hidden [&[data-state=closed]]:bg-primary [&[data-state=closed]]:text-primary-foreground duration-500 [&[data-state=open]]:bg-white",
         className
       )}
       {...props}
@@ -48,7 +48,7 @@ const AccordionContent = React.forwardRef<
   <AccordionPrimitive.Content
     ref={ref}
     className={cn(
-      "overflow-hidden text-muted-foreground font-light transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down px-4",
+      "overflow-hidden text-muted-foreground font-light transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down px-4 data-[state=open]:bg-white",
       className
     )}
     {...props}

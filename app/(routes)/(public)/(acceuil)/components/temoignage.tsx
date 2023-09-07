@@ -83,7 +83,7 @@ const Temoignage = () => {
             duration={1}
             as="p"
             key={currentTemoignage.text}
-            className="px-32 my-4 text-3xl text-center "
+            className="px-16 my-4 text-lg text-center sm:px-32 sm:text-2xl md:text-3xl lg:w-2/3"
           >
             &quot; {currentTemoignage.text} &quot;{" "}
           </VisibleElement>

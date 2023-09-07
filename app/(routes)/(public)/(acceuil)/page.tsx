@@ -42,7 +42,6 @@ export default async function Home() {
           >{`L'utilisateur est ${JSON.stringify(session)}`}</VisibleElement>
           <NosPrestations />
           <Temoignage />
-          <SolutionPro />
           <ContactAcceuil />
         </div>
       </Container>
