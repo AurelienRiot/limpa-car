@@ -16,7 +16,7 @@ const ContactAcceuil = () => {
   return (
     <>
       <div
-        className="w-full  bg-fixed bg-center bg-no-repeat bg-cover shadow-lg sm:h-[1500px] h-[1300px] relative"
+        className="w-full  bg-fixed bg-center bg-no-repeat bg-cover shadow-lg sm:h-[1700px] h-[1500px] relative"
         style={{ backgroundImage: `url(/home-page/i51.jpg)` }}
       >
         <SolutionPro />

@@ -15,28 +15,6 @@ const oswald = Oswald({ subsets: ["latin"] });
 const SolutionPro = () => {
   const [carouselIndex, setCarouselIndex] = useState(2);
   const [paused, setPaused] = useState(false);
-  const [touchStart, setTouchStart] = useState(0);
-  const [touchEnd, setTouchEnd] = useState(0);
-
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (touchStart - touchEnd > 150) {
-      // the swipe was from right to left, go to next slide
-      nextSlide();
-    }
-
-    if (touchStart - touchEnd < -150) {
-      // the swipe was from left to right, go to previous slide
-      prevSlide();
-    }
-  };
 
   const nextSlide = useCallback(() => {
     let newSlide =
@@ -186,23 +164,18 @@ const SolutionPro = () => {
             <div
               onMouseEnter={() => setPaused(true)}
               onMouseLeave={() => setPaused(false)}
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
               className="relative flex max-w-lg overflow-hidden h-72"
             >
               {CarouselData.map((slide, index) => {
                 return (
                   <div key={index}>
                     <img
-                      data-state={index === carouselIndex ? "true" : "false"}
+                      data-state={
+                        index === carouselIndex ? "active" : "inactive"
+                      }
                       src={slide.image}
                       alt="This is a carousel slide"
-                      className={
-                        index === carouselIndex
-                          ? "block w-full h-auto object-cover  duration-300 data-[state=true]:animate-gauge-fadeIn "
-                          : "hidden"
-                      }
+                      className="data-[state=active]:block data-[state=inactive]:hidden w-full h-auto object-cover  duration-300 data-[state=active]:animate-fade-in "
                     />
                   </div>
                 );
@@ -212,11 +185,10 @@ const SolutionPro = () => {
                 {CarouselData.map((element, index) => {
                   return (
                     <div
-                      className={
-                        index === carouselIndex
-                          ? "h-2 w-2 bg-blue-700 rounded-full mx-2 mb-2 cursor-pointer"
-                          : "h-2 w-2 bg-white rounded-full mx-2 mb-2 cursor-pointer"
+                      data-state={
+                        index === carouselIndex ? "active" : "inactive"
                       }
+                      className=" data-[state=active]:bg-blue-700 transition-colors duration-300 h-2 w-2 ease-linear bg-white rounded-full mx-2 mb-2 cursor-pointer "
                       key={index}
                       onClick={() => {
                         setCarouselIndex(index);
@@ -237,6 +209,15 @@ const SolutionPro = () => {
             </div>
           </div>
         </div>
+
+        {/* <div className="group cursor-pointer grid grid-cols-[repeat(3,5px)] auto-rows-[5px] gap-1 translate-y-[3px]">
+          <div className="border rounded-[50%] border-solid border-[rgb(139,136,136)]  group-hover:animate-[jump_0.4s_ease_1]"></div>
+          <div className="border rounded-[50%] border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.4s_ease_0.1s_1]"></div>
+          <div className="border rounded-[50%] border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.4s_ease_0.2s_1]"></div>
+          <div className="border rounded-[50%] border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.4s_ease_0.3s_1]"></div>
+          <div className="border rounded-[50%] border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.4s_ease_0.4s_1]"></div>
+          <div className="border rounded-[50%] border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.4s_ease_0.5s_1]"></div>
+        </div> */}
       </div>
     </>
   );

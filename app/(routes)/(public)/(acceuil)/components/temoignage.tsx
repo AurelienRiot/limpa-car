@@ -71,8 +71,6 @@ const Temoignage = () => {
     };
   }, [paused, nextTemoignage]);
 
-  console.log(paused);
-
   return (
     <>
       <div

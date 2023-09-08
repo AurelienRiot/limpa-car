@@ -84,7 +84,7 @@ export const Gauge = ({
         />
       </svg>
       {showValue ? (
-        <div className="absolute flex animate-gauge-fadeIn">
+        <div className="absolute flex animate-fade-in">
           <p className={`text-primary ${sizes[size].textSize}`}>{value}</p>
         </div>
       ) : null}
