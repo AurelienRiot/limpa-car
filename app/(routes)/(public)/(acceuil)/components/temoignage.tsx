@@ -3,59 +3,85 @@ import { Separator } from "@/components/ui/separator";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import Image from "next/image";
 import { Raleway } from "next/font/google";
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { VisibleElement } from "@/components/animations/visible-element";
 
 const raleway = Raleway({ subsets: ["latin"] });
-
+const temoignage = [
+  {
+    name: "GILLES",
+    text: "Le patron est très sympa. Il offre le café en plus !",
+  },
+  {
+    name: "ANONYME",
+    text: "J'ai trouvé Netcars vraiment très pros, serviable et commerçants ... Je penses que de nombreuses enseignes et concessionnaires avec pignon sur rue devraient prendre exemple sur Netcars que je vais recommander à toutes les personnes autour de moi.",
+  },
+  {
+    name: "ALAIN",
+    text: "Pour l’accueil, le sourire, les tarifs, et le délai, je recommande donc aux gens en Ile de France d'aller à Netcars !",
+  },
+];
 const Temoignage = () => {
-  const temoignage = [
-    {
-      name: "GILLES",
-      text: "Le patron est très sympa. Il offre le café en plus !",
-    },
-    {
-      name: "ANONYME",
-      text: "J'ai trouvé Netcars vraiment très pros, serviable et commerçants ... Je penses que de nombreuses enseignes et concessionnaires avec pignon sur rue devraient prendre exemple sur Netcars que je vais recommander à toutes les personnes autour de moi.",
-    },
-    {
-      name: "ALAIN",
-      text: "Pour l’accueil, le sourire, les tarifs, et le délai, je recommande donc aux gens en Ile de France d'aller à Netcars !",
-    },
-  ];
-
   const [currentTemoignage, setCurrentTemoignage] = useState(temoignage[0]);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const nextTemoignage = () => {
+  const nextTemoignage = useCallback(() => {
     const currentIndex = temoignage.findIndex(
       (t) =>
         t.name === currentTemoignage.name && t.text === currentTemoignage.text
     );
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+    timerRef.current = setTimeout(nextTemoignage, 5000);
+
     if (currentIndex === temoignage.length - 1) {
-      console.log(currentIndex === temoignage.length - 1);
       setCurrentTemoignage(temoignage[0]);
+
       return;
     }
     setCurrentTemoignage(temoignage[currentIndex + 1]);
-  };
+  }, [currentTemoignage.name, currentTemoignage.text]);
 
   const prevTemoignage = () => {
     const currentIndex = temoignage.findIndex(
       (t) =>
         t.name === currentTemoignage.name && t.text === currentTemoignage.text
     );
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+    timerRef.current = setTimeout(prevTemoignage, 5000);
+
     if (currentIndex === 0) {
       setCurrentTemoignage(temoignage[temoignage.length - 1]);
+
       return;
     }
     setCurrentTemoignage(temoignage[currentIndex - 1]);
   };
 
+  const resetTimer = useCallback(() => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+    timerRef.current = setTimeout(nextTemoignage, 5000);
+  }, [nextTemoignage]);
+
+  useEffect(() => {
+    resetTimer();
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, [resetTimer]);
+
   return (
     <>
       <div
-        className={`flex flex-col items-center justify-center ${raleway.className} pb-20`}
+        className={` flex flex-col items-center justify-center ${raleway.className} pb-20`}
       >
         <h2 className="text-4xl text-center sm:text-7xl">Ils témoignent</h2>
         <Separator className="w-20 mx-auto my-4" />
@@ -75,7 +101,6 @@ const Temoignage = () => {
           />
         </div>
         <div className="absolute top-0 left-0 flex flex-col items-center w-full h-full bg-black opacity-60 "></div>
-        {/* <div className="absolute top-0 w-10 h-10 -translate-x-1/2 bg-white left-1/2 "></div> */}
         <div className="absolute top-0 w-0 h-0 -translate-x-1/2 border-l-[30px] border-r-[30px] border-t-[30px] border-b-0 border-transparent border-t-primary-foreground left-1/2"></div>
         <div
           className={`absolute top-10 flex flex-col items-center w-full h-full  text-white ${raleway.className}`}

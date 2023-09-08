@@ -59,20 +59,40 @@ module.exports = {
       },
       keyframes: {
         "accordion-down": {
-          from: { height: 0 },
-          to: { height: "var(--radix-accordion-content-height)" },
+          from: { height: 0, opacity: 0 },
+          to: { height: "var(--radix-accordion-content-height)", opacity: 1 },
         },
         "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: 0 },
+          from: { height: "var(--radix-accordion-content-height)", opacity: 1 },
+          to: { height: 0, opacity: 0 },
         },
         "collapsible-down": {
-          from: { height: 0 },
-          to: { height: "var(--radix-collapsible-content-height)" },
+          from: { height: 0, opacity: 0 },
+          to: { height: "var(--radix-collapsible-content-height)", opacity: 1 },
         },
         "collapsible-up": {
-          from: { height: "var(--radix-collapsible-content-height)" },
-          to: { height: 0 },
+          from: {
+            height: "var(--radix-collapsible-content-height)",
+            opacity: 1,
+          },
+          to: { height: 0, opacity: 0 },
+        },
+        "reveal-in": {
+          "0%": { width: "0%", color: "hsl(var(--primary-foreground))" },
+          "100%": { width: "100%", color: "hsl(var(--primary-foreground))" },
+        },
+        "reveal-out": {
+          "0%": { width: "100%", color: "hsl(var(--primary-foreground))" },
+          "100%": { width: "0%", color: "hsl(var(--primary-foreground))" },
+        },
+        "bg-to-primary": {
+          "0%": { backgroundColor: "transparent" },
+          "100%": { backgroundColor: "hsl(var(--primary))" },
+        },
+
+        "bg-to-transparent": {
+          "0%": { backgroundColor: "hsl(var(--primary))" },
+          "100%": { backgroundColor: "transparent" },
         },
       },
       animation: {
@@ -80,6 +100,10 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "collapsible-down": "collapsible-down 0.2s ease-out",
         "collapsible-up": "collapsible-up 0.2s ease-out",
+        "reveal-in": "reveal-in .3s ease-out .3s forwards",
+        "reveal-out": "reveal-out .3s ease-out forwards",
+        "bg-to-primary": "bg-to-primary .3s ease-out forwards",
+        "bg-to-transparent": "bg-to-transparent .3s ease-out .3s forwards",
       },
     },
   },
