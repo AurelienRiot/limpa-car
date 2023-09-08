@@ -1,3 +1,6 @@
+"use client";
+import { useEffect, useState } from "react";
+
 export const Gauge = ({
   value,
   size = "small",
@@ -31,8 +34,18 @@ export const Gauge = ({
     },
   };
 
+  const [animationKey, setAnimationKey] = useState(0);
+
+  // Add useEffect to listen for value changes
+  useEffect(() => {
+    setAnimationKey((prevKey) => prevKey + 1);
+  }, [value]);
+
   return (
-    <div className="relative flex flex-col items-center justify-center">
+    <div
+      key={animationKey}
+      className="relative flex flex-col items-center justify-center"
+    >
       <svg
         fill="none"
         shapeRendering="crispEdges"
@@ -43,7 +56,7 @@ export const Gauge = ({
         className="transform -rotate-90"
       >
         <circle
-          className="text-muted-foreground"
+          className="text-gray-300"
           strokeWidth="12"
           stroke="currentColor"
           fill="transparent"
@@ -53,7 +66,7 @@ export const Gauge = ({
           cy="60"
         />
         <circle
-          className="text-green-600 animate-gauge_fill"
+          className="text-green-600 animate-gauge-fill"
           strokeWidth="12"
           strokeDasharray={strokeDasharray}
           strokeDashoffset={initialOffset}
@@ -71,7 +84,7 @@ export const Gauge = ({
         />
       </svg>
       {showValue ? (
-        <div className="absolute flex animate-gauge_fadeIn">
+        <div className="absolute flex animate-gauge-fadeIn">
           <p className={`text-primary ${sizes[size].textSize}`}>{value}</p>
         </div>
       ) : null}

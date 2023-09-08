@@ -94,6 +94,14 @@ module.exports = {
           "0%": { backgroundColor: "hsl(var(--primary))" },
           "100%": { backgroundColor: "transparent" },
         },
+        "gauge-fadeIn": {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+        "gauge-fill": {
+          from: { "stroke-dashoffset": "332", opacity: "0" },
+          to: { opacity: "1" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -104,6 +112,8 @@ module.exports = {
         "reveal-out": "reveal-out .3s ease-out forwards",
         "bg-to-primary": "bg-to-primary .3s ease-out forwards",
         "bg-to-transparent": "bg-to-transparent .3s ease-out .3s forwards",
+        "gauge-fadeIn": "gauge-fadeIn 1s ease forwards",
+        "gauge-fill": "gauge-fill 1s ease forwards",
       },
     },
   },

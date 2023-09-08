@@ -54,7 +54,10 @@ export const motionVariant = {
   },
 };
 
-type VisibleElementProps = {
+type VisibleElementProps = Pick<
+  React.HTMLAttributes<HTMLElement>,
+  "onMouseEnter" | "onMouseLeave"
+> & {
   children: React.ReactNode;
   className?: string;
   id?: string;
@@ -71,7 +74,6 @@ type VisibleElementProps = {
     | "ul"
     | "li"
     | "ol"
-    | "main"
     | "div"
     | "p"
     | "h1"
@@ -81,12 +83,8 @@ type VisibleElementProps = {
     | "h5"
     | "h6"
     | "a"
-    | "button"
-    | "input"
-    | "textarea"
-    | "img"
-    | "iframe"
-    | "svg";
+    | "button";
+
   amount?: number;
   duration?: number;
 };
@@ -98,6 +96,7 @@ export const VisibleElement: React.FC<VisibleElementProps> = ({
   as = "div",
   amount = 0.1,
   duration = 0.4,
+  ...props
 }) => {
   const elementRef = useRef(null);
   const isInView = useInView(elementRef, { amount });
@@ -114,6 +113,7 @@ export const VisibleElement: React.FC<VisibleElementProps> = ({
       transition={{ duration: duration }}
       className={className}
       id={id}
+      {...props}
     >
       {children}
     </MotionComponent>

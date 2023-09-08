@@ -24,17 +24,13 @@ const temoignage = [
 ];
 const Temoignage = () => {
   const [currentTemoignage, setCurrentTemoignage] = useState(temoignage[0]);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const [paused, setPaused] = useState(false);
 
   const nextTemoignage = useCallback(() => {
     const currentIndex = temoignage.findIndex(
       (t) =>
         t.name === currentTemoignage.name && t.text === currentTemoignage.text
     );
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-    }
-    timerRef.current = setTimeout(nextTemoignage, 5000);
 
     if (currentIndex === temoignage.length - 1) {
       setCurrentTemoignage(temoignage[0]);
@@ -49,10 +45,6 @@ const Temoignage = () => {
       (t) =>
         t.name === currentTemoignage.name && t.text === currentTemoignage.text
     );
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-    }
-    timerRef.current = setTimeout(prevTemoignage, 5000);
 
     if (currentIndex === 0) {
       setCurrentTemoignage(temoignage[temoignage.length - 1]);
@@ -62,21 +54,24 @@ const Temoignage = () => {
     setCurrentTemoignage(temoignage[currentIndex - 1]);
   };
 
-  const resetTimer = useCallback(() => {
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-    }
-    timerRef.current = setTimeout(nextTemoignage, 5000);
-  }, [nextTemoignage]);
-
   useEffect(() => {
-    resetTimer();
+    let interval: NodeJS.Timeout;
+
+    if (!paused) {
+      interval = setInterval(() => {
+        nextTemoignage();
+      }, 3000);
+    }
+
+    // Cleanup function
     return () => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
+      if (interval) {
+        clearInterval(interval);
       }
     };
-  }, [resetTimer]);
+  }, [paused, nextTemoignage]);
+
+  console.log(paused);
 
   return (
     <>
@@ -106,7 +101,10 @@ const Temoignage = () => {
           className={`absolute top-10 flex flex-col items-center w-full h-full  text-white ${raleway.className}`}
         >
           <Quote className="mt-10" size={40} />
+
           <VisibleElement
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
             duration={1}
             as="p"
             key={currentTemoignage.text}
