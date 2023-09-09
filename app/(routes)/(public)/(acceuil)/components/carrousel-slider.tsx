@@ -62,11 +62,18 @@ const Carrousel = () => {
 
   return (
     <>
-      <div className="flex justify-center ">
+      <div
+        className="flex justify-center "
+        onTouchStart={() => setPaused(false)}
+      >
         <div className="relative mt-8">
           <div
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
+            onTouchStart={(e) => {
+              e.stopPropagation();
+              setPaused(true);
+            }}
             className="relative flex justify-center overflow-hidden "
           >
             {CarouselData.map((slide, index) => {
