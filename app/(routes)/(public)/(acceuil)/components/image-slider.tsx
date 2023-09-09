@@ -15,6 +15,18 @@ const ImageSlider = () => {
     setSliderPosition(percent);
   };
 
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = Math.max(
+      0,
+      Math.min(rect.width, e.touches[0].clientX - rect.left)
+    );
+    const percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
+
+    setSliderPosition(percent);
+  };
+
   const handleMouseDown = () => {
     setIsDragging(true);
   };
@@ -24,11 +36,17 @@ const ImageSlider = () => {
   };
 
   return (
-    <div className="relative w-full " onMouseUp={handleMouseUp}>
+    <div
+      className="relative w-full "
+      onMouseUp={handleMouseUp}
+      onTouchEnd={handleMouseUp}
+    >
       <div
         className="relative w-full max-w-[300px] aspect-[281/372] m-auto overflow-hidden select-none"
         onMouseMove={handleMove}
         onMouseDown={handleMouseDown}
+        onTouchMove={handleTouchMove}
+        onTouchStart={handleMouseDown}
       >
         <Image src="/carrousel/voiture1-1.webp" alt="image1" fill />
 
