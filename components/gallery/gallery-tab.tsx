@@ -13,7 +13,7 @@ const GalleryTab: React.FC<GalleryTabProps> = ({ image }) => {
   return (
     <Tab className="relative flex items-center justify-center bg-white rounded-md cursor-pointer aspect-square">
       <div>
-        <span className="absolute inset-0 w-full h-full overflow-hidden rounded-md aspect-square hover:scale-105">
+        <span className="absolute inset-0 w-full h-full overflow-hidden transition-transform rounded-md aspect-square hover:scale-105 ">
           <Suspense fallback={<Loading />}>
             <Image
               fill

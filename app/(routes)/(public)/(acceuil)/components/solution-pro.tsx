@@ -1,4 +1,3 @@
-"use client";
 import {
   Accordion,
   AccordionContent,
@@ -6,45 +5,11 @@ import {
   AccordionTrigger,
 } from "./accordion";
 import { Separator } from "@/components/ui/separator";
-import { MoveLeftIcon, MoveRightIcon } from "lucide-react";
 import { Oswald } from "next/font/google";
-import { useCallback, useEffect, useState } from "react";
 
 const oswald = Oswald({ subsets: ["latin"] });
 
 const SolutionPro = () => {
-  const [carouselIndex, setCarouselIndex] = useState(2);
-  const [paused, setPaused] = useState(false);
-
-  const nextSlide = useCallback(() => {
-    let newSlide =
-      carouselIndex === CarouselData.length - 1 ? 0 : carouselIndex + 1;
-    setCarouselIndex(newSlide);
-  }, [carouselIndex]);
-
-  const prevSlide = () => {
-    let newSlide =
-      carouselIndex === 0 ? CarouselData.length - 1 : carouselIndex - 1;
-    setCarouselIndex(newSlide);
-  };
-
-  useEffect(() => {
-    let interval: NodeJS.Timeout;
-
-    if (!paused) {
-      interval = setInterval(() => {
-        nextSlide();
-      }, 5000);
-    }
-
-    // Cleanup function
-    return () => {
-      if (interval) {
-        clearInterval(interval);
-      }
-    };
-  }, [paused, nextSlide]); // Depend on 'paused' state
-
   return (
     <>
       <div className="py-20 bg-white bg-opacity-80">
@@ -159,57 +124,6 @@ const SolutionPro = () => {
           </AccordionItem>
         </Accordion>
 
-        <div className="flex justify-center">
-          <div className="mt-8">
-            <div
-              onMouseEnter={() => setPaused(true)}
-              onMouseLeave={() => setPaused(false)}
-              className="relative flex max-w-lg overflow-hidden h-72"
-            >
-              {CarouselData.map((slide, index) => {
-                return (
-                  <div key={index}>
-                    <img
-                      data-state={
-                        index === carouselIndex ? "active" : "inactive"
-                      }
-                      src={slide.image}
-                      alt="This is a carousel slide"
-                      className="data-[state=active]:block data-[state=inactive]:hidden w-full h-auto object-cover  duration-300 data-[state=active]:animate-fade-in "
-                    />
-                  </div>
-                );
-              })}
-
-              <div className="absolute bottom-0 flex justify-center w-full">
-                {CarouselData.map((element, index) => {
-                  return (
-                    <div
-                      data-state={
-                        index === carouselIndex ? "active" : "inactive"
-                      }
-                      className=" data-[state=active]:bg-blue-700 transition-colors duration-300 h-2 w-2 ease-linear bg-white rounded-full mx-2 mb-2 cursor-pointer "
-                      key={index}
-                      onClick={() => {
-                        setCarouselIndex(index);
-                      }}
-                    ></div>
-                  );
-                })}
-              </div>
-              <MoveLeftIcon
-                onClick={prevSlide}
-                className="absolute left-0 text-3xl text-white cursor-pointer inset-y-1/2"
-              />
-
-              <MoveRightIcon
-                onClick={nextSlide}
-                className="absolute right-0 text-3xl text-white cursor-pointer inset-y-1/2"
-              />
-            </div>
-          </div>
-        </div>
-
         {/* <div className="group cursor-pointer grid grid-cols-[repeat(3,5px)] auto-rows-[5px] gap-1 translate-y-[3px]">
           <div className="border rounded-[50%] border-solid border-[rgb(139,136,136)]  group-hover:animate-[jump_0.4s_ease_1]"></div>
           <div className="border rounded-[50%] border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.4s_ease_0.1s_1]"></div>
@@ -224,29 +138,3 @@ const SolutionPro = () => {
 };
 
 export default SolutionPro;
-{
-  /* <img src="/home-page/478px-SARS-CoV-2_without_background.webp" alt="Image 1" className="absolute object-cover w-full h-full transition-opacity duration-1000 ease-in-out opacity-100" /> */
-}
-
-export const CarouselData = [
-  {
-    image:
-      "https://images.unsplash.com/photo-1546768292-fb12f6c92568?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1501446529957-6226bd447c46?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1489&q=80",
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80",
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1475189778702-5ec9941484ae?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1351&q=80",
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80",
-  },
-];
