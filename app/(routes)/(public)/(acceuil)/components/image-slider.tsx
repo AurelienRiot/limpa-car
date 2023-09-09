@@ -4,8 +4,10 @@ import { useState } from "react";
 
 const ImageSlider = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
 
   const handleMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (!isDragging) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = Math.max(0, Math.min(rect.width, e.clientX - rect.left));
     const percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
@@ -13,11 +15,20 @@ const ImageSlider = () => {
     setSliderPosition(percent);
   };
 
+  const handleMouseDown = () => {
+    setIsDragging(true);
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
   return (
-    <div className="relative w-full">
+    <div className="relative w-full " onMouseUp={handleMouseUp}>
       <div
         className="relative w-full max-w-[300px] aspect-[281/372] m-auto overflow-hidden select-none"
         onMouseMove={handleMove}
+        onMouseDown={handleMouseDown}
       >
         <Image src="/carrousel/voiture1-1.webp" alt="image1" fill />
 
