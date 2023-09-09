@@ -2,23 +2,28 @@
 import { MoveLeftIcon, MoveRightIcon } from "lucide-react";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
+import ImageSlider from "./image-slider";
 
 const CarouselData = [
   {
-    image: "/carrousel/voiture1-1.webp",
+    imageAvant: "/carrousel/voiture1-1.webp",
+    imageApres: "/carrousel/voiture1-2.webp",
     alt: "image1",
   },
   {
-    image: "/carrousel/voiture2-1.webp",
+    imageAvant: "/carrousel/voiture2-1.webp",
+    imageApres: "/carrousel/voiture2-2.webp",
     alt: "image2",
   },
   {
-    image: "/carrousel/voiture3-1.webp",
-    alt: "image2",
+    imageAvant: "/carrousel/voiture3-1.webp",
+    imageApres: "/carrousel/voiture3-2.webp",
+    alt: "image3",
   },
   {
-    image: "/carrousel/voiture4-1.webp",
-    alt: "image2",
+    imageAvant: "/carrousel/voiture4-1.webp",
+    imageApres: "/carrousel/voiture4-2.webp",
+    alt: "image4",
   },
 ];
 
@@ -53,27 +58,24 @@ const Carrousel = () => {
       }
     };
   }, [paused, nextSlide]);
+  console.log(paused);
 
   return (
     <>
-      <div className="flex justify-center">
-        <div className="mt-8">
+      <div className="flex justify-center ">
+        <div className="relative mt-8">
           <div
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
-            className="relative flex overflow-hidden "
+            className="relative flex justify-center overflow-hidden "
           >
             {CarouselData.map((slide, index) => {
               return (
-                <Image
+                <ImageSlider
                   key={index}
-                  data-state={index === carouselIndex ? "active" : "inactive"}
-                  src={slide.image}
-                  object-fit="cover"
-                  width={702}
-                  height={930}
-                  alt={slide.alt}
-                  className=" data-[state=inactive]:hidden     duration-300 data-[state=active]:animate-fade-in "
+                  imageAvant={slide.imageAvant}
+                  imageApres={slide.imageApres}
+                  dataState={index === carouselIndex ? "active" : "inactive"}
                 />
               );
             })}
@@ -102,7 +104,7 @@ const Carrousel = () => {
 
             <MoveRightIcon
               onClick={nextSlide}
-              className="absolute right-0 text-3xl text-white cursor-pointer inset-y-1/2"
+              className="absolute right-0 text-3xl text-white cursor-pointer inset-y-1/2 "
             />
           </div>
         </div>

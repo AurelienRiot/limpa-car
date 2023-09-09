@@ -14,6 +14,7 @@ import Temoignage from "./components/temoignage";
 import NosPrestations from "./components/nos-prestations";
 import Carrousel from "./components/carrousel";
 import ImageSlider from "./components/image-slider";
+import CarrouselSlider from "./components/carrousel-slider";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
@@ -32,7 +33,6 @@ export default async function Home() {
       {/* <ImagesAccueil name={session?.user?.name} imageUrl={imageUrl} /> */}
       <Container>
         {/* <Carrousel /> */}
-        <ImageSlider />
         <div className="relative px-4 pt-6 pb-10 space-y-10 bg-primary-foreground bg-clip-padding ">
           <Suspense fallback={<Loading />}>
             <div className="flex flex-col px-4 mb-16 gap-y-8 sm:px-6 lg:px-8">
@@ -44,6 +44,7 @@ export default async function Home() {
             variant="fade"
             className="w-auto overflow-auto break-after-column"
           >{`L'utilisateur est ${JSON.stringify(session)}`}</VisibleElement>
+          <CarrouselSlider />
           <NosPrestations />
           <Temoignage />
           <ContactAcceuil />

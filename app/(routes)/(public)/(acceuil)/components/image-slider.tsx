@@ -2,7 +2,16 @@
 import Image from "next/image";
 import { useState } from "react";
 
-const ImageSlider = () => {
+type ImageSliderProps = {
+  imageAvant: string;
+  imageApres: string;
+  dataState: "active" | "inactive";
+};
+const ImageSlider = ({
+  imageAvant,
+  imageApres,
+  dataState,
+}: ImageSliderProps) => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
 
@@ -37,24 +46,25 @@ const ImageSlider = () => {
 
   return (
     <div
-      className="relative w-full "
+      data-state={dataState}
+      className="relative w-full  data-[state=inactive]:hidden      duration-300 data-[state=active]:animate-fade-in "
       onMouseUp={handleMouseUp}
       onTouchEnd={handleMouseUp}
     >
       <div
-        className="relative w-full max-w-[300px] aspect-[281/372] m-auto overflow-hidden select-none"
+        className="relative h-[80vh] max-w-[80vw]  aspect-[281/372] m-auto overflow-hidden select-none"
         onMouseMove={handleMove}
         onMouseDown={handleMouseDown}
         onTouchMove={handleTouchMove}
         onTouchStart={handleMouseDown}
       >
-        <Image src="/carrousel/voiture1-1.webp" alt="image1" fill />
+        <Image src={imageAvant} alt="image1" fill />
 
         <div
-          className="absolute top-0 left-0 right-0 w-full max-w-[300px] aspect-[281/372] m-auto overflow-hidden "
+          className="absolute top-0 left-0 right-0 w-full h-full m-auto overflow-hidden select-none"
           style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
         >
-          <Image src="/carrousel/voiture1-2.webp" alt="image1" fill />
+          <Image src={imageApres} alt="image1" fill />
         </div>
 
         <div
