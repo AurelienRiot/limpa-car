@@ -7,7 +7,7 @@ const Loading = ({ className }: { className?: string }) => {
   return (
     <div
       className={cn(
-        "flex flex-col flex-wrap items-center justify-center min-h-0",
+        "flex flex-col flex-wrap items-center justify-center min-h-0 mt-20",
         className
       )}
     >
