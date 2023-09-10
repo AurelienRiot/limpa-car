@@ -379,7 +379,7 @@
 //             />
 //           </div>
 //           <Button disabled={loading} className="ml-auto" type="submit">
-//              { action }
+//              {!loading ? action : <Spinner size={20} />}
 //           </Button>
 //         </form>
 //       </Form>

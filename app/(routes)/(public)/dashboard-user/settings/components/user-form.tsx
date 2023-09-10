@@ -24,6 +24,7 @@ import ButtonBackward from "@/components/ui/button-backward";
 import { signOut } from "next-auth/react";
 import AddressAutocomplete from "@/actions/adress-autocompleteFR";
 import { UserWithAddresse } from "@/types";
+import Spinner from "@/components/animations/spinner";
 
 interface UserFormProps {
   initialData: UserWithAddresse;
@@ -291,7 +292,7 @@ export const UserForm: React.FC<UserFormProps> = ({ initialData }) => {
             />
           </div>
           <Button disabled={loading} className="ml-auto " type="submit">
-            {action}
+            {!loading ? action : <Spinner size={20} />}
           </Button>
         </form>
       </Form>

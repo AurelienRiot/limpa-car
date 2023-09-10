@@ -369,7 +369,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
           <RenderMarkdown loading={loading} form={form} />
 
           <Button disabled={loading} className="ml-auto" type="submit">
-            {action}
+            {!loading ? action : <Spinner size={20} />}
           </Button>
         </form>
       </Form>

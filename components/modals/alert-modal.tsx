@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Modal } from "@/components/ui/modal";
 import { Button } from "@/components/ui/button";
+import Spinner from "../animations/spinner";
 
 interface AlertModalProps {
   isOpen: boolean;
@@ -36,10 +37,10 @@ export const AlertModal: React.FC<AlertModalProps> = ({
     >
       <div className="flex items-center justify-end w-full pt-6 space-x-2">
         <Button disabled={loading} variant="outline" onClick={onClose}>
-          Annulé
+          {!loading ? "Annulé" : <Spinner size={20} />}
         </Button>
         <Button disabled={loading} variant="destructive" onClick={onConfirm}>
-          Supprimé
+          {!loading ? "Supprimé" : <Spinner size={20} />}
         </Button>
       </div>
     </Modal>

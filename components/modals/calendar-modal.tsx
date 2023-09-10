@@ -3,6 +3,7 @@
 import { Modal } from "@/components/ui/modal";
 import { Button } from "@/components/ui/button";
 import DatePicker from "@/app/(routes)/(public)/nettoyage/components/date-picker";
+import Spinner from "../animations/spinner";
 
 interface CalendarModalProps {
   isOpen: boolean;
@@ -32,7 +33,7 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
       <div className="items-center gap-4 sm:flex">
         <DatePicker aria-disabled={loading} date={date} setDate={setDate} />
         <Button disabled={loading} onClick={onConfirm} className="mt-4 sm:mt-0">
-          Ajouté au panier
+          {!loading ? "Ajouté au panier" : <Spinner size={20} />}
         </Button>
       </div>
     </Modal>

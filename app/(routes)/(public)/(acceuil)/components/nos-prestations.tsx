@@ -56,8 +56,9 @@ const NosPrestations = () => {
           alt=""
           width={150}
           height={150}
+          className="transition duration-500 ease-in-out hover:filter hover:grayscale"
         />
-        <p className="mt-8 text-lg font-light">
+        <p className="mt-8 text-lg font-light ">
           Spécialiste du nettoyage et du marquage adhésif, Netcars vous
           accompagne dans la lutte contre le Covid-19. Nous respectons la norme
           14476.

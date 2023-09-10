@@ -68,7 +68,7 @@ const ImageSlider = ({
         </div>
 
         <div
-          className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize"
+          className="absolute top-0 bottom-0 w-1 bg-white cursor-col-resize"
           style={{ left: `calc(${sliderPosition}% - 1px )` }}
         >
           <div className="bg-white absolute rounded-full h-3 w-3 -left-1 top-[calc(50%-5px)]" />

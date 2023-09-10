@@ -30,6 +30,7 @@ import {
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import Spinner from "../animations/spinner";
 
 interface EventModalProps {
   isOpen: boolean;
@@ -242,7 +243,7 @@ export const EventModal: React.FC<EventModalProps> = ({
               )}
             />
             <Button disabled={loading} type="submit">
-              {"Créer l'evenement"}
+              {!loading ? "Créer l'evenement" : <Spinner size={20} />}
             </Button>
           </form>
         </Form>

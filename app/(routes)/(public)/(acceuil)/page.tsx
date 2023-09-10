@@ -44,6 +44,7 @@ export default async function Home() {
             variant="fade"
             className="w-auto overflow-auto break-after-column"
           >{`L'utilisateur est ${JSON.stringify(session)}`}</VisibleElement>
+
           <CarrouselSlider />
           <NosPrestations />
           <Temoignage />
