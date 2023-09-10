@@ -3,7 +3,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "./accordion";
+} from "../../../../../components/ui/accordion";
 import { Separator } from "@/components/ui/separator";
 import { Oswald } from "next/font/google";
 

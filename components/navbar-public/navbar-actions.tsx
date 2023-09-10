@@ -66,7 +66,7 @@ const NavbarAction: React.FC<{ session: Session | null }> = ({ session }) => {
               <Link
                 onClick={() => setIsOpen(false)}
                 href="/cart-page#summary"
-                className="flex items-center gap-2 justify-left hover:underline"
+                className="flex items-center justify-center h-10 gap-2 px-4 py-2 mt-6 font-medium transition-colors rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 hover:underline"
               >
                 {" "}
                 Passer commande <LaunchIcon className="w-5 h-5" />

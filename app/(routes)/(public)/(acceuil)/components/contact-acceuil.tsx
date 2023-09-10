@@ -48,6 +48,12 @@ const ContactAcceuil = () => {
           </div>
         </div>
       </div>
+      <Image
+        src={"/home-page/TEST-HOME-BANNER.webp"}
+        alt=""
+        width={500}
+        height={500}
+      />
     </>
   );
 };

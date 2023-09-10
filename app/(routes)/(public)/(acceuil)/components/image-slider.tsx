@@ -52,7 +52,7 @@ const ImageSlider = ({
       onTouchEnd={handleMouseUp}
     >
       <div
-        className="relative h-[80vh] max-w-[80vw]  aspect-[281/372] m-auto overflow-hidden select-none"
+        className="relative sm:h-[80vh] sm:max-w-[80vw] w-[80vw] sm:w-auto  aspect-[281/372] m-auto overflow-hidden select-none"
         onMouseMove={handleMove}
         onMouseDown={handleMouseDown}
         onTouchMove={handleTouchMove}
