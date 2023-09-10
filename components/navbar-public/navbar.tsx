@@ -4,17 +4,16 @@ import Link from "next/link";
 import MainNav from "./main-nav";
 import NavbarAction from "./navbar-actions";
 import MobileNav from "./mobile-nav";
-import { Session } from "next-auth";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Category } from "@prisma/client";
 
 type NavBarProps = {
-  session: Session | null;
+  role: string | undefined;
   categories: Category[];
 };
 
-const NavBar: React.FC<NavBarProps> = ({ session, categories }) => {
+const NavBar: React.FC<NavBarProps> = ({ role, categories }) => {
   const [isNavbar, setIsNavbar] = useState(true);
 
   useEffect(() => {
@@ -65,7 +64,7 @@ const NavBar: React.FC<NavBarProps> = ({ session, categories }) => {
                   <MobileNav data={categories} className="ml-2 lg:hidden" />
                 </div>
 
-                <NavbarAction session={session} />
+                <NavbarAction role={role} />
               </div>
             </Container>
           </motion.div>

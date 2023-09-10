@@ -17,7 +17,7 @@ export default async function PublicLayout({
   return (
     <>
       <ModalProvider />
-      <NavBar session={session} categories={categories} />
+      <NavBar role={session?.user?.role} categories={categories} />
       <div className="pt-16 ">{children}</div>
       <Footer />
     </>

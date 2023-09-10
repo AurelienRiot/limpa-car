@@ -12,11 +12,11 @@ export function ThemeToggle() {
     <>
       {theme === "dark" || (theme === "system" && systemTheme === "dark") ? (
         <Button onClick={() => setTheme("light")} size="icon">
-          <MoonIcon className="h-[1.2rem] w-[1.2rem] " />
+          <SunIcon className="h-[1.2rem] w-[1.2rem] " />
         </Button>
       ) : (
         <Button onClick={() => setTheme("dark")} size="icon">
-          <SunIcon className="absolute h-[1.2rem] w-[1.2rem]  " />
+          <MoonIcon className="absolute h-[1.2rem] w-[1.2rem]  " />
         </Button>
       )}
       <span className="w-0 sr-only">Toggle theme</span>

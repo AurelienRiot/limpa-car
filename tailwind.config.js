@@ -121,6 +121,26 @@ module.exports = {
             "border-color": "rgb(119, 118, 118)",
           },
         },
+        "square-progress": {
+          "0%": {
+            transform: "translateX(-100px) scale(0)",
+          },
+          "18%": {
+            transform: "translateX(20px) scale(0)",
+          },
+          "25%": {
+            transform: "translateX(0px) scale(1)",
+          },
+          "75%": {
+            transform: "translateX(0px) scale(1)",
+          },
+          "78%": {
+            transform: "translateX(-100px) scale(0)",
+          },
+          "100%": {
+            transform: "translateX(-100px) scale(0)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -135,6 +155,7 @@ module.exports = {
         "fade-in": "fade-in 1s ease forwards",
         "fade-out": "fade-out 1s ease forwards",
         "load-bar": "load-bar 0.8s linear infinite",
+        "square-progress": "square-progress 5s ease-out infinite ",
       },
     },
   },

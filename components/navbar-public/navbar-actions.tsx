@@ -18,9 +18,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import LaunchIcon from "@mui/icons-material/Launch";
 
 import { ThemeToggle } from "../navbar-admin/theme.toggle";
-import { Session } from "next-auth";
 
-const NavbarAction: React.FC<{ session: Session | null }> = ({ session }) => {
+const NavbarAction: React.FC<{ role: string | undefined }> = ({ role }) => {
   const [isMounted, setIsMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -38,21 +37,18 @@ const NavbarAction: React.FC<{ session: Session | null }> = ({ session }) => {
     return null;
   }
 
-  const dashboard =
-    session?.user?.role === "admin" ? "/admin" : "/dashboard-user";
-
   return (
     <div className="flex items-center ml-4 gap-x-2 sm:gap-x-4 ">
-      {session && (
+      {role && (
         <Link
-          href={dashboard}
+          href={role === "admin" ? "/admin" : "/dashboard-user"}
           className="flex items-center justify-center p-2 transition border rounded-full shadow-md bg-primary text-primary-foreground hover:rounded-full hover:bg-accent hover:text-accent-foreground group"
         >
           <User2 className="w-4 h-4 duration-300 ease-linear group-hover:scale-150 " />
         </Link>
       )}
 
-      {!session && <LoginButton />}
+      {!role && <LoginButton />}
       <ThemeToggle />
 
       <Sheet onOpenChange={setIsOpen} open={isOpen}>
