@@ -1,22 +1,28 @@
 "use client";
 import { Separator } from "@/components/ui/separator";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Facebook, Phone, PhoneCall } from "lucide-react";
-import Image from "next/image";
+import { Facebook, Phone } from "lucide-react";
 import { Oswald } from "next/font/google";
 import Link from "next/link";
 import SolutionPro from "./solution-pro";
+import { cn } from "@/lib/utils";
 
 const oswald = Oswald({ subsets: ["latin"] });
 
 const ContactAcceuil = () => {
-  let { scrollYProgress } = useScroll();
-  let y = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-
+  function isMobileDevice() {
+    if (typeof window !== "undefined") {
+      return navigator.userAgent.indexOf("IEMobile") !== -1;
+    }
+    return false;
+  }
+  console.log(isMobileDevice());
   return (
     <>
       <div
-        className="relative w-full bg-scroll bg-center bg-no-repeat bg-cover shadow-lg md:bg-fixed "
+        className={cn(
+          "relative w-full bg-scroll bg-center bg-no-repeat bg-cover shadow-lg md:bg-fixed",
+          isMobileDevice() ? "bg-scroll" : "bg-fixed"
+        )}
         style={{
           backgroundImage: `url(/home-page/TEST-HOME-BANNER.webp)`,
         }}
