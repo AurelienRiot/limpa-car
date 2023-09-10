@@ -4,18 +4,15 @@ import { Facebook, Phone } from "lucide-react";
 import { Oswald } from "next/font/google";
 import Link from "next/link";
 import SolutionPro from "./solution-pro";
-import { cn } from "@/lib/utils";
+import { cn, isMobileDevice } from "@/lib/utils";
 
 const oswald = Oswald({ subsets: ["latin"] });
 
 const ContactAcceuil = () => {
-  function isMobileDevice() {
-    if (typeof window !== "undefined") {
-      return navigator.userAgent.indexOf("IEMobile") !== -1;
-    }
-    return false;
+  let test = "";
+  if (typeof window !== "undefined") {
+    test = navigator.userAgent;
   }
-  console.log(isMobileDevice());
   return (
     <>
       <div
@@ -54,6 +51,7 @@ const ContactAcceuil = () => {
           </div>
         </div>
       </div>
+      <p>{test}</p>
     </>
   );
 };
