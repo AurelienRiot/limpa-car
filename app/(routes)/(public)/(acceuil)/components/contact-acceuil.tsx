@@ -16,16 +16,18 @@ const ContactAcceuil = () => {
   return (
     <>
       <div
-        className="w-full  bg-fixed bg-center bg-no-repeat bg-cover shadow-lg sm:h-[1900px] h-[1700px] relative"
-        style={{ backgroundImage: `url(/home-page/i51.jpg)` }}
+        className="relative w-full bg-fixed bg-center bg-no-repeat bg-cover shadow-lg "
+        style={{
+          backgroundImage: `url(/home-page/TEST-HOME-BANNER.webp)`,
+        }}
       >
         <SolutionPro />
         <div
-          className={`flex flex-col items-center   text-white ${oswald.className} `}
+          className={`flex flex-col items-center    text-white ${oswald.className} backdrop-blur-xl`}
         >
           <h1 className="mb-6 text-5xl mt-14 sm:text-7xl">LIMPA CAR </h1>
           <Separator className="w-24" />
-          <div className="flex flex-col items-center justify-center gap-4 py-10 mt-8 text-xl rounded-sm shadow-2xl sm:text-3xl px-14 bg-black/20 ">
+          <div className="flex flex-col items-center justify-center gap-4 py-10 mt-8 mb-20 text-xl rounded-sm shadow-2xl sm:text-3xl px-14 bg-black/40">
             <Link
               href="tel:0000000000"
               className="flex items-center justify-center w-20 h-20 p-2 transition-colors duration-500 rounded-full bg-black/20 hover:bg-primary-foreground hover:text-primary "

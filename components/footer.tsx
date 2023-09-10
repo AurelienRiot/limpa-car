@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="border-t bg-background">
+    <footer className="pb-4 border-t bg-background">
       <div className="pt-10 pb-2 mx-auto">
         <p className="text-xs text-center text-primary">
           &copy; 2023 Limpa Car, Inc All right reserved.

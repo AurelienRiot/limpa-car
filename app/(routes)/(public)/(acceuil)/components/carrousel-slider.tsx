@@ -58,7 +58,6 @@ const Carrousel = () => {
       }
     };
   }, [paused, nextSlide]);
-  console.log(paused);
 
   return (
     <>
