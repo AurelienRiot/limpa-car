@@ -48,12 +48,31 @@ const ContactAcceuil = () => {
           </div>
         </div>
       </div>
-      <Image
-        src={"/home-page/TEST-HOME-BANNER.webp"}
-        alt=""
-        width={500}
-        height={500}
-      />
+
+      <div
+        className="relative w-[500px] h-[500px] bg-fixed bg-center bg-no-repeat bg-cover shadow-lg "
+        style={{
+          backgroundImage: `url(/home-page/TEST-HOME-BANNER.webp)`,
+        }}
+      ></div>
+      <div
+        className="relative w-[500px] h-[500px] bg-fixed bg-center bg-no-repeat bg-cover  "
+        style={{
+          backgroundImage: `url(/home-page/TEST-HOME-BANNER.webp)`,
+        }}
+      ></div>
+      <div
+        className="relative w-[500px] h-[500px] bg-fixed bg-center bg-no-repeat   "
+        style={{
+          backgroundImage: `url(/home-page/TEST-HOME-BANNER.webp)`,
+        }}
+      ></div>
+      <div
+        className="relative w-[500px] h-[500px] bg-fixed bg-center  "
+        style={{
+          backgroundImage: `url(/home-page/TEST-HOME-BANNER.webp)`,
+        }}
+      ></div>
     </>
   );
 };
