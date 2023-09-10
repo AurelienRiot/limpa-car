@@ -16,7 +16,7 @@ const ContactAcceuil = () => {
   return (
     <>
       <div
-        className="relative w-full bg-fixed bg-center bg-no-repeat bg-cover shadow-lg "
+        className="relative w-full bg-scroll bg-center bg-no-repeat bg-cover shadow-lg md:bg-fixed "
         style={{
           backgroundImage: `url(/home-page/TEST-HOME-BANNER.webp)`,
         }}
@@ -48,19 +48,6 @@ const ContactAcceuil = () => {
           </div>
         </div>
       </div>
-
-      <div
-        className="relative w-[500px] h-[500px]  bg-center  bg-cover shadow-lg "
-        style={{
-          backgroundImage: `url(/home-page/TEST-HOME-BANNER.webp)`,
-        }}
-      ></div>
-      <div
-        className="relative w-[500px] h-[500px] bg-fixed bg-center  bg-cover shadow-lg "
-        style={{
-          backgroundImage: `url(/home-page/TEST-HOME-BANNER.webp)`,
-        }}
-      ></div>
     </>
   );
 };
