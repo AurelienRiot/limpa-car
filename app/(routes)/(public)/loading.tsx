@@ -11,7 +11,9 @@ const Loading = ({ className }: { className?: string }) => {
         className
       )}
     >
-      <Spinner />
+      <div className=" relative w-[40vw]  h-2 bg-gray-200 rounded">
+        <div className="absolute h-full bg-blue-500 rounded animate-load-bar"></div>
+      </div>
       <div className="flex items-center self-center min-h-0 p-4 space-x-4 justify-self-center place-self-center">
         <Skeleton className="w-12 h-12 rounded-full" />
         <div className="space-y-2">

@@ -58,6 +58,11 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
+        "load-bar": {
+          "0%": { width: "0%", left: "0%" },
+          "50%": { width: "50%", left: "50%" },
+          "100%": { width: "0%", left: "100%" },
+        },
         "accordion-down": {
           from: { height: 0, opacity: 0 },
           to: { height: "var(--radix-accordion-content-height)", opacity: 1 },
@@ -129,6 +134,7 @@ module.exports = {
         "gauge-fadeIn": "gauge-fadeIn 1s ease forwards",
         "fade-in": "fade-in 1s ease forwards",
         "fade-out": "fade-out 1s ease forwards",
+        "load-bar": "load-bar 0.8s linear infinite",
       },
     },
   },
