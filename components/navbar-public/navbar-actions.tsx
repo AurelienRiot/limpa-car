@@ -1,7 +1,7 @@
 "use client";
 
 import useCart from "@/hooks/use-cart";
-import { ShoppingBag, User2 } from "lucide-react";
+import { ExternalLink, ShoppingBag, User2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { LoginButton } from "../auth/auth";
 import {
@@ -15,8 +15,6 @@ import {
 import Link from "next/link";
 import CartItem from "../cart/cart-item";
 import { AnimatePresence, motion } from "framer-motion";
-import LaunchIcon from "@mui/icons-material/Launch";
-
 import { ThemeToggle } from "../navbar-admin/theme.toggle";
 
 const NavbarAction: React.FC<{ role: string | undefined }> = ({ role }) => {
@@ -65,7 +63,7 @@ const NavbarAction: React.FC<{ role: string | undefined }> = ({ role }) => {
                 className="flex items-center justify-center h-10 gap-2 px-4 py-2 mt-6 font-medium transition-colors rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 hover:underline"
               >
                 {" "}
-                Passer commande <LaunchIcon className="w-5 h-5" />
+                Passer commande <ExternalLink className="w-5 h-5" />
               </Link>
             </SheetTitle>
             <SheetDescription>Contenue de votre panier</SheetDescription>

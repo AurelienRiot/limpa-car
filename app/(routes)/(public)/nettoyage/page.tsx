@@ -6,6 +6,7 @@ import Container from "@/components/ui/container";
 import Billboard from "@/components/billboard";
 import GetCategory from "@/actions-server/get-category";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata = {
   title: "Limpa Car - Nettoyage",
@@ -53,7 +54,15 @@ const NettoyagePage = async () => {
           <NettoyageTile
             key={sameProduct[0].id}
             sameProducts={sameProduct}
-            iconComponent={<LocalCarWashIcon className="w-8 h-8" />}
+            iconComponent={
+              <Image
+                src="/car-wash.webp"
+                alt="Nettoyage"
+                width={100}
+                height={100}
+                className="bg-transparent"
+              />
+            }
           />
         ))}
       </div>

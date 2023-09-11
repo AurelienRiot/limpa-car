@@ -10,8 +10,12 @@ const Loading = ({ className }: { className?: string }) => {
         className
       )}
     >
-      <div className=" relative w-[40vw]  h-2 bg-primary-foreground rounded">
+      <div className=" relative w-[40vw]  h-2 bg-primary-foreground rounded border-2">
         <div className="absolute h-full rounded bg-primary animate-load-bar"></div>
+        <div
+          style={{ animationDelay: `750ms` }}
+          className="absolute h-full rounded bg-primary animate-load-bar"
+        ></div>
       </div>
       <div className="flex items-center self-center min-h-0 p-4 space-x-4 justify-self-center place-self-center">
         <Skeleton className="w-12 h-12 rounded-full" />

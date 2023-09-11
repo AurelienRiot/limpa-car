@@ -3,13 +3,12 @@
 import { signIn, signOut } from "next-auth/react";
 import { Button } from "../ui/button";
 import { DefaultSession } from "next-auth";
-import LogoutTwoToneIcon from "@mui/icons-material/LogoutTwoTone";
-import LoginTwoToneIcon from "@mui/icons-material/LoginTwoTone";
+import { LogIn, LogOut } from "lucide-react";
 export const LoginButton = () => {
   return (
     <Button title="Se connecter" onClick={() => signIn()}>
       {" "}
-      <LoginTwoToneIcon className="w-6 h-6" />{" "}
+      <LogIn className="w-6 h-6" />{" "}
     </Button>
   );
 };
@@ -20,7 +19,7 @@ export const LogoutButton = () => {
       title="Se deconnecter"
       onClick={() => signOut({ callbackUrl: "/" })}
     >
-      <LogoutTwoToneIcon className="w-6 h-6" />
+      <LogOut className="w-6 h-6" />
     </Button>
   );
 };

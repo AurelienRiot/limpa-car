@@ -4,7 +4,7 @@ import { CalendarModal } from "@/components/modals/calendar-modal";
 import { Button } from "@/components/ui/button";
 import Currency from "@/components/ui/currency";
 import useCart from "@/hooks/use-cart";
-import { Markdown } from "@/lib/markdown";
+import { Markdown } from "@/components/markdown";
 import { cn } from "@/lib/utils";
 import { ProductWithCategoryAndImages } from "@/types";
 

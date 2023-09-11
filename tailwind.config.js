@@ -57,6 +57,7 @@ module.exports = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+
       keyframes: {
         "load-bar": {
           "0%": { width: "0%", left: "0%" },
@@ -123,18 +124,16 @@ module.exports = {
         },
         "square-progress": {
           "0%": {
-            transform: "translateX(-100px) scale(0)",
-          },
-          "18%": {
             transform: "translateX(20px) scale(0)",
           },
-          "25%": {
+
+          "7%": {
             transform: "translateX(0px) scale(1)",
           },
-          "75%": {
+          "57%": {
             transform: "translateX(0px) scale(1)",
           },
-          "78%": {
+          "60%": {
             transform: "translateX(-100px) scale(0)",
           },
           "100%": {
@@ -154,7 +153,7 @@ module.exports = {
         "gauge-fadeIn": "gauge-fadeIn 1s ease forwards",
         "fade-in": "fade-in 1s ease forwards",
         "fade-out": "fade-out 1s ease forwards",
-        "load-bar": "load-bar 0.8s linear infinite",
+        "load-bar": "load-bar 1.5s ease infinite",
         "square-progress": "square-progress 5s ease-out infinite ",
       },
     },

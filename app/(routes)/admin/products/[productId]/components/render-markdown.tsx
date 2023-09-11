@@ -9,7 +9,7 @@ import {
 import { FieldValues, UseFormReturn } from "react-hook-form";
 import { ProductFormValues } from "./product-form";
 import { TextArea } from "@/components/ui/text-area";
-import { Markdown } from "@/lib/markdown";
+import { Markdown } from "@/components/markdown";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import {
@@ -17,13 +17,6 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-import LaunchIcon from "@mui/icons-material/Launch";
-import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
-import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
-import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
-
-import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
 import EmojiPicker from "emoji-picker-react";
@@ -34,6 +27,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import GridCells from "./grid-cells";
+import { ImagePlus, Link, List, ListOrdered, Minus, Quote } from "lucide-react";
 
 type RenderMarkdownProps = {
   form: UseFormReturn<ProductFormValues>;
@@ -337,7 +331,7 @@ const RenderMarkdown: React.FC<RenderMarkdownProps> = ({ form, loading }) => {
                           insertMarkdown(field, "image");
                         }}
                       >
-                        <AddPhotoAlternateIcon />
+                        <ImagePlus />
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
@@ -353,7 +347,7 @@ const RenderMarkdown: React.FC<RenderMarkdownProps> = ({ form, loading }) => {
                           insertMarkdown(field, "link");
                         }}
                       >
-                        <LaunchIcon />
+                        <Link />
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
@@ -369,7 +363,7 @@ const RenderMarkdown: React.FC<RenderMarkdownProps> = ({ form, loading }) => {
                           insertMarkdown(field, "line");
                         }}
                       >
-                        <HorizontalRuleIcon />
+                        <Minus />
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
@@ -385,7 +379,7 @@ const RenderMarkdown: React.FC<RenderMarkdownProps> = ({ form, loading }) => {
                           insertMarkdown(field, "quote");
                         }}
                       >
-                        <FormatQuoteIcon />
+                        <Quote />
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
@@ -401,7 +395,7 @@ const RenderMarkdown: React.FC<RenderMarkdownProps> = ({ form, loading }) => {
                           insertMarkdown(field, "unorderedList");
                         }}
                       >
-                        <FormatListBulletedIcon />
+                        <List />
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
@@ -417,7 +411,7 @@ const RenderMarkdown: React.FC<RenderMarkdownProps> = ({ form, loading }) => {
                           insertMarkdown(field, "orderedList");
                         }}
                       >
-                        <FormatListNumberedIcon />
+                        <ListOrdered />
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
