@@ -73,7 +73,7 @@ const Carrousel = () => {
                   width={702}
                   height={930}
                   alt={slide.alt}
-                  className=" data-[state=inactive]:hidden     duration-300 data-[state=active]:animate-fade-in "
+                  className=" data-[state=inactive]:hidden      duration-300 data-[state=active]:animate-in data-[state=active]:fade-in-0 "
                 />
               );
             })}

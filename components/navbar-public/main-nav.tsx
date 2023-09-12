@@ -10,7 +10,7 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { Car, LucidePhoneCall, StoreIcon, User2 } from "lucide-react";
+import { Car, LucidePhoneCall, StoreIcon } from "lucide-react";
 
 import { useEffect, useState } from "react";
 import { VisibleElement } from "@/components/animations/visible-element";

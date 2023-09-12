@@ -13,7 +13,7 @@ import ContactAcceuil from "./components/contact-acceuil";
 import Temoignage from "./components/temoignage";
 import NosPrestations from "./components/nos-prestations";
 import Carrousel from "./components/carrousel";
-import ImageSlider from "./components/image-slider";
+import ImageSlider from "./components/ImageSlider";
 import CarrouselSlider from "./components/carrousel-slider";
 
 export default async function Home() {

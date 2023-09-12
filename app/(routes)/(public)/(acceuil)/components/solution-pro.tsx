@@ -123,15 +123,6 @@ const SolutionPro = () => {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
-
-        {/* <div className="group cursor-pointer grid grid-cols-[repeat(3,5px)] auto-rows-[5px] gap-1 translate-y-[3px]">
-          <div className="border rounded-[50%] border-solid border-[rgb(139,136,136)]  group-hover:animate-[jump_0.4s_ease_1]"></div>
-          <div className="border rounded-[50%] border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.4s_ease_0.1s_1]"></div>
-          <div className="border rounded-[50%] border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.4s_ease_0.2s_1]"></div>
-          <div className="border rounded-[50%] border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.4s_ease_0.3s_1]"></div>
-          <div className="border rounded-[50%] border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.4s_ease_0.4s_1]"></div>
-          <div className="border rounded-[50%] border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.4s_ease_0.5s_1]"></div>
-        </div> */}
       </div>
     </>
   );

@@ -1,12 +1,8 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import { ImageSliderProps } from "./image-slider";
 
-export type ImageSliderProps = {
-  imageAvant: string;
-  imageApres: string;
-  dataState: "active" | "inactive";
-};
 const ImageSlider = ({
   imageAvant,
   imageApres,
@@ -48,7 +44,7 @@ const ImageSlider = ({
     <div
       data-state={dataState}
       style={{ animationDuration: "500ms" }}
-      className="relative w-full data-[state=inactive]:hidden  data-[state=active]:zoom-in-95  data-[state=active]:animate-in  data-[state=active]:fade-in-0  data-[state=inactive]:animate-out  data-[state=inactive]:fade-out-0 "
+      className="relative w-full data-[state=inactive]:hidden duration-1000 data-[state=active]:zoom-in-95  data-[state=active]:animate-in  data-[state=active]:fade-in-0  data-[state=inactive]:animate-out  data-[state=inactive]:fade-out-0 "
       onMouseUp={handleMouseUp}
       onTouchEnd={handleMouseUp}
     >

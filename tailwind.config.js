@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require("tailwindcss/plugin");
 module.exports = {
   darkMode: ["class"],
   mode: "jit",
@@ -61,7 +62,6 @@ module.exports = {
       keyframes: {
         "load-bar": {
           "0%": { width: "25%", left: "-25%" },
-          // "50%": { width: "25%", left: "50%" },
           "100%": { width: "25%", left: "100%" },
         },
         "accordion-down": {
@@ -100,16 +100,9 @@ module.exports = {
           "0%": { backgroundColor: "hsl(var(--primary))" },
           "100%": { backgroundColor: "transparent" },
         },
-        "fade-in": {
-          from: { opacity: "0" },
-          to: { opacity: "1" },
-        },
-        "fade-out": {
-          from: { opacity: "1" },
-          to: { opacity: "0" },
-        },
+
         "gauge-fill": {
-          from: { "stroke-dashoffset": "332", opacity: "0" },
+          from: { "stroke-dashoffset": "var(--tw-gauge-fill)", opacity: "1" },
           to: { opacity: "1" },
         },
         jump: {
@@ -577,15 +570,13 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "collapsible-down": "collapsible-down 0.2s ease-out",
         "collapsible-up": "collapsible-up 0.2s ease-out",
+        "checkbox-in": "reveal-in .2s ease-out .1s forwards",
+        "checkbox-out": "reveal-out .2s ease-out forwards",
+        "checkbox-bg-in": "bg-to-primary .1s ease-out forwards",
+        "checkbox-bg-out": "bg-to-transparent .1s ease-out .2s forwards",
 
-        "reveal-in": "reveal-in .2s ease-out .1s forwards",
-        "reveal-out": "reveal-out .2s ease-out forwards",
-        "bg-to-primary": "bg-to-primary .1s ease-out forwards",
-        "bg-to-transparent": "bg-to-transparent .1s ease-out .2s forwards",
+        "gauge-fill": "gauge-fill 1s ease forwards",
 
-        "gauge-fadeIn": "gauge-fadeIn 1s ease forwards",
-        "fade-in": "fade-in 1s ease forwards",
-        "fade-out": "fade-out 1s ease forwards",
         "load-bar": "load-bar 1s linear infinite",
         "square-progress": "square-progress 5s ease-out infinite ",
 
@@ -603,5 +594,13 @@ module.exports = {
     require("tailwindcss-debug-screens"),
     require("@tailwindcss/typography"),
     require("@tailwindcss/container-queries"),
+
+    plugin(function ({ matchUtilities }) {
+      matchUtilities({
+        "gauge-fill": (value) => ({
+          "--tw-gauge-fill": value,
+        }),
+      });
+    }),
   ],
 };
