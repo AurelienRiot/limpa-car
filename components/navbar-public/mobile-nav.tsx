@@ -14,6 +14,7 @@ import {
   ChevronsUpDown,
   LucidePhoneCall,
   Menu,
+  Minus,
   StoreIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -63,18 +64,59 @@ export default function MobileNav({ className, data }: MobileNavProps) {
 
   return (
     <Popover open={open} onOpenChange={setPopover}>
-      <PopoverTrigger asChild>
+      <PopoverTrigger asChild className="">
         <Button
           variant="outline"
           size="sm"
           role="combobox"
           aria-expanded={open}
           aria-label="Select"
-          className={cn("w-[75px] justify-between ", className)}
+          className={cn(
+            "  relative rounded-full w-10 h-10 group data-[state=open]:text-red-700   ",
+            className
+          )}
         >
-          <Menu className="w-4 h-4 mr-2" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            className="absolute w-4 h-4 transition-all   group-data-[state=open]:-rotate-45 top-[18px] left-[10px] group-data-[state=open]:translate-x-[5px] group-data-[state=open]:translate-y-[-2px] "
+            viewBox="0 0 24 24"
+          >
+            <line x1="2" y1="2" x2="22" y2="2"></line>
+          </svg>
 
-          <ChevronsUpDown className="w-4 h-4 ml-auto opacity-50 shrink-0" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            className="absolute w-4 h-4 transition-all  top-[13px] left-[10px] group-data-[state=open]:rotate-45 group-data-[state=open]:translate-x-[-4px] group-data-[state=open]:translate-y-[3px]  "
+            viewBox="0 0 24 24"
+          >
+            <line x1="2" y1="2" x2="14" y2="2"></line>
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            className="absolute w-4 h-4 transition-all top-[23px] left-[15px] group-data-[state=open]:rotate-45 group-data-[state=open]:translate-x-[-5px] group-data-[state=open]:translate-y-[-3px] "
+            viewBox="0 0 24 24"
+          >
+            <line x1="2" y1="2" x2="14" y2="2"></line>
+          </svg>
+
+          {/* <Menu className="w-4 h-4 mr-2" />
+
+          <ChevronsUpDown className="w-4 h-4 ml-auto shrink-0 " /> */}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] h-auto p-0 ">

@@ -58,9 +58,9 @@ const NettoyageTile: React.FC<NettoyageTileProps> = ({
         loading={loading}
         onConfirm={handleOnConfirm}
       />
-      <div className="relative flex flex-col justify-between w-full p-6 border-2 lg:w-96 bg-card group rounded-3xl border-primary">
+      <div className="relative flex flex-col justify-between p-6 border-2 lg:w-96 bg-card group rounded-3xl border-primary">
         <div>
-          <div className="flex items-center gap-5">
+          <div className="flex flex-col items-center gap-5 sm:flex-row">
             {iconComponent}
             <span className="text-xl font-bold">{selectedProduct.name}</span>
           </div>

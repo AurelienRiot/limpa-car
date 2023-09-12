@@ -16,6 +16,8 @@ import Link from "next/link";
 import CartItem from "../cart/cart-item";
 import { AnimatePresence, motion } from "framer-motion";
 import { ThemeToggle } from "../navbar-admin/theme.toggle";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "../ui/button";
 
 const NavbarAction: React.FC<{ role: string | undefined }> = ({ role }) => {
   const [isMounted, setIsMounted] = useState(false);
@@ -50,7 +52,7 @@ const NavbarAction: React.FC<{ role: string | undefined }> = ({ role }) => {
       <ThemeToggle />
 
       <Sheet onOpenChange={setIsOpen} open={isOpen}>
-        <SheetTrigger className="inline-flex items-center justify-center w-auto h-10 px-5 py-3 text-sm font-semibold transition rounded-full ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-primary text-primary-foreground disabled:cursor-not-allowed disabled:opacity-50 hover:opacity-75 ">
+        <SheetTrigger className={cn(buttonVariants({ variant: "rounded" }))}>
           <ShoppingBag size={20} />
           <span className="w-3 ml-1 text-sm font-medium ">{totalQuantity}</span>
         </SheetTrigger>
@@ -60,10 +62,14 @@ const NavbarAction: React.FC<{ role: string | undefined }> = ({ role }) => {
               <Link
                 onClick={() => setIsOpen(false)}
                 href="/cart-page#summary"
-                className="flex items-center justify-center h-10 gap-2 px-4 py-2 mt-6 font-medium transition-colors rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 hover:underline"
+                className={cn(
+                  buttonVariants(),
+                  "flex items-center justify-center mt-6 gap-2 group hover:underline sm:text-lg"
+                )}
               >
                 {" "}
-                Passer commande <ExternalLink className="w-5 h-5" />
+                Passer commande{" "}
+                <ExternalLink className="w-5 h-5 transition-transform group-hover:scale-110" />
               </Link>
             </SheetTitle>
             <SheetDescription>Contenue de votre panier</SheetDescription>

@@ -1,6 +1,5 @@
 import GetProducts from "@/actions-server/get-products";
 import NettoyageTile from "./components/nettoyage-tile";
-import LocalCarWashIcon from "@mui/icons-material/LocalCarWash";
 import { ProductWithCategoryAndImages } from "@/types";
 import Container from "@/components/ui/container";
 import Billboard from "@/components/billboard";
@@ -60,7 +59,7 @@ const NettoyagePage = async () => {
                 alt="Nettoyage"
                 width={100}
                 height={100}
-                className="bg-transparent"
+                className="w-auto h-auto bg-transparent "
               />
             }
           />
