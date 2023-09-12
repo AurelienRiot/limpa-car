@@ -72,7 +72,7 @@ export default function MobileNav({ className, data }: MobileNavProps) {
           aria-expanded={open}
           aria-label="Select"
           className={cn(
-            "  relative rounded-full w-10 h-10 group data-[state=open]:text-red-700   ",
+            "  relative rounded-full w-10 h-10 group data-[state=open]:text-destructive-foreground transition-colors   data-[state=open]:bg-destructive  ",
             className
           )}
         >
@@ -83,7 +83,7 @@ export default function MobileNav({ className, data }: MobileNavProps) {
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="2"
-            className="absolute w-4 h-4 transition-all   group-data-[state=open]:-rotate-45 top-[18px] left-[10px] group-data-[state=open]:translate-x-[5px] group-data-[state=open]:translate-y-[-2px] "
+            className="absolute w-4 h-4 transition-transform   group-data-[state=open]:-rotate-45 top-[18px] left-[10px] group-data-[state=open]:translate-x-[5px] group-data-[state=open]:translate-y-[-2px] "
             viewBox="0 0 24 24"
           >
             <line x1="2" y1="2" x2="22" y2="2"></line>
@@ -96,7 +96,7 @@ export default function MobileNav({ className, data }: MobileNavProps) {
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="2"
-            className="absolute w-4 h-4 transition-all  top-[13px] left-[10px] group-data-[state=open]:rotate-45 group-data-[state=open]:translate-x-[-4px] group-data-[state=open]:translate-y-[3px]  "
+            className="absolute w-4 h-4 transition-transform  top-[13px] left-[10px] group-data-[state=open]:rotate-45 group-data-[state=open]:translate-x-[-4px] group-data-[state=open]:translate-y-[3px]  "
             viewBox="0 0 24 24"
           >
             <line x1="2" y1="2" x2="14" y2="2"></line>
@@ -108,7 +108,7 @@ export default function MobileNav({ className, data }: MobileNavProps) {
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="2"
-            className="absolute w-4 h-4 transition-all top-[23px] left-[15px] group-data-[state=open]:rotate-45 group-data-[state=open]:translate-x-[-5px] group-data-[state=open]:translate-y-[-3px] "
+            className="absolute w-4 h-4 transition-transform top-[23px] left-[15px] group-data-[state=open]:rotate-45 group-data-[state=open]:translate-x-[-5px] group-data-[state=open]:translate-y-[-3px] "
             viewBox="0 0 24 24"
           >
             <line x1="2" y1="2" x2="14" y2="2"></line>

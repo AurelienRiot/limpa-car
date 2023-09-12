@@ -49,6 +49,7 @@ const NavBar: React.FC<NavBarProps> = ({ role, categories }) => {
             <Container>
               <div className="relative flex items-center justify-between h-16 px-4 sm:px-6 lg:px-4">
                 <div className="flex ">
+                  <MobileNav data={categories} className="ml-2 lg:hidden" />
                   <Link
                     href="/"
                     className="items-center hidden ml-4 duration-200 ease-in sm:flex lg:ml-0 hover:scale-105"
@@ -61,7 +62,6 @@ const NavBar: React.FC<NavBarProps> = ({ role, categories }) => {
                   <div className="hidden lg:flex lg:items-center">
                     <MainNav data={categories} />
                   </div>
-                  <MobileNav data={categories} className="ml-2 lg:hidden" />
                 </div>
 
                 <NavbarAction role={role} />

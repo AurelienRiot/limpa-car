@@ -1,6 +1,8 @@
+"use client";
 import Container from "@/components/ui/container";
 import Loading from "../loading";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 const Animations = () => {
   return (
@@ -51,6 +53,13 @@ const Animations = () => {
           </div>
         </div>
       </div>
+      <Button
+        onClick={() => {
+          throw new Error("This is a thrown error");
+        }}
+      >
+        Throw Error
+      </Button>
     </Container>
   );
 };
@@ -82,15 +91,3 @@ const lettres = [
       "group-hover:animate-translate-text-4 left-1/2 right-1/2 top-1/2 bottom-1/2 w-[14px] h-[34px]",
   },
 ];
-
-// pos largeur
-// top-0 bottom-0 left-0 right-3/4
-// top-0 bottom-0 left-1/4 right-2/4
-// top-0 bottom-0 left-2/4 right-1/4
-// top-0 bottom-0 left-3/4 right-0
-
-// pos coin
-// top-0 bottom-1/2 left-0 right-1/2
-// top-1/2 bottom-0 left-0 right-1/2
-// top-0 bottom-1/2 left-1/2 right-0
-// top-1/2 bottom-0 left-1/2 right-0
