@@ -4,8 +4,17 @@ import Loading from "../loading";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
+import { useEffect } from "react";
 
 const Animations = () => {
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios.get("/api/throw-error");
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <Container>
       <Loading />
@@ -54,13 +63,6 @@ const Animations = () => {
           </div>
         </div>
       </div>
-      <Button
-        onClick={async () => {
-          await axios.get("/api/throw-error");
-        }}
-      >
-        Throw Error
-      </Button>
     </Container>
   );
 };
