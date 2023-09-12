@@ -3,6 +3,7 @@ import Container from "@/components/ui/container";
 import Loading from "../loading";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import axios from "axios";
 
 const Animations = () => {
   return (
@@ -54,8 +55,8 @@ const Animations = () => {
         </div>
       </div>
       <Button
-        onClick={() => {
-          throw new Error("This is a thrown error");
+        onClick={async () => {
+          await axios.get("/api/throw-error");
         }}
       >
         Throw Error
