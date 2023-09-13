@@ -35,6 +35,7 @@ const Animations = () => {
         placeholder="value"
         value={value}
         onChange={(e) => setValue(e.currentTarget.valueAsNumber)}
+        className="w-16 "
       />
 
       <ExempleCardHightlight />
