@@ -1,25 +1,43 @@
-import GetProducts from "@/actions-server/get-products";
-import NettoyageTile from "./components/nettoyage-tile";
-import { ProductWithCategoryAndImages } from "@/types";
-import Container from "@/components/ui/container";
-import Billboard from "@/components/billboard";
 import GetCategory from "@/actions-server/get-category";
-import Link from "next/link";
+import GetProducts from "@/actions-server/get-products";
+import Billboard from "@/components/billboard";
+import { Markdown } from "@/components/markdown";
+import Container from "@/components/ui/container";
+import { ProductWithCategoryAndImages } from "@/types";
 import Image from "next/image";
+import Link from "next/link";
+import NettoyageTile from "./components/nettoyage-tile";
 
 export const metadata = {
   title: "Limpa Car - Nettoyage",
 };
+
+export type ProductWithCategoryAndImagesAndSpecs =
+  ProductWithCategoryAndImages & {
+    productSpecsMarkdown: JSX.Element;
+  };
 
 const NettoyagePage = async () => {
   const products = (await GetProducts({ categoryName: "Nettoyage" })).sort(
     (a, b) => a.priceHT - b.priceHT
   );
 
+  const productsWithSpecs: ProductWithCategoryAndImagesAndSpecs[] =
+    products.map((product) => {
+      return {
+        ...product,
+        productSpecsMarkdown: (
+          <Markdown className="mt-4 overflow-y-auto max-h-1/2">
+            {product.productSpecs}
+          </Markdown>
+        ),
+      };
+    });
+
   const category = await GetCategory(products[0].categoryId);
 
-  const groupedProductsObj = products.reduce<
-    Record<string, ProductWithCategoryAndImages[]>
+  const groupedProductsObj = productsWithSpecs.reduce<
+    Record<string, ProductWithCategoryAndImagesAndSpecs[]>
   >((acc, product) => {
     if (!acc[product.name]) {
       acc[product.name] = [];

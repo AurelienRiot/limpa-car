@@ -4,15 +4,14 @@ import { CalendarModal } from "@/components/modals/calendar-modal";
 import { Button } from "@/components/ui/button";
 import Currency from "@/components/ui/currency";
 import useCart from "@/hooks/use-cart";
-import { Markdown } from "@/components/markdown";
 import { cn } from "@/lib/utils";
-import { ProductWithCategoryAndImages } from "@/types";
 
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { ProductWithCategoryAndImagesAndSpecs } from "../page";
 
 interface NettoyageTileProps {
-  sameProducts: ProductWithCategoryAndImages[];
+  sameProducts: ProductWithCategoryAndImagesAndSpecs[];
   iconComponent: JSX.Element;
 }
 
@@ -21,7 +20,7 @@ const NettoyageTile: React.FC<NettoyageTileProps> = ({
   sameProducts,
 }) => {
   const [selectedProduct, setSelectedProduct] =
-    useState<ProductWithCategoryAndImages>(sameProducts[0]);
+    useState<ProductWithCategoryAndImagesAndSpecs>(sameProducts[0]);
   const [openCalendar, setOpenCalendar] = useState(false);
   const [loading, setLoading] = useState(false);
   const [date, setDate] = useState<Date | undefined>();
@@ -42,7 +41,8 @@ const NettoyageTile: React.FC<NettoyageTileProps> = ({
       setLoading(false);
       return;
     }
-    cart.addItem(selectedProduct, date);
+    const { productSpecsMarkdown, ...rest } = selectedProduct;
+    cart.addItem(rest, date);
     setLoading(false);
     setOpenCalendar(false);
     toast.success("Produit ajouté au panier");
@@ -86,9 +86,7 @@ const NettoyageTile: React.FC<NettoyageTileProps> = ({
             })}
           </div>
 
-          <Markdown className="mt-4 overflow-y-auto max-h-1/2">
-            {selectedProduct.productSpecs}
-          </Markdown>
+          {selectedProduct.productSpecsMarkdown}
 
           <div className="my-4 border border-dashed border-border" />
         </div>
