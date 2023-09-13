@@ -550,7 +550,7 @@ module.exports = {
             color: "initial",
           },
         },
-        "translate-bg": {
+        "opacity-change-bg": {
           "0%": {
             opacity: "1",
           },
@@ -570,22 +570,17 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "collapsible-down": "collapsible-down 0.2s ease-out",
         "collapsible-up": "collapsible-up 0.2s ease-out",
-        "checkbox-in": "reveal-in .2s ease-out .1s forwards",
+        "checkbox-in": "reveal-in .2s ease-out .2s forwards",
         "checkbox-out": "reveal-out .2s ease-out forwards",
-        "checkbox-bg-in": "bg-to-primary .1s ease-out forwards",
-        "checkbox-bg-out": "bg-to-transparent .1s ease-out .2s forwards",
+        "checkbox-bg-in": "bg-to-primary .2s ease-out forwards",
+        "checkbox-bg-out": "bg-to-transparent .2s ease-out .2s forwards",
 
         "gauge-fill": "gauge-fill 1s ease forwards",
 
         "load-bar": "load-bar 1s linear infinite",
         "square-progress": "square-progress 5s ease-out infinite ",
 
-        "fade-out-text": "fade-out-text 5s linear ",
-        "translate-bg": "translate-bg 5s ease-out ",
-        "translate-text-1": "translate-text-1 5s linear ",
-        "translate-text-2": "translate-text-2 5s linear ",
-        "translate-text-3": "translate-text-3 5s linear ",
-        "translate-text-4": "translate-text-4 5s linear ",
+        "opacity-change-bg": "opacity-change-bg 5s ease-out ",
       },
     },
   },

@@ -15,12 +15,13 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { CardHightlight, Highlight } from "@/components/highlight";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const Animations = () => {
   const [open, setOpen] = useState(false);
 
   const [visitors, setVisitors] = useState(0);
-  const [isHighlighted, setIsHighlighted] = useState(false);
   const [value, setValue] = useState(50);
 
   return (
@@ -56,7 +57,7 @@ const Animations = () => {
             key={l.lettre}
             style={{ animationDelay: `${i * 200}ms` }}
             className={cn(
-              "text-black absolute px-0.5 py-[3px]   flex justify-center items-center",
+              "text-black absolute px-0.5 py-[3px]   flex justify-center items-center ",
               l.class
             )}
           >
@@ -64,17 +65,18 @@ const Animations = () => {
               style={{ animationDelay: `${i * 200}ms` }}
               className={cn(
                 l.bg,
-                "  absolute top-0 left-0    w-full h-full group-hover:animate-translate-bg"
+                "  absolute top-0 left-0   w-full h-full group-hover:animate-opacity-change-bg "
               )}
             />
+
             <span className="relative ">{l.lettre}</span>
           </div>
         ))}
         <div className="absolute flex text-base translate-x-6 translate-y-1 top-1/2 left-1/2">
-          <div className="text-white px-0.5 pl-1 py-[3px] group-hover:animate-fade-out-text ">
+          <div className="text-white px-0.5 pl-1 py-[3px] group-hover:animate-[fade-out-text_5s_linear] ">
             for
           </div>
-          <div className="text-white px-0.5 pl-1 py-[3px] group-hover:animate-fade-out-text">
+          <div className="text-white px-0.5 pl-1 py-[3px] group-hover:animate-[fade-out-text_5s_linear]">
             GSAP
           </div>
         </div>
@@ -95,11 +97,13 @@ const Animations = () => {
 
       <Button onClick={() => setOpen(!open)}>Button</Button>
 
-      <Card
-        data-state={isHighlighted ? "true" : "false"}
+      <CardHightlight
+        trigger={visitors}
+        duration={500}
         className={`w-[350px] 
-        data-[state=true]:bg-blue-600 
-        transition-colors duration-200`}
+        `}
+        highlightColor="green"
+        highlightVariant="circleFill"
       >
         <CardHeader>
           <CardTitle>Create project</CardTitle>
@@ -121,22 +125,28 @@ const Animations = () => {
           <Button
             onClick={() => setVisitors((prev) => prev - 1)}
             variant="outline"
+            className="text-primary"
           >
             Cancel
           </Button>
           <Button
             onClick={() => {
               setVisitors((previousVisitors) => previousVisitors + 1);
-              setIsHighlighted(true);
-              setTimeout(() => {
-                setIsHighlighted(false);
-              }, 400);
             }}
           >
             Deploy {visitors}
           </Button>
         </CardFooter>
-      </Card>
+      </CardHightlight>
+      <div className="flex items-center space-x-2">
+        <Checkbox id="terms" />
+        <label
+          htmlFor="terms"
+          className="text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        >
+          Accept terms and conditions
+        </label>
+      </div>
     </Container>
   );
 };
@@ -145,26 +155,26 @@ export default Animations;
 const lettres = [
   {
     lettre: "F",
-    bg: "bg-teal-600",
+    bg: "bg-teal-600/90",
     class:
-      "group-hover:animate-translate-text-1 left-1/2 right-1/2 top-1/2 bottom-1/2  -translate-x-[30px] w-[14px] h-[34px]",
+      "group-hover:animate-[translate-text-1_5s_linear] left-1/2 right-1/2 top-1/2 bottom-1/2  -translate-x-[30px] w-[14px] h-[34px]",
   },
   {
     lettre: "l",
-    bg: "bg-blue-600",
+    bg: "bg-blue-600/90",
     class:
-      "group-hover:animate-translate-text-2 left-1/2 right-1/2 top-1/2 bottom-1/2  -translate-x-[16px] w-[8px] h-[34px]",
+      "group-hover:animate-[translate-text-2_5s_linear] left-1/2 right-1/2 top-1/2 bottom-1/2  -translate-x-[16px] w-[8px] h-[34px]",
   },
   {
     lettre: "i",
-    bg: "bg-purple-600",
+    bg: "bg-purple-600/90",
     class:
-      "group-hover:animate-translate-text-3 left-1/2 right-1/2 top-1/2 bottom-1/2  -translate-x-[8px] w-[8px] h-[34px]",
+      "group-hover:animate-[translate-text-3_5s_linear] left-1/2 right-1/2 top-1/2 bottom-1/2  -translate-x-[8px] w-[8px] h-[34px]",
   },
   {
     lettre: "p",
-    bg: "bg-indigo-600",
+    bg: "bg-indigo-600/90",
     class:
-      "group-hover:animate-translate-text-4 left-1/2 right-1/2 top-1/2 bottom-1/2 w-[14px] h-[34px]",
+      "group-hover:animate-[translate-text-4_5s_linear] left-1/2 right-1/2 top-1/2 bottom-1/2 w-[14px] h-[34px]",
   },
 ];

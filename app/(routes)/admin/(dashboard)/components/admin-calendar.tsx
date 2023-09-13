@@ -29,6 +29,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { EventModal } from "@/components/modals/event-modal";
 import { CalendarCheck, Plus } from "lucide-react";
+import { CardHightlight } from "@/components/highlight";
 
 type AdminCalendarProps = {
   currentDate: Date;
@@ -145,6 +146,11 @@ const AdminCalendar = ({
     );
   };
 
+  console.log(
+    events.filter(
+      (event) => date && isSameDay(new Date(event.dateOfEvent), date)
+    )
+  );
   return (
     <>
       <EventModal
@@ -183,7 +189,13 @@ const AdminCalendar = ({
           />
         </CardContent>
       </Card>
-      <Card className="flex flex-col justify-between col-span-1 pt-4 sm:p-4 xl:flex-row sm:col-span-2 xl:col-span-5">
+      <CardHightlight
+        trigger={date}
+        duration={500}
+        highlightColor="green"
+        highlightVariant="RingHighlight"
+        className="flex flex-col justify-between col-span-1 pt-4 sm:p-4 xl:flex-row sm:col-span-2 xl:col-span-5"
+      >
         <div>
           <CardTitle className="m-2 mb-4 xl:mb-12">
             Rendez vous du jour
@@ -205,7 +217,7 @@ const AdminCalendar = ({
           <Plus className="w-8 h-8 mr-2 sm:h-4 sm:w-4 shrink-0" />
           Creer un rendez vous
         </Button>
-      </Card>
+      </CardHightlight>
     </>
   );
 };

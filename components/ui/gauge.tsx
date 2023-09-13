@@ -36,14 +36,6 @@ export const Gauge = ({
 
   const previousValue = usePrevious(value);
 
-  console.log(
-    previousValue,
-    previousValue
-      ? Math.round(initialOffset - (previousValue / 100) * circumference)
-      : 332,
-    strokeDashoffset
-  );
-
   return (
     <div
       key={previousValue}
@@ -95,7 +87,7 @@ export const Gauge = ({
         />
       </svg>
       {showValue ? (
-        <div className="absolute flex duration-300 animate-in fade-in-0 ">
+        <div className="absolute flex duration-1000 animate-in fade-in-0 ">
           <p className={`text-primary ${sizes[size].textSize}`}>{value}</p>
         </div>
       ) : null}
