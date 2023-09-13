@@ -17,7 +17,7 @@ const ContactAcceuil = () => {
     <>
       <div
         className={cn(
-          "relative w-full bg-scroll bg-center bg-no-repeat bg-cover shadow-lg md:bg-fixed",
+          "relative w-full bg-center bg-no-repeat bg-cover shadow-lg ",
           isMobileDevice() ? "bg-scroll" : "bg-fixed"
         )}
         style={{
