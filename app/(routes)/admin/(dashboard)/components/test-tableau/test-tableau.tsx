@@ -1,5 +1,11 @@
 "use client";
 import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import { Gauge } from "@/components/ui/gauge";
+import {
   Table,
   TableBody,
   TableCell,
@@ -7,15 +13,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import { Fragment, useState } from "react";
-import { Gauge } from "@/components/ui/gauge";
 import { Slot } from "@radix-ui/react-slot";
 import { ChevronDown } from "lucide-react";
+import { Fragment, useState } from "react";
 
 const TestTableau = () => {
   const [isOpen, setIsOpen] = useState<string | null>(null);

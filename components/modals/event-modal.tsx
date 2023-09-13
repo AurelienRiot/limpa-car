@@ -1,16 +1,26 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Modal } from "@/components/ui/modal";
 import { Button } from "@/components/ui/button";
-import { Calendar } from "../ui/calendar";
-import { fr } from "date-fns/locale";
+import { Modal } from "@/components/ui/modal";
 import { cn, dateFormatter } from "@/lib/utils";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { CalendarIcon, Check, ChevronsUpDown } from "lucide-react";
-import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { fr } from "date-fns/locale";
+import { CalendarIcon, Check, ChevronsUpDown } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import * as z from "zod";
+import Spinner from "../animations/spinner";
+import { Calendar } from "../ui/calendar";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from "../ui/command";
 import {
   Form,
   FormControl,
@@ -20,17 +30,7 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "../ui/command";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
-import Spinner from "../animations/spinner";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
 interface EventModalProps {
   isOpen: boolean;

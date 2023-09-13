@@ -1,8 +1,8 @@
 "use client";
 
-import { Modal } from "@/components/ui/modal";
-import { Button } from "@/components/ui/button";
 import DatePicker from "@/app/(routes)/(public)/nettoyage/components/date-picker";
+import { Button } from "@/components/ui/button";
+import { Modal } from "@/components/ui/modal";
 import Spinner from "../animations/spinner";
 
 interface CalendarModalProps {

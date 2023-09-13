@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { cva } from "class-variance-authority";
 import * as React from "react";
 
 type HighlightProps = React.HTMLAttributes<HTMLDivElement> & {
@@ -12,14 +11,14 @@ type HighlightProps = React.HTMLAttributes<HTMLDivElement> & {
 };
 
 export const highlightVariants = {
-  BackgroundColorChange: {
+  backgroundColorChange: {
     principalClassName:
       "data-[highlight=on]:duration-300  transition-colors duration-500",
     secondaryClassName: "hidden",
   },
-  RingHighlight: {
+  ringHighlight: {
     principalClassName:
-      " transition-all group-data-[highlight=on]:duration-150",
+      " transition data-[highlight=on]:duration-150 duration-1000 data-[highlight=on]:ring-2 ",
     secondaryClassName: "hidden",
   },
   circleFill: {
@@ -48,14 +47,13 @@ export const highlightVariants = {
 
 const highlightColors = {
   blue: {
-    BackgroundColorChange: {
+    backgroundColorChange: {
       principalClassName:
         "data-[highlight=on]:bg-blue-500 data-[highlight=on]:text-primary",
       secondaryClassName: "",
     },
-    RingHighlight: {
-      principalClassName:
-        "data-[highlight=on]:ring-blue-500 data-[highlight=on]:ring-2",
+    ringHighlight: {
+      principalClassName: "data-[highlight=on]:ring-blue-500 ",
       secondaryClassName: "",
     },
     circleFill: {
@@ -64,14 +62,13 @@ const highlightColors = {
     },
   },
   red: {
-    BackgroundColorChange: {
+    backgroundColorChange: {
       principalClassName:
         "data-[highlight=on]:bg-red-500 data-[highlight=on]:text-primary",
       secondaryClassName: "",
     },
-    RingHighlight: {
-      principalClassName:
-        "data-[highlight=on]:ring-red-500 data-[highlight=on]:ring-2",
+    ringHighlight: {
+      principalClassName: "data-[highlight=on]:ring-red-500 ",
       secondaryClassName: "",
     },
     circleFill: {
@@ -80,14 +77,13 @@ const highlightColors = {
     },
   },
   green: {
-    BackgroundColorChange: {
+    backgroundColorChange: {
       principalClassName:
         "data-[highlight=on]:bg-green-500 data-[highlight=on]:text-primary",
       secondaryClassName: "",
     },
-    RingHighlight: {
-      principalClassName:
-        "data-[highlight=on]:ring-green-500 data-[highlight=on]:ring-2",
+    ringHighlight: {
+      principalClassName: "data-[highlight=on]:ring-green-500 ",
       secondaryClassName: "",
     },
     circleFill: {
@@ -96,14 +92,13 @@ const highlightColors = {
     },
   },
   primary: {
-    BackgroundColorChange: {
+    backgroundColorChange: {
       principalClassName:
         "data-[highlight=on]:bg-primary data-[highlight=on]:text-primary-foreground",
       secondaryClassName: "",
     },
-    RingHighlight: {
-      principalClassName:
-        "data-[highlight=on]:ring-primary data-[highlight=on]:ring-2",
+    ringHighlight: {
+      principalClassName: "data-[highlight=on]:ring-primary ",
       secondaryClassName: "",
     },
     circleFill: {
@@ -116,10 +111,10 @@ const highlightColors = {
 const Highlight = React.forwardRef<HTMLDivElement, HighlightProps>(
   (
     {
-      highlightVariant = "BackgroundColorChange",
+      highlightVariant = "backgroundColorChange",
       highlightColor = "red",
       trigger,
-      duration = 1000,
+      duration = 500,
       children,
       className,
       ...props
@@ -200,4 +195,4 @@ const CardHightlight = React.forwardRef<HTMLDivElement, HighlightProps>(
 );
 CardHightlight.displayName = "CardHightlight";
 
-export { Highlight, CardHightlight };
+export { CardHightlight, Highlight };

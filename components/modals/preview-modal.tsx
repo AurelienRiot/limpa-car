@@ -1,13 +1,13 @@
 "use client";
 
-import usePreviewModal from "@/hooks/use-preview-modal";
 import Gallery from "@/components/gallery/gallery";
 import Info from "@/components/info";
+import IconButton from "@/components/ui/icon-button";
+import usePreviewModal from "@/hooks/use-preview-modal";
+import { Dialog, Transition } from "@headlessui/react";
+import { X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Fragment, useEffect } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import IconButton from "@/components/ui/icon-button";
-import { X } from "lucide-react";
 
 const PreviewModal = () => {
   const previewModal = usePreviewModal();

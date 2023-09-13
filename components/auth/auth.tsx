@@ -1,9 +1,9 @@
 "use client";
 
+import { LogIn, LogOut } from "lucide-react";
+import { DefaultSession } from "next-auth";
 import { signIn, signOut } from "next-auth/react";
 import { Button } from "../ui/button";
-import { DefaultSession } from "next-auth";
-import { LogIn, LogOut } from "lucide-react";
 export const LoginButton = () => {
   return (
     <Button title="Se connecter" onClick={() => signIn()}>

@@ -1,11 +1,11 @@
 "use client";
 
+import Loading from "@/app/(routes)/(public)/loading";
 import { Tab } from "@headlessui/react";
-import GalleryTab from "./gallery-tab";
+import { Image as ImageType } from "@prisma/client";
 import Image from "next/image";
 import { Suspense } from "react";
-import Loading from "@/app/(routes)/(public)/loading";
-import { Image as ImageType } from "@prisma/client";
+import GalleryTab from "./gallery-tab";
 
 interface GalleryProps {
   images: ImageType[];

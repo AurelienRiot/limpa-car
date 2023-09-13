@@ -1,11 +1,11 @@
+import { Separator } from "@/components/ui/separator";
+import { Oswald } from "next/font/google";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "../../../../../components/ui/accordion";
-import { Separator } from "@/components/ui/separator";
-import { Oswald } from "next/font/google";
 
 const oswald = Oswald({ subsets: ["latin"] });
 

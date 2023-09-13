@@ -1,6 +1,6 @@
 "use client";
-import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 export const motionVariant = {
   fade: {

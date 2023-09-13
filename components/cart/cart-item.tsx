@@ -5,7 +5,7 @@ import IconButton from "@/components/ui/icon-button";
 import useCart from "@/hooks/use-cart";
 import { dateFormatter } from "@/lib/utils";
 import { ProductWithCategoryAndImages } from "@/types";
-import { X, Minus, Plus } from "lucide-react";
+import { Minus, Plus, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { toast } from "react-hot-toast";

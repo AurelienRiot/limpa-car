@@ -193,7 +193,7 @@ const AdminCalendar = ({
         trigger={date}
         duration={500}
         highlightColor="green"
-        highlightVariant="RingHighlight"
+        highlightVariant="ringHighlight"
         className="flex flex-col justify-between col-span-1 pt-4 sm:p-4 xl:flex-row sm:col-span-2 xl:col-span-5"
       >
         <div>

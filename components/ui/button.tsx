@@ -22,6 +22,8 @@ const buttonVariants = cva(
           "font-normal bg-primary text-primary-foreground hover:bg-primary/90",
         rounded:
           "w-auto rounded-full bg-primary text-primary-foreground px-5 py-3 disabled:cursor-not-allowed disabled:opacity-50  font-semibold hover:opacity-75 transition ",
+        shadow:
+          "transition-all bg-green-500 border-2 shadow-[-5px_5px_0_black] hover:bg-green-500/90 border-black active:shadow-none ",
       },
       size: {
         default: "h-10 px-4 py-2",

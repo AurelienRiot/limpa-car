@@ -1,5 +1,5 @@
 import { maxEventsPerDay } from "@/actions/isAvailable";
-import { User, Event } from "@prisma/client";
+import { Event, User } from "@prisma/client";
 import { getDay, isSameDay } from "date-fns";
 
 export const GetWeekendDays = (daysInMonth: Date[]) => {

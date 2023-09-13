@@ -1,22 +1,21 @@
 "use client";
-import Container from "@/components/ui/container";
-import Loading from "../loading";
-import { cn } from "@/lib/utils";
-import { Gauge } from "@/components/ui/gauge";
-import { useState } from "react";
+import { CardHightlight } from "@/components/highlight";
 import { Button } from "@/components/ui/button";
 import {
-  Card,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { CardHightlight, Highlight } from "@/components/highlight";
 import { Checkbox } from "@/components/ui/checkbox";
+import Container from "@/components/ui/container";
+import { Gauge } from "@/components/ui/gauge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
+import { useState } from "react";
+import Loading from "../loading";
 
 const Animations = () => {
   const [open, setOpen] = useState(false);
@@ -130,6 +129,8 @@ const Animations = () => {
             Cancel
           </Button>
           <Button
+            variant="shadow"
+            className=""
             onClick={() => {
               setVisitors((previousVisitors) => previousVisitors + 1);
             }}

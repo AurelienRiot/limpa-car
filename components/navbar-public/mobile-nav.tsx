@@ -5,17 +5,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-import { usePathname, useRouter } from "next/navigation";
-import { Suspense, useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Car,
-  Check,
-  ChevronDown,
-  LucidePhoneCall,
-  StoreIcon,
-} from "lucide-react";
-import { cn } from "@/lib/utils";
 import {
   Command,
   CommandGroup,
@@ -23,11 +13,21 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
+import { cn } from "@/lib/utils";
+import {
+  Car,
+  Check,
+  ChevronDown,
+  LucidePhoneCall,
+  StoreIcon,
+} from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { Suspense, useState } from "react";
 
-import Link from "next/link";
-import { AnimatePresence } from "framer-motion";
-import { Category } from "@prisma/client";
 import { VisibleElement } from "@/components/animations/visible-element";
+import { Category } from "@prisma/client";
+import { AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<
   typeof PopoverTrigger
