@@ -48,7 +48,7 @@ const ImageSlider = ({
     <div
       data-state={dataState}
       style={{ animationDuration: "500ms" }}
-      className="relative w-full data-[state=inactive]:hidden  data-[state=active]:zoom-in-95  data-[state=active]:animate-in  data-[state=active]:fade-in-0  data-[state=inactive]:animate-out  data-[state=inactive]:fade-out-0 "
+      className="relative w-full data-[state=inactive]:hidden  data-[state=active]:zoom-in-95  data-[state=active]:animate-in  data-[state=active]:fade-in-0 rounded-md border-primary border-2 "
       onMouseUp={handleMouseUp}
       onTouchEnd={handleMouseUp}
     >

@@ -1,6 +1,5 @@
 "use client";
-import { MoveLeftIcon, MoveRightIcon } from "lucide-react";
-import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import ImageSlider from "./image-slider";
 
@@ -100,18 +99,20 @@ const Carrousel = () => {
                 );
               })}
             </div>
-            {/* <button
-            className="absolute bottom-0 left-0 z-10 w-16 h-full transition-opacity duration-500 bg-black rounded-r-lg opacity-0 cursor-pointer hover:opacity-30"
-          ></button> */}
-            <MoveLeftIcon
-              onClick={prevSlide}
-              className="absolute left-0 text-3xl text-white cursor-pointer inset-y-1/2"
-            />
 
-            <MoveRightIcon
+            <button
+              onClick={prevSlide}
+              className="absolute left-0 text-white cursor-pointer inset-y-1/2"
+            >
+              <ChevronLeft className="w-10 h-10 p-1 transition-colors duration-300 translate-x-2 rounded-full bg-primary/50 hover:bg-primary" />
+            </button>
+
+            <button
               onClick={nextSlide}
-              className="absolute right-0 text-3xl text-white cursor-pointer inset-y-1/2 "
-            />
+              className="absolute right-0 text-white cursor-pointer inset-y-1/2"
+            >
+              <ChevronRight className="w-10 h-10 p-1 transition-colors duration-300 -translate-x-2 rounded-full bg-primary/50 hover:bg-primary" />
+            </button>
           </div>
         </div>
       </div>

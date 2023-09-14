@@ -33,7 +33,6 @@ const NettoyageTile: React.FC<NettoyageTileProps> = ({
     event.stopPropagation();
     setLoading(true);
     const isDayAvailable = await IsAvailable(date, cart.dates);
-    console.log(isDayAvailable);
     if (!isDayAvailable) {
       toast.error(
         "Ce jour n'est plus disponible, veuillez choisir un autre jour"

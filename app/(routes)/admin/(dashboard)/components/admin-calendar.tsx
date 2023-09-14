@@ -146,11 +146,6 @@ const AdminCalendar = ({
     );
   };
 
-  console.log(
-    events.filter(
-      (event) => date && isSameDay(new Date(event.dateOfEvent), date)
-    )
-  );
   return (
     <>
       <EventModal

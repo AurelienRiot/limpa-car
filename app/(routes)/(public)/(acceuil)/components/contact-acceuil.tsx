@@ -5,6 +5,7 @@ import { Oswald } from "next/font/google";
 import Link from "next/link";
 import SolutionPro from "./solution-pro";
 import { cn, isMobileDevice } from "@/lib/utils";
+import { useEffect, useState } from "react";
 
 const oswald = Oswald({ subsets: ["latin"] });
 
@@ -13,6 +14,7 @@ const ContactAcceuil = () => {
   if (typeof window !== "undefined") {
     test = navigator.userAgent;
   }
+
   return (
     <>
       <div

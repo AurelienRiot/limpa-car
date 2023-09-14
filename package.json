@@ -82,6 +82,7 @@
     "@types/nodemailer": "^6.4.9",
     "@types/query-string": "^6.3.0",
     "prisma": "^5.2.0",
+    "tailwind-clip-path": "^1.0.0",
     "tailwindcss-debug-screens": "^2.2.1"
   }
 }

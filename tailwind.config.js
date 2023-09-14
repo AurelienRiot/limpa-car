@@ -60,6 +60,39 @@ module.exports = {
       },
 
       keyframes: {
+        glitch: {
+          "2%, 64%": {
+            transform: "translate(2px,0) skew(0deg)",
+          },
+          "4%, 60%": {
+            transform: "translate(-2px,0) skew(0deg)",
+          },
+          "62%": {
+            transform: "translate(0,0) skew(5deg)",
+          },
+        },
+        "glitch-top": {
+          "2%, 64%": {
+            transform: "translate(2px, -2px)",
+          },
+          "4%, 60%": {
+            transform: "translate(-2px, 2px)",
+          },
+          "62%": {
+            transform: "translate(13px, -1px) skew(-13deg)",
+          },
+        },
+        "glitch-bottom": {
+          "2%, 64%": {
+            transform: "translate(-2px, 0)",
+          },
+          "4%, 60%": {
+            transform: "translate(-2px, 0)",
+          },
+          "62%": {
+            transform: "translate(-22px, 5px) skew(21deg)",
+          },
+        },
         "load-bar": {
           "0%": { width: "25%", left: "-25%" },
           "100%": { width: "25%", left: "100%" },
@@ -589,6 +622,7 @@ module.exports = {
     require("tailwindcss-debug-screens"),
     require("@tailwindcss/typography"),
     require("@tailwindcss/container-queries"),
+    require("tailwind-clip-path"),
 
     plugin(function ({ matchUtilities }) {
       matchUtilities({

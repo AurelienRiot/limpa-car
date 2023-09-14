@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import usePrevious from "@/hooks/use-previous";
 
 export const Gauge = ({
   value,
@@ -94,14 +94,6 @@ export const Gauge = ({
     </div>
   );
 };
-
-function usePrevious<T>(value: T): T | undefined {
-  const ref = useRef<T>();
-  useEffect(() => {
-    ref.current = value;
-  }, [value]);
-  return ref.current;
-}
 
 // gauge-fill-[0]
 // gauge-fill-[1]

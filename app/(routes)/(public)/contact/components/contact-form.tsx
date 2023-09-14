@@ -26,11 +26,11 @@ import axios from "axios";
 const formSchema = z.object({
   name: z
     .string()
-    .min(1, { message: "Le nom ne peut pas être vide" })
+    .min(1, { message: "Le nom est obligatoire" })
     .max(50, { message: "Le nom ne peut pas dépasser 50 caractères" }),
   mail: z
     .string()
-    .email({ message: "L'email doit être un email valide" })
+    .email({ message: "L'email n'est pas valide" })
     .min(1, { message: "L'email ne peut pas être vide" })
     .max(100, { message: "L'email ne peut pas dépasser 100 caractères" }),
   phone: z
