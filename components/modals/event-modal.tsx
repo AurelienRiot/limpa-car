@@ -88,6 +88,7 @@ export const EventModal: React.FC<EventModalProps> = ({
       });
       if (date) refetchData(date);
       router.refresh();
+      form.reset();
       toast.success("Evenement crée");
       onClose();
     } catch (error) {

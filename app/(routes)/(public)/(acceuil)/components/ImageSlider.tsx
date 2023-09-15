@@ -55,13 +55,23 @@ const ImageSlider = ({
         onTouchMove={handleTouchMove}
         onTouchStart={handleMouseDown}
       >
-        <Image src={imageAvant} alt="image1" fill />
+        <Image
+          src={imageAvant}
+          alt="image avant"
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 1280px"
+          fill
+        />
 
         <div
           className="absolute top-0 left-0 right-0 w-full h-full m-auto overflow-hidden select-none"
           style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
         >
-          <Image src={imageApres} alt="image1" fill />
+          <Image
+            src={imageApres}
+            alt="image après"
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 1280px"
+          />
         </div>
 
         <div
