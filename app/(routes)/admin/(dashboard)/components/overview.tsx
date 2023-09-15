@@ -5,6 +5,7 @@ import { ApexOptions } from "apexcharts";
 import { useTheme } from "next-themes";
 import { GraphDataProps } from "@/actions-server/get-graph-revenue";
 import dynamic from "next/dynamic";
+import { isMobileDevice } from "@/lib/utils";
 const DynamicReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
@@ -15,10 +16,10 @@ interface OverviewProps {
 
 export const Overview: React.FC<OverviewProps> = ({ data }) => {
   const { theme, systemTheme } = useTheme();
-  const [windowWidth, setWindowWidth] = useState(640);
-  const [windowState, setWindowState] = useState({
+  const [graphState, setGraphState] = useState({
     fontSize: "12px",
     reverse: false,
+    reduceMonth: false,
   });
 
   const series = [
@@ -27,27 +28,23 @@ export const Overview: React.FC<OverviewProps> = ({ data }) => {
       data: data.map((item) => item.totalOrder),
     },
   ];
-
   useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
+    const checkMobile = () => {
+      if (isMobileDevice(640)) {
+        setGraphState({ fontSize: "12px", reverse: true, reduceMonth: false });
+        return;
+      }
+      if (isMobileDevice(1150)) {
+        setGraphState({ fontSize: "14px", reverse: false, reduceMonth: true });
+        return;
+      }
+      setGraphState({ fontSize: "16px", reverse: false, reduceMonth: false });
     };
 
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  });
-
-  useEffect(() => {
-    if (windowWidth < 640) {
-      setWindowState({ fontSize: "12px", reverse: true });
-    } else if (windowWidth < 1024) {
-      setWindowState({ fontSize: "14px", reverse: false });
-    } else {
-      setWindowState({ fontSize: "16px", reverse: false });
-    }
-  }, [windowWidth]);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const options: ApexOptions = {
     chart: {
@@ -59,34 +56,35 @@ export const Overview: React.FC<OverviewProps> = ({ data }) => {
     },
     plotOptions: {
       bar: {
-        borderRadius: windowState.reverse ? 2 : 4,
-        horizontal: windowState.reverse,
+        borderRadius: graphState.reverse ? 2 : 4,
+        horizontal: graphState.reverse,
         borderRadiusApplication: "end",
-        columnWidth: windowState.reverse ? "50%" : "90%",
+        columnWidth: graphState.reverse ? "50%" : "90%",
         dataLabels: {
-          position: windowState.reverse ? "top" : "center",
-          orientation: windowState.reverse ? "horizontal" : "vertical",
+          position: graphState.reverse ? "top" : "center",
+          orientation: graphState.reverse ? "horizontal" : "vertical",
         },
       },
     },
     xaxis: {
-      categories: data.map((item) => item.month),
-
+      categories: graphState.reduceMonth
+        ? data.map((item, index) => (index % 2 === 0 ? item.month : ""))
+        : data.map((item) => item.month),
       labels: {
-        offsetY: windowState.reverse ? -10 : 0,
-        offsetX: windowState.reverse ? -5 : 0,
-        rotate: windowState.reverse ? -45 : 0,
-        rotateAlways: windowState.reverse,
-        formatter: windowState.reverse
+        offsetY: graphState.reverse ? -10 : 0,
+        offsetX: graphState.reverse ? -5 : 0,
+        rotate: graphState.reverse ? -45 : 0,
+        rotateAlways: graphState.reverse,
+        formatter: graphState.reverse
           ? (value: string) => `${value} €`
           : (value: string) => `${value}`,
         style: {
           colors: "#888888",
-          fontSize: windowState.fontSize,
+          fontSize: graphState.fontSize,
         },
       },
       axisBorder: {
-        offsetY: windowState.reverse ? 40 : 0,
+        offsetY: graphState.reverse ? 40 : 0,
         show: false,
       },
       axisTicks: {
@@ -95,12 +93,12 @@ export const Overview: React.FC<OverviewProps> = ({ data }) => {
     },
     yaxis: {
       labels: {
-        formatter: windowState.reverse
+        formatter: graphState.reverse
           ? (value: number) => `${value}`
           : (value: number) => `${value} €`,
         style: {
           colors: "#888888",
-          fontSize: windowState.fontSize,
+          fontSize: graphState.fontSize,
         },
       },
       axisBorder: {
@@ -138,8 +136,8 @@ export const Overview: React.FC<OverviewProps> = ({ data }) => {
     legend: {
       position: "top",
       horizontalAlign: "left",
-      fontSize: windowState.fontSize,
-      offsetX: windowState.reverse ? 0 : 40,
+      fontSize: graphState.fontSize,
+      offsetX: graphState.reverse ? 0 : 40,
       onItemClick: {
         toggleDataSeries: true,
       },

@@ -37,7 +37,7 @@ export const AlertModal: React.FC<AlertModalProps> = ({
     >
       <div className="flex items-center justify-end w-full pt-6 space-x-2">
         <Button disabled={loading} variant="outline" onClick={onClose}>
-          {!loading ? "Annulé" : <Spinner size={20} />}
+          {"Annulé"}
         </Button>
         <Button disabled={loading} variant="destructive" onClick={onConfirm}>
           {!loading ? "Supprimé" : <Spinner size={20} />}

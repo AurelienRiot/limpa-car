@@ -59,6 +59,7 @@ const UserDashboard = async () => {
         <Link href="/dashboard-user/settings" className="mt-2 ">
           <Settings className="w-8 h-8 cursor-pointer" />
         </Link>
+        P
       </div>
       <LogoutButton />
       <OrderTable data={formattedOrders} />

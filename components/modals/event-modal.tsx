@@ -37,6 +37,7 @@ interface EventModalProps {
   onClose: () => void;
   refetchData: (month: Date) => void;
   users: { id: string; name: string | null; email: string | null }[];
+  currentDate: Date | undefined;
 }
 
 const formSchema = z.object({
@@ -52,12 +53,12 @@ export const EventModal: React.FC<EventModalProps> = ({
   onClose,
   users,
   refetchData,
+  currentDate,
 }) => {
   const [isMounted, setIsMounted] = useState(false);
-  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [date, setDate] = useState<Date | undefined>(currentDate);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-
   const form = useForm<EventFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -66,6 +67,10 @@ export const EventModal: React.FC<EventModalProps> = ({
       user: "",
     },
   });
+
+  useEffect(() => {
+    setDate(currentDate);
+  }, [currentDate]);
 
   useEffect(() => {
     setIsMounted(true);

@@ -32,20 +32,6 @@ const AdminDashboardPage = async () => {
   const daysInMonth = eachDayOfInterval({ start, end });
   const saturdaysAndSundays = GetWeekendDays(daysInMonth);
 
-  const todayEvents = await prismadb.event.findMany({
-    where: {
-      dateOfEvent: {
-        equals: new Date(),
-      },
-    },
-    select: {
-      id: true,
-      name: true,
-      description: true,
-      dateOfEvent: true,
-    },
-  });
-
   const events = await prismadb.event.findMany({
     where: {
       dateOfEvent: {

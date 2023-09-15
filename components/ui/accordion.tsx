@@ -27,11 +27,20 @@ const AccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        "flex flex-1 relative lg:text-xl md:text-lg sm:text-base text-sm items-start pl-14 justify-left py-4 font-medium transition-all hover:underline [&[data-state=open]>svg.plus]:scale-0 [&[data-state=closed]>svg.plus]:scale-100   [&[data-state=closed]]:bg-primary [&[data-state=closed]]:text-primary-foreground duration-200 [&[data-state=open]]:bg-white",
+        "flex flex-1 relative lg:text-xl md:text-lg sm:text-base text-sm items-start pl-14 justify-left py-4 font-medium transition-all hover:underline [&[data-state=open]>svg.plus]:scale-0 [&[data-state=closed]>svg.plus]:scale-100   [&[data-state=closed]]:bg-primary dark:[&[data-state=closed]]:bg-gray-300 [&[data-state=closed]]:text-primary-foreground duration-200 [&[data-state=open]]:bg-primary-foreground [&[data-state=closed]>svg.square]:scale-0",
         className
       )}
       {...props}
     >
+      <svg
+        className="absolute left-0 w-11 h-11 stroke-2 top-1/2 shrink-0  translate-y-[-20px] translate-x-[4px] square transition-transform duration-500"
+        viewBox="0 0 32 32"
+        fill="none"
+        stroke="currentColor"
+      >
+        <rect x="5" y="5" rx="5" ry="5" width="22" height="22" />
+      </svg>
+
       <svg
         className="absolute left-0 w-5 h-5 mx-4 transition-transform duration-500 top-1/2 shrink-0 plus translate-y-[-8px]"
         viewBox="0 0 20 20"
@@ -60,7 +69,7 @@ const AccordionContent = React.forwardRef<
   <AccordionPrimitive.Content
     ref={ref}
     className={cn(
-      "overflow-hidden text-muted-foreground font-light transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down px-4 data-[state=open]:bg-white ",
+      "overflow-hidden text-muted-foreground font-light transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down px-4 data-[state=open]:bg-primary-foreground ",
       className
     )}
     {...props}

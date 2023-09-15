@@ -17,65 +17,68 @@ import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import { ChangeEvent, useState } from "react";
 import Loading from "../loading";
-import "./style.css";
+import "./components/style.css";
 
 const Animations = () => {
   const [value, setValue] = useState(50);
 
   return (
-    <Container>
-      <Loading />
+    <>
+      <Container>
+        <Loading />
 
-      <SquareProgressLoadingBarAnimation />
-      <AnimatedGradient />
-      <AnimatedText />
+        <SquareProgressLoadingBarAnimation />
+        <AnimatedGradient />
+        <AnimatedText />
 
-      <ExempleCardHightlight />
-      <div className="flex gap-2">
-        <Icons.package className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-        <Icons.location className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-        <Icons.person className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-        <Icons.settings className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-        <Icons.viewLight className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-        <Icons.viewDark className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-        <Icons.yarn className="w-6 h-6 transition-all duration-300 hover:opacity-50 text-[#2C8EBB]" />
-        <Icons.apple className="w-6 h-6 transition-all duration-300 hover:opacity-50 " />
-        <Icons.aria className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-        <Icons.bird className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-        <Icons.expedition className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-        <Icons.gitHub className="w-6 h-6 text-black transition-all duration-300 hover:opacity-50" />
-        <Icons.google className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-        <Icons.logo className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-        <Icons.npm className="w-6 h-6 text-red-600 transition-all duration-300 hover:opacity-50" />
-        <Icons.radix className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-        <Icons.react className="w-6 h-6 text-blue-600 transition-all duration-300 hover:opacity-50" />
-        <Icons.tailwind className="w-6 h-6 text-blue-400 transition-all duration-300 hover:opacity-50" />
-        <Icons.spinner className="w-6 h-6 transition-all duration-300 hover:opacity-50 " />
-        <JumpingDots />
-        <button className="bg-gradient-to-t duration-500 from-red-500 via-black to-white bg-[size:200%_200%] bg-[position:0%_0%] hover:bg-[position:100%_100%]">
-          Hover me
-        </button>
-        <Input
-          type="number"
-          placeholder="value"
-          value={value}
-          onChange={(e) => setValue(e.currentTarget.valueAsNumber)}
-          className="w-16 "
-        />
-        <Gauge value={value} showValue={true} />
-        <AppearSqaure />
-      </div>
-      <div className="flex flex-wrap items-center justify-center gap-2 mx-auto ">
-        <DemoA />
-        <DemoB />
-        <DemoC />
-      </div>
-      <div className="flex flex-wrap items-center justify-center gap-2 mx-auto ">
-        <DemoD />
-        <DemoE />
-        <DemoF />
-      </div>
-    </Container>
+        <ExempleCardHightlight />
+        <div className="flex gap-2">
+          <Icons.package className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.location className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.person className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.settings className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.viewLight className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.viewDark className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.yarn className="w-6 h-6 transition-all duration-300 hover:opacity-50 text-[#2C8EBB]" />
+          <Icons.apple className="w-6 h-6 transition-all duration-300 hover:opacity-50 " />
+          <Icons.aria className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.bird className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.expedition className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.gitHub className="w-6 h-6 text-black transition-all duration-300 hover:opacity-50" />
+          <Icons.google className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.logo className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.npm className="w-6 h-6 text-red-600 transition-all duration-300 hover:opacity-50" />
+          <Icons.radix className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.react className="w-6 h-6 text-blue-600 transition-all duration-300 hover:opacity-50" />
+          <Icons.tailwind className="w-6 h-6 text-blue-400 transition-all duration-300 hover:opacity-50" />
+          <Icons.spinner className="w-6 h-6 transition-all duration-300 hover:opacity-50 " />
+          <JumpingDots />
+          <button className="bg-gradient-to-t duration-500 from-red-500 via-black to-white bg-[size:200%_200%] bg-[position:0%_0%] hover:bg-[position:100%_100%]">
+            Hover me
+          </button>
+          <Input
+            type="number"
+            placeholder="value"
+            value={value}
+            onChange={(e) => setValue(e.currentTarget.valueAsNumber)}
+            className="w-16 "
+          />
+          <Gauge value={value} showValue={true} />
+          <AppearSqaure />
+        </div>
+
+        <div className="flex flex-wrap items-center justify-center gap-2 mx-auto ">
+          <DemoA />
+          <DemoB />
+          <DemoC />
+        </div>
+        <div className="flex flex-wrap items-center justify-center gap-2 mx-auto ">
+          <DemoD />
+          <DemoE />
+          <DemoF />
+        </div>
+      </Container>
+    </>
   );
 };
 export default Animations;
@@ -110,8 +113,17 @@ const SquareProgressLoadingBarAnimation = () => {
 const AnimatedGradient = () => {
   return (
     <>
-      <div className=" mt-4 w-[200px] h-[200px] overflow-hidden from-red-600 via-white to-red-600 bg-gradient-to-t bg-[size:200%_200%] bg-[position:0%_0%] hover:bg-[position:100%_100%] transform duration-500">
-        <div className="w-full h-full bg-gradient-to-t duration-500 from-teal-300 via-blue-600 to-white bg-[size:200%_200%] bg-[position:0%_0%] hover:bg-[position:100%_100%] transform hover:skew-y-12 hover:skew-x-12" />
+      <div
+        className={` mt-4 w-[200px] h-[200px] overflow-hidden from-red-600 via-white to-red-600 
+          bg-gradient-to-t bg-[size:200%_200%] bg-[position:0%_0%] hover:bg-[position:100%_100%] transform duration-500`}
+      >
+        {" "}
+        <div
+          className={`w-full h-full 
+          bg-gradient-to-t  from-teal-300 via-blue-600 to-white 
+        bg-[size:200%_200%] bg-[position:0%_0%] 
+          hover:bg-[position:100%_100%] hover:skew-y-12 hover:skew-x-12 duration-500 transform`}
+        />
       </div>
     </>
   );
@@ -222,14 +234,13 @@ const ExempleCardHightlight = () => {
       <CardFooter className="flex justify-between">
         <Button
           onClick={() => setVisitors((prev) => prev - 1)}
-          variant="outline"
+          variant="destructive"
           className="text-primary"
         >
           Cancel
         </Button>
         <Button
           variant="shadow"
-          className=""
           onClick={() => {
             setVisitors((previousVisitors) => previousVisitors + 1);
           }}
@@ -244,9 +255,11 @@ const ExempleCardHightlight = () => {
 function Marker({
   value,
   setValue,
+  color,
 }: {
   value: number;
   setValue: (value: number) => void;
+  color: string;
 }) {
   return (
     <div
@@ -265,7 +278,7 @@ function Marker({
             left: "50%",
             top: "50%",
             transform: "translate(-50%, -50%)",
-            background: "#424e82",
+            background: color,
             width: "50px",
             height: "30px",
           }}
@@ -299,7 +312,7 @@ function Marker({
           >
             <path
               d="M12.874 26.6557C12.3017 28.5519 9.61685 28.5519 9.04458 26.6557L0.999992 0H20.9186L12.874 26.6557Z"
-              fill="#424e82"
+              fill={color}
             />
           </svg>
         </div>
@@ -725,6 +738,7 @@ function DemoB() {
 }
 
 function DemoC() {
+  const color = "#424E82";
   const [valueA, setValueA] = useState(25);
   const [valueB, setValueB] = useState(75);
 
@@ -766,7 +780,7 @@ function DemoC() {
               height: "8px",
               top: "50%",
               transform: "translate(0, -50%)",
-              background: "#424E82",
+              background: color,
             }}
           ></div>
           <div
@@ -790,13 +804,13 @@ function DemoC() {
                 style={{
                   width: "14px",
                   height: "14px",
-                  background: "#424e82",
+                  background: color,
                 }}
               ></div>
             </div>
           </div>
-          <Marker value={valueA} setValue={setValueA} />
-          <Marker value={valueB} setValue={setValueB} />
+          <Marker value={valueA} setValue={setValueA} color={color} />
+          <Marker value={valueB} setValue={setValueB} color={color} />
           <div
             className="absolute grid place-items-center"
             style={{
@@ -818,7 +832,7 @@ function DemoC() {
                 style={{
                   width: "14px",
                   height: "14px",
-                  background: "#424e82",
+                  background: color,
                 }}
               ></div>
             </div>

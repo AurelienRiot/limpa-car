@@ -1,11 +1,10 @@
 "use client";
 import { Separator } from "@/components/ui/separator";
+import { cn, isMobileDevice } from "@/lib/utils";
 import { Facebook, Phone } from "lucide-react";
 import { Oswald } from "next/font/google";
 import Link from "next/link";
 import SolutionPro from "./solution-pro";
-import { cn, isMobileDevice } from "@/lib/utils";
-import { useEffect, useState } from "react";
 
 const oswald = Oswald({ subsets: ["latin"] });
 

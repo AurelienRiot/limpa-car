@@ -153,6 +153,7 @@ const AdminCalendar = ({
         onClose={() => setIsEventModalOpen(false)}
         users={users}
         refetchData={handleMonthChange}
+        currentDate={date}
       />
       <Card className="col-span-1 pt-4 sm:p-4 sm:pt-2 sm:col-span-2 xl:col-span-3 ">
         <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">

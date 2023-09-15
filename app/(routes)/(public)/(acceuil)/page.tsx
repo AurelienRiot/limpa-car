@@ -32,6 +32,7 @@ export default async function Home() {
     <>
       {/* <ImagesAccueil name={session?.user?.name} imageUrl={imageUrl} /> */}
       <Container>
+        <CarrouselSlider />
         {/* <Carrousel /> */}
         <div className="relative px-4 pt-6 pb-10 space-y-10 bg-primary-foreground bg-clip-padding ">
           <Suspense fallback={<Loading />}>
@@ -45,7 +46,6 @@ export default async function Home() {
             className="w-auto overflow-auto break-after-column"
           >{`L'utilisateur est ${JSON.stringify(session)}`}</VisibleElement>
 
-          <CarrouselSlider />
           <NosPrestations />
           <Temoignage />
           <ContactAcceuil />

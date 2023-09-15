@@ -80,28 +80,9 @@ export function DataTable<TData, TValue>({
     .filter((header) => header.id !== "actions" && header.id !== "createdAt")
     .map((header) => header.id);
 
-  const removeKeys = ["aucune", ...searchKeys];
-
   const displayKeys = flatHeaders.map(
     (header) => header.column.columnDef.header
   );
-
-  const displayRemovesKeys = ["aucune", ...displayKeys];
-
-  function removeDuplicates(array: any[], key: string) {
-    const seen: { [key: string]: boolean } = {};
-    const result = [];
-    if (key === "aucune") {
-      return array;
-    }
-    for (const obj of array) {
-      if (!(obj[key] in seen)) {
-        seen[obj[key]] = true;
-        result.push(obj);
-      }
-    }
-    return result;
-  }
 
   return (
     <div className="">
@@ -151,24 +132,6 @@ export function DataTable<TData, TValue>({
               {[5, 10, 20, 30, 40, 50].map((pageSize) => (
                 <SelectItem key={pageSize} value={String(pageSize)}>
                   {pageSize} lignes
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-        <div className="sm:pl-2">
-          <Select
-            onValueChange={(selectedKey) => {
-              setData(removeDuplicates(initialData, selectedKey));
-            }}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="Supprimé récurence" />
-            </SelectTrigger>
-            <SelectContent>
-              {removeKeys.map((key, index) => (
-                <SelectItem key={key} value={key}>
-                  {String(displayRemovesKeys[index])}
                 </SelectItem>
               ))}
             </SelectContent>

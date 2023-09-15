@@ -61,35 +61,35 @@ const UserPage = async ({ params }: { params: { userId: string } }) => {
       <div className="flex-1 mb-8 space-y-4 ">
         <p>
           {" "}
-          <strong>Nom :</strong> {user.name}
+          <strong>Nom :</strong> {user?.name}
         </p>
         <p>
-          <strong>Email :</strong> {user.email}
+          <strong>Email :</strong> {user?.email}
         </p>
         <p>
           <strong>Téléphone :</strong>{" "}
-          {user.phone ? user.phone : "Non renseigné"}
+          {user?.phone ? user.phone : "Non renseigné"}
         </p>
-        {user.address ? (
+        {user?.address ? (
           <div className="flex flex-col space-y-2">
             <p>
-              <strong>Adresse :</strong> {user.address[0].line1}
+              <strong>Adresse :</strong> {user?.address[0]?.line1}
             </p>
             <p>
               <strong>{"Complément d'adresse"} :</strong>{" "}
-              {user.address[0].line2}
+              {user?.address[0]?.line2}
             </p>
             <p>
-              <strong>Ville :</strong> {user.address[0].city}
+              <strong>Ville :</strong> {user?.address[0]?.city}
             </p>
             <p>
-              <strong>Code postal :</strong> {user.address[0].postalCode}
+              <strong>Code postal :</strong> {user?.address[0]?.postalCode}
             </p>
             <p>
-              <strong>Région :</strong> {user.address[0].state}
+              <strong>Région :</strong> {user?.address[0]?.state}
             </p>
             <p>
-              <strong>Pays :</strong> {user.address[0].country}
+              <strong>Pays :</strong> {user?.address[0]?.country}
             </p>
           </div>
         ) : (
