@@ -17,30 +17,10 @@ import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import { ChangeEvent, useEffect, useState } from "react";
 import Loading from "../loading";
-import "./components/style.css";
+import { Parallax } from "react-parallax";
 
 const Animations = () => {
   const [value, setValue] = useState(50);
-
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [d, setD] = useState(0);
-  const [s, setS] = useState(0);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const currentScroll = window.pageYOffset;
-      if (currentScroll > scrollPosition) {
-        setD(s - 0.5);
-      } else {
-        setD(s + 0.5);
-      }
-      setScrollPosition(currentScroll);
-      setS(d);
-    };
-
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [scrollPosition, d, s]);
 
   return (
     <div className="m-0">
@@ -98,13 +78,98 @@ const Animations = () => {
           <DemoF />
         </div>
       </Container> */}
-      <div
-        className="h-[500px] w-full bg-cover bg-fixed  parallax"
-        style={{
-          backgroundImage: "url(mountains.jpg)",
-        }}
-      ></div>
-      <div className="px-[30px] py-[100px]">
+      <Parallax
+        bgImage="/detailling_motors.jpeg"
+        bgImageAlt="the cat"
+        strength={-100}
+        bgImageStyle={{ position: "fixed", backgroundSize: "contain" }}
+        className="w-[80vw] overflow-hidden"
+      >
+        <p className="absolute right-0">cva</p>
+        <div className="px-[30px] py-[100px] bg-primary-foreground/50">
+          <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+
+        <div className="px-[30px] py-[100px] bg-primary-foreground/50">
+          <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+
+        <div className="px-[30px] py-[100px] bg-primary-foreground/50">
+          <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+        <div className="px-[30px] py-[100px] bg-primary-foreground/50">
+          <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+      </Parallax>
+      <div className="px-[30px] py-[100px] bg-primary-foreground/50 z-10">
         <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -124,90 +189,6 @@ const Animations = () => {
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
       </div>
-      <div
-        className="h-[500px] w-full bg-cover bg-fixed  parallax "
-        style={{
-          backgroundImage: "url(mountains.jpg)",
-        }}
-      ></div>
-      <div className="px-[30px] py-[100px]">
-        <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-      </div>
-      <div
-        className="h-[500px] w-full bg-cover bg-fixed  parallax"
-        style={{
-          backgroundImage: "url(mountains.jpg)",
-        }}
-      ></div>
-      <div className="px-[30px] py-[100px]">
-        <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-      </div>
-      <div
-        className="h-[500px] w-full bg-cover bg-fixed  parallax"
-        style={{
-          backgroundImage: "url(mountains.jpg)",
-        }}
-      ></div>
-      <div className="px-[30px] py-[100px]">
-        <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-      </div>
-      <div
-        className="h-[500px] w-full bg-cover bg-fixed  parallax"
-        style={{
-          backgroundImage: "url(mountains.jpg)",
-        }}
-      ></div>
     </div>
   );
 };
