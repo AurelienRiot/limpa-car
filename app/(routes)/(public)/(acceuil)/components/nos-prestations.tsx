@@ -44,9 +44,9 @@ const NosPrestations = () => {
   ];
 
   return (
-    <div>
+    <div className="relative px-4 pt-6 pb-10 space-y-10 bg-fixed bg-center bg-no-repeat bg-cover bg-gradient-to-t from-primary-foreground to-primary">
       <div
-        className={`relative flex flex-col items-center justify-center ${oswald.className} `}
+        className={`relative flex flex-col items-center justify-center ${oswald.className}  `}
       >
         <h2 className="text-4xl text-center sm:text-7xl">NOS PRESTATIONS</h2>
         <Separator className="w-24 mx-auto my-4" />
