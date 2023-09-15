@@ -40,7 +40,7 @@ const DisplayEvents = ({
       await axios.delete(`/api/event/${eventId}`);
       if (date) refetchData(date);
       router.refresh();
-      toast.success("Commande supprimée");
+      toast.success("Rendez-vous supprimé");
     } catch (error) {
       toast.error("Erreur");
     } finally {

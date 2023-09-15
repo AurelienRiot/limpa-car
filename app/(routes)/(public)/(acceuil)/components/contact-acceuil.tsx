@@ -5,6 +5,7 @@ import { Facebook, Phone } from "lucide-react";
 import { Oswald } from "next/font/google";
 import Link from "next/link";
 import SolutionPro from "./solution-pro";
+import { useEffect, useRef, useState } from "react";
 
 const oswald = Oswald({ subsets: ["latin"] });
 

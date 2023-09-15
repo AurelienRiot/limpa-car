@@ -19,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <AuthProviders>
-      <html lang="fr">
+    <html lang="fr">
+      <AuthProviders>
         <body className={`${inter.className} debug-screens`}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {" "}
@@ -28,7 +28,7 @@ export default function RootLayout({
             <TooltipProvider delayDuration={100}>{children}</TooltipProvider>
           </ThemeProvider>
         </body>
-      </html>
-    </AuthProviders>
+      </AuthProviders>
+    </html>
   );
 }

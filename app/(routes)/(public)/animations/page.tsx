@@ -15,19 +15,16 @@ import { Gauge } from "@/components/ui/gauge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import Loading from "../loading";
-import { Parallax } from "react-parallax";
+import "./style.css";
 
 const Animations = () => {
   const [value, setValue] = useState(50);
 
-  const refdivref = useRef(null);
-
   return (
     <>
-      <div className="w-[80vw] relative  " ref={refdivref}>
-        {/* <Container>
+      <Container>
         <Loading />
 
         <SquareProgressLoadingBarAnimation />
@@ -57,12 +54,12 @@ const Animations = () => {
           <Icons.spinner className="w-6 h-6 transition-all duration-300 hover:opacity-50 " />
           <JumpingDots />
           <button className="bg-gradient-to-t duration-500 from-red-500 via-black to-white bg-[size:200%_200%] bg-[position:0%_0%] hover:bg-[position:100%_100%]">
-          Hover me
+            Hover me
           </button>
           <Input
-          type="number"
-          placeholder="value"
-          value={value}
+            type="number"
+            placeholder="value"
+            value={value}
             onChange={(e) => setValue(e.currentTarget.valueAsNumber)}
             className="w-16 "
           />
@@ -80,119 +77,14 @@ const Animations = () => {
           <DemoE />
           <DemoF />
         </div>
-      </Container> */}
-        <Parallax
-          bgImage="/detailling_motors.jpeg"
-          bgImageAlt="the cat"
-          strength={0}
-          bgStyle={{}}
-          bgImageStyle={{ position: "fixed", objectFit: "cover" }}
-          parent={refdivref?.current ? refdivref.current : undefined}
-        >
-          <div className="bg-primary-foreground/50">
-            <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-          </div>
 
-          <div className=" bg-primary-foreground/50">
-            <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-          </div>
-
-          <div className=" bg-primary-foreground/50">
-            <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-          </div>
-          <div className="px-[30px] py-[100px] bg-primary-foreground/50">
-            <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-          </div>
-        </Parallax>
-      </div>
-      <div className="z-10 bg-primary-foreground/50">
-        <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <p className="max-w-[900px] text-base leading-[35px] mx-auto my-5">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-      </div>
+        <div className="h-[200px] w-[200px] overflow-hidden overflow-y-auto resize-y overscroll-auto scroll-smooth">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit,
+          assumenda quis ex asperiores libero expedita numquam quae enim illum
+          eos voluptatibus nobis voluptate dolores ea similique pariatur. Odit,
+          placeat necessitatibus?
+        </div>
+      </Container>
     </>
   );
 };
@@ -200,13 +92,13 @@ export default Animations;
 
 const JumpingDots = () => {
   return (
-    <div className="group cursor-pointer grid grid-cols-[repeat(3,5px)] auto-rows-[5px] gap-1 translate-y-[3px] ml-4">
-      <div className="border rounded-[50%] border-solid border-[rgb(139,136,136)]  group-hover:animate-[jump_0.9s_ease_2]"></div>
-      <div className="border rounded-[50%] border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.8s_ease_0.1s_2]"></div>
-      <div className="border rounded-[50%] border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.7s_ease_0.2s_2]"></div>
-      <div className="border rounded-[50%] border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.6s_ease_0.3s_2]"></div>
-      <div className="border rounded-[50%] border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.5s_ease_0.4s_2]"></div>
-      <div className="border rounded-[50%] border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.4s_ease_0.5s_2]"></div>
+    <div className="group cursor-pointer grid grid-cols-[repeat(3,5px)] auto-rows-[5px] gap-1 translate-y-[3px] ml-4 hover:scale-[150%] transition-transform duration-1000">
+      <div className="border rounded-[50%]  border-solid border-[rgb(139,136,136)]  group-hover:animate-[jump_0.9s_ease_2]"></div>
+      <div className="border rounded-[50%]  border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.8s_ease_0.1s_2]"></div>
+      <div className="border rounded-[50%]  border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.7s_ease_0.2s_2]"></div>
+      <div className="border rounded-[50%]  border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.6s_ease_0.3s_2]"></div>
+      <div className="border rounded-[50%]  border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.5s_ease_0.4s_2]"></div>
+      <div className="border rounded-[50%]  border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.4s_ease_0.5s_2]"></div>
     </div>
   );
 };
