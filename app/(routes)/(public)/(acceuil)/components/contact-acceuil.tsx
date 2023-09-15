@@ -18,11 +18,12 @@ const ContactAcceuil = () => {
     <>
       <div
         className={cn(
-          "relative w-full bg-center bg-no-repeat bg-cover shadow-lg ",
-          isMobileDevice() ? "bg-scroll" : "bg-fixed"
+          "relative w-full bg-center bg-no-repeat bg-cover shadow-lg "
+          // isMobileDevice() ? "bg-scroll" : "bg-fixed"
         )}
         style={{
           backgroundImage: `url(/home-page/TEST-HOME-BANNER.webp)`,
+          backgroundAttachment: "fixed",
         }}
       >
         <SolutionPro />

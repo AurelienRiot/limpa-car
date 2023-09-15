@@ -48,24 +48,6 @@ const NosPrestations = () => {
       <div
         className={`relative flex flex-col items-center justify-center ${oswald.className} `}
       >
-        <div className="absolute inset-0 z-0 w-full overflow-hidden">
-          <Image
-            // width="1080"
-            // height="1350"
-            src="/detailling_motors.jpg"
-            className="absolute inset-0 z-0 w-full attachment-full size-full"
-            alt=""
-            fill
-            object-fit="cover"
-            data-siteorigin-parallax="true"
-            sizes="(max-width: 1080px) 100vw, 1080px"
-            style={{
-              transform: "translate3d(0px, -9px, 0px) scale(1.2)",
-              willChange: "transform",
-              transition: "transform 0.4s cubic-bezier(0, 0, 0, 1) 0s",
-            }}
-          />
-        </div>
         <h2 className="text-4xl text-center sm:text-7xl">NOS PRESTATIONS</h2>
         <Separator className="w-24 mx-auto my-4" />
         <p className="mt-20 mb-8 text-center ">COVID-19</p>
