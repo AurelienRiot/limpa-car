@@ -18,28 +18,43 @@ import { cn } from "@/lib/utils";
 import { ChangeEvent, useState } from "react";
 import Loading from "../loading";
 import "./style.css";
-import { IParallax, Parallax, ParallaxLayer } from "@react-spring/parallax";
-import Footer from "@/components/footer";
+import { Parallax } from "react-parallax";
 
 const Animations = () => {
   const [value, setValue] = useState(50);
 
-  let element: IParallax | null;
+  // let element: IParallax | null;
 
-  const [buttonMessage, setButtonMessage] = useState("Down");
-  const handleClick = () => {
-    if (buttonMessage === "Down") {
-      setButtonMessage("Up");
-      element?.scrollTo(2);
-    }
-    if (buttonMessage === "Up") {
-      setButtonMessage("Down");
-      element?.scrollTo(0);
-    }
-  };
+  // const [buttonMessage, setButtonMessage] = useState("Down");
+  // const handleClick = () => {
+  //   if (buttonMessage === "Down") {
+  //     setButtonMessage("Up");
+  //     element?.scrollTo(2);
+  //   }
+  //   if (buttonMessage === "Up") {
+  //     setButtonMessage("Down");
+  //     element?.scrollTo(0);
+  //   }
+  // };
 
   return (
-    <>
+    <div className="p-0 m-0">
+      <div className="h-screen bg-gray-300"></div>
+      <Parallax
+        strength={600}
+        bgImage="/parallax/woman.jpg"
+        bgStyle={{ "background-size": "cover" }}
+        className="w-[50vw] h-[80vh] relative "
+      >
+        <div className="">
+          <div className="absolute px-1 py-4 text-lg text-white transform -translate-x-1/2 -translate-y-1/2 bg-gray-400 left-1/2 rounded-2xl">
+            {" "}
+            Normal Parallax
+          </div>
+        </div>
+      </Parallax>
+      <div className="h-screen bg-gray-800"></div>
+
       {/* <Container>
         <Loading />
 
@@ -94,15 +109,15 @@ const Animations = () => {
           <DemoF />
         </div>
       </Container> */}
-      <div className={"w-[80vw]  h-[100vh]"}>
+      {/* <div className={"w-[80vw]  h-[100vh] "}>
         <Parallax
-          pages={1.45}
+          pages={1}
           ref={(ref) => (element = ref)}
-          className="w-full h-full"
+          className="w-[80vw]  h-[100vh] "
         >
           <ParallaxLayer
             offset={0}
-            speed={0.5}
+            speed={0}
             factor={2}
             style={{
               backgroundImage: `url(/parallax/layer-07.png)`,
@@ -182,16 +197,11 @@ const Animations = () => {
               </div>
             </div>
           </ParallaxLayer>
+      
+
         </Parallax>
-      </div>
-      <Footer />
-      <Footer />
-      <Footer />
-      <Footer />
-      <Footer />
-      <Footer />
-      <Footer />
-    </>
+      </div> */}
+    </div>
   );
 };
 export default Animations;

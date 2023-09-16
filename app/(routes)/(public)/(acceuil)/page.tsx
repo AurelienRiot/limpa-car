@@ -50,6 +50,12 @@ export default async function Home() {
           <Temoignage />
           <ContactAcceuil />
         </div>
+        <div className="w-40 h-20 overflow-scroll hide-scrollbar">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
+          nisi culpa ipsa ea iusto, enim, architecto sapiente hic itaque, qui
+          adipisci tempora quidem corporis saepe asperiores? Non quas cumque
+          numquam.
+        </div>
       </Container>
     </>
   );

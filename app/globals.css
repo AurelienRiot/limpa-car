@@ -85,10 +85,13 @@ body,
   }
 }
 
-@layer utilities {
-  .content-auto {
-    content-visibility: auto;
-  }
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Disable number input spin button */
