@@ -85,6 +85,12 @@ body,
   }
 }
 
+@layer utilities {
+  .content-auto {
+    content-visibility: auto;
+  }
+}
+
 /* Disable number input spin button */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {

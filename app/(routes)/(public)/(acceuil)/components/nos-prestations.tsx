@@ -44,7 +44,7 @@ const NosPrestations = () => {
   ];
 
   return (
-    <div className="relative px-4 pt-6 pb-10 space-y-10 bg-fixed bg-center bg-no-repeat bg-cover bg-gradient-to-t from-primary-foreground to-primary">
+    <div className="relative px-4 pt-6 pb-10 space-y-10 ">
       <div
         className={`relative flex flex-col items-center justify-center ${oswald.className}  `}
       >
@@ -82,9 +82,9 @@ const NosPrestations = () => {
             <div className="flex flex-col">
               <VisibleElement
                 variant="fade"
-                className="flex items-center mb-2 space-x-2 font-semibold"
+                className="z-10 flex items-center mb-2 space-x-2 font-semibold"
               >
-                <p>{prestation.text}</p>
+                {prestation.text}
               </VisibleElement>
             </div>
           </div>

@@ -18,13 +18,29 @@ import { cn } from "@/lib/utils";
 import { ChangeEvent, useState } from "react";
 import Loading from "../loading";
 import "./style.css";
+import { IParallax, Parallax, ParallaxLayer } from "@react-spring/parallax";
+import Footer from "@/components/footer";
 
 const Animations = () => {
   const [value, setValue] = useState(50);
 
+  let element: IParallax | null;
+
+  const [buttonMessage, setButtonMessage] = useState("Down");
+  const handleClick = () => {
+    if (buttonMessage === "Down") {
+      setButtonMessage("Up");
+      element?.scrollTo(2);
+    }
+    if (buttonMessage === "Up") {
+      setButtonMessage("Down");
+      element?.scrollTo(0);
+    }
+  };
+
   return (
     <>
-      <Container>
+      {/* <Container>
         <Loading />
 
         <SquareProgressLoadingBarAnimation />
@@ -77,14 +93,104 @@ const Animations = () => {
           <DemoE />
           <DemoF />
         </div>
-
-        <div className="h-[200px] w-[200px] overflow-hidden overflow-y-auto resize-y overscroll-auto scroll-smooth">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit,
-          assumenda quis ex asperiores libero expedita numquam quae enim illum
-          eos voluptatibus nobis voluptate dolores ea similique pariatur. Odit,
-          placeat necessitatibus?
-        </div>
-      </Container>
+      </Container> */}
+      <div className={"w-[80vw]  h-[100vh]"}>
+        <Parallax
+          pages={1.45}
+          ref={(ref) => (element = ref)}
+          className="w-full h-full"
+        >
+          <ParallaxLayer
+            offset={0}
+            speed={0.5}
+            factor={2}
+            style={{
+              backgroundImage: `url(/parallax/layer-07.png)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          ></ParallaxLayer>
+          <ParallaxLayer
+            offset={0}
+            speed={0.8}
+            factor={2}
+            style={{
+              backgroundImage: `url(/parallax/layer-06.png)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          ></ParallaxLayer>
+          <ParallaxLayer
+            offset={0.9999}
+            speed={1.5}
+            factor={1.1}
+            style={{
+              backgroundImage: `url(/parallax/layer-05.png)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          ></ParallaxLayer>
+          <ParallaxLayer
+            offset={0.9999}
+            speed={3}
+            factor={2.1}
+            style={{
+              backgroundImage: `url(/parallax/layer-04.png)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          ></ParallaxLayer>
+          <ParallaxLayer
+            offset={0}
+            speed={2}
+            factor={4}
+            style={{
+              backgroundImage: `url(/parallax/layer-03.png)`,
+              backgroundSize: "contain",
+              backgroundPosition: "center",
+            }}
+          ></ParallaxLayer>
+          <ParallaxLayer
+            offset={0.87}
+            speed={1}
+            factor={1}
+            style={{
+              backgroundImage: `url(/parallax/layer-02.png)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          ></ParallaxLayer>
+          <ParallaxLayer
+            offset={0.9}
+            speed={1}
+            factor={1}
+            style={{
+              backgroundImage: `url(/parallax/layer-01.png)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          ></ParallaxLayer>
+          <ParallaxLayer
+            sticky={{ start: 0, end: 1 }}
+            speed={10}
+            factor={1}
+            onClick={() => handleClick()}
+          >
+            <div className="flex items-center justify-center w-screen h-screen font-bold">
+              <div className="w-2/6 py-8 text-center border-2 border-white rounded cursor-pointer backdrop-blur-sm backdrop-grayscale ">
+                <h1 className="text-6xl text-violet-600">{buttonMessage}</h1>
+              </div>
+            </div>
+          </ParallaxLayer>
+        </Parallax>
+      </div>
+      <Footer />
+      <Footer />
+      <Footer />
+      <Footer />
+      <Footer />
+      <Footer />
+      <Footer />
     </>
   );
 };
