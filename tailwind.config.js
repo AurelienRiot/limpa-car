@@ -18,15 +18,6 @@ module.exports = {
       },
     },
     extend: {
-      className: {
-        "scrollbar-hide": {
-          "-ms-overflow-style": "none",
-          "scrollbar-width": "none",
-        },
-        "scrollbar-hide::-webkit-scrollbar": {
-          display: "none",
-        },
-      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

@@ -70,7 +70,3 @@ input[type="range"]:active::-moz-range-thumb {
   border: none;
   outline: none;
 }
-
-.rt90 {
-  transform: rotate(90deg);
-}
