@@ -39,15 +39,15 @@ const Animations = () => {
 
   return (
     <div className="p-0 m-0">
-      <div className="h-screen bg-gray-300"></div>
       <Parallax
         strength={600}
         bgImage="/parallax/woman.jpg"
-        bgStyle={{ "background-size": "cover" }}
-        className="w-[50vw] h-[80vh] relative "
+        style={{
+          transform: "translate3d(0,0,0)",
+        }}
       >
-        <div className="">
-          <div className="absolute px-1 py-4 text-lg text-white transform -translate-x-1/2 -translate-y-1/2 bg-gray-400 left-1/2 rounded-2xl">
+        <div className="h-screen">
+          <div className="absolute px-1 py-4 text-lg text-white -translate-x-1/2 -translate-y-1/2 bg-gray-400 left-1/2 top-1/2 rounded-2xl">
             {" "}
             Normal Parallax
           </div>
