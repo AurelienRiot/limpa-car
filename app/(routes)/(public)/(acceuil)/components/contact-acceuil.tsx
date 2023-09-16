@@ -5,6 +5,9 @@ import { Facebook, Phone } from "lucide-react";
 import { Oswald } from "next/font/google";
 import Link from "next/link";
 import SolutionPro from "./solution-pro";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import throttle from "lodash.throttle";
 
 const oswald = Oswald({ subsets: ["latin"] });
 
@@ -13,18 +16,54 @@ const ContactAcceuil = () => {
   if (typeof window !== "undefined") {
     test = navigator.userAgent;
   }
+  const divBg = useRef<HTMLDivElement>(null);
+  const heightDivBg = useRef<number>(0);
+  const [offsetY, setOffsetY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = throttle(() => {
+      if (divBg.current) {
+        const rect = divBg.current.getBoundingClientRect();
+        heightDivBg.current = rect.bottom - rect.top;
+        setOffsetY(-(rect.top + heightDivBg.current / 4));
+      }
+    }, 100); // Throttle scroll event handler to run every 200ms
+
+    window.addEventListener("scroll", handleScroll, { passive: true }); // Use passive event listener for better performance
+
+    return () => {
+      handleScroll.cancel(); // Cancel any trailing throttled calls
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
       <div
+        ref={divBg}
         className={cn(
-          "relative w-full bg-center bg-no-repeat bg-cover shadow-lg ",
+          "relative w-full bg-center bg-no-repeat bg-cover shadow-lg overflow-hidden",
           isMobileDevice() ? "bg-scroll" : "bg-fixed"
         )}
-        style={{
-          backgroundImage: `url(/home-page/TEST-HOME-BANNER.webp)`,
-        }}
+        // style={{
+        //   backgroundImage: `url(/home-page/TEST-HOME-BANNER.webp)`,
+        // }}
       >
+        {/* <div className="w-[500px] h-[500px] bg-black"></div> */}
+        <Image
+          src={"/home-page/TEST-HOME-BANNER.webp"}
+          alt=""
+          // width={1920}
+          // height={1080}
+          layout="fill"
+          objectFit="cover"
+          className="absolute top-0 bottom-0 left-0 right-0 opacity-40"
+          style={{
+            transition: "transform 0.2s linear",
+            transform: `translateY(${offsetY}px)`,
+          }}
+        />
+
         <SolutionPro />
         <div
           className={`flex flex-col items-center    text-white ${oswald.className} backdrop-blur-xl`}
