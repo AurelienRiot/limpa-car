@@ -22,6 +22,7 @@ export default async function Home() {
       label: "Acceuil",
     },
   });
+
   const imageUrl = imagesAccueil?.imageUrl || "";
 
   return (
