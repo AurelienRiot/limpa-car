@@ -5,7 +5,7 @@ import { ApexOptions } from "apexcharts";
 import { useTheme } from "next-themes";
 import { GraphDataProps } from "@/actions-server/get-graph-revenue";
 import dynamic from "next/dynamic";
-import { isMobileDevice } from "@/lib/utils";
+import { isWindowSmallerThan } from "@/lib/utils";
 const DynamicReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
@@ -30,11 +30,11 @@ export const Overview: React.FC<OverviewProps> = ({ data }) => {
   ];
   useEffect(() => {
     const checkMobile = () => {
-      if (isMobileDevice(640)) {
+      if (isWindowSmallerThan(640)) {
         setGraphState({ fontSize: "12px", reverse: true, reduceMonth: false });
         return;
       }
-      if (isMobileDevice(1150)) {
+      if (isWindowSmallerThan(1150)) {
         setGraphState({ fontSize: "14px", reverse: false, reduceMonth: true });
         return;
       }

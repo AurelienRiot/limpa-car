@@ -3,16 +3,19 @@ import { twMerge } from "tailwind-merge";
 import { fr } from "date-fns/locale";
 import { format } from "date-fns";
 
-export function isMobileDevice(input: "Mobile" | number = "Mobile") {
+export function isWindowSmallerThan(windowSize: number) {
   if (typeof window === "undefined") {
     return false;
   }
 
-  if (input === "Mobile") {
-    return navigator.userAgent.indexOf(input) !== -1;
-  }
+  return window.innerWidth < windowSize;
+}
 
-  return window.innerWidth < input;
+export function isMobile() {
+  if (typeof window === "undefined") {
+    return false;
+  }
+  return navigator.userAgent.indexOf("Mobile") !== -1;
 }
 
 export const API_URL = process.env.NEXT_PUBLIC_API_URL;

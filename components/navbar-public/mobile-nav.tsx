@@ -13,7 +13,7 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
-import { cn, isMobileDevice } from "@/lib/utils";
+import { cn, isWindowSmallerThan } from "@/lib/utils";
 import {
   Car,
   Check,
@@ -62,7 +62,7 @@ export default function MobileNav({ className, data }: MobileNavProps) {
   };
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(isMobileDevice(1024));
+    const checkMobile = () => setIsMobile(isWindowSmallerThan(1024));
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);

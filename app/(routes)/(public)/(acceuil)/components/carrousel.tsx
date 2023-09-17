@@ -69,11 +69,10 @@ const Carrousel = () => {
                   key={index}
                   data-state={index === carouselIndex ? "active" : "inactive"}
                   src={slide.image}
-                  object-fit="cover"
                   width={702}
                   height={930}
                   alt={slide.alt}
-                  className=" data-[state=inactive]:hidden      duration-300 data-[state=active]:animate-in data-[state=active]:fade-in-0 "
+                  className=" data-[state=inactive]:hidden object-cover     duration-300 data-[state=active]:animate-in data-[state=active]:fade-in-0 "
                 />
               );
             })}

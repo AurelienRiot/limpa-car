@@ -3,17 +3,13 @@ import { getServerSession } from "next-auth";
 import Container from "@/components/ui/container";
 import { Suspense } from "react";
 import Loading from "@/app/(routes)/(public)/loading";
-import ImagesAccueil from "./components/images-accueil";
 import prismadb from "@/lib/prismadb";
 import { VisibleElement } from "@/components/animations/visible-element";
 import GetProducts from "@/actions-server/get-products";
 import ProductList from "@/components/products-list";
-import SolutionPro from "./components/solution-pro";
 import ContactAcceuil from "./components/contact-acceuil";
 import Temoignage from "./components/temoignage";
 import NosPrestations from "./components/nos-prestations";
-import Carrousel from "./components/carrousel";
-import ImageSlider from "./components/ImageSlider";
 import CarrouselSlider from "./components/carrousel-slider";
 
 export default async function Home() {

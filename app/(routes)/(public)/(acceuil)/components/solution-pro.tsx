@@ -12,9 +12,9 @@ const oswald = Oswald({ subsets: ["latin"] });
 const SolutionPro = () => {
   return (
     <>
-      <div className="py-20 bg-white bg-opacity-90 dark:bg-black">
+      <div className="relative py-20 bg-primary-foreground/80 ">
         <div
-          className={`flex flex-col items-center justify-center ${oswald.className}`}
+          className={`flex flex-col items-center justify-center ${oswald.className} `}
         >
           <h2 className="text-4xl text-center text-transparent sm:text-7xl bg-gradient-to-b from-primary via-transparent to-primary bg-clip-text bg-[size:200%_200%] bg-[position:0%_0%] hover:bg-[position:100%_100%] transform  duration-500">
             SOLUTIONS PRO

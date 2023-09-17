@@ -74,7 +74,7 @@ const Temoignage = () => {
   return (
     <>
       <div
-        className={` flex flex-col items-center justify-center ${raleway.className} pb-20`}
+        className={` flex flex-col items-center justify-center ${raleway.className} pb-20 `}
       >
         <h2 className="text-4xl text-center sm:text-7xl">Ils témoignent</h2>
         <Separator className="w-20 mx-auto my-4" />
@@ -82,7 +82,7 @@ const Temoignage = () => {
           Laissez votre avis !
         </p>
       </div>
-      <div className="relative w-full min-h-[600px]">
+      <div className="relative w-full h-[80vh]">
         <div className="absolute top-0 left-0 w-full h-full">
           <Image
             priority
@@ -93,12 +93,12 @@ const Temoignage = () => {
             className="absolute top-0 left-0 object-cover object-center w-full h-full"
           />
         </div>
-        <div className="absolute top-0 left-0 flex flex-col items-center w-full h-full bg-black opacity-60 "></div>
+        <div className="absolute top-0 left-0 flex flex-col items-center w-full h-full bg-slate-900 opacity-60 "></div>
         <div className="absolute top-0 w-0 h-0 -translate-x-1/2 border-l-[30px] border-r-[30px] border-t-[30px] border-b-0 border-transparent border-t-primary-foreground left-1/2"></div>
         <div
           className={`absolute top-10 flex flex-col items-center w-full h-full  text-white ${raleway.className}`}
         >
-          <Quote className="mt-10" size={40} />
+          <Quote className="mt-6" size={40} />
 
           <VisibleElement
             onMouseEnter={() => setPaused(true)}
@@ -106,7 +106,7 @@ const Temoignage = () => {
             duration={1}
             as="p"
             key={currentTemoignage.text}
-            className="px-16 my-4 text-lg text-center sm:px-32 sm:text-2xl md:text-3xl lg:w-2/3"
+            className="px-2 my-4 text-base text-center sm:px-24 sm:text-xl md:text-2xl lg:w-2/3"
           >
             &quot; {currentTemoignage.text} &quot;{" "}
           </VisibleElement>

@@ -1,6 +1,5 @@
 "use client";
 import { Separator } from "@/components/ui/separator";
-import { cn, isMobileDevice } from "@/lib/utils";
 import { Facebook, Phone } from "lucide-react";
 import { Oswald } from "next/font/google";
 import Link from "next/link";
@@ -41,27 +40,25 @@ const ContactAcceuil = () => {
     <>
       <div
         ref={divBg}
-        className="relative w-full overflow-hidden shadow-lg"
+        className="relative w-full overflow-hidden bg-black shadow-lg "
         // style={{
         //   backgroundImage: `url(/home-page/TEST-HOME-BANNER.webp)`,
         // }}
       >
-        {/* <div className="w-[500px] h-[500px] bg-black"></div> */}
         <Image
           src={"/home-page/TEST-HOME-BANNER.webp"}
           alt=""
           width={1920}
           height={1080}
-          className="absolute object-cover h-screen sm:h-full opacity-40"
+          className="absolute inset-0 object-cover h-screen sm:h-full "
           style={{
             transition: "transform 0.2s linear",
             transform: `translateY(${offsetY}px)`,
           }}
         />
-
         <SolutionPro />
         <div
-          className={`flex flex-col items-center    text-white ${oswald.className} backdrop-blur-md`}
+          className={`flex flex-col items-center  text-white ${oswald.className} backdrop-blur-md`}
         >
           <h1 className="mb-6 text-5xl mt-14 sm:text-7xl">LIMPA CAR </h1>
           <Separator className="w-24" />
