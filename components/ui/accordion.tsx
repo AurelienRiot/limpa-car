@@ -27,13 +27,13 @@ const AccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        "flex flex-1 relative lg:text-xl md:text-lg sm:text-base text-sm items-start pl-14 justify-left py-4 font-medium transition-all hover:underline [&[data-state=open]>svg.plus]:scale-0 [&[data-state=closed]>svg.plus]:scale-100   [&[data-state=closed]]:bg-primary dark:[&[data-state=closed]]:bg-gray-300 [&[data-state=closed]]:text-primary-foreground duration-200 [&[data-state=open]]:bg-primary-foreground [&[data-state=closed]>svg.square]:scale-0",
-        className
+        "justify-left relative flex flex-1 items-start py-4 pl-14 text-sm font-medium transition-all duration-200 hover:underline sm:text-base md:text-lg lg:text-xl [&[data-state=closed]>svg.plus]:scale-100   [&[data-state=closed]>svg.square]:scale-0 [&[data-state=closed]]:bg-primary [&[data-state=closed]]:text-primary-foreground dark:[&[data-state=closed]]:bg-gray-300 [&[data-state=open]>svg.plus]:scale-0 [&[data-state=open]]:bg-primary-foreground",
+        className,
       )}
       {...props}
     >
       <svg
-        className="absolute left-0 w-11 h-11 stroke-2 top-1/2 shrink-0  translate-y-[-20px] translate-x-[4px] square transition-transform duration-500"
+        className="square absolute left-0 top-1/2 h-11 w-11 shrink-0  translate-x-[4px] translate-y-[-20px] stroke-2 transition-transform duration-500"
         viewBox="0 0 32 32"
         fill="none"
         stroke="currentColor"
@@ -42,14 +42,14 @@ const AccordionTrigger = React.forwardRef<
       </svg>
 
       <svg
-        className="absolute left-0 w-5 h-5 mx-4 transition-transform duration-500 top-1/2 shrink-0 plus translate-y-[-8px]"
+        className="plus absolute left-0 top-1/2 mx-4 h-5 w-5 shrink-0 translate-y-[-8px] transition-transform duration-500"
         viewBox="0 0 20 20"
         fill="currentColor"
       >
         <rect width="2" height="20" x="9" y="0" />
       </svg>
       <svg
-        className="absolute left-0 w-5 h-5 mx-4 top-1/2 shrink-0 "
+        className="absolute left-0 top-1/2 mx-4 h-5 w-5 shrink-0 "
         viewBox="0 0 20 20"
         fill="currentColor"
       >
@@ -69,12 +69,12 @@ const AccordionContent = React.forwardRef<
   <AccordionPrimitive.Content
     ref={ref}
     className={cn(
-      "overflow-hidden text-muted-foreground font-light transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down px-4 bg-primary-foreground ",
-      className
+      "overflow-hidden    bg-primary-foreground  px-4 font-light text-muted-foreground transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down ",
+      className,
     )}
     {...props}
   >
-    <div className="pt-0 pb-4 transition-opacity duration-200 ease-out">
+    <div className="pb-4 pt-0 transition-opacity duration-200 ease-out">
       {children}
     </div>
   </AccordionPrimitive.Content>

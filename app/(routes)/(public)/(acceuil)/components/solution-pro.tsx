@@ -5,22 +5,22 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "../../../../../components/ui/accordion";
+} from "@/components/ui/accordion";
 
 const oswald = Oswald({ subsets: ["latin"] });
 
 const SolutionPro = () => {
   return (
     <>
-      <div className="relative py-20 bg-primary-foreground/80 ">
+      <div className="relative  bg-primary-foreground/80 py-20 ">
         <div
-          className={`flex flex-col items-center justify-center ${oswald.className} `}
+          className={`flex flex-col    items-center justify-center ${oswald.className} `}
         >
-          <h2 className="text-4xl text-center text-transparent sm:text-7xl bg-gradient-to-b from-primary via-transparent to-primary bg-clip-text bg-[size:200%_200%] bg-[position:0%_0%] hover:bg-[position:100%_100%] transform  duration-500">
+          <h2 className="transform bg-gradient-to-b from-primary via-transparent to-primary bg-[size:200%_200%] bg-clip-text bg-[position:0%_0%] text-center text-4xl text-transparent duration-500 hover:bg-[position:100%_100%]  sm:text-7xl">
             SOLUTIONS PRO
           </h2>
-          <Separator className="w-20 mx-auto my-4" />
-          <p className="mb-4 font-sans font-light text-center">
+          <Separator className="mx-auto my-4 w-20" />
+          <p className="mb-4 text-center font-sans font-light">
             Depuis 2001, Netcars accompagne les professionnels.
           </p>
         </div>
@@ -30,17 +30,27 @@ const SolutionPro = () => {
               CONCESSIONNAIRES
             </AccordionTrigger>
             <AccordionContent>
-              Préparations des véhicules d’occasion, en clientèle ou dans nos
-              ateliers <br /> Préparation des véhicules neufs, en clientèle ou
-              dans nos ateliers <br /> Mise à disposition de metteur en main
-              pour livraisons de VO et de VN <br />
-              Remises en état de carrosseries
-              <br /> Rayures éffacées sans délais d’immobilisation important
-              <br /> Lustrages d’éléments de carrosserie
-              <br /> Lavages de parc d’exposition Accompagnement aux
-              préparations de portes ouvertes
-              <br /> Convoyages de véhicules neufs ou d’occasion Stockage de
-              véhicules
+              <ul className="list-inside list-disc">
+                <li>
+                  Préparations des véhicules d’occasion, en clientèle ou dans
+                  nos ateliers
+                </li>
+                <li>
+                  Préparation des véhicules neufs, en clientèle ou dans nos
+                  ateliers
+                </li>
+                <li>
+                  Mise à disposition de metteur en main pour livraisons de VO et
+                  de VN
+                </li>
+                <li>Remises en état de carrosseries</li>
+                <li>Rayures éffacées sans délais d’immobilisation important</li>
+                <li>Lustrages d’éléments de carrosserie</li>
+                <li>Lavages de parc d’exposition</li>
+                <li>Accompagnement aux préparations de portes ouvertes</li>
+                <li>Convoyages de véhicules neufs ou d’occasion</li>
+                <li>Stockage de véhicules</li>
+              </ul>
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-2">
@@ -48,18 +58,25 @@ const SolutionPro = () => {
               FLOTTES ENTREPRISES
             </AccordionTrigger>
             <AccordionContent>
-              Vous gérez une flotte automobile et, à ce titre, vous êtes le
-              responsable du budget des frais de remises en état avant
-              restitution?
-              <br />
-              Vous faîtes face à de nombreuses situations dans un délai souvent
-              trop court?
-              <br />
-              Vous êtes à la recherche de partenaires qui sauront trouver les
-              bonnes solutions aux différents problèmes rencontrés?
-              <br />
-              Pour des informations plus détaillées, veuillez télécharger nos
-              plaquettes commerciales ci-jointes en PDF :<br />
+              <ul className="list-inside list-disc">
+                <li>
+                  Vous gérez une flotte automobile et, à ce titre, vous êtes le
+                  responsable du budget des frais de remises en état avant
+                  restitution?
+                </li>
+                <li>
+                  Vous faîtes face à de nombreuses situations dans un délai
+                  souvent trop court?
+                </li>
+                <li>
+                  Vous êtes à la recherche de partenaires qui sauront trouver
+                  les bonnes solutions aux différents problèmes rencontrés?
+                </li>
+                <li>
+                  Pour des informations plus détaillées, veuillez télécharger
+                  nos plaquettes commerciales ci-jointes en PDF :
+                </li>
+              </ul>
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-3">
@@ -67,19 +84,24 @@ const SolutionPro = () => {
               CABINET ASSURANCES ET EXPERTISES
             </AccordionTrigger>
             <AccordionContent>
-              Depuis 2001, Netcars est devenu le partenaire incontournable de
-              bon nombre de cabinets d’expertises et de compagnies d’assurance
-              dans la gestion des sinistres suivants:
-              <br />
-              – Retour de vol et poudre d’extincteur
-              <br />
-              – Incendie dans les parkings : suie et odeurs de fumées dans les
-              véhicules
-              <br />
-              Vous êtes expert automobile ou assureur et vous recherchez un
-              partenaire sûr, efficace, professionnel, expérimenté, qui sait
-              s’engager sur des coûts et des délais? Alors prenez contact avec
-              Netcars !
+              <ul className="list-inside list-disc">
+                <li>
+                  Depuis 2001, Netcars est devenu le partenaire incontournable
+                  de bon nombre de cabinets d’expertises et de compagnies
+                  d’assurance dans la gestion des sinistres suivants:
+                </li>
+                <li>Retour de vol et poudre d’extincteur</li>
+                <li>
+                  Incendie dans les parkings : suie et odeurs de fumées dans les
+                  véhicules
+                </li>
+                <li>
+                  Vous êtes expert automobile ou assureur et vous recherchez un
+                  partenaire sûr, efficace, professionnel, expérimenté, qui sait
+                  s’engager sur des coûts et des délais? Alors prenez contact
+                  avec Netcars !
+                </li>
+              </ul>
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-4">
@@ -87,21 +109,29 @@ const SolutionPro = () => {
               COMMUNICATION ET ÉVÉNEMENTIEL
             </AccordionTrigger>
             <AccordionContent>
-              Prise en charge de présentations de nouveaux modèles, pour le
-              compte de constructeurs automobiles : installation des véhicules,
-              nettoyage, stickage, …<br />
-              Covering total ou partiel de véhicules pour opérations de street
-              marketing : automobiles, motos, bus, …
-              <br />
-              Accompagnement ou prise en charge complète de projets :
-              organisation, création de visuels, impressions d’adhésifs, pose
-              d’adhésifs, suivi informatisé via application mobile Netcars…
-              <br />
-              Couverture nationale et internationale
-              <br />
-              Confiez-nous vos projets !<br />
-              Pour des informations plus détaillées, veuillez télécharger nos
-              plaquettes commerciales ci-jointes en PDF :
+              <ul className="list-inside list-disc">
+                <li>
+                  Prise en charge de présentations de nouveaux modèles, pour le
+                  compte de constructeurs automobiles : installation des
+                  véhicules, nettoyage, stickage, …
+                </li>
+                <li>
+                  Covering total ou partiel de véhicules pour opérations de
+                  street marketing : automobiles, motos, bus, …
+                </li>
+                <li>
+                  Accompagnement ou prise en charge complète de projets :
+                  organisation, création de visuels, impressions d’adhésifs,
+                  pose d’adhésifs, suivi informatisé via application mobile
+                  Netcars…
+                </li>
+                <li>Couverture nationale et internationale</li>
+                <li>
+                  Confiez-nous vos projets ! Pour des informations plus
+                  détaillées, veuillez télécharger nos plaquettes commerciales
+                  ci-jointes en PDF :
+                </li>
+              </ul>
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-5">
@@ -109,19 +139,29 @@ const SolutionPro = () => {
               REMISE EN ÉTAT DE VÉHICULE AVANT RESTITUTION
             </AccordionTrigger>
             <AccordionContent>
-              Vous devez restituer votre véhicule en fin de leasing (buy-back)
-              et vous redoutez l’étape du procès-verbal de restitution ?<br />
-              Combien vous coutera cette bosse, ces rayures, cet impact sur le
-              pare-brise ou cette tâche sur la moquette ?<br />
-              Netcars vous propose une solution simple et économique de gestion
-              de votre restitution.
-              <br />
-              Après analyse ou sur envoi de photos, nos experts vous adressent
-              un devis de remise en état intégrant les réparations nécessaires :
-              carrosserie, solutions de réparations rapides (smart repair),
-              nettoyage complet, réparation ou remplacement de pare-brise,
-              remplacement de pneumatique et réparations de jantes, débosselage
-              sans peinture.
+              <ul className="list-inside list-disc">
+                <li>
+                  Vous devez restituer votre véhicule en fin de leasing
+                  (buy-back) et vous redoutez l’étape du procès-verbal de
+                  restitution ?
+                </li>
+                <li>
+                  Combien vous coutera cette bosse, ces rayures, cet impact sur
+                  le pare-brise ou cette tâche sur la moquette ?
+                </li>
+                <li>
+                  Netcars vous propose une solution simple et économique de
+                  gestion de votre restitution.
+                </li>
+                <li>
+                  Après analyse ou sur envoi de photos, nos experts vous
+                  adressent un devis de remise en état intégrant les réparations
+                  nécessaires : carrosserie, solutions de réparations rapides
+                  (smart repair), nettoyage complet, réparation ou remplacement
+                  de pare-brise, remplacement de pneumatique et réparations de
+                  jantes, débosselage sans peinture.
+                </li>
+              </ul>
             </AccordionContent>
           </AccordionItem>
         </Accordion>

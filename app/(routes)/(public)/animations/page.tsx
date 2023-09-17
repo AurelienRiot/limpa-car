@@ -78,6 +78,7 @@ const Animations = () => {
           <Icons.react className="w-6 h-6 text-blue-600 transition-all duration-300 hover:opacity-50" />
           <Icons.tailwind className="w-6 h-6 text-blue-400 transition-all duration-300 hover:opacity-50" />
           <Icons.spinner className="w-6 h-6 transition-all duration-300 hover:opacity-50 " />
+          <Icons.XLogo className="w-6 h-6 transition-all duration-300 hover:opacity-50 " />
           <JumpingDots />
           <button className="bg-gradient-to-t duration-500 from-red-500 via-black to-white bg-[size:200%_200%] bg-[position:0%_0%] hover:bg-[position:100%_100%]">
             Hover me
@@ -463,12 +464,12 @@ const AppearSqaure = () => {
 
   return (
     <>
+      <Button onClick={() => setOpen(!open)}>Button</Button>
       <div
         data-state={open ? "open" : "closed"}
         style={{ animationDuration: "1000ms" }}
         className="data-[state=open]:w-[200px] data-[state=open]:h-[200px]  data-[state=open]:animate-in data-[state=open]:spin-in-180  data-[state=closed]:animate-out data-[state=closed]:spin-out-180   data-[state=closed]:w-0 data-[state=closed]:h-0 bg-primary transition-all  duration-1000"
       />
-      <Button onClick={() => setOpen(!open)}>Button</Button>
     </>
   );
 };

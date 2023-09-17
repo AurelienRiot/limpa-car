@@ -89,6 +89,7 @@
     "autoprefixer": "^10.4.15",
     "eslint": "^8.49.0",
     "eslint-config-next": "^13.4.19",
+    "prettier-plugin-tailwindcss": "^0.5.4",
     "prisma": "^5.2.0",
     "tailwind-clip-path": "^1.0.0",
     "tailwindcss-debug-screens": "^2.2.1",

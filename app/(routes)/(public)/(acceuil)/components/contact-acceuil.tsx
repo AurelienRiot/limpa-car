@@ -50,7 +50,7 @@ const ContactAcceuil = () => {
           alt=""
           width={1920}
           height={1080}
-          className="absolute inset-0 object-cover h-screen sm:h-full "
+          className="absolute inset-0  h-screen object-cover sm:h-full "
           style={{
             transition: "transform 0.2s linear",
             transform: `translateY(${offsetY}px)`,
@@ -60,12 +60,12 @@ const ContactAcceuil = () => {
         <div
           className={`flex flex-col items-center  text-white ${oswald.className} backdrop-blur-md`}
         >
-          <h1 className="mb-6 text-5xl mt-14 sm:text-7xl">LIMPA CAR </h1>
+          <h1 className="mb-6 mt-14 text-5xl sm:text-7xl">LIMPA CAR </h1>
           <Separator className="w-24" />
-          <div className="flex flex-col items-center justify-center gap-4 py-10 mt-8 mb-20 text-xl rounded-sm shadow-2xl sm:text-3xl px-14 bg-black/40">
+          <div className="mb-20 mt-8 flex flex-col items-center justify-center gap-4 rounded-sm bg-black/40 px-14 py-10 text-xl shadow-2xl sm:text-3xl">
             <Link
               href="tel:0000000000"
-              className="flex items-center justify-center w-20 h-20 p-2 transition-colors duration-500 rounded-full bg-black/20 hover:bg-primary-foreground hover:text-primary "
+              className="flex h-20 w-20 items-center justify-center rounded-full bg-black/20 p-2 transition-colors duration-500 hover:bg-primary-foreground hover:text-primary "
             >
               <Phone size={40} />
             </Link>
@@ -76,7 +76,7 @@ const ContactAcceuil = () => {
             <Link
               href={"https://www.facebook.com/profile.php?id=100091438730802"}
               target={"_blank"}
-              className="flex items-center justify-center w-20 h-20 p-2 rounded-full bg-black/20 hover:bg-[#3b5998] transition-colors duration-500"
+              className="flex h-20 w-20 items-center justify-center rounded-full bg-black/20 p-2 transition-colors duration-500 hover:bg-[#3b5998]"
             >
               <Facebook size={40} />
             </Link>

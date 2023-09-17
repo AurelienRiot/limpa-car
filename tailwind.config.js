@@ -18,6 +18,12 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic": "conic-gradient(var(--tw-gradient-stops))",
+        "gradient-multicolor":
+          "linear-gradient(90deg, hsl(0, 100%, 50%), hsl(30, 100%, 50%), hsl(60, 100%, 50%), hsl(120, 100%, 50%), hsl(240, 100%, 50%), hsl(275, 100%, 50%), hsl(300, 100%, 50%))",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
