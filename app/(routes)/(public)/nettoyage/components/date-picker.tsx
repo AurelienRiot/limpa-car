@@ -1,7 +1,6 @@
 "use client";
 
 import { format } from "date-fns";
-import { Calendar as CalendarIcon } from "lucide-react";
 import { DayClickEventHandler } from "react-day-picker";
 import { fr } from "date-fns/locale";
 
@@ -21,7 +20,6 @@ import {
 } from "@/components/calendar/days-styles";
 import { useEffect, useState } from "react";
 import GetReservations from "@/actions/get-reservations";
-import Image from "next/image";
 
 interface DatePickerProps extends React.HTMLAttributes<HTMLDivElement> {
   date: Date | undefined;

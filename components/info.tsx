@@ -33,7 +33,7 @@ const Info: React.FC<InfoProps> = ({ data }) => {
       >
         {data.name}
       </Link>
-      <div className="items-end justify-between mt-3">
+      <div className="mt-3 items-end justify-between">
         <p className="text-2xl text-gray-900 dark:text-white">
           <Currency value={value} />
         </p>
@@ -44,7 +44,7 @@ const Info: React.FC<InfoProps> = ({ data }) => {
           <p>{data.description}</p>
         </div>
       </div>
-      <div className="flex items-center mt-10 gap-x-3">
+      <div className="mt-10 flex items-center gap-x-3">
         <Button
           variant="rounded"
           className="flex items-center gap-x-2 hover:scale-105"

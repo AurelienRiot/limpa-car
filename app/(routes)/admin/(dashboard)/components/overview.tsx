@@ -2,13 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import { ApexOptions } from "apexcharts";
+import ReactApexChart from "react-apexcharts";
 import { useTheme } from "next-themes";
 import { GraphDataProps } from "@/actions-server/get-graph-revenue";
-import dynamic from "next/dynamic";
 import { isWindowSmallerThan } from "@/lib/utils";
-const DynamicReactApexChart = dynamic(() => import("react-apexcharts"), {
-  ssr: false,
-});
 
 interface OverviewProps {
   data: GraphDataProps[];
@@ -16,6 +13,7 @@ interface OverviewProps {
 
 export const Overview: React.FC<OverviewProps> = ({ data }) => {
   const { theme, systemTheme } = useTheme();
+  const [isMounted, setIsMounted] = useState(false);
   const [graphState, setGraphState] = useState({
     fontSize: "12px",
     reverse: false,
@@ -45,6 +43,13 @@ export const Overview: React.FC<OverviewProps> = ({ data }) => {
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  if (!isMounted) {
+    return null;
+  }
 
   const options: ApexOptions = {
     chart: {
@@ -157,7 +162,7 @@ export const Overview: React.FC<OverviewProps> = ({ data }) => {
   return (
     <div>
       {" "}
-      <DynamicReactApexChart
+      <ReactApexChart
         options={options}
         series={series}
         type="bar"

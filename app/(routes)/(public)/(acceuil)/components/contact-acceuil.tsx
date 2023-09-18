@@ -4,9 +4,7 @@ import { Facebook, Phone } from "lucide-react";
 import { Oswald } from "next/font/google";
 import Link from "next/link";
 import SolutionPro from "./solution-pro";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import throttle from "lodash.throttle";
+import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const oswald = Oswald({ subsets: ["latin"] });
@@ -45,7 +43,7 @@ const ContactAcceuil = () => {
 
   //   return () => {
   //     handleScroll.cancel(); // Cancel any trailing throttled calls
-  //     window.removeEventListener("scroll", handleScroll);
+  //     window.removeEventListener("scroll", handleScroll)  ;
   //   };
   // }, []);
 

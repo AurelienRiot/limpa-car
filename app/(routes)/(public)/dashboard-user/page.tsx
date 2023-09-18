@@ -30,14 +30,14 @@ const UserDashboard = async () => {
   }));
 
   return (
-    <div className="container gap-4 mt-4 mb-4">
-      <div className="flex flex-col items-center justify-center w-auto h-auto mb-4 text-gray-800 border-2 rounded-md shadow-xl dark:text-white">
-        <h1 className="text-3xl font-bold text-center">
+    <div className="container mb-4 mt-4 gap-4">
+      <div className="mb-4 flex h-auto w-auto flex-col items-center justify-center rounded-md border-2 text-gray-800 shadow-xl dark:text-white">
+        <h1 className="text-center text-3xl font-bold">
           {user?.name
             ? user.name
             : "Faite un achat pour avoir accès à votre profile"}
         </h1>
-        <div className="flex flex-col items-center justify-center text-gray-800 text-md sm:text-xl dark:text-white">
+        <div className="text-md flex flex-col items-center justify-center text-gray-800 dark:text-white sm:text-xl">
           <div className="grid grid-cols-2 gap-4">
             <p className="font-bold ">Email:</p>
             <p>{user.email}</p>
@@ -57,9 +57,8 @@ const UserDashboard = async () => {
           </div>
         </div>
         <Link href="/dashboard-user/settings" className="mt-2 ">
-          <Settings className="w-8 h-8 cursor-pointer" />
+          <Settings className="h-8 w-8 cursor-pointer" />
         </Link>
-        P
       </div>
       <LogoutButton />
       <OrderTable data={formattedOrders} />

@@ -190,7 +190,7 @@ export const ContactForm = ({
               )}
             />
           </div>
-          <Button disabled={loading}>
+          <Button disabled={loading} className="w-[90px]">
             {!loading ? action : <Spinner size={20} />}
           </Button>
         </form>

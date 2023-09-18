@@ -34,7 +34,7 @@ const PreviewModal = () => {
         <div className="fixed inset-0 bg-black bg-opacity-60" />
 
         <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex items-center justify-center min-h-full p-4 text-center">
+          <div className="flex min-h-full items-center justify-center p-4 text-center">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -44,8 +44,8 @@ const PreviewModal = () => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-3xl overflow-hidden text-left align-middle rounded-lg">
-                <div className="relative flex items-center w-full px-4 pb-8 overflow-hidden shadow-2xl bg-background pt-14 sm:px-6 sm:pt-8 md:p-6 lg:p-8">
+              <Dialog.Panel className="w-full max-w-3xl overflow-hidden rounded-lg text-left align-middle">
+                <div className="relative flex w-full items-center overflow-hidden bg-background px-4 pb-8 pt-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
                   <div className="absolute right-4 top-4 ">
                     <IconButton
                       className="bg-primary"
@@ -53,7 +53,7 @@ const PreviewModal = () => {
                       icon={<X size={15} className="text-primary-foreground" />}
                     />
                   </div>
-                  <div className="grid items-start w-full grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
+                  <div className="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
                     <div className="sm:col-span-4 lg:col-span-5">
                       <Gallery images={product.images} />
                     </div>

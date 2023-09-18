@@ -23,7 +23,7 @@ import { IParallax, Parallax, ParallaxLayer } from "@react-spring/parallax";
 const Animations = () => {
   const [value, setValue] = useState(50);
 
-  const parallax = useRef<IParallax>(null!);
+  // const parallax = useRef<IParallax>(null!);
 
   // let element: IParallax | null;
 
@@ -39,17 +39,15 @@ const Animations = () => {
   //   }
   // };
 
-  const url = (name: string, wrap = false) =>
-    `${
-      wrap ? "url(" : ""
-    }https://awv3node-homepage.surge.sh/build/assets/${name}.svg${
-      wrap ? ")" : ""
-    }`;
-
-  console.log(url("stars", true));
+  // const url = (name: string, wrap = false) =>
+  //   `${
+  //     wrap ? "url(" : ""
+  //   }https://awv3node-homepage.surge.sh/build/assets/${name}.svg${
+  //     wrap ? ")" : ""
+  //   }`;
 
   return (
-    <div className="p-0 m-0">
+    <div className="m-0 p-0">
       <Container>
         <Loading />
 
@@ -59,28 +57,28 @@ const Animations = () => {
 
         <ExempleCardHightlight />
         <div className="flex gap-2">
-          <Icons.package className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-          <Icons.location className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-          <Icons.person className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-          <Icons.settings className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-          <Icons.viewLight className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-          <Icons.viewDark className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-          <Icons.yarn className="w-6 h-6 transition-all duration-300 hover:opacity-50 text-[#2C8EBB]" />
-          <Icons.apple className="w-6 h-6 transition-all duration-300 hover:opacity-50 " />
-          <Icons.aria className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-          <Icons.bird className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-          <Icons.expedition className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-          <Icons.gitHub className="w-6 h-6 text-black transition-all duration-300 hover:opacity-50" />
-          <Icons.google className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-          <Icons.logo className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-          <Icons.npm className="w-6 h-6 text-red-600 transition-all duration-300 hover:opacity-50" />
-          <Icons.radix className="w-6 h-6 transition-all duration-300 hover:opacity-50" />
-          <Icons.react className="w-6 h-6 text-blue-600 transition-all duration-300 hover:opacity-50" />
-          <Icons.tailwind className="w-6 h-6 text-blue-400 transition-all duration-300 hover:opacity-50" />
-          <Icons.spinner className="w-6 h-6 transition-all duration-300 hover:opacity-50 " />
-          <Icons.XLogo className="w-6 h-6 transition-all duration-300 hover:opacity-50 " />
+          <Icons.package className="h-6 w-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.location className="h-6 w-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.person className="h-6 w-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.settings className="h-6 w-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.viewLight className="h-6 w-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.viewDark className="h-6 w-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.yarn className="h-6 w-6 text-[#2C8EBB] transition-all duration-300 hover:opacity-50" />
+          <Icons.apple className="h-6 w-6 transition-all duration-300 hover:opacity-50 " />
+          <Icons.aria className="h-6 w-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.bird className="h-6 w-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.expedition className="h-6 w-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.gitHub className="h-6 w-6 text-black transition-all duration-300 hover:opacity-50" />
+          <Icons.google className="h-6 w-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.logo className="h-6 w-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.npm className="h-6 w-6 text-red-600 transition-all duration-300 hover:opacity-50" />
+          <Icons.radix className="h-6 w-6 transition-all duration-300 hover:opacity-50" />
+          <Icons.react className="h-6 w-6 text-blue-600 transition-all duration-300 hover:opacity-50" />
+          <Icons.tailwind className="h-6 w-6 text-blue-400 transition-all duration-300 hover:opacity-50" />
+          <Icons.spinner className="h-6 w-6 transition-all duration-300 hover:opacity-50 " />
+          <Icons.XLogo className="h-6 w-6 transition-all duration-300 hover:opacity-50 " />
           <JumpingDots />
-          <button className="bg-gradient-to-t duration-500 from-red-500 via-black to-white bg-[size:200%_200%] bg-[position:0%_0%] hover:bg-[position:100%_100%]">
+          <button className="bg-gradient-to-t from-red-500 via-black to-white bg-[size:200%_200%] bg-[position:0%_0%] duration-500 hover:bg-[position:100%_100%]">
             Hover me
           </button>
           <Input
@@ -94,18 +92,18 @@ const Animations = () => {
           <AppearSqaure />
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-2 mx-auto ">
+        <div className="mx-auto flex flex-wrap items-center justify-center gap-2 ">
           <DemoA />
           <DemoB />
           <DemoC />
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-2 mx-auto ">
+        <div className="mx-auto flex flex-wrap items-center justify-center gap-2 ">
           <DemoD />
           <DemoE />
           <DemoF />
         </div>
       </Container>
-      {/* <div className={"w-full h-[145vh] "}>
+      {/* <div className={"h-[145vh] w-full "}>
         <Parallax pages={1.45} ref={(ref) => (element = ref)}>
           <ParallaxLayer
             offset={0}
@@ -183,15 +181,16 @@ const Animations = () => {
             factor={1}
             onClick={() => handleClick()}
           >
-            <div className="flex items-center justify-center w-screen h-screen font-bold">
-              <div className="w-2/6 py-8 text-center border-2 border-white rounded cursor-pointer backdrop-blur-sm backdrop-grayscale ">
+            <div className="flex h-screen w-screen items-center justify-center font-bold">
+              <div className="w-2/6 cursor-pointer rounded border-2 border-white py-8 text-center backdrop-blur-sm backdrop-grayscale ">
                 <h1 className="text-6xl text-violet-600">{buttonMessage}</h1>
               </div>
             </div>
           </ParallaxLayer>
         </Parallax>
       </div> */}
-      {/* <div style={{ width: "100%", height: "100%", background: "#253237" }}>
+
+      {/*  <div style={{ width: "100%", height: "100%", background: "#253237" }}>
         <Parallax ref={parallax} pages={3}>
           <ParallaxLayer
             offset={1}
@@ -354,25 +353,25 @@ export default Animations;
 
 const JumpingDots = () => {
   return (
-    <div className="group cursor-pointer grid grid-cols-[repeat(3,5px)] auto-rows-[5px] gap-1 translate-y-[3px] ml-4 hover:scale-[150%] transition-transform duration-1000">
-      <div className="border rounded-[50%]  border-solid border-[rgb(139,136,136)]  group-hover:animate-[jump_0.9s_ease_2]"></div>
-      <div className="border rounded-[50%]  border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.8s_ease_0.1s_2]"></div>
-      <div className="border rounded-[50%]  border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.7s_ease_0.2s_2]"></div>
-      <div className="border rounded-[50%]  border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.6s_ease_0.3s_2]"></div>
-      <div className="border rounded-[50%]  border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.5s_ease_0.4s_2]"></div>
-      <div className="border rounded-[50%]  border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.4s_ease_0.5s_2]"></div>
+    <div className="group ml-4 grid translate-y-[3px] cursor-pointer auto-rows-[5px] grid-cols-[repeat(3,5px)] gap-1 transition-transform duration-1000 hover:scale-[150%]">
+      <div className="rounded-[50%] border  border-solid border-[rgb(139,136,136)]  group-hover:animate-[jump_0.9s_ease_2]"></div>
+      <div className="rounded-[50%] border  border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.8s_ease_0.1s_2]"></div>
+      <div className="rounded-[50%] border  border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.7s_ease_0.2s_2]"></div>
+      <div className="rounded-[50%] border  border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.6s_ease_0.3s_2]"></div>
+      <div className="rounded-[50%] border  border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.5s_ease_0.4s_2]"></div>
+      <div className="rounded-[50%] border  border-solid border-[rgb(139,136,136)] group-hover:animate-[jump_0.4s_ease_0.5s_2]"></div>
     </div>
   );
 };
 
 const SquareProgressLoadingBarAnimation = () => {
   return (
-    <div className="w-[300px] h-[30px] mt-4  bg-black border-2 border-red-600 flex group flex-row p-1 overflow-hidden box-content">
+    <div className="group mt-4 box-content  flex h-[30px] w-[300px] flex-row overflow-hidden border-2 border-red-600 bg-black p-1">
       {Array.from({ length: 10 }).map((_, i) => (
         <div
           key={i}
           style={{ animationDelay: `${i * 200}ms` }}
-          className={`w-[30px] h-full   bg-blue-600   translate-x-[-100px] scale-0 group-hover:animate-square-progress `}
+          className={`h-full w-[30px]   translate-x-[-100px]   scale-0 bg-blue-600 group-hover:animate-square-progress `}
         ></div>
       ))}
     </div>
@@ -383,15 +382,15 @@ const AnimatedGradient = () => {
   return (
     <>
       <div
-        className={` mt-4 w-[200px] h-[200px] overflow-hidden from-red-600 via-white to-red-600 
-          bg-gradient-to-t bg-[size:200%_200%] bg-[position:0%_0%] hover:bg-[position:100%_100%] transform duration-500`}
+        className={` mt-4 h-[200px] w-[200px] transform overflow-hidden bg-gradient-to-t from-red-600 
+          via-white to-red-600 bg-[size:200%_200%] bg-[position:0%_0%] duration-500 hover:bg-[position:100%_100%]`}
       >
         {" "}
         <div
-          className={`w-full h-full 
-          bg-gradient-to-t  from-teal-300 via-blue-600 to-white 
-        bg-[size:200%_200%] bg-[position:0%_0%] 
-          hover:bg-[position:100%_100%] hover:skew-y-12 hover:skew-x-12 duration-500 transform`}
+          className={`h-full w-full 
+          transform  bg-gradient-to-t from-teal-300 via-blue-600 
+        to-white bg-[size:200%_200%] 
+          bg-[position:0%_0%] duration-500 hover:skew-x-12 hover:skew-y-12 hover:bg-[position:100%_100%]`}
         />
       </div>
     </>
@@ -426,32 +425,32 @@ const AnimatedText = () => {
     },
   ];
   return (
-    <div className="relative flex items-center justify-center w-[300px] h-[300px] overflow-hidden text-xl bg-black group ">
+    <div className="group relative flex h-[300px] w-[300px] items-center justify-center overflow-hidden bg-black text-xl ">
       {lettres.map((l, i) => (
         <div
           key={l.lettre}
           style={{ animationDelay: `${i * 200}ms` }}
           className={cn(
-            "text-black absolute px-0.5 py-[3px]   flex justify-center items-center ",
-            l.class
+            "absolute flex items-center justify-center   px-0.5 py-[3px] text-black ",
+            l.class,
           )}
         >
           <span
             style={{ animationDelay: `${i * 200}ms` }}
             className={cn(
               l.bg,
-              "  absolute top-0 left-0   w-full h-full group-hover:animate-opacity-change-bg "
+              "  absolute left-0 top-0   h-full w-full group-hover:animate-opacity-change-bg ",
             )}
           />
 
           <span className="relative ">{l.lettre}</span>
         </div>
       ))}
-      <div className="absolute flex text-base translate-x-6 translate-y-1 top-1/2 left-1/2">
-        <div className="text-white px-0.5 pl-1 py-[3px] group-hover:animate-[fade-out-text_5s_linear] ">
+      <div className="absolute left-1/2 top-1/2 flex translate-x-6 translate-y-1 text-base">
+        <div className="px-0.5 py-[3px] pl-1 text-white group-hover:animate-[fade-out-text_5s_linear] ">
           for
         </div>
-        <div className="text-white px-0.5 pl-1 py-[3px] group-hover:animate-[fade-out-text_5s_linear]">
+        <div className="px-0.5 py-[3px] pl-1 text-white group-hover:animate-[fade-out-text_5s_linear]">
           GSAP
         </div>
       </div>
@@ -468,7 +467,7 @@ const AppearSqaure = () => {
       <div
         data-state={open ? "open" : "closed"}
         style={{ animationDuration: "1000ms" }}
-        className="data-[state=open]:w-[200px] data-[state=open]:h-[200px]  data-[state=open]:animate-in data-[state=open]:spin-in-180  data-[state=closed]:animate-out data-[state=closed]:spin-out-180   data-[state=closed]:w-0 data-[state=closed]:h-0 bg-primary transition-all  duration-1000"
+        className="bg-primary transition-all  duration-1000 data-[state=closed]:h-0  data-[state=open]:h-[200px] data-[state=closed]:w-0   data-[state=open]:w-[200px] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:spin-out-180  data-[state=open]:spin-in-180"
       />
     </>
   );
@@ -492,7 +491,7 @@ const ExempleCardHightlight = () => {
       </CardHeader>
       <CardContent>
         <form>
-          <div className="grid items-center w-full gap-4">
+          <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="name">Name</Label>
               <Input id="name" placeholder="Name of your project" />
@@ -504,7 +503,7 @@ const ExempleCardHightlight = () => {
         <Button
           onClick={() => setVisitors((prev) => prev - 1)}
           variant="destructive"
-          className="text-primary"
+          className="text-primary underline hover:decoration-dashed"
         >
           Cancel
         </Button>
@@ -524,11 +523,11 @@ const ExempleCardHightlight = () => {
 function Marker({
   value,
   setValue,
-  color,
+  color = "#424E82",
 }: {
   value: number;
   setValue: (value: number) => void;
-  color: string;
+  color?: string;
 }) {
   return (
     <div
@@ -540,9 +539,9 @@ function Marker({
         left: `${value * 3}px`,
       }}
     >
-      <div className="relative w-full h-full text-sm">
+      <div className="relative h-full w-full text-sm">
         <div
-          className="absolute grid font-semibold text-white rounded-md place-items-center"
+          className="absolute grid place-items-center rounded-md font-semibold text-white"
           style={{
             left: "50%",
             top: "50%",
@@ -557,7 +556,7 @@ function Marker({
               type="number"
               value={value * 10}
               onChange={(e) => setValue(Number(e.target.value) / 10)}
-              className="w-full text-center bg-transparent"
+              className="w-full bg-transparent text-center"
             />
             <span> &euro;</span>
           </div>
@@ -590,7 +589,7 @@ function Marker({
   );
 }
 
-function deriveData(index: number, value: number) {
+function DeriveData(index: number, value: number) {
   const r1 = 130;
 
   const r2 = 150;
@@ -613,7 +612,7 @@ function deriveData(index: number, value: number) {
 }
 
 function Tick({ index, value }: { index: number; value: number }) {
-  const { x1, y1, x2, y2, color } = deriveData(index, value);
+  const { x1, y1, x2, y2, color } = DeriveData(index, value);
   return (
     <line
       x1={x1}
@@ -780,7 +779,7 @@ function DemoA() {
       <CardHeader>
         <CardTitle>Volume</CardTitle>
       </CardHeader>
-      <CardContent className="inline-block p-4 bg-white rounded-md shadow-md">
+      <CardContent className="inline-block rounded-md bg-white p-4 shadow-md">
         <div className="px-3">
           <div style={{ width: "300px" }}>
             <DemoAGraph value={value} />
@@ -815,7 +814,7 @@ function DemoA() {
               left: `${value * 3}px`,
             }}
           >
-            <div className="grid w-5 h-5 bg-white rounded-full shadow-md place-items-center">
+            <div className="grid h-5 w-5 place-items-center rounded-full bg-white shadow-md">
               <div
                 className="rounded-full bg-[#424e82]"
                 style={{
@@ -834,10 +833,10 @@ function DemoA() {
             step={1}
             value={value}
             onChange={handleChange}
-            className="absolute top-0 w-full h-6 m-auto bg-transparent outline-none cursor-pointer "
+            className="absolute top-0 m-auto h-6 w-full cursor-pointer bg-transparent outline-none "
           />
         </div>
-        <div className="flex items-center justify-between h-8 px-3 font-semibold">
+        <div className="flex h-8 items-center justify-between px-3 font-semibold">
           <div> 0 </div>
           <div> {value} </div>
           <div> 100 </div>
@@ -895,7 +894,7 @@ function DemoB() {
       <CardHeader>
         <CardTitle>Range</CardTitle>
       </CardHeader>
-      <CardContent className="inline-block p-4 bg-white rounded-md shadow-md">
+      <CardContent className="inline-block rounded-md bg-white p-4 shadow-md">
         <div className="px-3">
           <div style={{ width: "300px" }}>
             <DemoBGraph start={start} diff={diff} />
@@ -931,7 +930,7 @@ function DemoB() {
             }}
           >
             <div
-              className="grid bg-white rounded-full shadow-md place-items-center"
+              className="grid place-items-center rounded-full bg-white shadow-md"
               style={{
                 width: "20px",
                 height: "20px",
@@ -957,7 +956,7 @@ function DemoB() {
             }}
           >
             <div
-              className="grid bg-white rounded-full shadow-md place-items-center"
+              className="grid place-items-center rounded-full bg-white shadow-md"
               style={{
                 width: "20px",
                 height: "20px",
@@ -994,7 +993,7 @@ function DemoB() {
             onChange={handleChangeB}
           />
         </div>
-        <div className="flex items-center justify-between h-8 px-3 font-semibold">
+        <div className="flex h-8 items-center justify-between px-3 font-semibold">
           <div> 0 </div>
           <div>
             {Math.min(valueA, valueB)} - {Math.max(valueA, valueB)}
@@ -1025,7 +1024,7 @@ function DemoC() {
       <CardHeader>
         <CardTitle>Price</CardTitle>
       </CardHeader>
-      <CardContent className="inline-block p-4 bg-white rounded-md shadow-md">
+      <CardContent className="inline-block rounded-md bg-white p-4 shadow-md">
         <div style={{ padding: "0px 12px" }}>
           <div style={{ width: "300px", height: "100px" }}></div>
         </div>
@@ -1062,7 +1061,7 @@ function DemoC() {
             }}
           >
             <div
-              className="grid bg-white rounded-full shadow-md place-items-center"
+              className="grid place-items-center rounded-full bg-white shadow-md"
               style={{
                 width: "20px",
                 height: "20px",
@@ -1090,7 +1089,7 @@ function DemoC() {
             }}
           >
             <div
-              className="grid bg-white rounded-full shadow-md place-items-center"
+              className="grid place-items-center rounded-full bg-white shadow-md"
               style={{
                 width: "20px",
                 height: "20px",
@@ -1127,7 +1126,7 @@ function DemoC() {
             onChange={handleChangeB}
           />
         </div>
-        <div className="flex items-center justify-between h-8 px-3 font-semibold">
+        <div className="flex h-8 items-center justify-between px-3 font-semibold">
           <div> 0 &euro;</div>
 
           <div> 1000 &euro;</div>
@@ -1148,7 +1147,7 @@ function DemoD() {
       <CardHeader>
         <CardTitle>Volume</CardTitle>
       </CardHeader>
-      <CardContent className="inline-block p-4 bg-white rounded-md shadow-md">
+      <CardContent className="inline-block rounded-md bg-white p-4 shadow-md">
         <div className="relative " style={{ width: "324px", height: "324px" }}>
           <div
             className="absolute rounded-full"
@@ -1160,9 +1159,9 @@ function DemoD() {
               transform: "translate(-50%, -50%)",
             }}
           >
-            <div className="relative w-full h-full">
+            <div className="relative h-full w-full">
               <div
-                className="absolute grid font-semibold text-white rounded-md place-items-center"
+                className="absolute grid place-items-center rounded-md font-semibold text-white"
                 style={{
                   width: "60px",
                   height: "24px",
@@ -1222,7 +1221,7 @@ function DemoE() {
       <CardHeader>
         <CardTitle>Precentage</CardTitle>
       </CardHeader>
-      <CardContent className="inline-block p-4 bg-white rounded-md shadow-md">
+      <CardContent className="inline-block rounded-md bg-white p-4 shadow-md">
         <div style={{ height: "30px" }}></div>
         <div style={{ padding: "0px 12px" }}>
           <div className="relative" style={{ width: "300px" }}>
@@ -1293,7 +1292,7 @@ function DemoE() {
             }}
           >
             <div
-              className="grid bg-white rounded-full shadow-md place-items-center"
+              className="grid place-items-center rounded-full bg-white shadow-md"
               style={{
                 width: "20px",
                 height: "20px",
@@ -1320,7 +1319,7 @@ function DemoE() {
             onChange={handleChange}
           />
         </div>
-        <div className="flex items-center justify-between h-8 px-3 font-semibold">
+        <div className="flex h-8 items-center justify-between px-3 font-semibold">
           <div> 0 </div>
           <div> 100 </div>
         </div>
@@ -1340,7 +1339,7 @@ function DemoF() {
       <CardHeader>
         <CardTitle>Gauge</CardTitle>
       </CardHeader>
-      <CardContent className="inline-block p-4 bg-white rounded-md shadow-md">
+      <CardContent className="inline-block rounded-md bg-white p-4 shadow-md">
         <div style={{ padding: "0px 12px" }}>
           <div className="relative" style={{ width: "300px" }}>
             <svg
@@ -1404,7 +1403,7 @@ function DemoF() {
             }}
           >
             <div
-              className="grid bg-white rounded-full shadow-md place-items-center"
+              className="grid place-items-center rounded-full bg-white shadow-md"
               style={{
                 width: "20px",
                 height: "20px",
@@ -1431,7 +1430,7 @@ function DemoF() {
             onChange={handleChange}
           />
         </div>
-        <div className="flex items-center justify-between h-8 px-3 font-semibold">
+        <div className="flex h-8 items-center justify-between px-3 font-semibold">
           <div> 0 </div>
           <div> {value} </div>
 

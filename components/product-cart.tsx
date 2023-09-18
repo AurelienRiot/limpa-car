@@ -46,9 +46,10 @@ const ProductCart: React.FC<ProductCartProps> = ({ data }) => {
     >
       <VisibleElement className="relative bg-white aspect-square rounded-xl before:rounded-xl before:inset-0 before:absolute before:z-10 before:bg-black/20 before:opacity-0 before:animate-in before:duration-300 before:ease-linear group-hover:before:opacity-100 ">
         <Image
+        
           src={data?.images?.[0].url}
           fill
-          sizes="80vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           alt="Image"
           className="object-cover rounded-xl aspect-square "
         />

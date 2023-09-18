@@ -58,9 +58,9 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex items-center justify-center w-full bg-slate-100 dark:bg-slate-900">
-      <div className="px-2 pt-12 pb-8 space-y-12 sm:px-8 sm:shadow-xl sm:bg-white sm:dark:bg-black rounded-xl">
-        <h1 className="text-2xl font-semibold text-center ">
+    <div className="flex w-full items-center justify-center bg-slate-100 dark:bg-slate-900">
+      <div className="space-y-12 rounded-xl px-2 pb-8 pt-12 sm:bg-white sm:px-8 sm:shadow-xl sm:dark:bg-black">
+        <h1 className="text-center text-2xl font-semibold ">
           {" "}
           Page de Connection{" "}
         </h1>
@@ -70,10 +70,10 @@ export default function LoginPage() {
               callbackUrl,
             });
           }}
-          className="bg-[#4285F4] hover:bg-[#4285F4]/90 rounded-sm  flex items-center justify-center gap-4  shadow-xl hover:scale-95  duration-200 ease-linear"
+          className="flex items-center justify-center  gap-4 rounded-sm bg-[#4285F4] shadow-xl  duration-200 ease-linear  hover:bg-[#4285F4]/90 active:scale-95"
         >
           <svg
-            className="w-12 h-12 p-2 bg-white rounded-sm border-2  border-[#4285F4] hover:border-[#4285F4]/90"
+            className="h-12 w-12 rounded-sm border-2 border-[#4285F4] bg-white  p-2 hover:border-[#4285F4]/90"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 533.5 544.3"
           >
@@ -130,7 +130,7 @@ export default function LoginPage() {
               <Button
                 type="submit"
                 disabled={loading}
-                className="w-full mt-4 transition-transform duration-200 ease-linear hover:scale-95"
+                className="mt-4 w-full transition-transform duration-200 ease-linear active:scale-95"
                 size="lg"
               >
                 {"Se connecter avec l'email"}
@@ -144,8 +144,8 @@ export default function LoginPage() {
           animate={success ? { scale: 1 } : { scale: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <p className="text-xl text-center">E-mail envoyé ! </p>
-          <p className="text-xl text-center">
+          <p className="text-center text-xl">E-mail envoyé ! </p>
+          <p className="text-center text-xl">
             Veuillez vérifier votre boîte mail.
           </p>
         </motion.div>

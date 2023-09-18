@@ -4,6 +4,7 @@ import DatePicker from "@/app/(routes)/(public)/nettoyage/components/date-picker
 import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/ui/modal";
 import Spinner from "../animations/spinner";
+import { useEffect, useState } from "react";
 
 interface CalendarModalProps {
   isOpen: boolean;
@@ -22,6 +23,15 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
   date,
   setDate,
 }) => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <Modal
       title="Choissez une date"
