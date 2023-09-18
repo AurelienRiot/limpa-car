@@ -17,30 +17,30 @@ const ContactAcceuil = () => {
     test = navigator.userAgent;
   }
   const divBg = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: divBg,
-    offset: ["start end", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], ["-90%", "220%"]);
+  // const { scrollYProgress } = useScroll({
+  //   target: divBg,
+  //   offset: ["start end", "end start"],
+  // });
+  // const y = useTransform(scrollYProgress, [0, 1], ["-90%", "180%"]);
   const heightDivBg = useRef<number>(0);
   const [offsetY, setOffsetY] = useState(0);
 
-  // useEffect(() => {
-  //   const handleScroll = throttle(() => {
-  //     if (divBg.current) {
-  //       const rect = divBg.current.getBoundingClientRect();
-  //       heightDivBg.current = rect.bottom - rect.top;
-  //       setOffsetY(-rect.top);
-  //     }
-  //   }, 100); // Throttle scroll event handler to run every 200ms
+  useEffect(() => {
+    const handleScroll = throttle(() => {
+      if (divBg?.current) {
+        const rect = divBg.current.getBoundingClientRect();
+        heightDivBg.current = rect.bottom - rect.top;
+        setOffsetY(-rect.top - (rect.bottom - rect.top) / 5);
+      }
+    }, 100); // Throttle scroll event handler to run every 200ms
 
-  //   window.addEventListener("scroll", handleScroll, { passive: true }); // Use passive event listener for better performance
+    window.addEventListener("scroll", handleScroll, { passive: true }); // Use passive event listener for better performance
 
-  //   return () => {
-  //     handleScroll.cancel(); // Cancel any trailing throttled calls
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
+    return () => {
+      handleScroll.cancel(); // Cancel any trailing throttled calls
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
@@ -51,17 +51,17 @@ const ContactAcceuil = () => {
         //   backgroundImage: `url(/home-page/TEST-HOME-BANNER.webp)`,
         // }}
       >
-        <motion.img
+        {/* <motion.img
           src={"/home-page/TEST-HOME-BANNER.webp"}
           alt=""
           width={1920}
           height={1080}
-          className="absolute inset-0  h-screen object-cover sm:scale-125 "
+          className="absolute inset-0  h-screen object-cover  "
           style={{
             y,
           }}
-        />
-        {/* <Image
+        /> */}
+        <Image
           src={"/home-page/TEST-HOME-BANNER.webp"}
           alt=""
           width={1920}
@@ -71,7 +71,7 @@ const ContactAcceuil = () => {
             transition: "transform 0.2s linear",
             transform: `translateY(${offsetY}px)`,
           }}
-        /> */}
+        />
         <SolutionPro />
         <div
           className={`flex flex-col items-center  text-white ${oswald.className} backdrop-blur-md`}

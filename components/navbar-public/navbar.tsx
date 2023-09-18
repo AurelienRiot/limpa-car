@@ -5,7 +5,6 @@ import MainNav from "./main-nav";
 import NavbarAction from "./navbar-actions";
 import MobileNav from "./mobile-nav";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { Category } from "@prisma/client";
 
 type NavBarProps = {
@@ -18,14 +17,23 @@ const NavBar: React.FC<NavBarProps> = ({ role, categories }) => {
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
+    let scrollThreshold = 30;
+    let navbarHeight = 64;
+
     const updateScrollDirection = () => {
       const scrollY = window.scrollY;
       const direction = scrollY > lastScrollY ? "down" : "up";
-      if (direction === "down" && scrollY > 200) {
+
+      if (
+        direction === "down" &&
+        scrollY > navbarHeight &&
+        scrollY - lastScrollY > scrollThreshold
+      ) {
         setIsNavbar(false);
-      } else {
+      } else if (direction === "up" || scrollY <= navbarHeight) {
         setIsNavbar(true);
       }
+
       lastScrollY = scrollY > 0 ? scrollY : 0;
     };
 
@@ -37,39 +45,32 @@ const NavBar: React.FC<NavBarProps> = ({ role, categories }) => {
 
   return (
     <>
-      <AnimatePresence>
-        {isNavbar && (
-          <motion.header
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isNavbar ? 1 : 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className={`fixed top-0 z-30 w-full bg-background border-b-2 border-border  `}
-          >
-            <Container>
-              <div className="relative flex items-center justify-between h-16 px-4 sm:px-6 lg:px-4">
-                <div className="flex ">
-                  <MobileNav data={categories} className="ml-2 " />
-                  <Link
-                    href="/"
-                    className="items-center hidden ml-4 duration-200 ease-in sm:flex lg:ml-0 hover:scale-105"
-                  >
-                    <p className="text-lg font-bold sm:text-xl text-primary">
-                      {" "}
-                      Limpa Car
-                    </p>
-                  </Link>
-                  <nav className="items-center hidden mx-6 space-x-4  lg:space-x-6 lg:flex lg:items-center">
-                    <MainNav data={categories} />
-                  </nav>
-                </div>
+      <header
+        data-state={isNavbar ? "on" : "off"}
+        className={`fixed top-0 z-30 h-auto w-full  border-b-2 border-border bg-background transition-transform data-[state=off]:scale-0 data-[state=on]:scale-100 `}
+      >
+        <Container>
+          <div className="relative flex h-16  items-center justify-between px-4 sm:px-6 lg:px-4">
+            <div className="flex ">
+              <MobileNav data={categories} className="ml-2 " />
+              <Link
+                href="/"
+                className="ml-4 hidden items-center duration-200 ease-in hover:scale-105 sm:flex lg:ml-0"
+              >
+                <p className="text-lg font-bold text-primary sm:text-xl">
+                  {" "}
+                  Limpa Car
+                </p>
+              </Link>
+              <nav className="mx-6 hidden items-center space-x-4  lg:flex lg:items-center lg:space-x-6">
+                <MainNav data={categories} />
+              </nav>
+            </div>
 
-                <NavbarAction role={role} />
-              </div>
-            </Container>
-          </motion.header>
-        )}
-      </AnimatePresence>
+            <NavbarAction role={role} />
+          </div>
+        </Container>
+      </header>
     </>
   );
 };
