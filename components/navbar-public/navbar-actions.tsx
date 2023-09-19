@@ -3,7 +3,7 @@
 import useCart from "@/hooks/use-cart";
 import { ExternalLink, ShoppingBag, User2 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { LoginButton } from "../auth/auth";
+import { LoginButton } from "../auth/auth-button";
 import {
   Sheet,
   SheetContent,
@@ -38,13 +38,13 @@ const NavbarAction: React.FC<{ role: string | undefined }> = ({ role }) => {
   }
 
   return (
-    <div className="flex items-center ml-4 gap-x-2 sm:gap-x-4 ">
+    <div className="ml-4 flex items-center gap-x-2 sm:gap-x-4 ">
       {role && (
         <Link
           href={role === "admin" ? "/admin" : "/dashboard-user"}
-          className="flex items-center justify-center p-2 transition border rounded-full shadow-md bg-primary text-primary-foreground hover:rounded-full hover:bg-accent hover:text-accent-foreground group"
+          className="group flex items-center justify-center rounded-full border bg-primary p-2 text-primary-foreground shadow-md transition hover:rounded-full hover:bg-accent hover:text-accent-foreground"
         >
-          <User2 className="w-4 h-4 duration-300 ease-linear group-hover:scale-150 " />
+          <User2 className="h-4 w-4 duration-300 ease-linear group-hover:scale-150 " />
         </Link>
       )}
 
@@ -54,7 +54,7 @@ const NavbarAction: React.FC<{ role: string | undefined }> = ({ role }) => {
       <Sheet onOpenChange={setIsOpen} open={isOpen}>
         <SheetTrigger className={cn(buttonVariants({ variant: "rounded" }))}>
           <ShoppingBag size={20} />
-          <span className="w-3 ml-1 text-sm font-medium ">{totalQuantity}</span>
+          <span className="ml-1 w-3 text-sm font-medium ">{totalQuantity}</span>
         </SheetTrigger>
         <SheetContent className="w-auto overflow-y-auto">
           <SheetHeader className="pb-2 sm:pb-4">
@@ -64,12 +64,12 @@ const NavbarAction: React.FC<{ role: string | undefined }> = ({ role }) => {
                 href="/cart-page#summary"
                 className={cn(
                   buttonVariants(),
-                  "flex items-center justify-center mt-6 gap-2 group hover:underline sm:text-lg"
+                  "group mt-6 flex items-center justify-center gap-2 hover:underline sm:text-lg",
                 )}
               >
                 {" "}
                 Passer commande{" "}
-                <ExternalLink className="w-5 h-5 transition-transform group-hover:scale-110" />
+                <ExternalLink className="h-5 w-5 transition-transform group-hover:scale-110" />
               </Link>
             </SheetTitle>
             <SheetDescription>Contenue de votre panier</SheetDescription>
@@ -92,7 +92,7 @@ const NavbarAction: React.FC<{ role: string | undefined }> = ({ role }) => {
                       layout: { type: "tween" },
                       animate: { duration: 1 },
                     }}
-                    className="flex p-1 mb-4 border rounded-lg sm:border-2 sm:p-2 bg-card border-border"
+                    className="mb-4 flex rounded-lg border border-border bg-card p-1 sm:border-2 sm:p-2"
                   >
                     <CartItem data={item} />
                   </motion.li>

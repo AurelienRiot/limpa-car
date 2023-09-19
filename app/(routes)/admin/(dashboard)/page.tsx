@@ -52,7 +52,7 @@ const AdminDashboardPage = async () => {
     daysInMonth,
     saturdaysAndSundays,
     fullDays,
-    partiallyFullDays
+    partiallyFullDays,
   );
 
   const users = await prismadb.user.findMany({
@@ -65,7 +65,7 @@ const AdminDashboardPage = async () => {
 
   return (
     <div className="flex-col">
-      <div className="flex-1 p-2 pt-6 space-y-4 sm:p-8">
+      <div className="flex-1 space-y-4 p-2 pt-6 sm:p-8">
         <Heading
           title="Dashboard"
           description="Présentation de votre magasin"
@@ -73,11 +73,11 @@ const AdminDashboardPage = async () => {
         <Separator />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-8 ">
           <Card className="xl:col-span-2">
-            <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="pl-4 text-base sm:pl-0">
                 Revenue Totaux
               </CardTitle>
-              <EuroIcon className="w-4 h-4 text-muted-foreground" />
+              <EuroIcon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
@@ -86,27 +86,27 @@ const AdminDashboardPage = async () => {
             </CardContent>
           </Card>
           <Card className="xl:col-span-2">
-            <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="pl-4 text-base sm:pl-0 ">Ventes</CardTitle>
-              <CreditCardIcon className="w-4 h-4 text-muted-foreground" />
+              <CreditCardIcon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">+{SalesCount}</div>
             </CardContent>
           </Card>
           <Card className="xl:col-span-2">
-            <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="pl-4 text-base sm:pl-0 ">Autres</CardTitle>
-              <CreditCardIcon className="w-4 h-4 text-muted-foreground" />
+              <CreditCardIcon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">+{SalesCount}</div>
             </CardContent>
           </Card>
           <Card className="xl:col-span-2">
-            <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="pl-4 text-base sm:pl-0 ">Autres</CardTitle>
-              <CreditCardIcon className="w-4 h-4 text-muted-foreground" />
+              <CreditCardIcon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">+{SalesCount}</div>
@@ -122,7 +122,7 @@ const AdminDashboardPage = async () => {
             saturdaysAndSundays={saturdaysAndSundays}
             users={users}
           />
-          <Card className="p-4 col:span-1 sm:col-span-2 md:col-span-4 xl:col-span-8">
+          <Card className="col:span-1 p-4 sm:col-span-2 md:col-span-4 xl:col-span-8">
             <CardTitle>{"Vue d'ensemble"}</CardTitle>
             <CardContent className="p-0 sm:pl-2">
               <Overview data={graphRevenue} />

@@ -18,6 +18,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import * as z from "zod";
 import { motion } from "framer-motion";
+import Spinner from "@/components/animations/spinner";
 
 const formSchema = z.object({
   email: z
@@ -133,7 +134,7 @@ export default function LoginPage() {
                 className="mt-4 w-full transition-transform duration-200 ease-linear active:scale-95"
                 size="lg"
               >
-                {"Se connecter avec l'email"}
+                {!loading ? "Se connecter avec l'email" : <Spinner size={20} />}
               </Button>
             </form>
           </Form>

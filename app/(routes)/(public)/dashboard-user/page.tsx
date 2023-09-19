@@ -1,6 +1,6 @@
 import Link from "next/link";
 import GetUser from "@/actions-server/get-user";
-import { LogoutButton } from "@/components/auth/auth";
+import { LogoutButton } from "@/components/auth/auth-button";
 import ClientData from "./components/client-data";
 import { redirect } from "next/navigation";
 import { OrderTable } from "./components/order-table";
