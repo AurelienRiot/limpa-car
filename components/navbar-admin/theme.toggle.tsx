@@ -11,15 +11,25 @@ export function ThemeToggle() {
   return (
     <>
       {theme === "dark" || (theme === "system" && systemTheme === "dark") ? (
-        <Button onClick={() => setTheme("light")} size="icon">
-          <SunIcon className="h-[1.2rem] w-[1.2rem] " />
+        <Button
+          variant={"rounded"}
+          onClick={() => setTheme("light")}
+          size="icon"
+          title="light theme"
+        >
+          <SunIcon className=" absolute h-[1.2rem] w-[1.2rem] " />
         </Button>
       ) : (
-        <Button onClick={() => setTheme("dark")} size="icon">
+        <Button
+          variant={"rounded"}
+          onClick={() => setTheme("dark")}
+          size="icon"
+          title="dark theme"
+        >
           <MoonIcon className="absolute h-[1.2rem] w-[1.2rem]  " />
         </Button>
       )}
-      <span className="w-0 sr-only">Toggle theme</span>
+      <span className="sr-only w-0">Toggle theme</span>
     </>
   );
 }

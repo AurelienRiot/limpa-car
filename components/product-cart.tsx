@@ -42,18 +42,17 @@ const ProductCart: React.FC<ProductCartProps> = ({ data }) => {
   return (
     <div
       onClick={handleClick}
-      className="p-3 m-2 space-y-4 transition-transform border cursor-pointer group rounded-xl bg-secondary hover:scale-105"
+      className="group m-2 cursor-pointer space-y-4 rounded-xl border bg-secondary p-3 transition-transform hover:scale-105"
     >
-      <VisibleElement className="relative bg-white aspect-square rounded-xl before:rounded-xl before:inset-0 before:absolute before:z-10 before:bg-black/20 before:opacity-0 before:animate-in before:duration-300 before:ease-linear group-hover:before:opacity-100 ">
+      <VisibleElement className="relative aspect-square rounded-xl bg-white before:absolute before:inset-0 before:z-10 before:rounded-xl before:bg-black/20 before:opacity-0 before:duration-300 before:ease-linear before:animate-in group-hover:before:opacity-100 ">
         <Image
-        
           src={data?.images?.[0].url}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           alt="Image"
-          className="object-cover rounded-xl aspect-square "
+          className="aspect-square rounded-xl object-cover "
         />
-        <div className="absolute w-full px-6 sm:transition sm:opacity-0 sm:group-hover:opacity-100 bottom-5">
+        <div className="absolute bottom-5 w-full px-6 sm:opacity-0 sm:transition sm:group-hover:opacity-100">
           <div className="flex justify-center gap-x-6">
             <IconButton
               className="z-20"

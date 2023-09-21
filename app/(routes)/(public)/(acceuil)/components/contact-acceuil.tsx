@@ -15,18 +15,21 @@ const ContactAcceuil = () => {
     test = navigator.userAgent;
   }
   const divBg = useRef<HTMLDivElement>(null);
-  const imageHeight = typeof window !== "undefined" ? window.innerHeight : 0;
+  const divBgHeight = divBg?.current?.getBoundingClientRect()
+    ? divBg.current.getBoundingClientRect().bottom -
+      divBg.current.getBoundingClientRect().top
+    : 0;
 
-  const { scrollYProgress } = useScroll({
+  const { scrollY, scrollYProgress } = useScroll({
     target: divBg,
     offset: ["start end", "end start"],
   });
   const y = useTransform(
     scrollYProgress,
     [0, 1],
-    [-imageHeight * 1, imageHeight * 2],
+    [-0.4 * divBgHeight, divBgHeight],
   );
-
+  // const y = useTransform(scrollY, (value) => value);
   // const heightDivBg = useRef<number>(0);
   // const [offsetY, setOffsetY] = useState(0);
 
@@ -51,7 +54,7 @@ const ContactAcceuil = () => {
     <>
       <div
         ref={divBg}
-        className="relative w-full overflow-hidden bg-black shadow-lg "
+        className="relative w-full  bg-black shadow-lg "
         // style={{
         //   backgroundImage: `url(/home-page/TEST-HOME-BANNER.webp)`,
         // }}
@@ -61,7 +64,7 @@ const ContactAcceuil = () => {
           alt=""
           width={1920}
           height={1080}
-          className="absolute inset-0 h-screen object-cover   "
+          className="absolute inset-0 z-50 h-screen   object-cover"
           style={{
             y,
           }}

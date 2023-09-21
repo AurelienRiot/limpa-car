@@ -18,6 +18,10 @@ module.exports = {
       },
     },
     extend: {
+      transitionDuration: {
+        2000: "2000ms",
+        5000: "5000ms",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic": "conic-gradient(var(--tw-gradient-stops))",

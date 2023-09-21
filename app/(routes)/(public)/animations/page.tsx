@@ -19,6 +19,8 @@ import { ChangeEvent, useRef, useState } from "react";
 import Loading from "../loading";
 import "./style.css";
 import { IParallax, Parallax, ParallaxLayer } from "@react-spring/parallax";
+import Image from "next/image";
+import { Codepen, Dribbble, Facebook, Instagram, Twitter } from "lucide-react";
 
 const Animations = () => {
   const [value, setValue] = useState(50);
@@ -51,6 +53,9 @@ const Animations = () => {
       <Container>
         <Loading />
 
+        <ImageBLend image="/mountains.jpg" />
+        <ImageZoom image="/detailling_motors.jpeg" />
+        <CardHover image="/home-page/478px-SARS-CoV-2_without_background.webp" />
         <SquareProgressLoadingBarAnimation />
         <AnimatedGradient />
         <AnimatedText />
@@ -814,7 +819,7 @@ function DemoA() {
               left: `${value * 3}px`,
             }}
           >
-            <div className="grid h-5 w-5 place-items-center rounded-full bg-white shadow-md">
+            <div className="grid h-6 w-6 place-items-center rounded-full bg-white shadow-md">
               <div
                 className="rounded-full bg-[#424e82]"
                 style={{
@@ -1440,3 +1445,123 @@ function DemoF() {
     </Card>
   );
 }
+
+const ImageBLend = ({
+  image,
+  alt = "Image",
+}: {
+  image: string;
+  alt?: string;
+}) => {
+  return (
+    <>
+      <div className=" flex">
+        <div className=" no-repeat  group  grid overflow-hidden rounded-lg  shadow-md ">
+          <Image
+            style={{ gridArea: "1/1" }}
+            src={image}
+            alt={alt}
+            width={100}
+            height={100}
+            className="block h-full w-full object-contain"
+          />
+
+          <p
+            style={{ gridArea: "1/1" }}
+            className="pointer-events-none translate-y-[100%] place-self-end bg-gradient-to-t  from-black to-transparent p-4 text-sm   text-white transition-transform duration-500 group-hover:translate-y-[unset] "
+          >
+            Lorem ipsum dolor sit amet
+          </p>
+        </div>
+      </div>
+    </>
+  );
+};
+
+const ImageZoom = ({ image }: { image: string }) => {
+  const socials = [
+    <Icons.location key="location" className="h-6 w-6" />,
+    <Icons.person key="person" className="h-6 w-6" />,
+    <Icons.expedition key="expedition" className="h-6 w-6" />,
+    <Icons.bird key="bird" className="h-6 w-6" />,
+    <Icons.apple key="apple" className="h-6 w-6" />,
+    <Icons.XLogo key="XLogo" className="h-6 w-6" />,
+  ];
+
+  return (
+    <>
+      <div className=" m-0 flex">
+        <div
+          className="group relative flex h-[379px] w-[300px] items-center justify-center overflow-hidden rounded-[10px] bg-black bg-[size:300px] bg-[position:center_center] bg-no-repeat shadow-[0_70px_63px_-60px_#000000] transition-[background] duration-700 hover:bg-[size:600px] hover:bg-[position:left_center]"
+          style={{ backgroundImage: `url(${image})` }}
+        >
+          <div className="relative h-[369px] w-[290px] rounded-[10px] border-2 border-transparent bg-transparent transition-all duration-1000 group-hover:border-white">
+            <h2 className="m-5 text-white opacity-0 transition-opacity duration-1000 group-hover:opacity-100">
+              {" "}
+              Text zoom
+            </h2>
+            <div className="absolute top-[200px] flex h-[140px] w-[50px] flex-col items-center justify-around gap-1 fill-white text-white">
+              {socials.map((social, index) => (
+                <i
+                  className="opacity-0 transition-opacity  duration-1000 group-hover:opacity-100"
+                  aria-hidden="true"
+                  key={index}
+                >
+                  {social}
+                </i>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+const CardHover = ({ image }: { image: string }) => {
+  return (
+    <>
+      <div className="m-0 flex items-center justify-center p-0">
+        <div className=" relative flex w-[1000px] justify-between">
+          <div className="group relative cursor-pointer">
+            <div
+              className="relative z-10 flex h-[200px] w-[300px] translate-y-[100px] items-center justify-center bg-[#333] transition-all duration-500 group-hover:translate-y-0 group-hover:bg-red-600
+  "
+            >
+              <div className="opacity-20 transition-all duration-500 group-hover:opacity-100">
+                <Image
+                  alt=""
+                  width={100}
+                  height={100}
+                  src={image}
+                  className="max-w-[100px]"
+                />
+                <h3
+                  className="mx-0 mb-0 mt-2.5 p-0 text-center text-[1.5em] text-white
+"
+                >
+                  Design
+                </h3>
+              </div>
+            </div>
+            <div className="relative box-border flex h-[200px] w-[300px] translate-y-[-100px] items-center justify-center bg-white p-5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] transition duration-500 group-hover:translate-y-0  ">
+              <div className=" ">
+                <p className="relative m-0 p-0">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
+                  cum cumque minus iste veritatis provident at.
+                </p>
+                <a
+                  href="#"
+                  className="mx-0 mb-0 mt-[15px] inline-block border border-solid border-[#333] p-[5px] font-black text-[#333] no-underline transition-all duration-500 group-hover:bg-[#333] group-hover:text-white
+"
+                >
+                  Read More
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
