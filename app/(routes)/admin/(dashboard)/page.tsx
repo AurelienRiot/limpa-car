@@ -6,7 +6,10 @@ import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import { formatter } from "@/lib/utils";
 import { CreditCardIcon, EuroIcon } from "lucide-react";
-import { Overview } from "./components/overview";
+import dynamic from "next/dynamic";
+const DynamicOverview = dynamic(() => import("./components/overview"), {
+  ssr: false,
+});
 import AdminCalendar from "./components/admin-calendar";
 import prismadb from "@/lib/prismadb";
 import { eachDayOfInterval, endOfMonth, startOfMonth } from "date-fns";
@@ -125,7 +128,7 @@ const AdminDashboardPage = async () => {
           <Card className="col:span-1 p-4 sm:col-span-2 md:col-span-4 xl:col-span-8">
             <CardTitle>{"Vue d'ensemble"}</CardTitle>
             <CardContent className="p-0 sm:pl-2">
-              <Overview data={graphRevenue} />
+              <DynamicOverview data={graphRevenue} />
             </CardContent>
           </Card>
           {/* <Card className="p-4 col:span-1 sm:col-span-2 md:col-span-4">

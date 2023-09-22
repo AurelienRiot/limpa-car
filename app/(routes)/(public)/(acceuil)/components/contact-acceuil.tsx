@@ -54,7 +54,7 @@ const ContactAcceuil = () => {
     <>
       <div
         ref={divBg}
-        className="relative w-full  bg-black shadow-lg "
+        className="relative w-full  overflow-hidden bg-black shadow-lg"
         // style={{
         //   backgroundImage: `url(/home-page/TEST-HOME-BANNER.webp)`,
         // }}
@@ -64,7 +64,7 @@ const ContactAcceuil = () => {
           alt=""
           width={1920}
           height={1080}
-          className="absolute inset-0 z-50 h-screen   object-cover"
+          className="absolute inset-0 h-screen   object-cover"
           style={{
             y,
           }}

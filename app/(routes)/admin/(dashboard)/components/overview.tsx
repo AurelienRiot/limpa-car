@@ -5,10 +5,7 @@ import { ApexOptions } from "apexcharts";
 import { useTheme } from "next-themes";
 import { GraphDataProps } from "@/actions-server/get-graph-revenue";
 import { isWindowSmallerThan } from "@/lib/utils";
-import dynamic from "next/dynamic";
-const DynamicReactApexChart = dynamic(() => import("react-apexcharts"), {
-  ssr: false,
-});
+import ReactApexChart from "react-apexcharts";
 
 interface OverviewProps {
   data: GraphDataProps[];
@@ -156,14 +153,16 @@ export const Overview: React.FC<OverviewProps> = ({ data }) => {
 
   return (
     <div>
-      {" "}
-      <DynamicReactApexChart
+      <span className="sr-only w-0">Graphique</span>
+      <ReactApexChart
         options={options}
         series={series}
         type="bar"
         height={350}
         padding={{ bottom: 40 }}
-      />{" "}
+      />
     </div>
   );
 };
+
+export default Overview;
