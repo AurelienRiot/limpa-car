@@ -4,8 +4,9 @@ import { Facebook, Phone } from "lucide-react";
 import { Oswald } from "next/font/google";
 import Link from "next/link";
 import SolutionPro from "./solution-pro";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { GetWindowHeight, isWindowSmallerThan } from "@/lib/utils";
 
 const oswald = Oswald({ subsets: ["latin"] });
 
@@ -14,72 +15,45 @@ const ContactAcceuil = () => {
   if (typeof window !== "undefined") {
     test = navigator.userAgent;
   }
-  const divBg = useRef<HTMLDivElement>(null);
-  const divBgHeight = divBg?.current?.getBoundingClientRect()
-    ? divBg.current.getBoundingClientRect().bottom -
-      divBg.current.getBoundingClientRect().top
-    : 0;
+  const [divBgHeight, setDivBgHeight] = useState(0);
+  const divBg = useRef<HTMLDivElement | null>(null);
 
-  const { scrollY, scrollYProgress } = useScroll({
+  useEffect(() => {
+    if (divBg.current) {
+      setDivBgHeight(divBg.current.getBoundingClientRect().height);
+    }
+  }, []);
+
+  const { scrollYProgress } = useScroll({
     target: divBg,
-    offset: ["start end", "end start"],
+    offset: ["start end", "end end"],
   });
+  const imageOffSet = isWindowSmallerThan(640)
+    ? (3 * GetWindowHeight()) / 4
+    : (2 * divBgHeight) / 3;
   const y = useTransform(
     scrollYProgress,
     [0, 1],
-    [-0.4 * divBgHeight, divBgHeight],
+    [-imageOffSet, divBgHeight - imageOffSet],
   );
-  // const y = useTransform(scrollY, (value) => value);
-  // const heightDivBg = useRef<number>(0);
-  // const [offsetY, setOffsetY] = useState(0);
-
-  // useEffect(() => {
-  //   const handleScroll = throttle(() => {
-  //     if (divBg?.current) {
-  //       const rect = divBg.current.getBoundingClientRect();
-  //       heightDivBg.current = rect.bottom - rect.top;
-  //       setOffsetY(-rect.top - (rect.bottom - rect.top) / 5);
-  //     }
-  //   }, 100); // Throttle scroll event handler to run every 200ms
-
-  //   window.addEventListener("scroll", handleScroll, { passive: true }); // Use passive event listener for better performance
-
-  //   return () => {
-  //     handleScroll.cancel(); // Cancel any trailing throttled calls
-  //     window.removeEventListener("scroll", handleScroll)  ;
-  //   };
-  // }, []);
 
   return (
     <>
       <div
         ref={divBg}
-        className="relative w-full  overflow-hidden bg-black shadow-lg"
-        // style={{
-        //   backgroundImage: `url(/home-page/TEST-HOME-BANNER.webp)`,
-        // }}
+        className="relative w-full overflow-hidden  bg-black shadow-lg"
       >
         <motion.img
           src={"/home-page/TEST-HOME-BANNER.webp"}
           alt=""
           width={1920}
           height={1080}
-          className="absolute inset-0 h-screen   object-cover"
+          className="absolute inset-0  h-screen object-cover sm:h-full"
           style={{
             y,
           }}
         />
-        {/* <Image
-          src={"/home-page/TEST-HOME-BANNER.webp"}
-          alt=""
-          width={1920}
-          height={1080}
-          className="absolute inset-0  h-screen object-cover sm:h-full "
-          style={{
-            transition: "transform 0.2s linear",
-            transform: `translateY(${offsetY}px)`,
-          }}
-        /> */}
+
         <SolutionPro />
         <div
           className={`flex flex-col items-center  text-white ${oswald.className} backdrop-blur-md`}

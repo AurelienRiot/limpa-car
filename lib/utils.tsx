@@ -3,6 +3,18 @@ import { twMerge } from "tailwind-merge";
 import { fr } from "date-fns/locale";
 import { format } from "date-fns";
 
+export function GetWindowWidth() {
+  if (typeof window === "undefined") {
+    return 0;
+  }
+  return window.innerWidth;
+}
+export function GetWindowHeight() {
+  if (typeof window === "undefined") {
+    return 0;
+  }
+  return window.innerHeight;
+}
 export function isWindowSmallerThan(windowSize: number) {
   if (typeof window === "undefined") {
     return false;
