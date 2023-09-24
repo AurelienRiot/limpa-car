@@ -29,7 +29,7 @@ const ImageSlider = ({
     const rect = e.currentTarget.getBoundingClientRect();
     const x = Math.max(
       0,
-      Math.min(rect.width, e.touches[0].clientX - rect.left)
+      Math.min(rect.width, e.touches[0].clientX - rect.left),
     );
     const percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
 
@@ -47,13 +47,13 @@ const ImageSlider = ({
   return (
     <div
       data-state={dataState}
-      style={{ animationDuration: "500ms" }}
-      className="relative w-full data-[state=inactive]:hidden  data-[state=active]:zoom-in-95  data-[state=active]:animate-in  data-[state=active]:fade-in-0 rounded-md border-primary border-2 "
+      style={{ animationDuration: "1000ms" }}
+      className="relative w-full rounded-md  border-2  border-primary   data-[state=inactive]:hidden data-[state=active]:animate-in data-[state=active]:fade-in-50  "
       onMouseUp={handleMouseUp}
       onTouchEnd={handleMouseUp}
     >
       <div
-        className="relative sm:h-[80vh] sm:max-w-[80vw] w-[80vw] sm:w-auto  aspect-[281/372] m-auto overflow-hidden select-none"
+        className="relative m-auto aspect-[281/372] w-[80vw] select-none  overflow-hidden sm:h-[80vh] sm:w-auto sm:max-w-[80vw]"
         onMouseMove={handleMove}
         onMouseDown={handleMouseDown}
         onTouchMove={handleTouchMove}
@@ -63,26 +63,26 @@ const ImageSlider = ({
           src={imageAvant}
           alt="image1"
           fill
-          sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 1280px"
+          sizes="(max-width: 640px) 80vw, 80vh"
         />
 
         <div
-          className="absolute top-0 left-0 right-0 w-full h-full m-auto overflow-hidden select-none"
+          className="absolute left-0 right-0 top-0 m-auto h-full w-full select-none overflow-hidden"
           style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
         >
           <Image
             src={imageApres}
             alt="image1"
             fill
-            sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 1280px"
+            sizes="(max-width: 640px) 80vw, 80vh"
           />
         </div>
 
         <div
-          className="absolute top-0 bottom-0 w-1 bg-white cursor-col-resize"
+          className="absolute bottom-0 top-0 w-1 cursor-col-resize bg-white"
           style={{ left: `calc(${sliderPosition}% - 1px )` }}
         >
-          <div className="bg-white absolute rounded-full h-3 w-3 -left-1 top-[calc(50%-5px)]" />
+          <div className="absolute -left-1 top-[calc(50%-5px)] h-3 w-3 rounded-full bg-white" />
         </div>
       </div>
     </div>

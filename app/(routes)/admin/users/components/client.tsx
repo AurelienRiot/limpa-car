@@ -42,7 +42,7 @@ const UserClient: React.FC<UserClientProps> = ({
           title={`Clients (${filteredUsers.length})`}
           description="Liste des clients"
         />
-        <div className="grid grid-cols-1 gap-4 mt-4 justify-content-center md:grid-cols-6">
+        <div className="justify-content-center mt-4 grid grid-cols-1 gap-4 md:grid-cols-6">
           <Input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -67,19 +67,16 @@ const UserClient: React.FC<UserClientProps> = ({
             </SelectContent>
           </Select>
         </div>
-        <div className="grid grid-cols-1 p-6 space-y-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
-          {filteredUsers.map(
-            (user, index) =>
-              user.role !== "admin" && (
-                <div key={user.id} className="m-4">
-                  <CardUser
-                    user={user}
-                    orderLength={orderLengths[index]}
-                    messagesLength={messagesLengths[index]}
-                  />
-                </div>
-              )
-          )}
+        <div className="grid grid-cols-1 space-y-4 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
+          {filteredUsers.map((user, index) => (
+            <div key={user.id} className="m-4">
+              <CardUser
+                user={user}
+                orderLength={orderLengths[index]}
+                messagesLength={messagesLengths[index]}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </>

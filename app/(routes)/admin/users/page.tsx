@@ -3,6 +3,9 @@ import UserClient from "./components/client";
 
 const UserPage = async () => {
   const users = await prismadb.user.findMany({
+    where: {
+      role: "user",
+    },
     include: {
       messages: true,
       orders: true,

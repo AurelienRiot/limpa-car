@@ -18,6 +18,12 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        Inter: ["var(--font-inter)"],
+        FiraMono: ["var(--font-fira-mono)"],
+        Oswald: ["var(--font-oswald)"],
+        SourceCodePro: ["var(--font-source-code-pro)"],
+      },
       transitionDuration: {
         2000: "2000ms",
         5000: "5000ms",
