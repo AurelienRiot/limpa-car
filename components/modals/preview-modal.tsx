@@ -24,10 +24,10 @@ const PreviewModal = () => {
   return (
     <Dialog.Root open={isOpen} onOpenChange={onClose}>
       <Dialog.Overlay className="fixed inset-0 z-50  bg-black bg-opacity-60" />
-      <Dialog.Content className="hide-scrollbar fixed left-[50%] top-[0%] z-50 h-full translate-x-[-50%] overflow-y-auto  rounded-lg">
-        <div className="flex min-h-full items-center justify-center rounded-lg p-4 text-center">
+      <Dialog.Content className="hide-scrollbar fixed left-[50%] top-[0%] z-50 h-full w-screen translate-x-[-50%] overflow-y-auto   rounded-lg min-[800px]:w-[800px]  ">
+        <div className="flex min-h-full w-full    items-center justify-center rounded-lg p-4 text-center">
           <div className="w-full max-w-3xl rounded-lg text-left align-middle">
-            <div className="relative flex w-full items-center  rounded-lg bg-background px-4 pb-8 pt-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
+            <div className="relative flex w-full items-center rounded-lg bg-background px-4 pb-8 pt-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
               <Dialog.Close className="absolute right-2 top-2 ">
                 <IconButton
                   className="bg-primary"
