@@ -29,7 +29,7 @@ const Temoignage = () => {
   const nextTemoignage = useCallback(() => {
     const currentIndex = temoignage.findIndex(
       (t) =>
-        t.name === currentTemoignage.name && t.text === currentTemoignage.text
+        t.name === currentTemoignage.name && t.text === currentTemoignage.text,
     );
 
     if (currentIndex === temoignage.length - 1) {
@@ -43,7 +43,7 @@ const Temoignage = () => {
   const prevTemoignage = () => {
     const currentIndex = temoignage.findIndex(
       (t) =>
-        t.name === currentTemoignage.name && t.text === currentTemoignage.text
+        t.name === currentTemoignage.name && t.text === currentTemoignage.text,
     );
 
     if (currentIndex === 0) {
@@ -76,27 +76,29 @@ const Temoignage = () => {
       <div
         className={` flex flex-col items-center justify-center ${raleway.className} pb-20 `}
       >
-        <h2 className="text-4xl text-center sm:text-7xl">Ils témoignent</h2>
-        <Separator className="w-20 mx-auto my-4" />
-        <p className="font-sans font-light text-center ">
+        <h2 className="text-center text-4xl tracking-tight  sm:text-7xl">
+          Ils témoignent
+        </h2>
+        <Separator className="mx-auto my-4 w-20" />
+        <p className="text-center font-sans font-light ">
           Laissez votre avis !
         </p>
       </div>
-      <div className="relative w-full h-[80vh]">
-        <div className="absolute top-0 left-0 w-full h-full">
+      <div className="relative h-[80vh] w-full">
+        <div className="absolute left-0 top-0 h-full w-full">
           <Image
             priority
             src="/home-page/slidebg5.jpg"
             alt="image background"
             width={1000}
             height={549}
-            className="absolute top-0 left-0 object-cover object-center w-full h-full"
+            className="absolute left-0 top-0 h-full w-full object-cover object-center"
           />
         </div>
-        <div className="absolute top-0 left-0 flex flex-col items-center w-full h-full bg-slate-900 opacity-60 "></div>
-        <div className="absolute top-0 w-0 h-0 -translate-x-1/2 border-l-[30px] border-r-[30px] border-t-[30px] border-b-0 border-transparent border-t-primary-foreground left-1/2"></div>
+        <div className="absolute left-0 top-0 flex h-full w-full flex-col items-center bg-slate-900 opacity-60 "></div>
+        <div className="absolute left-1/2 top-0 h-0 w-0 -translate-x-1/2 border-b-0 border-l-[30px] border-r-[30px] border-t-[30px] border-transparent border-t-primary-foreground"></div>
         <div
-          className={`absolute top-10 flex flex-col items-center w-full h-full  text-white ${raleway.className}`}
+          className={`absolute top-10 flex h-full w-full flex-col items-center  text-white ${raleway.className}`}
         >
           <Quote className="mt-6" size={40} />
 
@@ -106,7 +108,7 @@ const Temoignage = () => {
             duration={1}
             as="p"
             key={currentTemoignage.text}
-            className="px-2 my-4 text-base text-center sm:px-24 sm:text-xl md:text-2xl lg:w-2/3"
+            className="my-4 px-2 text-center text-base sm:px-24 sm:text-xl md:text-2xl lg:w-2/3"
           >
             &quot; {currentTemoignage.text} &quot;{" "}
           </VisibleElement>
@@ -118,16 +120,16 @@ const Temoignage = () => {
           >
             {currentTemoignage.name}
           </VisibleElement>
-          <div className="absolute z-10 flex gap-2 mb-6 text-white bottom-10 opacity-60">
+          <div className="absolute bottom-10 z-10 mb-6 flex gap-2 text-white opacity-60">
             <button
               onClick={prevTemoignage}
-              className="flex items-center justify-center p-1 bg-gray-900 rounded-full hover:bg-gray-600 "
+              className="flex items-center justify-center rounded-full bg-gray-900 p-1 hover:bg-gray-600 "
             >
               <ChevronLeft size={36} strokeWidth={1} />{" "}
             </button>
             <button
               onClick={nextTemoignage}
-              className="flex items-center justify-center p-1 bg-gray-900 rounded-full hover:bg-gray-600"
+              className="flex items-center justify-center rounded-full bg-gray-900 p-1 hover:bg-gray-600"
             >
               <ChevronRight size={36} strokeWidth={1} />
             </button>

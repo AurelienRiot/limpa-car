@@ -1,5 +1,4 @@
 import { Separator } from "@/components/ui/separator";
-import { Oswald } from "next/font/google";
 import {
   Accordion,
   AccordionContent,
@@ -7,16 +6,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const oswald = Oswald({ subsets: ["latin"] });
-
 const SolutionPro = () => {
   return (
     <>
       <div className="relative  bg-primary-foreground/80 py-20 ">
-        <div
-          className={`flex flex-col    items-center justify-center ${oswald.className} `}
-        >
-          <h2 className="transform bg-gradient-to-b from-primary via-transparent to-primary bg-[size:200%_200%] bg-clip-text bg-[position:0%_0%] text-center text-4xl text-transparent duration-500 hover:bg-[position:100%_100%]  sm:text-7xl">
+        <div className={`flex flex-col    items-center justify-center  `}>
+          <h2 className="transform   bg-gradient-to-b from-primary via-transparent to-primary bg-[size:200%_200%] bg-clip-text bg-[position:0%_0%] text-center text-4xl tracking-tight text-transparent duration-500 hover:bg-[position:100%_100%] hover:tracking-wide  sm:text-7xl">
             SOLUTIONS PRO
           </h2>
           <Separator className="mx-auto my-4 w-20" />
@@ -26,7 +21,7 @@ const SolutionPro = () => {
         </div>
         <Accordion type="single" collapsible className="w-full ">
           <AccordionItem value="item-1 ">
-            <AccordionTrigger className={`${oswald.className}  rounded-t-md`}>
+            <AccordionTrigger className={`  rounded-t-md`}>
               CONCESSIONNAIRES
             </AccordionTrigger>
             <AccordionContent>
@@ -54,9 +49,7 @@ const SolutionPro = () => {
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-2">
-            <AccordionTrigger className={oswald.className}>
-              FLOTTES ENTREPRISES
-            </AccordionTrigger>
+            <AccordionTrigger>FLOTTES ENTREPRISES</AccordionTrigger>
             <AccordionContent>
               <ul className="list-inside list-disc">
                 <li>
@@ -80,7 +73,7 @@ const SolutionPro = () => {
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-3">
-            <AccordionTrigger className={oswald.className}>
+            <AccordionTrigger>
               CABINET ASSURANCES ET EXPERTISES
             </AccordionTrigger>
             <AccordionContent>
@@ -105,9 +98,7 @@ const SolutionPro = () => {
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-4">
-            <AccordionTrigger className={oswald.className}>
-              COMMUNICATION ET ÉVÉNEMENTIEL
-            </AccordionTrigger>
+            <AccordionTrigger>COMMUNICATION ET ÉVÉNEMENTIEL</AccordionTrigger>
             <AccordionContent>
               <ul className="list-inside list-disc">
                 <li>
@@ -135,7 +126,7 @@ const SolutionPro = () => {
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-5">
-            <AccordionTrigger className={`${oswald.className}  rounded-b-md`}>
+            <AccordionTrigger className={`  rounded-b-md`}>
               REMISE EN ÉTAT DE VÉHICULE AVANT RESTITUTION
             </AccordionTrigger>
             <AccordionContent>

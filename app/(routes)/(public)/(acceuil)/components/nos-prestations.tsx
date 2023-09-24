@@ -44,19 +44,21 @@ const NosPrestations = () => {
   ];
 
   return (
-    <div className="relative px-4 pt-6 pb-10 space-y-10 ">
+    <div className="relative space-y-10 px-4 pb-10 pt-6 ">
       <div
         className={`relative flex flex-col items-center justify-center ${oswald.className}  `}
       >
-        <h2 className="text-4xl text-center sm:text-7xl">NOS PRESTATIONS</h2>
-        <Separator className="w-24 mx-auto my-4" />
-        <p className="mt-20 mb-8 text-center ">COVID-19</p>
+        <h2 className="text-center text-4xl  tracking-tight sm:text-7xl">
+          NOS PRESTATIONS
+        </h2>
+        <Separator className="mx-auto my-4 w-24" />
+        <p className="mb-8 mt-20 text-center ">COVID-19</p>
         <Image
           src={"/home-page/478px-SARS-CoV-2_without_background.webp"}
           alt=""
           width={150}
           height={150}
-          className="transition duration-500 ease-in-out hover:filter hover:grayscale"
+          className="transition duration-500 ease-in-out hover:grayscale hover:filter"
         />
         <p className="mt-8 text-lg font-light ">
           Spécialiste du nettoyage et du marquage adhésif, Netcars vous
@@ -67,13 +69,13 @@ const NosPrestations = () => {
       <div className="flex flex-wrap gap-4 pb-10 ">
         {prestations.map((prestation, index) => (
           <div
-            className="flex flex-col items-start flex-auto w-80 xl:w-1/5"
+            className="flex w-80 flex-auto flex-col items-start xl:w-1/5"
             key={index}
           >
             <VisibleElement
               variant="fade"
               as="h3"
-              className="relative flex flex-col items-center justify-center w-full gap-4 pb-8 font-bold text-center"
+              className="relative flex w-full flex-col items-center justify-center gap-4 pb-8 text-center font-bold"
             >
               {prestation.titre}
               <Image src={prestation.image} alt="" width={130} height={130} />
@@ -82,7 +84,7 @@ const NosPrestations = () => {
             <div className="flex flex-col">
               <VisibleElement
                 variant="fade"
-                className="z-10 flex items-center mb-2 space-x-2 font-semibold"
+                className="z-10 mb-2 flex items-center space-x-2 font-semibold"
               >
                 {prestation.text}
               </VisibleElement>
