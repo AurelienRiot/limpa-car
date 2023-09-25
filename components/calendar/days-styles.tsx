@@ -20,15 +20,16 @@ export const disabledStyle = {
 };
 
 export function GetFooterMessage(isDayAvailable: string | null) {
-  if (isDayAvailable === "full") {
-    return "Ce jour est complet!";
-  } else if (isDayAvailable === "partiallyFull") {
-    return "Ce jour est presque complet!";
-  } else if (isDayAvailable === "free") {
-    return "Ce jour est libre";
-  } else if (isDayAvailable === "unavailable") {
-    return "Choisisez un autre jour";
-  } else {
-    return null;
+  switch (isDayAvailable) {
+    case "full":
+      return "Ce jour est complet!";
+    case "partiallyFull":
+      return "Ce jour est presque complet!";
+    case "free":
+      return "Ce jour est libre";
+    case "unavailable":
+      return "Choisisez un autre jour";
+    default:
+      return null;
   }
 }

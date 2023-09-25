@@ -52,7 +52,7 @@ const ProductCart: React.FC<ProductCartProps> = ({ data }) => {
           alt="Image"
           className="aspect-square rounded-xl object-cover "
         />
-        <div className="absolute bottom-5 w-full px-6 sm:opacity-0 sm:transition sm:group-hover:opacity-100">
+        <div className="absolute bottom-5 w-full px-6 opacity-100 sm:opacity-0 sm:transition sm:group-hover:opacity-100">
           <div className="flex justify-center gap-x-6">
             <IconButton
               className="z-20"

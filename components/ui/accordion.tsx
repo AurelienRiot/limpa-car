@@ -27,7 +27,7 @@ const AccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        "justify-left relative flex flex-1 items-start py-4 pl-14 text-sm font-medium transition-all duration-200 hover:underline sm:text-base md:text-lg lg:text-xl [&[data-state=closed]>svg.plus]:scale-100   [&[data-state=closed]>svg.square]:scale-0 [&[data-state=closed]]:bg-primary [&[data-state=closed]]:text-primary-foreground dark:[&[data-state=closed]]:bg-gray-300 [&[data-state=open]>svg.plus]:scale-0 [&[data-state=open]]:bg-primary-foreground",
+        "justify-left relative flex flex-1 items-start bg-primary py-4 pl-14 text-sm font-medium transition-all duration-200 hover:underline sm:text-base md:text-lg lg:text-xl   [&[data-state=closed]>svg.plus]:scale-100 [&[data-state=closed]>svg.square]:scale-0 [&[data-state=closed]]:text-primary-foreground  [&[data-state=open]>svg.plus]:scale-0 [&[data-state=open]]:bg-gradient-to-b [&[data-state=open]]:from-secondary [&[data-state=open]]:to-primary-foreground ",
         className,
       )}
       {...props}
@@ -49,7 +49,7 @@ const AccordionTrigger = React.forwardRef<
         <rect width="2" height="20" x="9" y="0" />
       </svg>
       <svg
-        className="absolute left-0 top-1/2 mx-4 h-5 w-5 shrink-0 "
+        className="absolute left-0 top-1/2 mx-4 h-5 w-5 shrink-0  "
         viewBox="0 0 20 20"
         fill="currentColor"
       >

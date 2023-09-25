@@ -30,7 +30,6 @@ export function isMobile() {
   return navigator.userAgent.indexOf("Mobile") !== -1;
 }
 
-export const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
