@@ -7,8 +7,7 @@ import {
   OrbitControls,
   PerspectiveCamera,
 } from "@react-three/drei";
-// import dynamic from "next/dynamic";
-// const Ground = dynamic(() => import("./ground"), { ssr: false });
+import Ground from "./ground";
 import Car from "./car";
 import Rings from "./rings";
 import { Boxes } from "./boxes";
@@ -63,7 +62,7 @@ const CarShowPage = () => {
             )}
           </CubeCamera>
           <Boxes />
-          {/* <Ground /> */}
+          <Ground />
           <FloatinGrid />
 
           <EffectComposer>
