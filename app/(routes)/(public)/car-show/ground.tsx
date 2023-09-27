@@ -41,7 +41,7 @@ export function Ground() {
   return (
     <mesh rotation-x={-Math.PI * 0.5} castShadow receiveShadow>
       <planeGeometry args={[30, 30]} />
-      <MeshReflectorMaterial
+      <meshReflectorMaterialImpl
         envMapIntensity={0}
         normalMap={normal}
         normalScale={new Vector2(0.15, 0.15)}
@@ -57,10 +57,10 @@ export function Ground() {
         minDepthThreshold={0.9}
         maxDepthThreshold={1}
         depthToBlurRatioBias={0.25}
-        // textureMatrix={textureMatrix}
-        // tDiffuse={tDiffuse}
-        // tDiffuseBlur={tDiffuseBlur}
-        // hasBlur={hasBlur}
+        textureMatrix={textureMatrix}
+        tDiffuse={tDiffuse}
+        tDiffuseBlur={tDiffuseBlur}
+        hasBlur={hasBlur}
         distortion={0.5}
       />
     </mesh>
