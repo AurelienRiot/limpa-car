@@ -28,7 +28,7 @@ const PreviewModal = () => {
         <div className="flex min-h-full w-full    items-center justify-center rounded-lg p-4 text-center">
           <div className="w-full max-w-3xl rounded-lg text-left align-middle">
             <div className="relative flex w-full items-center rounded-lg bg-background px-4 pb-8 pt-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
-              <Dialog.Close className="absolute right-2 top-2 ">
+              <Dialog.Close asChild className="absolute right-2 top-2 ">
                 <IconButton
                   className="bg-primary"
                   icon={<X size={15} className="text-primary-foreground" />}

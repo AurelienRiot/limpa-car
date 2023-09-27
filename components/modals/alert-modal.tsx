@@ -35,12 +35,12 @@ export const AlertModal: React.FC<AlertModalProps> = ({
       onClose={onClose}
       className="left-[50%] top-[30%]"
     >
-      <div className="flex items-center justify-end w-full pt-6 space-x-2">
+      <div className="flex w-full items-center justify-end space-x-2 pt-6">
         <Button disabled={loading} variant="outline" onClick={onClose}>
-          {"Annulé"}
+          {"Annuler"}
         </Button>
         <Button disabled={loading} variant="destructive" onClick={onConfirm}>
-          {!loading ? "Supprimé" : <Spinner size={20} />}
+          {!loading ? "Continuer" : <Spinner size={20} />}
         </Button>
       </div>
     </Modal>

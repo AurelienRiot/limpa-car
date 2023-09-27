@@ -39,16 +39,17 @@ const NavbarAction: React.FC<{ role: string | undefined }> = ({ role }) => {
 
   return (
     <div className="ml-4 flex items-center gap-x-2 sm:gap-x-4 ">
-      {role && (
+      {role ? (
         <Link
           href={role === "admin" ? "/admin" : "/dashboard-user"}
           className="group flex items-center justify-center rounded-full border bg-primary p-2 text-primary-foreground shadow-md transition hover:rounded-full hover:bg-accent hover:text-accent-foreground"
         >
           <User2 className="h-6 w-6 duration-300 ease-linear group-hover:scale-150 " />
         </Link>
+      ) : (
+        <LoginButton />
       )}
 
-      {!role && <LoginButton />}
       <ThemeToggle />
 
       <Sheet onOpenChange={setIsOpen} open={isOpen}>

@@ -131,11 +131,10 @@ const AdminDashboardPage = async () => {
               <DynamicOverview data={graphRevenue} />
             </CardContent>
           </Card>
-          {/* <Card className="p-4 col:span-1 sm:col-span-2 md:col-span-4">
+          {/* <Card className="col:span-1 p-4 sm:col-span-2 md:col-span-4">
             <CardTitle>{"Test Tableau"}</CardTitle>
             <CardContent className="p-0 sm:pl-2">
               <TestTableau />
-              
             </CardContent>
           </Card> */}
         </div>

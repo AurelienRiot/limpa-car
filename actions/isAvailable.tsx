@@ -1,4 +1,3 @@
-import useCart from "@/hooks/use-cart";
 import axios, { AxiosError } from "axios";
 import { addDays } from "date-fns";
 import toast from "react-hot-toast";
@@ -7,7 +6,7 @@ export const maxEventsPerDay = 4;
 
 const IsAvailable = async (
   dateOfEvent: Date | undefined,
-  dates: { [productId: string]: Date[] }
+  dates: { [productId: string]: Date[] },
 ) => {
   try {
     if (!dateOfEvent) {
@@ -36,7 +35,7 @@ const IsAvailable = async (
       .filter(
         (date) =>
           new Date(date).toISOString().split("T")[0] ===
-          dateOfEvent?.toISOString().split("T")[0]
+          dateOfEvent?.toISOString().split("T")[0],
       ).length;
 
     const eventCount = eventCountFromResponse + eventCountFromDates;
