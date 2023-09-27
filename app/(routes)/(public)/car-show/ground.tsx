@@ -10,9 +10,7 @@ import {
 } from "three";
 import { MeshReflectorMaterial } from "@react-three/drei";
 
-extend({ MeshReflectorMaterial });
-
-export function Ground() {
+export default function Ground() {
   const [roughness, normal] = useLoader(TextureLoader, [
     "/car-show/terrain-roughness.jpg",
     "/car-show/terrain-normal.jpg",
@@ -33,15 +31,10 @@ export function Ground() {
     normal.offset.set(0, t);
   });
 
-  let textureMatrix = new Matrix4();
-  let tDiffuse = new Texture();
-  let tDiffuseBlur = new Texture();
-  let hasBlur = true;
-
   return (
     <mesh rotation-x={-Math.PI * 0.5} castShadow receiveShadow>
       <planeGeometry args={[30, 30]} />
-      <meshReflectorMaterialImpl
+      <MeshReflectorMaterial
         envMapIntensity={0}
         normalMap={normal}
         normalScale={new Vector2(0.15, 0.15)}
@@ -57,10 +50,6 @@ export function Ground() {
         minDepthThreshold={0.9}
         maxDepthThreshold={1}
         depthToBlurRatioBias={0.25}
-        textureMatrix={textureMatrix}
-        tDiffuse={tDiffuse}
-        tDiffuseBlur={tDiffuseBlur}
-        hasBlur={hasBlur}
         distortion={0.5}
       />
     </mesh>

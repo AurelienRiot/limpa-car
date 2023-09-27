@@ -7,7 +7,8 @@ import {
   OrbitControls,
   PerspectiveCamera,
 } from "@react-three/drei";
-import { Ground } from "./ground";
+import dynamic from "next/dynamic";
+const Ground = dynamic(() => import("./ground"), { ssr: false });
 import Car from "./car";
 import Rings from "./rings";
 import { Boxes } from "./boxes";
