@@ -1,12 +1,16 @@
-import { useFrame, useLoader } from "@react-three/fiber";
+import { useFrame, useLoader, extend } from "@react-three/fiber";
 import { useEffect } from "react";
 import {
   LinearSRGBColorSpace,
+  Matrix4,
   RepeatWrapping,
+  Texture,
   TextureLoader,
   Vector2,
 } from "three";
 import { MeshReflectorMaterial } from "@react-three/drei";
+
+extend({ MeshReflectorMaterial });
 
 export function Ground() {
   const [roughness, normal] = useLoader(TextureLoader, [
@@ -29,6 +33,11 @@ export function Ground() {
     normal.offset.set(0, t);
   });
 
+  let textureMatrix = new Matrix4();
+  let tDiffuse = new Texture();
+  let tDiffuseBlur = new Texture();
+  let hasBlur = true;
+
   return (
     <mesh rotation-x={-Math.PI * 0.5} castShadow receiveShadow>
       <planeGeometry args={[30, 30]} />
@@ -48,6 +57,10 @@ export function Ground() {
         minDepthThreshold={0.9}
         maxDepthThreshold={1}
         depthToBlurRatioBias={0.25}
+        // textureMatrix={textureMatrix}
+        // tDiffuse={tDiffuse}
+        // tDiffuseBlur={tDiffuseBlur}
+        // hasBlur={hasBlur}
         distortion={0.5}
       />
     </mesh>
