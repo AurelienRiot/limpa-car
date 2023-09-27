@@ -8,7 +8,7 @@ import {
   TextureLoader,
   Vector2,
 } from "three";
-import { MeshReflectorMaterial } from "@react-three/drei";
+import { MeshReflectorMaterial as MeshReflectorMaterialImpl } from "@react-three/drei";
 
 export default function Ground() {
   const [roughness, normal] = useLoader(TextureLoader, [
@@ -34,7 +34,7 @@ export default function Ground() {
   return (
     <mesh rotation-x={-Math.PI * 0.5} castShadow receiveShadow>
       <planeGeometry args={[30, 30]} />
-      <MeshReflectorMaterial
+      <MeshReflectorMaterialImpl
         envMapIntensity={0}
         normalMap={normal}
         normalScale={new Vector2(0.15, 0.15)}
