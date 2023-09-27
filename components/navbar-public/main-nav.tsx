@@ -17,21 +17,19 @@ import { VisibleElement } from "@/components/animations/visible-element";
 import { ChevronDown } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
 import { Category } from "@prisma/client";
+import { useCategories } from "@/hooks/use-categories";
 
-interface MainNavProps {
-  data: Category[];
-}
-
-const MainNav: React.FC<MainNavProps> = ({ data }) => {
+const MainNav = () => {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const { categories } = useCategories();
 
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
-  const routesCategory = data
-    .filter((route) => route.name !== "Nettoyage")
+  const routesCategory = categories
+    .filter((category) => category.name !== "Nettoyage")
     .map((route) => ({
       href: `/category/${route.id}`,
       label: route.name,
@@ -41,26 +39,26 @@ const MainNav: React.FC<MainNavProps> = ({ data }) => {
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        <NavigationMenuItem className="border-2 rounded-lg border-border">
+        <NavigationMenuItem className="rounded-lg border-2 border-border">
           <Link href="/nettoyage" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              <Car className="hidden w-4 h-4 mr-2 xl:flex" />
+              <Car className="mr-2 hidden h-4 w-4 xl:flex" />
               Nettoyage
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        <NavigationMenuItem className="relative border-2 rounded-lg border-border">
+        <NavigationMenuItem className="relative rounded-lg border-2 border-border">
           <button
             aria-expanded={open}
             onClick={() => setOpen(!open)}
-            className="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors rounded-md w-max bg-background hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 "
+            className="inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 "
           >
-            {"  "} <StoreIcon className="hidden w-4 h-4 mr-2 xl:flex" />{" "}
+            {"  "} <StoreIcon className="mr-2 hidden h-4 w-4 xl:flex" />{" "}
             Produits
             <ChevronDown
               className={cn(
                 `relative top-[1px] ml-1 h-3 w-3 transition duration-200`,
-                open ? "rotate-180" : ""
+                open ? "rotate-180" : "",
               )}
               aria-hidden="true"
             />
@@ -71,7 +69,7 @@ const MainNav: React.FC<MainNavProps> = ({ data }) => {
               <VisibleElement
                 as="ul"
                 variant="bottom"
-                className="absolute z-50 grid w-full gap-3 py-6 border-2 rounded-lg xl:px-2 top-12 bg-popover border-border"
+                className="absolute top-12 z-50 grid w-full gap-3 rounded-lg border-2 border-border bg-popover py-6 xl:px-2"
               >
                 {routesCategory.map((route) => (
                   <li key={route.href}>
@@ -82,7 +80,7 @@ const MainNav: React.FC<MainNavProps> = ({ data }) => {
                         route.active
                           ? "text-popover-foreground "
                           : "text-muted-foreground ",
-                        "pl-4 block rounded-lg py-1 w-full text-sm font-medium leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        "block w-full rounded-lg py-1 pl-4 text-sm font-medium leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
                       )}
                     >
                       {route.label}
@@ -94,10 +92,10 @@ const MainNav: React.FC<MainNavProps> = ({ data }) => {
           </AnimatePresence>
         </NavigationMenuItem>
 
-        <NavigationMenuItem className="border-2 rounded-lg border-border">
+        <NavigationMenuItem className="rounded-lg border-2 border-border">
           <Link href="/contact" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              <LucidePhoneCall className="hidden w-4 h-4 mr-2 xl:flex" />
+              <LucidePhoneCall className="mr-2 hidden h-4 w-4 xl:flex" />
               Contact
             </NavigationMenuLink>
           </Link>

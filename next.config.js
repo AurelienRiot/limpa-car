@@ -7,6 +7,7 @@ const nextConfig = {
       "images.unsplash.com",
     ],
   },
+  transpilePackages: ["three"],
 };
 
 module.exports = nextConfig;

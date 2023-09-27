@@ -28,24 +28,24 @@ import { VisibleElement } from "@/components/animations/visible-element";
 import { Category } from "@prisma/client";
 import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { useCategories } from "@/hooks/use-categories";
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<
   typeof PopoverTrigger
 >;
-interface MobileNavProps extends PopoverTriggerProps {
-  data: Category[];
-}
+interface MobileNavProps extends PopoverTriggerProps {}
 
-export default function MobileNav({ className, data }: MobileNavProps) {
+export default function MobileNav({ className }: MobileNavProps) {
   const pathname = usePathname();
   const router = useRouter();
 
   const [open, setOpen] = useState(false);
   const [openProduct, setOpenProduct] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const { categories } = useCategories();
 
-  const routesCategory = data
-    .filter((route) => route.name !== "Nettoyage")
+  const routesCategory = categories
+    .filter((category) => category.name !== "Nettoyage")
     .map((route) => ({
       href: `/category/${route.id}`,
       label: route.name,
@@ -80,8 +80,8 @@ export default function MobileNav({ className, data }: MobileNavProps) {
               aria-expanded={open}
               aria-label="Select"
               className={cn(
-                "  relative rounded-full w-10 h-10 group data-[state=open]:text-destructive-foreground transition-colors   data-[state=open]:bg-destructive  duration-300 ",
-                className
+                "  group relative h-10 w-10 rounded-full transition-colors duration-300   data-[state=open]:bg-destructive  data-[state=open]:text-destructive-foreground ",
+                className,
               )}
             >
               <svg
@@ -91,7 +91,7 @@ export default function MobileNav({ className, data }: MobileNavProps) {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                className="absolute w-4 h-4 transition-transform  duration-300 group-data-[state=open]:-rotate-45 top-[18px] left-[10px] group-data-[state=open]:translate-x-[5px] group-data-[state=open]:translate-y-[-2px] "
+                className="absolute left-[10px] top-[18px] h-4  w-4 transition-transform duration-300 group-data-[state=open]:translate-x-[5px] group-data-[state=open]:translate-y-[-2px] group-data-[state=open]:-rotate-45 "
                 viewBox="0 0 24 24"
               >
                 <line x1="2" y1="2" x2="22" y2="2"></line>
@@ -104,7 +104,7 @@ export default function MobileNav({ className, data }: MobileNavProps) {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                className="absolute w-4 h-4 transition-transform duration-300 top-[13px] left-[10px] group-data-[state=open]:rotate-45 group-data-[state=open]:translate-x-[-4px] group-data-[state=open]:translate-y-[3px]  "
+                className="absolute left-[10px] top-[13px] h-4 w-4 transition-transform duration-300 group-data-[state=open]:translate-x-[-4px] group-data-[state=open]:translate-y-[3px] group-data-[state=open]:rotate-45  "
                 viewBox="0 0 24 24"
               >
                 <line x1="2" y1="2" x2="14" y2="2"></line>
@@ -116,7 +116,7 @@ export default function MobileNav({ className, data }: MobileNavProps) {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                className="absolute w-4 h-4 transition-transform  duration-300 top-[23px] left-[15px] group-data-[state=open]:rotate-45 group-data-[state=open]:translate-x-[-5px] group-data-[state=open]:translate-y-[-3px] "
+                className="absolute left-[15px] top-[23px] h-4  w-4 transition-transform duration-300 group-data-[state=open]:translate-x-[-5px] group-data-[state=open]:translate-y-[-3px] group-data-[state=open]:rotate-45 "
                 viewBox="0 0 24 24"
               >
                 <line x1="2" y1="2" x2="14" y2="2"></line>
@@ -146,14 +146,14 @@ export default function MobileNav({ className, data }: MobileNavProps) {
                       setOpen(false);
                       setOpenProduct(false);
                     }}
-                    className="cursor-pointer test-sm "
+                    className="test-sm cursor-pointer "
                   >
-                    <Car className="w-4 h-4 mr-2" />
+                    <Car className="mr-2 h-4 w-4" />
                     Nettoyage
                     <Check
                       className={cn(
                         "ml-auto h-4 w-4",
-                        pathname === "nettoyage" ? "opacity-100" : "opacity-0"
+                        pathname === "nettoyage" ? "opacity-100" : "opacity-0",
                       )}
                     />
                   </CommandItem>
@@ -161,13 +161,13 @@ export default function MobileNav({ className, data }: MobileNavProps) {
                   <CommandItem
                     aria-expanded={openProduct}
                     onSelect={() => setOpenProduct(!openProduct)}
-                    className="cursor-pointer test-sm"
+                    className="test-sm cursor-pointer"
                   >
-                    {"  "} <StoreIcon className="w-4 h-4 mr-2 " /> Produits
+                    {"  "} <StoreIcon className="mr-2 h-4 w-4 " /> Produits
                     <ChevronDown
                       className={cn(
                         `relative top-[1px] ml-1 h-3 w-3 transition duration-200`,
-                        openProduct ? "" : "-rotate-90"
+                        openProduct ? "" : "-rotate-90",
                       )}
                       aria-hidden="true"
                     />
@@ -177,7 +177,7 @@ export default function MobileNav({ className, data }: MobileNavProps) {
                           <VisibleElement
                             as="ul"
                             variant="bottom"
-                            className="absolute z-40 grid w-auto gap-2 p-4 border-2 rounded-lg left-20 top-6 bg-popover border-border"
+                            className="absolute left-20 top-6 z-40 grid w-auto gap-2 rounded-lg border-2 border-border bg-popover p-4"
                           >
                             {routesCategory.map((route) => (
                               <li key={route.href}>
@@ -191,7 +191,7 @@ export default function MobileNav({ className, data }: MobileNavProps) {
                                     route.active
                                       ? "text-popover-foreground "
                                       : "text-muted-foreground ",
-                                    "block rounded-lg w-full text-sm font-medium leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                                    "block w-full rounded-lg text-sm font-medium leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
                                   )}
                                 >
                                   {route.label}
@@ -210,14 +210,14 @@ export default function MobileNav({ className, data }: MobileNavProps) {
                       setOpen(false);
                       setOpenProduct(false);
                     }}
-                    className="cursor-pointer test-sm "
+                    className="test-sm cursor-pointer "
                   >
-                    <LucidePhoneCall className="w-4 h-4 mr-2" />
+                    <LucidePhoneCall className="mr-2 h-4 w-4" />
                     Contact
                     <Check
                       className={cn(
                         "ml-auto h-4 w-4",
-                        pathname === "/contact" ? "opacity-100" : "opacity-0"
+                        pathname === "/contact" ? "opacity-100" : "opacity-0",
                       )}
                     />
                   </CommandItem>
