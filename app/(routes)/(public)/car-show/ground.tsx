@@ -1,18 +1,7 @@
-import { useFrame, useLoader, extend } from "@react-three/fiber";
-import { useEffect } from "react";
-import {
-  Color,
-  LinearSRGBColorSpace,
-  Matrix4,
-  RepeatWrapping,
-  Texture,
-  TextureLoader,
-  Vector2,
-  Vector3,
-} from "three";
 import { Reflector, useTexture } from "@react-three/drei";
-import { MeshReflectorMaterialProps } from "@react-three/drei/materials/MeshReflectorMaterial";
-import { ElementType } from "react";
+import { useFrame } from "@react-three/fiber";
+import { useEffect } from "react";
+import { Color, Matrix4, RepeatWrapping, Texture, Vector2 } from "three";
 
 export default function Ground() {
   const [roughness, normal] = useTexture([
