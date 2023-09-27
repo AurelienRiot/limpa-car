@@ -44,14 +44,20 @@ const Box = ({ color }: { color: Color }) => {
     time.current += delta * 1.2;
     let newZ = position.z - time.current;
 
+    if (newZ < -10) {
+      resetPosition();
+      time.current = 0;
+    }
+
     if (!box.current) return;
+
     box.current.position.set(position.x, position.y, newZ);
-    box.current.rotation.x += xRotSpeed * delta;
-    box.current.rotation.y += yRotSpeed * delta;
+    box.current.rotation.x += delta * xRotSpeed;
+    box.current.rotation.y += delta * yRotSpeed;
   });
 
   return (
-    <mesh ref={box} scale={scale} castShadow>
+    <mesh ref={box} rotation-x={Math.PI * 0.5} scale={scale} castShadow>
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial color={color} envMapIntensity={0.15} />
     </mesh>
@@ -61,19 +67,18 @@ const Box = ({ color }: { color: Color }) => {
 export function Boxes() {
   const [arr] = useState(() => {
     let a = [];
-    for (let i = 0; i < 100; i++) {
-      a.push(0);
-    }
+    for (let i = 0; i < 100; i++) a.push(0);
     return a;
   });
+
   return (
     <>
-      {arr.map((v, i) => (
+      {arr.map((e, i) => (
         <Box
+          key={i}
           color={
             new Color(i % 2 === 0 ? 0.4 : 0.05, 0.1, i % 2 === 0 ? 0.1 : 0.4)
           }
-          key={i}
         />
       ))}
     </>

@@ -62,7 +62,7 @@ const CarShowPage = () => {
             )}
           </CubeCamera>
           <Boxes />
-          {/* <Ground /> */}
+          <Ground />
           <FloatinGrid />
 
           <EffectComposer>
