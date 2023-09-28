@@ -14,17 +14,10 @@ import {
   ChromaticAberration,
   EffectComposer,
 } from "@react-three/postprocessing";
-import { Texture, Vector2 } from "three";
+import { Vector2 } from "three";
 import { BlendFunction } from "postprocessing";
 
 export function CarShow() {
-  const renderCubeCameraContent = (texture: Texture) => (
-    <>
-      <Environment map={texture} />
-      <Car />
-    </>
-  );
-
   return (
     <>
       <OrbitControls target={[0, 0.35, 0]} maxPolarAngle={1.45} />

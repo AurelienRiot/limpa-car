@@ -43,7 +43,7 @@
     "@react-email/html": "0.0.4",
     "@react-email/render": "^0.0.7",
     "@react-spring/parallax": "^9.7.3",
-    "@react-three/drei": "^9.56.16",
+    "@react-three/drei": "^9.86.0",
     "@react-three/fiber": "^8.14.3",
     "@react-three/postprocessing": "^2.15.1",
     "@tanstack/react-table": "^8.10.1",
