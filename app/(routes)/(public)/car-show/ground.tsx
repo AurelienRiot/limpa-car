@@ -8,7 +8,7 @@ import {
   Vector2,
 } from "three";
 
-extend({ meshReflectorMaterialImpl: MeshReflectorMaterial });
+extend({ MeshReflectorMaterialImpl: MeshReflectorMaterial });
 
 export default function Ground() {
   const [roughness, normal] = useLoader(TextureLoader, [
@@ -21,8 +21,6 @@ export default function Ground() {
       texture.wrapS = texture.wrapT = RepeatWrapping;
       texture.repeat.set(5, 5);
     });
-
-    normal.encoding = LinearSRGBColorSpace;
   }, [roughness, normal]);
 
   useFrame((state) => {
