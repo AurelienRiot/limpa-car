@@ -1,14 +1,9 @@
 import { MeshReflectorMaterial } from "@react-three/drei";
 import { extend, useFrame, useLoader } from "@react-three/fiber";
 import { Suspense, useEffect } from "react";
-import {
-  LinearSRGBColorSpace,
-  RepeatWrapping,
-  TextureLoader,
-  Vector2,
-} from "three";
+import { RepeatWrapping, TextureLoader, Vector2 } from "three";
 
-extend({ MeshReflectorMaterialImpl: MeshReflectorMaterial });
+extend({ MeshReflectorMaterial });
 
 export default function Ground() {
   const [roughness, normal] = useLoader(TextureLoader, [
