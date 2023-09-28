@@ -1,25 +1,24 @@
 "use client";
-import { Canvas } from "@react-three/fiber";
-import { Suspense } from "react";
 import {
   CubeCamera,
   Environment,
   OrbitControls,
   PerspectiveCamera,
 } from "@react-three/drei";
-import Ground from "./ground";
-import Car from "./car";
-import Rings from "./rings";
-import { Boxes } from "./boxes";
+import { Canvas } from "@react-three/fiber";
 import {
   Bloom,
   ChromaticAberration,
-  DepthOfField,
   EffectComposer,
 } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
+import { Suspense } from "react";
 import { Vector2 } from "three";
+import { Boxes } from "./boxes";
+import Car from "./car";
 import FloatinGrid from "./floating-grid";
+import Ground from "./ground";
+import Rings from "./rings";
 
 const CarShowPage = () => {
   return (
