@@ -33,6 +33,15 @@ export function CarShow() {
 
       <color args={[0, 0, 0]} attach={"background"} />
 
+      <CubeCamera resolution={256} frames={Infinity}>
+        {(texture) => (
+          <>
+            <Environment map={texture} />
+            <Car />
+          </>
+        )}
+      </CubeCamera>
+
       <spotLight
         color={[1, 0.25, 0.7]}
         intensity={200}
@@ -54,7 +63,6 @@ export function CarShow() {
       />
       <Rings />
 
-      <Car />
       <Boxes />
       <Ground />
       <FloatinGrid />
