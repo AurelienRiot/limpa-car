@@ -12,6 +12,7 @@ import FloatinGrid from "./floating-grid";
 import {
   Bloom,
   ChromaticAberration,
+  DepthOfField,
   EffectComposer,
 } from "@react-three/postprocessing";
 import { Vector2 } from "three";
@@ -20,9 +21,13 @@ import { BlendFunction } from "postprocessing";
 export function CarShow() {
   return (
     <>
-      <OrbitControls target={[0, 0.35, 0]} maxPolarAngle={1.45} />
+      <OrbitControls
+        target={[0, 0.35, 0]}
+        maxPolarAngle={1.45}
+        enableZoom={false}
+      />
 
-      <PerspectiveCamera makeDefault fov={50} position={[3, 2, 5]} />
+      <PerspectiveCamera makeDefault fov={50} position={[4, 3, 4]} />
 
       <color args={[0, 0, 0]} attach={"background"} />
 
@@ -34,7 +39,6 @@ export function CarShow() {
           </>
         )}
       </CubeCamera>
-
       <spotLight
         color={[1, 0.25, 0.7]}
         intensity={250}
@@ -62,11 +66,11 @@ export function CarShow() {
 
       <EffectComposer>
         {/* <DepthOfField
-    focusDistance={0.0035}
-    focalLength={0.01}
-    bokehScale={3}
-    height={480}
-  /> */}
+          focusDistance={0.0035}
+          focalLength={0.01}
+          bokehScale={3}
+          height={480}
+        /> */}
         <Bloom
           blendFunction={BlendFunction.ADD}
           intensity={0.5}
