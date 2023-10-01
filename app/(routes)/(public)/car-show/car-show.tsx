@@ -1,24 +1,22 @@
 import {
+  Box,
   CubeCamera,
   Environment,
-  OrbitControls,
-  PerspectiveCamera,
-  Scroll,
   ScrollControls,
-  useScroll,
+  Text,
 } from "@react-three/drei";
 import Rings from "./rings";
 import Car from "./car";
 import { Boxes } from "./boxes";
 import Ground from "./ground";
 import FloatinGrid from "./floating-grid";
+
 import {
   Bloom,
   ChromaticAberration,
-  DepthOfField,
   EffectComposer,
 } from "@react-three/postprocessing";
-import { Vector2, Vector3 } from "three";
+import { Vector2 } from "three";
 import { BlendFunction } from "postprocessing";
 import Camera from "./camera";
 
@@ -32,27 +30,29 @@ export function CarShow() {
         horizontal={false}
         infinite={false}
       >
-        {/* <OrbitControls
-          target={[0, 0.35, 0]}
-          maxPolarAngle={1.45}
-          enableZoom={false}
-        /> */}
         <Camera />
 
-        <Scroll html>
-          {/* DOM contents in here will scroll along */}
-          <h1 className="top-1/2 text-3xl text-white">
-            html in here (optional)
-          </h1>
-          <h1 className="text-3xl text-white" style={{ top: "100vh" }}>
-            second page
-          </h1>
-          <h1 className="text-3xl text-white" style={{ top: "200vh" }}>
-            third page
-          </h1>
-        </Scroll>
+        {/* <Text /> */}
 
         <color args={[0, 0, 0]} attach={"background"} />
+
+        <Box
+          args={[0.005, 1, 1]}
+          position={[1.5, 1.5, -1.5]}
+          rotation={[0, Math.PI / 4, 0]}
+        >
+          <meshStandardMaterial attach="material" color="orange" />
+          <Text
+            color="black" // default
+            anchorX="center" // default
+            anchorY="middle" // default
+            position={[0.0025, 0, 0]}
+            rotation={[0, Math.PI / 2, 0]} // rotate 90 degrees around the y-axis
+            scale={0.2} // double the size
+          >
+            Hello world
+          </Text>
+        </Box>
 
         <CubeCamera resolution={256} frames={Infinity}>
           {(texture) => (
@@ -84,7 +84,7 @@ export function CarShow() {
 
         <Rings />
 
-        <Boxes />
+        {/* <Boxes /> */}
         <Ground />
         <FloatinGrid />
 

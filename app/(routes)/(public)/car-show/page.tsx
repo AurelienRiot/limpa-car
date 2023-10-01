@@ -3,13 +3,15 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { CarShow } from "./car-show";
 import Loading from "../loading";
-import { useScroll } from "framer-motion";
 
 const CarShowPage = () => {
   return (
-    <div className="m-0 h-screen w-full overflow-hidden">
+    <div
+      className="m-0  w-full overflow-hidden"
+      style={{ height: "calc(100vh - 64px)" }}
+    >
       <Suspense fallback={<Loading />}>
-        <Canvas shadows>
+        <Canvas shadows className="relative">
           <CarShow />
         </Canvas>
       </Suspense>
