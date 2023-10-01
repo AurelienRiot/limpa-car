@@ -19,11 +19,11 @@ export default function Ground() {
     });
   }, [roughness, normal]);
 
-  // useFrame((state) => {
-  //   let t = -state.clock.getElapsedTime() * 0.128;
-  //   roughness.offset.set(0, t);
-  //   normal.offset.set(0, t);
-  // });
+  useFrame((state) => {
+    let t = -state.clock.getElapsedTime() * 0.128;
+    roughness.offset.set(0, t);
+    normal.offset.set(0, t);
+  });
 
   return (
     <mesh rotation-x={-Math.PI * 0.5} castShadow receiveShadow>

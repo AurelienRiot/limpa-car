@@ -32,8 +32,6 @@ export function CarShow() {
       >
         <Camera />
 
-        {/* <Text /> */}
-
         <color args={[0, 0, 0]} attach={"background"} />
 
         <Box
@@ -84,7 +82,7 @@ export function CarShow() {
 
         <Rings />
 
-        {/* <Boxes /> */}
+        <Boxes />
         <Ground />
         <FloatinGrid />
 
