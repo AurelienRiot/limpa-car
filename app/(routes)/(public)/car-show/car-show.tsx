@@ -46,7 +46,7 @@ export function CarShow() {
             color="black" // default
             anchorX="center" // default
             anchorY="middle" // default
-            position={[0.0025, 0, 0]}
+            position={[0.005, 0, 0]}
             rotation={[0, Math.PI / 2, 0]} // rotate 90 degrees around the y-axis
             scale={0.2} // double the size
           >
