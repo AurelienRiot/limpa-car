@@ -16,6 +16,8 @@ const Camera = () => {
       const x = radius * Math.cos(2 * Math.PI * data.offset);
       const z = radius * Math.sin(2 * Math.PI * data.offset);
       cameraRef.current.position.lerp(new Vector3(x, 3, z), 0.1);
+
+      cameraRef.current.lookAt(new Vector3(0, 0.035, 0));
     }
   });
 

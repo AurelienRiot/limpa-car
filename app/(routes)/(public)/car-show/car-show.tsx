@@ -32,11 +32,11 @@ export function CarShow() {
         horizontal={false}
         infinite={false}
       >
-        <OrbitControls
+        {/* <OrbitControls
           target={[0, 0.35, 0]}
           maxPolarAngle={1.45}
           enableZoom={false}
-        />
+        /> */}
         <Camera />
 
         <Scroll html>
