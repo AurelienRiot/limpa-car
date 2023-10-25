@@ -70,7 +70,7 @@ const NettoyageTile: React.FC<NettoyageTileProps> = ({
         onConfirm={handleOnConfirm}
       />
       <div
-        className="group relative flex flex-col justify-between rounded-3xl border-2 border-primary/10 bg-card p-6 shadow-2xl lg:w-96"
+        className="group relative flex flex-col justify-between rounded-3xl border-2 border-primary/10 bg-card p-6 shadow-2xl transition-all hover:translate-y-4 lg:w-96"
         onMouseMove={handleMouseMove}
       >
         <motion.div

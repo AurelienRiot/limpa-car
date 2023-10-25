@@ -19,7 +19,7 @@ export type ProductWithCategoryAndImagesAndSpecs =
 
 const NettoyagePage = async () => {
   const products = (await GetProducts({ categoryName: "Nettoyage" })).sort(
-    (a, b) => a.priceHT - b.priceHT
+    (a, b) => a.priceHT - b.priceHT,
   );
 
   const productsWithSpecs: ProductWithCategoryAndImagesAndSpecs[] =
@@ -27,7 +27,7 @@ const NettoyagePage = async () => {
       return {
         ...product,
         productSpecsMarkdown: (
-          <Markdown className="mt-4 overflow-y-auto max-h-1/2">
+          <Markdown className="max-h-1/2 mt-4 overflow-y-auto">
             {product.productSpecs}
           </Markdown>
         ),
@@ -51,13 +51,13 @@ const NettoyagePage = async () => {
   return (
     <Container>
       {category && <Billboard data={category.billboard} />}
-      <h1 className="mt-12 text-5xl font-bold text-center">
+      <h1 className="mt-12 text-center text-5xl font-bold">
         Formules ou sur Devis
       </h1>
-      <h2 className="py-4 text-3xl font-semibold text-center">
+      <h2 className="py-4 text-center text-3xl font-semibold">
         Pour les Utilitaires , SUV et Monospace sur devis.
       </h2>
-      <p className="text-xl font-semibold text-center">
+      <p className="text-center text-xl font-semibold">
         Si vous souhaitez une formule sur mesure merci de{" "}
         <Link className="text-blue-500 hover:underline" href="/contact">
           me contacter
@@ -66,7 +66,7 @@ const NettoyagePage = async () => {
         directement pour vous établir un devis.
       </p>
 
-      <div className="flex flex-col items-center justify-between gap-2 m-6 lg:items-start lg:flex-row ">
+      <div className="m-6 flex flex-col items-center justify-between gap-2 lg:flex-row lg:items-start ">
         {groupedProducts.map((sameProduct) => (
           <NettoyageTile
             key={sameProduct[0].id}
@@ -77,7 +77,7 @@ const NettoyagePage = async () => {
                 alt="Nettoyage"
                 width={100}
                 height={100}
-                className="w-auto h-auto bg-transparent "
+                className="h-auto w-auto bg-transparent  "
               />
             }
           />
