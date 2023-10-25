@@ -64,6 +64,7 @@ const ImageSlider = ({
           alt="image1"
           fill
           sizes="(max-width: 640px) 80vw, 80vh"
+          className="pointer-events-none"
         />
 
         <div
@@ -75,6 +76,7 @@ const ImageSlider = ({
             alt="image1"
             fill
             sizes="(max-width: 640px) 80vw, 80vh"
+            className="pointer-events-none"
           />
         </div>
 
