@@ -94,20 +94,45 @@ h6 {
   @apply font-Oswald;
 }
 
-.hide-scrollbar::-webkit-scrollbar {
+@layer components {
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Disable password hide and show button */
+/* input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
   display: none;
 }
 
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+input[type="password"]::-webkit-inner-spin-button,
+input[type="password"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
+
+input[type="password"]::-webkit-search-cancel-button,
+input[type="password"]::-webkit-search-decoration,
+input[type="password"]::-webkit-search-results-button,
+input[type="password"]::-webkit-search-results-decoration {
+  display: none;
+} */
 
 /* Disable number input spin button */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 /* Calendar button */
