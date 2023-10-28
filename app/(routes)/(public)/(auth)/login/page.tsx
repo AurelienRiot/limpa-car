@@ -19,6 +19,7 @@ import toast from "react-hot-toast";
 import * as z from "zod";
 import { motion } from "framer-motion";
 import Spinner from "@/components/animations/spinner";
+import { Separator } from "@/components/ui/separator";
 
 const formSchema = z.object({
   email: z
@@ -99,6 +100,14 @@ export default function LoginPage() {
             Se connecter avec Google
           </span>
         </button>
+        <div
+          className={`my-4 flex h-4 flex-row  items-center gap-4 self-stretch whitespace-nowrap
+        before:h-0.5 before:w-full 
+        before:flex-grow before:bg-primary/30  after:h-0.5  after:w-full 
+        after:flex-grow  after:bg-primary/30  `}
+        >
+          ou
+        </div>
         {success ? null : (
           <Form {...form}>
             <form

@@ -22,7 +22,7 @@ export default async function PublicLayout({
 
       <NavBar role={session?.user?.role} />
       <div className=" pt-16 ">{children}</div>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
